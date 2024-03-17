@@ -1,0 +1,63 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-capybara
+
+inherit_gem:
+  rubocop-fjord:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
+
+AllCops:
+  NewCops: enable
+
+Metrics:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/AsciiComments:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: true
+
+
+Style/WordArray:
+  Enabled: true
+
+Naming/VariableNumber:
+  Enabled: true
+
+Lint/AssignmentInCondition:
+  Enabled: true
+
+Naming/PredicateName:
+  Enabled: true
+
+Rails/I18nLocaleTexts:
+  Enabled: true
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: true

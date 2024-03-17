@@ -4,6 +4,11 @@ require:
   - rubocop-performance
   - rubocop-rails
 
+inherit_gem:
+  rubocop-fjord:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
+
 AllCops:
   NewCops: enable
 

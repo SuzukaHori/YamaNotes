@@ -43,7 +43,6 @@ Style/StringLiterals:
 Style/SymbolArray:
   Enabled: true
 
-
 Style/WordArray:
   Enabled: true
 

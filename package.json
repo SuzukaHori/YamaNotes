@@ -11,6 +11,7 @@
   },
   "scripts": {
     "lint:eslint": "eslint app/javascript/**/* --max-warnings=0",
-    "lint:prettier": "prettier app/javascript/**/*.{js,jsx,vue} --check"
+    "lint:prettier": "prettier app/javascript/**/* --check",
+    "lint:fix": "prettier --write . && eslint --fix ."
   }
 }

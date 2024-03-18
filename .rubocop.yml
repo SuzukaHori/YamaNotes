@@ -5,9 +5,6 @@ require:
   - rubocop-rails
   - rubocop-capybara
 
-inherit_from:
-  - node_modules/@prettier/plugin-ruby/rubocop.yml
-
 inherit_gem:
   rubocop-fjord:
     - "config/rubocop.yml"
@@ -45,7 +42,6 @@ Style/StringLiterals:
 
 Style/SymbolArray:
   Enabled: true
-
 
 Style/WordArray:
   Enabled: true

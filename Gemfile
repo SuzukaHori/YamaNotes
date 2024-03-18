@@ -59,6 +59,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-capybara', require: false
   gem 'prettier'
+  gem 'slim_lint'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

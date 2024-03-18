@@ -28,7 +28,7 @@ gem 'stimulus-rails'
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem 'tailwindcss-rails'
 
-gem "slim-rails"
+gem 'slim-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -58,8 +58,8 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-capybara', require: false
-  gem 'prettier'
-  gem 'slim_lint'
+  gem 'prettier', require: false
+  gem 'slim_lint', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

@@ -10,8 +10,7 @@
     "prettier": "^3.2.5"
   },
   "scripts": {
-    "lint:eslint": "eslint app/javascript/**/* --max-warnings=0",
-    "lint:prettier": "prettier app/javascript/**/* --check",
-    "lint:fix": "prettier --write . && eslint --fix ."
+    "lint": "prettier --check . && eslint .",
+    "fix": "prettier --write . && eslint --fix ."
   }
 }

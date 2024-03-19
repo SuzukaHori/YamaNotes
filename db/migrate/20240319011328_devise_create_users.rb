@@ -39,10 +39,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       # t.string   :last_sign_in_ip
 
       ##Omniauthable
-      t.integer :uid #, :limit => 8 #bigintにする
-      t.string :name
-      t.string :provider
-      t.string :password
+      t.string :uid, null: false
+      # t.string :name, null: false
+      t.string :provider, null: false
+      # t.string :password
 
 
       # t.timestamps

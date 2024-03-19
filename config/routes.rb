@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  get '/', to: 'statics#index'
+  root to: 'statics#index'
   get 'up' => 'rails/health#show', as: :rails_health_check
 end

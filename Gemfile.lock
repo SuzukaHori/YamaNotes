@@ -98,6 +98,9 @@ GEM
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
+    dartsass-rails (0.5.0)
+      railties (>= 6.0.0)
+      sass-embedded (~> 1.63)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -118,8 +121,23 @@ GEM
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
+    ffi (1.16.3)
+    font-awesome-sass (6.5.1)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.26.0)
+      rake (>= 13)
+    google-protobuf (4.26.0-aarch64-linux)
+      rake (>= 13)
+    google-protobuf (4.26.0-arm64-darwin)
+      rake (>= 13)
+    google-protobuf (4.26.0-x86-linux)
+      rake (>= 13)
+    google-protobuf (4.26.0-x86_64-darwin)
+      rake (>= 13)
+    google-protobuf (4.26.0-x86_64-linux)
+      rake (>= 13)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -298,6 +316,20 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    sass-embedded (1.72.0-aarch64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-arm-linux-gnueabihf)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-x86-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-x86_64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.18.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -388,9 +420,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  dartsass-rails (~> 0.5.0)
   debug
   devise
   dotenv-rails
+  font-awesome-sass
   importmap-rails
   omniauth
   omniauth-google-oauth2

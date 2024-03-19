@@ -1,8 +1,0 @@
-<h1>YamaNotes</h1>
-<ul class="nav">
-  <%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, data: { turbo: false } %>
-</ul>
-<% if user_signed_in? %>
-  <p>ログイン済み</p>
-  <li><%= link_to 'ログアウト', destroy_user_session_path %></li>
-<%end%>

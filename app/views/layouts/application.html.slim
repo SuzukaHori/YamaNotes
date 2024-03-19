@@ -8,7 +8,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
-    = javascript_importmap_tags
   body
+    script[src="#{fontawesome_url}" crossorigin="anonymous"]
     main.container.mx-auto.mt-28.px-5.flex
       = yield

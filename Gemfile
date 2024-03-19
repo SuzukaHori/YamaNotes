@@ -28,6 +28,10 @@ gem 'stimulus-rails'
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem 'tailwindcss-rails'
 
+gem "dartsass-rails", "~> 0.5.0"
+
+gem "font-awesome-sass"
+
 gem 'slim-rails'
 
 # Use Redis adapter to run Action Cable in production

@@ -28,9 +28,9 @@ gem 'stimulus-rails'
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem 'tailwindcss-rails'
 
-gem "dartsass-rails", "~> 0.5.0"
+gem 'dartsass-rails', '~> 0.5.0'
 
-gem "font-awesome-sass"
+gem 'font-awesome-sass'
 
 gem 'slim-rails'
 
@@ -55,7 +55,7 @@ gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
 
-gem "dotenv-rails"
+gem 'dotenv-rails'
 
 gem 'omniauth-rails_csrf_protection'
 

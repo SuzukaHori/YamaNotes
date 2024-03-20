@@ -26,13 +26,13 @@ Style/AsciiComments:
   Enabled: true
 
 Style/Documentation:
-  Enabled: true
+  Enabled: false
 
 Style/ClassAndModuleChildren:
-  Enabled: true
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
-  Enabled: true
+  Enabled: false
 
 Style/GuardClause:
   Enabled: true

@@ -28,6 +28,10 @@ gem 'stimulus-rails'
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem 'tailwindcss-rails'
 
+gem 'dartsass-rails', '~> 0.5.0'
+
+gem 'font-awesome-sass'
+
 gem 'slim-rails'
 
 # Use Redis adapter to run Action Cable in production
@@ -44,6 +48,16 @@ gem 'tzinfo-data', platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
+
+gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'dotenv-rails'
+
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

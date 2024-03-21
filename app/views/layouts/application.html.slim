@@ -10,5 +10,12 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   body
+    script[src="#{fontawesome_url}" crossorigin="anonymous"]
+    h1.text-3xl.font-bold.p-8
+      | YamaNotes
+    - if flash[:notice]
+      .bg-blue-100.border-t.border-b.border-blue-500.text-blue-700.px-4.py-3
+        span
+          | #{notice}
     main.container.mx-auto.mt-28.px-5.flex
       = yield

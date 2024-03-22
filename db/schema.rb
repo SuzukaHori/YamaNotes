@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_011328) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_021757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,4 +22,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_011328) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  create_table "walks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "publish", null: false
+    t.boolean "clockwise", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_walks_on_user_id", unique: true
+  end
+
+  add_foreign_key "walks", "users"
 end

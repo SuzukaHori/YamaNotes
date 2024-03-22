@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_021757) do
 
   create_table "walks", force: :cascade do |t|
     t.bigint "user_id"
-    t.boolean "publish", null: false
-    t.boolean "clockwise", null: false
+    t.boolean "publish", default: false, null: false
+    t.boolean "clockwise", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_walks_on_user_id", unique: true

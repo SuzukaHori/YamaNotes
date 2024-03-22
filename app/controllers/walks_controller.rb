@@ -1,16 +1,33 @@
 class WalksController < ApplicationController
-  def new
-  end
+  def show; end
 
-  def show
+  def new
+    @walk = Walk.new
   end
 
   def create
+    if current_user.walk.present?
+      flash[:notice] = "Walkは一つしか作成できません"
+      redirect_to walk_url
+    else
+      @walk = current_user.build_walk
+      @walk.clockwise = params[:clockwise]
+      if @walk.save
+        flash[:success] = 'Walk was successfully created.'
+        redirect_to walk_url
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
   end
 
-  def update
-  end
+  def update; end
 
-  def delete
+  def delete; end
+
+  private
+
+  def walk_params
+    params.require(:walk).permit(:user_id, :clockwise)
   end
 end

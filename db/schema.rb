@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_011328) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "arrivals", force: :cascade do |t|
+    t.bigint "walk_id"
+    t.bigint "station_id"
+    t.string "memo"
+    t.date "arrived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_arrivals_on_station_id", unique: true
+    t.index ["walk_id"], name: "index_arrivals_on_walk_id", unique: true
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
+    t.float "clockwise_distance_to_next", null: false
+    t.float "counterclockwise_distance_to_next", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.decimal "uid", null: false
@@ -22,4 +43,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_011328) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  create_table "walks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "publish", default: false, null: false
+    t.boolean "clockwise", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_walks_on_user_id", unique: true
+  end
+
+  add_foreign_key "arrivals", "stations"
+  add_foreign_key "arrivals", "walks"
+  add_foreign_key "walks", "users"
 end

@@ -24,15 +24,18 @@ Station.create!(
   counterclockwise_distance_to_next: 3.3
 )
 
-
-
 user = User.create!(
   uid: 1111111111,
   provider: "google_oauth2"
 )
 
-user.build_walk(
+walk = user.build_walk(
   clockwise: true
 )
 
+walk.save!
+
+walk.arrivals.create!(
+  station_id: 1
+)
 

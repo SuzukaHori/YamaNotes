@@ -1,5 +1,7 @@
 class WalksController < ApplicationController
-  def show; end
+  def show
+    @walk = current_user.walk
+  end
 
   def new
     @walk = Walk.new

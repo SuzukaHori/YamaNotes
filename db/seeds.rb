@@ -1,11 +1,38 @@
 # frozen_string_literal: true
 
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Station.create!(
+  name: "渋谷",
+  longitude: 11111,
+  latitude: 222222,
+  clockwise_distance_to_next: 2.4,
+  counterclockwise_distance_to_next: 3.3
+)
+
+Station.create!(
+  name: "新宿",
+  longitude: 11111,
+  latitude: 222222,
+  clockwise_distance_to_next: 2.4,
+  counterclockwise_distance_to_next: 3.3
+)
+
+Station.create!(
+  name: "原宿",
+  longitude: 11111,
+  latitude: 222222,
+  clockwise_distance_to_next: 2.4,
+  counterclockwise_distance_to_next: 3.3
+)
+
+
+
+user = User.create!(
+  uid: 1111111111,
+  provider: "google_oauth2"
+)
+
+user.build_walk(
+  clockwise: true
+)
+
+

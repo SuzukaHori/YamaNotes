@@ -39,3 +39,6 @@ walk.arrivals.create!(
   station_id: 1
 )
 
+walk.arrivals.create!(
+  station_id: 3
+)

@@ -9,14 +9,14 @@ class WalksController < ApplicationController
 
   def create
     if current_user.walk.present?
-      flash[:notice] = "Walkは一つしか作成できません"
+      flash[:alert] = 'Walkは一つしか作成できません'
       redirect_to walk_url
     else
       @walk = current_user.build_walk
       @walk.clockwise = params[:clockwise]
-      if @walk.save
+      if @walk.valid? && @walk.save!
         @walk.arrivals.create!(station_id: 1)
-        flash[:success] = 'Walk was successfully created.'
+        flash[:notice] = 'Walk was successfully created.'
         redirect_to walk_url
       else
         render :new, status: :unprocessable_entity

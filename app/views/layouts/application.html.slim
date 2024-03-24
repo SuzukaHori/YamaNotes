@@ -11,8 +11,8 @@ html
     = javascript_importmap_tags
   body
     script[src="#{fontawesome_url}" crossorigin="anonymous"]
-    h1.text-3xl.font-bold.p-8
+    h1.text-3xl.font-bold.p-4
       | YamaNotes
     = render 'layouts/flash'
-    main.container.mx-auto.mt-28.px-5.flex
+    main.container.p-4
       = yield

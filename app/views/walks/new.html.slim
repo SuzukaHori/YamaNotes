@@ -1,7 +1,9 @@
 = form_with url: walk_path, method: :post do |f|
+  = render 'shared/errors', model: @walk
   = f.radio_button :clockwise, true, checked: true
-  = f.label :check_box, "外回り"
+  = f.label :check_box, '外回り'
   = f.radio_button :clockwise, false
-  = f.label :check_box, "内回り"
-  = f.select :depature_station, ["渋谷", "新宿", "原宿"]
-  = f.submit "はじめる"
+  = f.label :check_box, '内回り'
+  = f.select :depature_station, ['渋谷', '新宿', '原宿']
+  br
+  = f.submit 'はじめる', class: 'btn-primary'

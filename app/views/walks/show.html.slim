@@ -1,2 +1,10 @@
-h1 Walks#show
-p Find me in app/views/walks/show.html.slim
+.walk-info
+  p 出発駅：#{@walk.stations.first.name}
+  p 歩いた距離：
+
+br
+.current-info
+  p 現在の駅  ：#{@walk.stations.last.name}駅
+  p 次の駅まで：#{@walk.stations.last.clockwise_distance_to_next}km
+  p 次の駅   ： #{@next_station.name}駅
+  

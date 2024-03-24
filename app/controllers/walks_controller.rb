@@ -1,6 +1,7 @@
 class WalksController < ApplicationController
   def show
     @walk = current_user.walk
+    @next_station = Station.find(current_station.id + 1)
   end
 
   def new
@@ -14,8 +15,7 @@ class WalksController < ApplicationController
     else
       @walk = current_user.build_walk
       @walk.clockwise = params[:clockwise]
-      if @walk.valid? && @walk.save!
-        @walk.arrivals.create!(station_id: 1)
+      if @walk.valid? && @walk.save! && @walk.arrivals.create!(station_id: params[:station_id])
         flash[:notice] = 'Walk was successfully created.'
         redirect_to walk_url
       else
@@ -32,5 +32,9 @@ class WalksController < ApplicationController
 
   def walk_params
     params.require(:walk).permit(:user_id, :clockwise)
+  end
+
+  def current_station
+    current_user.walk.stations.last
   end
 end

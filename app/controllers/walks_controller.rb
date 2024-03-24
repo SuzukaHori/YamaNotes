@@ -9,7 +9,7 @@ class WalksController < ApplicationController
 
   def create
     if current_user.walk.present?
-      flash[:alert] = "Walkは一つしか作成できません"
+      flash[:alert] = 'Walkは一つしか作成できません'
       redirect_to walk_url
     else
       @walk = current_user.build_walk

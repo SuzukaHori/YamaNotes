@@ -1,0 +1,4 @@
+- if model.errors.any?
+  - model.errors.full_messages.each do |msg|
+    .p-4.mb-4.text-sm.text-red-800.rounded-lg.bg-red-50
+      span = msg

@@ -1,4 +1,9 @@
 class ArrivalsController < ApplicationController
+  before_action :set_arrival, only: %i[ show edit update destroy ]
+
+  def index
+  end
+
   def create
     arrivals = current_user.walk.arrivals
     if arrivals.find_by(station_id: params[:station_id]) && arrivals.find_by(station_id: params[:station_id]).arrived_at.nil?
@@ -9,10 +14,33 @@ class ArrivalsController < ApplicationController
     end
     if @arrival.valid? && @arrival.save!
       flash[:notice] = "Sucess"
-      redirect_to new_arrival_path
+      redirect_to arrival_path(@arrival.id)
     else
-      flash[:alert] = "Failed"
+      flash[:alert] = @arrival.errors.full_messages.join
       redirect_to walk_url
     end
   end
+
+  def edit
+  end
+
+    def show
+      @walk = current_user.walk
+    end
+
+    def update
+    end
+
+    def destroy
+    end
+
+    private
+
+    def set_arrival
+      @arrival = Arrival.find(params[:id])
+    end
+
+    def arrival_params
+      params.require(:arrival).permit(:station_id, :arrived_at)
+    end
 end

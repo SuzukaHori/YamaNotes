@@ -5,8 +5,7 @@
 
 br
 .current-info
-  p 現在の駅  ：#{@walk.stations.last.name}駅
-  p 次の駅まで：#{@walk.stations.last.clockwise_distance_to_next}km
-  p 次の駅   ： #{@next_station.name}駅
-
-/ = button_to "到着", arrivals_path, params:{}, class: 'btn-primary'
+  p 現在の駅  ：#{@walk.current_station.name}駅
+  p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km
+  p 次の駅   ： #{@walk.next_station.name}駅
+= button_to "到着", arrivals_path, params:{station_id: @walk.next_station.id}, class: 'btn-primary'

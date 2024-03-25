@@ -18,11 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
     t.bigint "walk_id"
     t.bigint "station_id"
     t.string "memo"
-    t.date "arrived_at"
+    t.datetime "arrived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["station_id"], name: "index_arrivals_on_station_id", unique: true
-    t.index ["walk_id"], name: "index_arrivals_on_walk_id", unique: true
+    t.index ["station_id"], name: "index_arrivals_on_station_id"
+    t.index ["walk_id", "station_id"], name: "index_arrivals_on_walk_id_and_station_id", unique: true
+    t.index ["walk_id"], name: "index_arrivals_on_walk_id"
   end
 
   create_table "stations", force: :cascade do |t|

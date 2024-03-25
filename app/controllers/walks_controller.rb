@@ -14,8 +14,7 @@ class WalksController < ApplicationController
     else
       @walk = current_user.build_walk
       @walk.clockwise = params[:clockwise]
-      if @walk.valid? && @walk.save!
-        @walk.arrivals.create!(station_id: 1)
+      if @walk.valid? && @walk.save! && @walk.arrivals.create!(station_id: params[:station_id])
         flash[:notice] = 'Walk was successfully created.'
         redirect_to walk_url
       else

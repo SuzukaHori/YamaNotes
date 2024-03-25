@@ -6,14 +6,14 @@ class Walk < ApplicationRecord
 
   def current_station
     if arrived.any?
-      arrived.max_by{|arrival| arrival.arrived_at}.station
+      arrived.max_by(&:arrived_at).station
     else
-      self.arrivals.first.station
+      arrivals.first.station
     end
   end
 
   def arrived_stations
-    arrived.map { |arrival| Station.find(arrival.station_id)}
+    arrived.map { |arrival| Station.find(arrival.station_id) }
   end
 
   def distance_walked
@@ -21,20 +21,20 @@ class Walk < ApplicationRecord
   end
 
   def next_station
-    next_station_id = 
-    if self.arrived == Station.all.length
-      nil
-    elsif current_station.id == Station.all.length
-      1
-    else
-      current_station.id + 1
-    end
+    next_station_id =
+      if arrived == Station.all.length
+        nil
+      elsif current_station.id == Station.all.length
+        1
+      else
+        current_station.id + 1
+      end
     Station.find(next_station_id)
   end
 
   private
 
   def arrived
-    self.arrivals.where.not(arrived_at: nil).order(arrived_at: :asc)
+    arrivals.where.not(arrived_at: nil).order(arrived_at: :asc)
   end
 end

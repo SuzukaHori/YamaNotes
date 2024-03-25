@@ -4,7 +4,7 @@ class CreateArrivals < ActiveRecord::Migration[7.1]
       t.belongs_to :walk, foreign_key: true
       t.belongs_to :station, foreign_key: true
       t.string :memo
-      t.date :arrived_at
+      t.timestamp :arrived_at, precision: 6
 
       t.timestamps
     end

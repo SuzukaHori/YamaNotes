@@ -1,13 +1,15 @@
 .walk-info
-  p 出発から：#{elapsed_time(@walk.stations.first.created_at)}
+  p 出発から：#{elapsed_time(@walk.created_at)}
     （出発：#{@walk.created_at.strftime('%m月%-d日%-H時%M分')}）
   p 歩いた駅：#{@walk.arrived_stations.length}駅（残り駅）
   p 歩いた距離：約#{@walk.distance_walked}km（残りkm）
 
 br
+= render 'map'
 .current-info
   p 現在の駅  ：#{@walk.current_station.name}駅
   p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km
-  p 次の駅   ： #{@walk.next_station.name}駅
-= button_to '到着', arrivals_path,
-  params: { station_id: @walk.next_station.id }, class: 'btn-primary'
+  p style="display: inline;" 次の駅   ： #{@walk.next_station.name}駅
+  .inline-flex.ml-2
+    = button_to '到着', arrivals_path,
+      params: { station_id: @walk.next_station.id }, class: 'btn-primary'

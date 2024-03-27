@@ -1,1 +1,3 @@
-.div#map style="width: 500px; height: 400px;"
+.div data-controller="map"
+  .div#map style="width: 500px; height: 400px;"
+  = button_tag "クリック", data: { action: 'click->map#greet' }

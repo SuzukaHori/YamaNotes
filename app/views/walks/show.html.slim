@@ -5,6 +5,7 @@
   p 歩いた距離：約#{@walk.distance_walked}km（残りkm）
 
 br
+= render 'map'
 .current-info
   p 現在の駅  ：#{@walk.current_station.name}駅
   p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km

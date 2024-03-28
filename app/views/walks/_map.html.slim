@@ -1,4 +1,4 @@
 div data-controller="map"
   #map style="width: 500px; height: 500px;"
-  input data-map-target="ids" value="#{@walk.station_ids}" type="hidden"
-  = button_tag "線を引く", data: { action: 'click->map#draw', map_count_value: 140 }
+  input data-map-target="ids" value="#{@walk.arrived_stations.map(&:id)}" type="hidden"
+  input data-map-target="currentid" value="#{@walk.current_station.id}" type="hidden"

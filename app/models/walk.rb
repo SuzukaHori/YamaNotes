@@ -36,5 +36,7 @@ class Walk < ApplicationRecord
 
   def arrived
     arrivals.where.not(arrived_at: nil).order(arrived_at: :asc)
+    # arrivals.where.not(arrived_at: nil)
+    # .or(arrivals.where(id: 1)).order(arrived_at: :asc)
   end
 end

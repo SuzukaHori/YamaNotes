@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Station.create!(
-  name: '渋谷',
+  name: '品川',
   longitude: 11_111,
   latitude: 222_222,
   clockwise_distance_to_next: 2.4,
@@ -9,7 +9,7 @@ Station.create!(
 )
 
 Station.create!(
-  name: '新宿',
+  name: '大崎',
   longitude: 11_111,
   latitude: 222_222,
   clockwise_distance_to_next: 2.4,
@@ -17,7 +17,15 @@ Station.create!(
 )
 
 Station.create!(
-  name: '原宿',
+  name: '五反田',
+  longitude: 11_111,
+  latitude: 222_222,
+  clockwise_distance_to_next: 2.4,
+  counterclockwise_distance_to_next: 3.3
+)
+
+Station.create!(
+  name: '目黒',
   longitude: 11_111,
   latitude: 222_222,
   clockwise_distance_to_next: 2.4,

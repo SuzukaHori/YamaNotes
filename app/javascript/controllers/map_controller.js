@@ -23,10 +23,10 @@ export default class extends Controller {
   setMap() {
     const centerPosition = [35.68032, 139.73946];
     const map = L.map("map").setView(centerPosition, 12);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>Tiles Ⓒ <a href="">HOT</a>',
+        '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
     }).addTo(map);
     return map;
   }

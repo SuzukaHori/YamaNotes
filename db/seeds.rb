@@ -44,21 +44,21 @@ stations.each do |station|
   )
 end
 
-# user = User.create!(
-#   uid: 1_111_111_111,
-#   provider: 'google_oauth2'
-# )
+user = User.create!(
+  uid: 1_111_111_111,
+  provider: 'google_oauth2'
+)
 
-# walk = user.build_walk(
-#   clockwise: true
-# )
+walk = user.build_walk(
+  clockwise: true
+)
 
-# walk.save!
+walk.save!
 
-# walk.arrivals.create!(
-#   station_id: 1
-# )
+walk.arrivals.create!(
+  station_id: 1
+)
 
-# walk.arrivals.create!(
-#   station_id: 3
-# )
+walk.arrivals.create!(
+  station_id: 3
+)

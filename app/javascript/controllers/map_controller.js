@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["arrivedIds", "currentId"];
+  static targets = ["throughStationIds", "currentId"];
 
   /* eslint-disable no-undef */
   connect() {
@@ -33,8 +33,8 @@ export default class extends Controller {
   }
 
   setArrivedStations() {
-    const arrivedIds = JSON.parse(this.arrivedIdsTarget.value);
-    return arrivedIds.map((id) => this.allStations.find((station) => station.id === id));
+    const throughStationIds = JSON.parse(this.throughStationIdsTarget.value);
+    return throughStationIds.map((id) => this.allStations.find((station) => station.id === id));
   }
 
   setCurrentStation() {

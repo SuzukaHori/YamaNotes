@@ -32,9 +32,13 @@ class Walk < ApplicationRecord
     Station.find(next_station_id)
   end
 
+  def through_station_ids
+    [*stations.first, *arrived_stations].map(&:id)
+  end
+
   private
 
   def arrived
-    arrivals.where.not(arrived_at: nil).order(arrived_at: :asc)
+    arrivals.order(arrived_at: :asc).select(&:arrived?)
   end
 end

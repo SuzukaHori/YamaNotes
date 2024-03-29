@@ -3,7 +3,6 @@
     （出発：#{@walk.created_at.strftime('%m月%-d日%-H時%M分')}）
   p 歩いた駅：#{@walk.arrived_stations.length}駅（残り駅）
   p 歩いた距離：約#{@walk.distance_walked}km（残りkm）
-
 br
 = render 'map'
 .current-info

@@ -6,4 +6,12 @@
   .btn-primary {
     @apply py-2 px-5 bg-blue-400 font-semibold rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-75;
   }
+
+  .map-icon {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+  }
 }

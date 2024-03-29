@@ -6,14 +6,12 @@ export default class extends Controller {
 
   /* eslint-disable no-undef */
   connect() {
-    this.currentStationId = parseInt(this.currentIdTarget.value);
-    this.map = this.setMap();
-
     fetch("/stations")
       .then((response) => response.json())
       .then((stations) => {
         this.allStations = stations;
         this.arrivedStations = this.setArrivedStations();
+        this.map = this.setMap();
       })
       .then(() => {
         this.addLine({ stations: this.allStations, color: "green" });
@@ -37,13 +35,10 @@ export default class extends Controller {
     return throughStationIds.map((id) => this.allStations.find((station) => station.id === id));
   }
 
-  setCurrentStation() {
-    const currentStationId = parseInt(this.currentIdTarget.value);
-    return this.allStations.find((station) => station.id === currentStationId);
-  }
-
   addPins(stations) {
     const myIcon = L.divIcon({ className: "map-icon" });
+    this.currentStationId = parseInt(this.currentIdTarget.value);
+
     for (let i = 0; i < stations.length; i++) {
       const station = stations[i];
       if (station.id === this.currentStationId) {

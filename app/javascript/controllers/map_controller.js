@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus";
-import { allStations } from "./stations";
 
 // Connects to data-controller="map"
 export default class extends Controller {
@@ -16,25 +15,35 @@ export default class extends Controller {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>Tiles Ⓒ <a href="">HOT</a>',
     }).addTo(this.map);
-    this.addPin(allStations);
-    this.addGreenLine(allStations);
+
+    fetch("/stations")
+      .then((response) => response.json())
+      .then((stations) => {
+        this.allStations = stations;
+      })
+      .then(() => {
+        this.addPins(this.allStations);
+        this.addGreenLine(this.allStations);
+      });
+
+    
   }
 
-  addPin(stations) {
+  addPins(stations) {
     const myIcon = L.divIcon({ className: "map-icon" });
     for (let i = 0; i < stations.length; i++) {
       const station = stations[i];
       L.marker([station.latitude, station.longitude], { icon: myIcon }).addTo(this.map).bindPopup(`${station.name}駅`);
     }
 
-    const ids = JSON.parse(this.idsTarget.value);
-    console.log(ids);
-    const arrivedStations = ids.map((id) => allStations[id - 1]);
-    this.addRedLine(arrivedStations);
+    // const ids = JSON.parse(this.idsTarget.value);
+    // console.log(ids);
+    // const arrivedStations = ids.map((id) => allStations[id - 1]);
+    // this.addRedLine(arrivedStations);
 
-    const currentStationId = this.currentidTarget.value;
-    const currentStation = stations[currentStationId - 1];
-    L.marker([currentStation.latitude, currentStation.longitude], { icon: myIcon }).addTo(this.map).bindPopup(`${currentStation.name}駅`).openPopup();
+    // const currentStationId = this.currentidTarget.value;
+    // const currentStation = stations[currentStationId - 1];
+    // L.marker([currentStation.latitude, currentStation.longitude], { icon: myIcon }).addTo(this.map).bindPopup(`${currentStation.name}駅`).openPopup();
   }
 
   addGreenLine(stations) {
@@ -44,7 +53,6 @@ export default class extends Controller {
       locations.push([station.latitude, station.longitude]);
     }
     locations.push([stations[0].latitude, stations[0].longitude]);
-
     L.polyline(locations, { color: "green", weight: 15, opacity: 0.4 }).addTo(this.map);
   }
 

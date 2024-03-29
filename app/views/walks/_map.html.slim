@@ -1,4 +1,4 @@
 div data-controller="map"
   #map style="width: 500px; height: 500px;"
-  input data-map-target="ids" value="#{@walk.arrived_stations.map(&:id)}" type="hidden"
-  input data-map-target="currentid" value="#{@walk.current_station.id}" type="hidden"
+  input data-map-target="arrived-ids" value="#{@walk.arrived_stations.map(&:id)}" type="hidden"
+  input data-map-target="current-id" value="#{@walk.current_station.id}" type="hidden"

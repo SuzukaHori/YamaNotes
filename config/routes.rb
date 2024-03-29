@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resource :walk, except: [:index]
   resources :arrivals, except: [:new]
+  get '/stations', to: 'stations#index', defaults: { format: 'json' }
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_scope :user do

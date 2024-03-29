@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      arrival: 到着
+      station: 駅
+      user: ユーザー
+      walk: 歩く
+
+    attributes:
+      arrival:
+        arrived_at: 着いた
+        memo: メモ
+        station: :activerecord.models.station
+        walk: :activerecord.models.walk
+
+      station:
+        arrivals: 到着
+        clockwise_distance_to_next: 次までの時計回りの距離
+        counterclockwise_distance_to_next: 反時計回りに次の距離
+        latitude: 緯度
+        longitude: 経度
+        name: 名前
+        walks: あるきます
+
+      user:
+        arrivals: 到着
+        provider: プロバイダー
+        uid: ウイド
+        walk: :activerecord.models.walk
+
+      walk:
+        arrivals: 到着
+        clockwise: 時計回り
+        publish: 公開
+        stations: 駅
+        user: :activerecord.models.user

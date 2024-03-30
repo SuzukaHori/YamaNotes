@@ -56,7 +56,7 @@ Naming/PredicateName:
   Enabled: true
 
 Rails/I18nLocaleTexts:
-  Enabled: true
+  Enabled: false
 
 Rails/LexicallyScopedActionFilter:
   Enabled: true

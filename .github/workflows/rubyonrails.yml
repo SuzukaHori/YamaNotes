@@ -47,5 +47,7 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace any other lints here
+      - name: Install JavaScript dependencies
+        run: npm install
       - name: Lint files
-        run: bin/lint
+        run: bundle exec bin/lint

@@ -1,4 +1,4 @@
-name: "Ruby on Rails CI"
+name: "test"
 on: [push, pull_request]
 
 jobs:
@@ -27,17 +27,3 @@ jobs:
         run: bin/rails db:schema:load
       - name: Run tests
         run: bundle exec rspec
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Install JavaScript dependencies
-        run: npm install
-      - name: Lint files
-        run: bundle exec bin/lint

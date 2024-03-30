@@ -11,8 +11,8 @@
     "prettier": "^3.2.5"
   },
   "scripts": {
-    "lint": "prettier --check . && eslint .",
-    "fix": "prettier --write ."
+    "lint": "prettier --check 'app/javascript/**/*.js' && eslint 'app/javascript/**/*.js'",
+    "fix": "prettier --write 'app/javascript/**/*.js'"
   },
   "dependencies": {
     "leaflet": "^1.9.4"

@@ -7,6 +7,11 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+        restrict_multiple_creation: "%{model}は1つしか作成できません"
+    success:
+      messages:
+        create: '%{model}を作成しました'
+
   date:
     abbr_day_names:
     - 日

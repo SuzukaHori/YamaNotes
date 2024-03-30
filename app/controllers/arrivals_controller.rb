@@ -4,19 +4,13 @@ class ArrivalsController < ApplicationController
   def index; end
 
   def show
-    @walk = current_user.walk
+    @walk = current_walk
   end
 
   def edit; end
 
   def create
-    arrivals = current_user.walk.arrivals
-    if arrivals.find_by(station_id: params[:station_id]) && arrivals.find_by(station_id: params[:station_id]).arrived_at.nil?
-      @arrival = arrivals.find_by(station_id: params[:station_id])
-      @arrival.arrived_at = Time.current
-    else
-      @arrival = arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
-    end
+    @arrival = current_walk.arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
     if @arrival.valid? && @arrival.save!
       flash[:notice] = 'Sucess'
       redirect_to arrival_path(@arrival.id)

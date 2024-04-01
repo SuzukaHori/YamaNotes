@@ -23,6 +23,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: assets precompile
+        run: bundle exec rake assets:precompile
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run tests

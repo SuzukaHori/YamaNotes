@@ -10,13 +10,12 @@ class ArrivalsController < ApplicationController
   def edit; end
 
   def create
+    @walk = current_walk
     @arrival = current_walk.arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
-    if @arrival.valid? && @arrival.save!
-      flash[:notice] = 'Sucess'
-      redirect_to arrival_path(@arrival.id)
+    if @arrival.save
+      redirect_to @arrival
     else
-      flash[:alert] = @arrival.errors.full_messages.join
-      redirect_to walk_url
+      render 'walks/show', status: :unprocessable_entity
     end
   end
 

@@ -1,6 +1,7 @@
 class WalksController < ApplicationController
   def show
     @walk = current_user.walk
+    @arrival = Arrival.new
   end
 
   def new

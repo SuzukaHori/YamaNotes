@@ -10,7 +10,7 @@ RSpec.describe 'Users', type: :system do
   scenario 'user signs in' do
     visit root_path
     click_on 'Googleでログイン'
-    expect(page).to have_content('Successfully authenticated from Google account.')
+    expect(page).to have_content('Google アカウントによる認証に成功しました。')
   end
 
   scenario 'user signs out' do
@@ -18,7 +18,7 @@ RSpec.describe 'Users', type: :system do
     sign_in user
     visit root_path
     click_on 'ログアウト'
-    expect(page).to have_content('Signed out successfully.')
+    expect(page).to have_content('ログアウトしました。')
   end
 
   after do

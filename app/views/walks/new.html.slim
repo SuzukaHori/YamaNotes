@@ -2,9 +2,9 @@
 
 = form_with url: walk_path, method: :post do |f|
   = f.radio_button :clockwise, true, checked: true
-  = f.label :check_box, '外回り'
+  = f.label :clockwise_true, '外回り'
   = f.radio_button :clockwise, false
-  = f.label :check_box, '内回り'
+  = f.label :clockwise_false, '内回り'
   = f.label :station_id, '出発駅：'
   = f.collection_select :station_id, Station.all, :id, :name
   br

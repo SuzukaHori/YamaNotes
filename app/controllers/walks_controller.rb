@@ -10,17 +10,15 @@ class WalksController < ApplicationController
 
   def create
     if current_user.walk.present?
-      flash[:alert] = 'Walkは一つしか作成できません'
-      redirect_to walk_url
+      redirect_to walk_url, alert: '歩行記録は一つしか作成できません'
+      return
+    end
+    walk = current_user.build_walk(clockwise: params[:clockwise])
+    arrival = walk.arrivals.new(station_id: params[:station_id])
+    if walk.save && arrival.save
+      redirect_to walk_url, notice: '歩行記録の作成に成功しました'
     else
-      @walk = current_user.build_walk
-      @walk.clockwise = params[:clockwise]
-      if @walk.valid? && @walk.save! && @walk.arrivals.create!(station_id: params[:station_id])
-        flash[:notice] = 'Walk was successfully created.'
-        redirect_to walk_url
-      else
-        render :new, status: :unprocessable_entity
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 

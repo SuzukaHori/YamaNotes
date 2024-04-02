@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :system do
   before do
     OmniAuth.config.test_mode = true
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-    Rails.application.env_config['omniauth.auth'] = google_oauth2_mock
+    OmniAuth.config.mock_auth[:google_oauth2] = google_oauth2_mock
   end
 
   scenario 'user signs in' do

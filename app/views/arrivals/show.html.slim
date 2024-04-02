@@ -1,6 +1,6 @@
 p #{@arrival.station.name}駅に到着しました🎉
 p
-  | 歩いた駅は#{@walk.arrived_stations.length}駅（残り駅）、
+  | 歩いた駅は#{@walk.arrived_stations.length}駅（残り#{remaining_stations_number}駅）、
     歩いた距離は約#{@walk.total_distance_walked}kmです！
 br
 = link_to '地図に戻る', walk_path

@@ -34,6 +34,8 @@ gem 'font-awesome-sass'
 
 gem 'slim-rails'
 
+gem 'rails-i18n'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -50,6 +52,8 @@ gem 'tzinfo-data', platforms: %i[ windows jruby ]
 gem 'bootsnap', require: false
 
 gem 'devise'
+
+gem 'devise-i18n'
 
 gem 'omniauth'
 
@@ -76,6 +80,7 @@ group :development do
   gem 'rubocop-capybara', require: false
   gem 'prettier', require: false
   gem 'slim_lint', require: false
+  gem 'i18n_generators', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

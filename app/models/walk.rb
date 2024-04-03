@@ -16,23 +16,11 @@ class Walk < ApplicationRecord
     arrived_stations.sum(&:clockwise_distance_to_next).round(2)
   end
 
-  def next_station
-    next_station_id =
-      if arrived.length == Station.count
-        nil
-      elsif current_station.id == Station.all.map(&:id).max
-        1
-      else
-        current_station.id + 1
-      end
-    Station.find(next_station_id)
-  end
-
   def through_station_ids
     [*departure_station, *arrived_stations].map(&:id)
   end
 
-  # private
+  private
 
   def departure_station
     arrivals.order(:created_at).first.station

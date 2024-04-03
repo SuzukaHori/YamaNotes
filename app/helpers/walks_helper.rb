@@ -4,7 +4,7 @@ module WalksHelper
   end
 
   def remaining_stations_number
-    Station.count - current_walk.arrived.length
+    Station.count - current_walk.arrived_stations.length
   end
 
   def remaining_distance

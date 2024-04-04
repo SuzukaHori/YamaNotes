@@ -9,7 +9,7 @@ class Walk < ApplicationRecord
   end
 
   def arrived_stations
-    stations.select { |station| arrived.map(&:station_id).include?(station.id) }
+    arrived.map(&:station_id).map { |id| Station.find(id) }
   end
 
   def total_distance_walked

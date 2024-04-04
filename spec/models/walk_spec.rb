@@ -8,7 +8,7 @@ RSpec.describe Walk, type: :model do
 
   describe '現在の駅を取得する' do
     it '到着済みの駅がない時、出発駅が現在の駅になる' do
-      expect(@walk.current_station.name).to eq "品川"
+      expect(@walk.current_station.name).to eq '品川'
     end
 
     it '複数の駅に到着済みの時、直近で到着した駅が現在の駅になる' do

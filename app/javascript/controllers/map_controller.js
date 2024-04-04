@@ -25,14 +25,17 @@ export default class extends Controller {
     const map = L.map("map").setView(centerPosition, 12);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
     }).addTo(map);
     return map;
   }
 
   setArrivedStations() {
     const throughStationIds = JSON.parse(this.throughStationIdsTarget.value);
-    return throughStationIds.map((id) => this.allStations.find((station) => station.id === id));
+    return throughStationIds.map((id) =>
+      this.allStations.find((station) => station.id === id),
+    );
   }
 
   addPins(stations) {
@@ -42,9 +45,14 @@ export default class extends Controller {
     for (let i = 0; i < stations.length; i++) {
       const station = stations[i];
       if (station.id === this.currentStationId) {
-        L.marker([station.latitude, station.longitude], { icon: myIcon }).addTo(this.map).bindPopup(`${station.name}駅`).openPopup();
+        L.marker([station.latitude, station.longitude], { icon: myIcon })
+          .addTo(this.map)
+          .bindPopup(`${station.name}駅`)
+          .openPopup();
       } else {
-        L.marker([station.latitude, station.longitude], { icon: myIcon }).addTo(this.map).bindPopup(`${station.name}駅`);
+        L.marker([station.latitude, station.longitude], { icon: myIcon })
+          .addTo(this.map)
+          .bindPopup(`${station.name}駅`);
       }
     }
   }

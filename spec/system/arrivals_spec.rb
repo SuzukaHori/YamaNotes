@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Arrivals", type: :system, js: true do
+RSpec.describe 'Arrivals', type: :system, js: true do
   before do
     @user = FactoryBot.create(:user)
     sign_in @user
@@ -8,20 +8,20 @@ RSpec.describe "Arrivals", type: :system, js: true do
 
   scenario '歩行開始時に到着記録が作られる' do
     visit new_walk_path
-    select "大塚", from: 'station_id'
+    select '大塚', from: 'station_id'
     choose '外回り'
-    expect {
-      click_on "はじめる"
+    expect do
+      click_on 'はじめる'
       expect(page).to have_content('歩行記録の作成に成功しました')
-    }.to change { Arrival.count }.by(1)
+    end.to change { Arrival.count }.by(1)
   end
 
   scenario '到着ボタンを押した時に到着記録が作られる' do
     start_walk
     expect(page).to have_content('到着')
-    expect {
+    expect do
       click_on '到着'
-    }.to change { Arrival.count }.by(1)
+    end.to change { Arrival.count }.by(1)
   end
 
   scenario '到着ページで到着した駅の情報が表示される' do
@@ -47,6 +47,6 @@ RSpec.describe "Arrivals", type: :system, js: true do
 
   def start_walk
     visit new_walk_path
-    click_on "はじめる"
+    click_on 'はじめる'
   end
 end

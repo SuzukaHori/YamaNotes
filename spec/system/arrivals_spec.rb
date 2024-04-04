@@ -21,6 +21,7 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     expect(page).to have_content('到着')
     expect do
       click_on '到着'
+      expect(page).to have_content('大崎駅に到着しました')
     end.to change { Arrival.count }.by(1)
   end
 

@@ -27,5 +27,7 @@ jobs:
         run: bundle exec rake assets:precompile
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Set up data
+        run: bin/rails db:seed
       - name: Run tests
         run: bundle exec rspec

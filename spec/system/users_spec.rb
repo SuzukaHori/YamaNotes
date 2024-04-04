@@ -7,13 +7,13 @@ RSpec.describe 'Users', type: :system do
     OmniAuth.config.mock_auth[:google_oauth2] = google_oauth2_mock
   end
 
-  scenario 'user signs in' do
+  scenario 'ログインする' do
     visit root_path
     click_on 'Googleでログイン'
     expect(page).to have_content('Google アカウントによる認証に成功しました。')
   end
 
-  scenario 'user signs out' do
+  scenario 'ログアウトする' do
     user = FactoryBot.create(:user)
     sign_in user
     visit root_path

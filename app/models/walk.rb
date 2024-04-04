@@ -5,38 +5,26 @@ class Walk < ApplicationRecord
   validates :clockwise, inclusion: { in: [true, false] }
 
   def current_station
-    if arrived.any?
-      arrived.max_by(&:arrived_at).station
-    else
-      arrivals.first.station
-    end
+    arrived.any? ? arrived.last.station : departure_station
   end
 
   def arrived_stations
-    arrived.map { |arrival| Station.find(arrival.station_id) }
+    arrived.map(&:station_id).map { |id| Station.find(id) }
   end
 
-  def distance_walked
+  def total_distance_walked
     arrived_stations.sum(&:clockwise_distance_to_next).round(2)
   end
 
-  def next_station
-    next_station_id =
-      if arrived == Station.all.length
-        nil
-      elsif current_station.id == Station.all.length
-        1
-      else
-        current_station.id + 1
-      end
-    Station.find(next_station_id)
-  end
-
   def through_station_ids
-    [*stations.first, *arrived_stations].map(&:id)
+    [*departure_station, *arrived_stations].map(&:id)
   end
 
   private
+
+  def departure_station
+    arrivals.order(:created_at).first.station
+  end
 
   def arrived
     arrivals.order(arrived_at: :asc).select(&:arrived?)

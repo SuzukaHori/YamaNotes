@@ -8,6 +8,5 @@ class CreateArrivals < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-    add_index :arrivals, [:walk_id, :station_id], unique: true
   end
 end

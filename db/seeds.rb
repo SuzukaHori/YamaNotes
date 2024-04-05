@@ -43,22 +43,3 @@ stations.each do |station|
     counterclockwise_distance_to_next: station[:counterclockwise_distance_to_next]
   )
 end
-
-user = User.create!(
-  uid: 1_111_111_111,
-  provider: 'google_oauth2'
-)
-
-walk = user.build_walk(
-  clockwise: true
-)
-
-walk.save!
-
-walk.arrivals.create!(
-  station_id: 1
-)
-
-walk.arrivals.create!(
-  station_id: 3
-)

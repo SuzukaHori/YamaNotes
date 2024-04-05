@@ -1,0 +1,11 @@
+h2 到着履歴
+br
+- @arrivals.each_with_index do |arrival, i|
+  - if i.zero?
+    p #{arrival.created_at.strftime('%k:%M')}#{arrival.station.name}駅出発
+  - else
+    p #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
+  - if arrival.memo
+    p #{arrival.memo}
+br
+= link_to '> 地図に戻る', walk_path

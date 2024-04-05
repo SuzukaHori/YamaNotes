@@ -3,17 +3,7 @@ require 'rails_helper'
 RSpec.describe Arrival, type: :model do
   before do
     @walk = FactoryBot.create(:walk)
-    @arrival = @walk.arrivals.create!(station_id: 1, arrived_at: nil)
-  end
-
-  describe '到着済みかどうか判定する' do
-    it '到着済みならtrueが返る' do
-      @arrival.update!(arrived_at: Time.current)
-      expect(@arrival.arrived?).to be_truthy
-    end
-    it '未到着ならfalseが返る' do
-      expect(@arrival.arrived?).to be_falsey
-    end
+    @arrival = @walk.arrivals.create!(station_id: 1, arrived_at: Time.current)
   end
 
   describe '近接する駅以外への到着を禁止する' do

@@ -4,10 +4,9 @@ class CreateArrivals < ActiveRecord::Migration[7.1]
       t.belongs_to :walk, foreign_key: true
       t.belongs_to :station, foreign_key: true
       t.string :memo
-      t.timestamp :arrived_at, precision: 6
+      t.timestamp :arrived_at, precision: 6, null: false
 
       t.timestamps
     end
-    add_index :arrivals, [:walk_id, :station_id], unique: true
   end
 end

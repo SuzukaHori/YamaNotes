@@ -16,7 +16,7 @@ class WalksController < ApplicationController
       return
     end
     walk = current_user.build_walk(clockwise: params[:clockwise])
-    arrival = walk.arrivals.new(station_id: params[:station_id])
+    arrival = walk.arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
     if walk.save && arrival.save
       redirect_to walk_url, notice: '歩行記録の作成に成功しました'
     else

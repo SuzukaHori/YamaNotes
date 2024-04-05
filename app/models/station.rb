@@ -4,9 +4,13 @@ class Station < ApplicationRecord
   has_one :station, class_name: 'Station', inverse_of: :clockwise_next_station, dependent: :destroy
   belongs_to :clockwise_next_station, class_name: 'Station', inverse_of: :station
 
-  def next
-    next_id = id == Station.all.map(&:id).max ? 1 : id + 1
-    Station.find(next_id)
+  def next(clockwise)
+    if clockwise
+      next_id = id == Station.all.map(&:id).max ? 1 : id + 1
+      Station.find(next_id)
+    else
+      Station.find_by(clockwise_next_station: self)
+    end
   end
 
   def self.total_distance

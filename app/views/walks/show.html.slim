@@ -3,8 +3,8 @@
 .walk-info
   p 出発から：#{elapsed_time}
     （出発：#{@walk.created_at.strftime('%m月%-d日%-H時%M分')}）
-  p 歩いた駅：#{@walk.arrived_stations.length}駅（残り#{remaining_stations_number}駅）
-  p 歩いた距離：約#{@walk.total_distance_walked}km（残り#{remaining_distance}km）
+  p 歩いた駅：#{walked_stations_number}駅（残り#{remaining_stations_number}駅）
+  p 歩いた距離：約#{total_distance_walked}km（残り#{remaining_distance}km）
 br
 
 = render 'shared/map'

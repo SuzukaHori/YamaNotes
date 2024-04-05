@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Walk, type: :model do
   before do
     @walk = FactoryBot.create(:walk)
-    @arrival = @walk.arrivals.create!(station_id: 1, arrived_at: nil)
+    @arrival = @walk.arrivals.create!(station_id: 1, arrived_at: Time.current)
   end
 
   describe '現在の駅を取得する' do
@@ -18,38 +18,20 @@ RSpec.describe Walk, type: :model do
   end
 
   describe '到着駅を取得する' do
-    it '到着済みの駅がない時、空の配列が返る' do
-      expect(@walk.arrived_stations).to eq([])
+    it 'スタート時には出発駅のみの配列が返る' do
+      expect(@walk.arrived_stations.map(&:id)).to eq([1])
     end
 
     it '複数の駅に到着済みの時、駅の配列が返る' do
       create_arrivals(29)
-      expect(@walk.arrived_stations.length).to eq(29)
-    end
-  end
-
-  describe '合計歩行距離を計算する' do
-    it 'すべての駅の合計距離が返る' do
-      create_arrivals(30)
-      expect(@walk.total_distance_walked).to eq(Station.total_distance)
-    end
-  end
-
-  describe '通過した駅のidを取得する' do
-    it '到着済みの駅がない場合、最初の駅のidのみ配列に入れる' do
-      expect(@walk.through_station_ids).to eq([1])
-    end
-
-    it '到着済みの駅がある場合、通過したすべての駅を配列に入れる' do
-      create_arrivals(30)
-      expect(@walk.through_station_ids).to eq((1..30).to_a << 1)
+      expect(@walk.arrived_stations.length).to eq(30)
     end
   end
 
   def create_arrivals(number)
     (1..number).each do |n|
       if n == 30
-        @arrival.update!(arrived_at: Time.current)
+        @walk.arrivals.create!(station_id: 1, arrived_at: Time.current)
       else
         @walk.arrivals.create!(station_id: n + 1, arrived_at: Time.current)
       end

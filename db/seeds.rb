@@ -33,18 +33,20 @@ stations = [
   { name: '高輪ゲートウェイ', latitude: 35.63569, longitude: 139.74044, clockwise_distance_to_next: 0.9 }
 ]
 
-stations.each do |station|
-  Station.create!(
-    id: station[:id],
-    name: station[:name],
-    latitude: station[:latitude],
-    longitude: station[:longitude],
-    clockwise_distance_to_next: station[:clockwise_distance_to_next],
-  )
-end
+if Station.all.empty?
+  stations_instances = stations.map do |station|
+    Station.new(
+      name: station[:name],
+      latitude: station[:latitude],
+      longitude: station[:longitude],
+      clockwise_distance_to_next: station[:clockwise_distance_to_next]
+    )
+  end
 
-Station.all.each_with_index do |station, i|
-  next_id = i < 29 ? i + 2 : (i + 2) - 30
-  station.clockwise_next_station_id = next_id
-  station.save!
+  stations_instances.each_with_index do |station, i|
+    next_id = i > 28 ? i - 28 : i + 2
+    station.clockwise_next_station_id = next_id
+  end
+
+  stations_instances.each { |station| station.save!(validate: false) }
 end

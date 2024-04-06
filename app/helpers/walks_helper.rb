@@ -12,7 +12,8 @@ module WalksHelper
   end
 
   def total_distance_walked
-    current_walk.arrivals_without_departure.map(&:station).sum(&:clockwise_distance_to_next).round(2)
+    distance_to_next_station = current_walk.arrived_stations.last.clockwise_distance_to_next
+    (current_walk.arrived_stations.sum(&:clockwise_distance_to_next) - distance_to_next_station).round(2)
   end
 
   def elapsed_time

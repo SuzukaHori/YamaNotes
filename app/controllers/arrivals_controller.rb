@@ -3,7 +3,7 @@ class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
 
   def index
-    @arrivals = current_walk.arrivals
+    @arrivals = current_walk.sorted_arrivals
   end
 
   def show

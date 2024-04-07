@@ -5,7 +5,7 @@ class Arrival < ApplicationRecord
   validate :prohibit_arrival_without_next_station
 
   def prohibit_arrival_without_next_station
-    return if walk.arrivals.length == 1
+    return if walk.arrivals.length <= 1
 
     is_correct_next_station =
       if walk.clockwise

@@ -4,7 +4,7 @@ class Station < ApplicationRecord
   has_one :station, class_name: 'Station', inverse_of: :clockwise_next_station, dependent: :destroy
   belongs_to :clockwise_next_station, class_name: 'Station', inverse_of: :station
 
-  def next(clockwise)
+  def next(clockwise:)
     if clockwise
       next_id = id == Station.all.map(&:id).max ? 1 : id + 1
       Station.find(next_id)

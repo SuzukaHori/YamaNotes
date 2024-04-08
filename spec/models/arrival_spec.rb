@@ -14,9 +14,9 @@ RSpec.describe Arrival, type: :model do
     end
 
     it '近接しない駅には到着できない' do
-      expect {
+      expect do
         @walk.arrivals.create!(station_id: 13, arrived_at: Time.current)
-      }.to raise_error(ActiveRecord::RecordInvalid)
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

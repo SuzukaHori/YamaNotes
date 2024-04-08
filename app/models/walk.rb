@@ -20,6 +20,10 @@ class Walk < ApplicationRecord
     arrivals.order(arrived_at: :asc)
   end
 
+  def latest_arrival
+    sorted_arrivals.last
+  end
+
   private
 
   def departure_station

@@ -8,6 +8,7 @@ class WalksController < ApplicationController
 
   def new
     @walk = Walk.new
+    @arrival = Arrival.new
   end
 
   def create
@@ -15,9 +16,8 @@ class WalksController < ApplicationController
       redirect_to walk_url, alert: '歩行記録は一つしか作成できません'
       return
     end
-    walk = current_user.build_walk(clockwise: params[:clockwise])
-    arrival = walk.arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
-    if walk.save && arrival.save
+    @walk = current_user.build_walk(clockwise: params[:clockwise])
+    if @walk.save && @walk.arrivals.create(station_id: params[:station_id], arrived_at: Time.current)
       redirect_to walk_url, notice: '歩行記録の作成に成功しました'
     else
       render :new, status: :unprocessable_entity

@@ -29,11 +29,11 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     start_walk
     click_on '到着'
     expect(page).to have_content('大崎駅に到着しました')
-    expect(page).to have_content('歩いた駅は1駅（残り29駅）、 歩いた距離は約0.9kmです！')
+    expect(page).to have_content('歩いた駅は1駅（残り29駅）、 歩いた距離は約2.0kmです！')
     click_on '地図に戻る'
     click_on '到着'
     expect(page).to have_content('五反田駅に到着しました')
-    expect(page).to have_content('歩いた駅は2駅（残り28駅）、 歩いた距離は約2.1kmです！')
+    expect(page).to have_content('歩いた駅は2駅（残り28駅）、 歩いた距離は約2.9kmです！')
   end
 
   scenario '到着時に現在の駅の情報が更新される' do
@@ -44,6 +44,18 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     click_on '地図に戻る'
     expect(page).to have_content('現在の駅 ：大崎駅')
     expect(page).to have_content('次の駅まで：0.9km')
+  end
+
+  scenario '内回りモードで正しい駅に到着できる' do
+    visit new_walk_path
+    choose '内回り'
+    select '原宿'
+    click_on 'はじめる'
+    expect(page).to have_content('現在の駅 ：原宿駅')
+    click_on '到着'
+    expect(page).to have_content('渋谷駅に到着しました')
+    click_on '地図に戻る'
+    expect(page).to have_content('現在の駅 ：渋谷駅')
   end
 
   def start_walk

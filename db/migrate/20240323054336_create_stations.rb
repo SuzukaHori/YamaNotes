@@ -5,7 +5,7 @@ class CreateStations < ActiveRecord::Migration[7.1]
       t.float :longitude, null: false
       t.float :latitude, null: false
       t.float :clockwise_distance_to_next, null: false
-      t.float :counterclockwise_distance_to_next, null: false
+      t.integer :clockwise_next_station_id
 
       t.timestamps
     end

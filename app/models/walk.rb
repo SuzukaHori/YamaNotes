@@ -16,13 +16,13 @@ class Walk < ApplicationRecord
     sorted_arrivals.slice(1..-1)
   end
 
+  def sorted_arrivals
+    arrivals.order(arrived_at: :asc)
+  end
+
   private
 
   def departure_station
     arrivals.order(:created_at).first.station
-  end
-
-  def sorted_arrivals
-    arrivals.order(arrived_at: :asc)
   end
 end

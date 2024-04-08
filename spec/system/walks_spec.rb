@@ -21,6 +21,6 @@ RSpec.describe 'Walks', type: :system do
     click_on 'はじめる'
     expect(page).to have_content('出発から：0時間0分')
     expect(page).to have_content('歩いた駅：0駅（残り30駅）')
-    expect(page).to have_content('歩いた距離：約0km（残り34.5km）')
+    expect(page).to have_content('歩いた距離：約0.0km（残り34.5km）')
   end
 end

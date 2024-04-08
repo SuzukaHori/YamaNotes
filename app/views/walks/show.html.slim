@@ -14,7 +14,7 @@ br
 .current-info
   p 現在の駅  ：#{@walk.current_station.name}駅
   p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km
-  p style="display: inline;" 次の駅   ： #{@walk.current_station.next.name}駅
+  p style="display: inline;" 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅
   .inline-flex.ml-2
     = button_to '到着', arrivals_path,
-      params: { station_id: @walk.current_station.next.id }, class: 'btn-primary'
+      params: { station_id: @walk.current_station.next(clockwise: @walk.clockwise).id }, class: 'btn-primary'

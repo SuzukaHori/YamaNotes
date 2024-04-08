@@ -1,4 +1,5 @@
 = render 'shared/errors', model: @walk
+= render 'shared/errors', model: @arrival
 
 = form_with url: walk_path, method: :post do |f|
   = f.radio_button :clockwise, true, checked: true

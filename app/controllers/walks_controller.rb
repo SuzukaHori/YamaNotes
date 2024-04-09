@@ -2,7 +2,7 @@ class WalksController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @walk = current_user.walk
+    @walk = current_walk
     @arrival = Arrival.new
   end
 

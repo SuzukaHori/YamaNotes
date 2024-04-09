@@ -26,7 +26,7 @@ class ArrivalsController < ApplicationController
     if @arrival.update(arrival_params)
       redirect_to request.referer, notice: '到着記録を更新しました'
     else
-      render 'edit', status: :unprocessable_entity
+      render 'walks/show', status: :unprocessable_entity
     end
   end
 

@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["throughStationIds", "currentId"];
 
   /* eslint-disable no-undef */
-  connect() {
+  initialize() {
     fetch("/stations")
       .then((response) => response.json())
       .then((stations) => {

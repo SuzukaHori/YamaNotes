@@ -21,5 +21,4 @@ module.exports = {
     sourceType: "module",
   },
   rules: {},
-  ignores: ["vendor/javascript/*"]
 };

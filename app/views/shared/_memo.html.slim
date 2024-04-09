@@ -1,0 +1,13 @@
+div data-controller="modal"
+  dialog data-modal-target="dialog" class="p-8 rounded-lg backdrop:bg-black/80"
+    .form
+      = form_with model: arrival do |form|
+        = form.text_area :memo
+        = form.submit arrival.memo ? '編集' : '追加'
+    = link_to '戻る', data: { action: 'modal#close' }
+    = button_to 'メモを削除', arrival_path(arrival.id), method: :put, params: { arrival: { id: arrival.id, memo: nil } }
+
+  span
+    | #{ arrival.memo }
+  button data-action="modal#open"
+    | #{ arrival.memo ? 'メモを編集' : 'メモを追加' }

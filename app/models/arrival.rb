@@ -2,7 +2,8 @@ class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
   validates :arrived_at, presence: true
-  validate :prohibit_arrival_without_next_station
+  validate :prohibit_arrival_without_next_station, if: -> { validation_context == :create }
+  before_validation :convert_blank_to_nil
 
   def prohibit_arrival_without_next_station
     return if walk.arrivals.empty?
@@ -16,5 +17,9 @@ class Arrival < ApplicationRecord
     return if is_correct_next_station
 
     errors.add :station_id, '隣駅以外に到着することはできません'
+  end
+
+  def convert_blank_to_nil
+    self.memo = nil if memo.blank?
   end
 end

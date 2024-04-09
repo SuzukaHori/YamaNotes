@@ -22,7 +22,13 @@ class ArrivalsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @arrival.update(arrival_params)
+      redirect_to request.referer, notice: '到着記録を更新しました'
+    else
+      render 'walks/show', status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 
@@ -33,6 +39,6 @@ class ArrivalsController < ApplicationController
   end
 
   def arrival_params
-    params.require(:arrival).permit(:station_id, :arrived_at)
+    params.require(:arrival).permit(:station_id, :arrived_at, :memo)
   end
 end

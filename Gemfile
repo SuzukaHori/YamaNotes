@@ -81,6 +81,7 @@ group :development do
   gem 'prettier', require: false
   gem 'slim_lint', require: false
   gem 'i18n_generators', require: false
+  gem 'bullet'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

@@ -17,7 +17,7 @@ class Walk < ApplicationRecord
   end
 
   def sorted_arrivals
-    arrivals.order(arrived_at: :asc)
+    arrivals.includes(:station).order(arrived_at: :asc)
   end
 
   def latest_arrival

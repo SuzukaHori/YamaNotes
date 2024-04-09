@@ -13,11 +13,7 @@ br
 
 .current-info
   p 現在の駅  ：#{@walk.current_station.name}駅
-  - if @walk.latest_arrival.memo
-    = @walk.latest_arrival.memo
-    = link_to '編集', edit_arrival_path(@walk.latest_arrival.id)
-  - else
-    = link_to 'メモを追加', edit_arrival_path(@walk.latest_arrival.id)
+  = render partial: 'shared/memo', locals: { arrival: @walk.latest_arrival }
 
   p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km
   p style="display: inline;" 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅

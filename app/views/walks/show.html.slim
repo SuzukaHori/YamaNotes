@@ -1,6 +1,6 @@
-= render 'shared/errors', model: @arrival
-
-= link_to '> 履歴', arrivals_path
+.info-container
+  = render 'shared/errors', model: @arrival
+  = link_to '> 履歴', arrivals_path , class:'dark:text-gray-500 hover:underline inline-block float-right'
 
 .walk-info
   p 出発から：#{elapsed_time}
@@ -9,14 +9,20 @@
   p 歩いた距離：約#{@walk.total_distance_walked.round(2)}km（残り#{remaining_distance}km）
 br
 
-= render 'shared/map'
+  = render 'shared/map'
 
-.current-info
-  p 現在の駅  ：#{@walk.current_station.name}駅
-  = render partial: 'shared/memo', locals: { arrival: @walk.latest_arrival }
-
-  p 次の駅まで：#{@walk.current_station.clockwise_distance_to_next}km
-  p style="display: inline;" 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅
-  .inline-flex.ml-2
-    = button_to '到着', arrivals_path,
-      params: { station_id: @walk.current_station.next(clockwise: @walk.clockwise).id }, class: 'btn-primary'
+  .current-info.p-4
+    p class="inline"
+      | 現在の駅  ：#{@walk.current_station.name}駅
+    div data-controller="modal" class="inline-block"
+      button data-action="modal#open"
+        i class="fa-regular fa-pen-to-square ml-4"
+      = render partial: 'shared/memo', locals: { arrival: @walk.latest_arrival }
+    p
+      i class="fa-solid fa-grip-lines-vertical ml-12 mr-2 my-2"
+      | #{@walk.current_station.clockwise_distance_to_next}km
+    p class="inline"
+      | 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅
+    .inline-flex.ml-2
+      = button_to '到着', arrivals_path,
+        params: { station_id: @walk.current_station.next(clockwise: @walk.clockwise).id }, class: 'btn-primary'

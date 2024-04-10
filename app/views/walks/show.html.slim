@@ -1,6 +1,6 @@
 .info-container
   = render 'shared/errors', model: @arrival
-  = link_to '> 履歴', arrivals_path , class:'dark:text-gray-500 hover:underline inline-block float-right'
+  = link_to '> 履歴', arrivals_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
 
 .walk-info
   p 出発から：#{elapsed_time}
@@ -15,7 +15,7 @@ br
     p class="inline"
       | 現在の駅  ：#{@walk.current_station.name}駅
     div data-controller="modal" class="inline-block"
-      button data-action="modal#open"
+      button data-action="modal#open" id="memo_modal_button"
         i class="fa-regular fa-pen-to-square ml-4"
       = render partial: 'shared/memo', locals: { arrival: @walk.latest_arrival }
     p

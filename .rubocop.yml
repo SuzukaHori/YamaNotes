@@ -23,7 +23,7 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
 Style/AsciiComments:
-  Enabled: true
+  Enabled: false
 
 Style/Documentation:
   Enabled: false

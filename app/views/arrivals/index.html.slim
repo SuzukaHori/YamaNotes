@@ -1,11 +1,12 @@
-h2 到着履歴
-br
+= link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
+h2.text-2xl.font-bold 到着履歴
+
 - @arrivals.each_with_index do |arrival, i|
-  - if i.zero?
-    p #{arrival.created_at.strftime('%k:%M')}#{arrival.station.name}駅出発
-  - else
-    p #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
-  - if arrival.memo
-    p #{arrival.memo}
-br
-= link_to '> 地図に戻る', walk_path
+  .arrival-container.text-2xl.px-8.pb-4
+    p.text-2xl
+      - if i.zero?
+        | #{arrival.created_at.strftime('%k:%M')} #{arrival.station.name}駅 出発
+      - else
+        | #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
+    - if arrival.memo
+      p.text-zinc-500.text-base #{arrival.memo}

@@ -5,11 +5,11 @@ class Walk < ApplicationRecord
   validates :clockwise, inclusion: { in: [true, false] }
 
   def current_station
-    sorted_arrivals.any? ? sorted_arrivals.last.station : departure_station
+    sorted_arrivals.last.station
   end
 
   def arrived_stations
-    sorted_arrivals.map(&:station)
+    arrivals.includes(:station).order(arrived_at: :asc).map(&:station)
   end
 
   def arrivals_without_departure
@@ -17,11 +17,19 @@ class Walk < ApplicationRecord
   end
 
   def sorted_arrivals
-    arrivals.order(arrived_at: :asc)
+    arrivals.includes(:station).order(arrived_at: :asc)
   end
 
   def latest_arrival
     sorted_arrivals.last
+  end
+
+  def total_distance_walked
+    arrived_stations.sum(&:clockwise_distance_to_next) - current_station.clockwise_distance_to_next
+  end
+
+  def walked_stations_number
+    arrivals_without_departure.length
   end
 
   private

@@ -1,5 +1,13 @@
-= link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
-h2.text-2xl.font-bold 到着履歴
+h2.text-2xl.font-bold.mt-4 到着履歴
+
+- if @walk.user == current_user
+  .flex.justify-end
+    = turbo_frame_tag 'toggle' do
+      = form_with model: @walk, class: 'inline-block', method: :patch do |f|
+        = f.label :publish, class: 'relative inline-flex items-center cursor-pointer'
+          = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
+          .toggle-switch.m-2
+          span #{@walk.publish ? '公開' : '非公開'}
 
 - @arrivals.each_with_index do |arrival, i|
   .arrival-container.text-2xl.px-8.pb-4
@@ -10,3 +18,6 @@ h2.text-2xl.font-bold 到着履歴
         | #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
     - if arrival.memo
       p.text-zinc-500.text-base #{arrival.memo}
+
+.flex.justify-end
+  = link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block'

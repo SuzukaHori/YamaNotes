@@ -1,8 +1,8 @@
 class WalksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_walk, only: [:show, :update]
 
   def show
-    @walk = current_walk
     @arrival = Arrival.new
   end
 
@@ -24,13 +24,23 @@ class WalksController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @walk.update(walk_params)
+      redirect_to request.referer, notice: @walk.publish ? '公開しました' : '非公開にしました'
+    else
+      render 'arrival/index', status: :unprocessable_entity
+    end
+  end
 
   def delete; end
 
   private
 
   def walk_params
-    params.require(:walk).permit(:user_id, :clockwise)
+    params.require(:walk).permit(:user_id, :clockwise, :publish)
+  end
+
+  def set_walk
+    @walk = current_walk
   end
 end

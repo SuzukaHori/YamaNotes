@@ -14,4 +14,20 @@
     border: 1px solid black;
     background-color: white;
   }
+
+  .toggle-switch {
+    @apply w-11 h-6 bg-gray-200 rounded-full relative 
+            peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 
+            dark:bg-gray-700 peer-checked:bg-blue-600;
+
+    &::after {
+      @apply content-[''] absolute top-[2px] left-[2px] 
+              bg-white border-gray-300 border rounded-full 
+              h-5 w-5 transition-all dark:border-gray-600;
+    }
+
+    .peer:checked + &::after {
+      @apply translate-x-full border-white;
+    }
+  }
 }

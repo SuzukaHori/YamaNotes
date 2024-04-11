@@ -1,19 +1,17 @@
 class ArrivalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_arrival, only: %i[show edit update destroy]
+  before_action :set_walk, only: [:index, :show, :create]
 
   def index
     @arrivals = current_walk.sorted_arrivals
   end
 
-  def show
-    @walk = current_walk
-  end
+  def show; end
 
   def edit; end
 
   def create
-    @walk = current_walk
     @arrival = current_walk.arrivals.new(station_id: params[:station_id], arrived_at: Time.current)
     if @arrival.save
       redirect_to @arrival
@@ -36,6 +34,10 @@ class ArrivalsController < ApplicationController
 
   def set_arrival
     @arrival = Arrival.find(params[:id])
+  end
+
+  def set_walk
+    @walk = current_walk
   end
 
   def arrival_params

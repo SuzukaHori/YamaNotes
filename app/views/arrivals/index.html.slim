@@ -1,6 +1,15 @@
 = link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
 h2.text-2xl.font-bold 到着履歴
 
+.toggle_switch
+  = form_with model: @walk, class: "inline", method: :patch do |f|
+    = f.label :publish, class: "relative inline-flex items-center cursor-pointer"
+      = f.check_box :publish, {class: "sr-only peer"}, "true", "false"
+      div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+      span #{@walk.publish ? "公開" : "非公開"}
+    br
+    = f.submit "送信"
+
 - @arrivals.each_with_index do |arrival, i|
   .arrival-container.text-2xl.px-8.pb-4
     p.text-2xl

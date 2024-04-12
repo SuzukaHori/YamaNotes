@@ -28,7 +28,13 @@ class ArrivalsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    if @arrival.destroy
+      redirect_to arrivals_path, notice: '到着記録を削除しました'
+    else
+      render :index
+    end
+  end
 
   private
 

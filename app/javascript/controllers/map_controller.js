@@ -1,17 +1,19 @@
 import { Controller } from "@hotwired/stimulus";
 
+let map = null; // 地図が複数回初期化されるとエラーが発生するため、グローバル変数として扱う
+
 // Connects to data-controller="map"
 export default class extends Controller {
   static targets = ["throughStationIds", "currentId"];
 
   /* eslint-disable no-undef */
-  initialize() {
+  connect() {
     fetch("/stations")
       .then((response) => response.json())
       .then((stations) => {
         this.allStations = stations;
         this.arrivedStations = this.setArrivedStations();
-        this.map = this.setMap();
+        this.setMap();
       })
       .then(() => {
         this.addLine({ stations: this.allStations, color: "green" });
@@ -19,16 +21,17 @@ export default class extends Controller {
         this.addLine({ stations: this.arrivedStations, color: "red" });
       });
   }
-
+  
   setMap() {
-    const centerPosition = [35.68032, 139.73946];
-    const map = L.map("map").setView(centerPosition, 12);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
-    }).addTo(map);
-    return map;
+    if (!document.getElementById("map")._leaflet_id) {
+      const centerPosition = [35.68032, 139.73946];
+      map = L.map("map").setView(centerPosition, 12);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
+      }).addTo(map);
+    }
   }
 
   setArrivedStations() {
@@ -46,12 +49,12 @@ export default class extends Controller {
       const station = stations[i];
       if (station.id === this.currentStationId) {
         L.marker([station.latitude, station.longitude], { icon: myIcon })
-          .addTo(this.map)
+          .addTo(map)
           .bindPopup(`${station.name}駅`)
           .openPopup();
       } else {
         L.marker([station.latitude, station.longitude], { icon: myIcon })
-          .addTo(this.map)
+          .addTo(map)
           .bindPopup(`${station.name}駅`);
       }
     }
@@ -66,6 +69,6 @@ export default class extends Controller {
     if (stations.length === this.allStations.length) {
       locations.push([stations[0].latitude, stations[0].longitude]);
     }
-    L.polyline(locations, { color, weight: 15, opacity: 0.4 }).addTo(this.map);
+    L.polyline(locations, { color, weight: 15, opacity: 0.4 }).addTo(map);
   }
 }

@@ -1,0 +1,8 @@
+= turbo_frame_tag @arrival
+  = form_with model: @arrival, method: :put do |f|
+    = f.time_select :arrived_at, value: @arrival.arrived_at
+    p.inline.text-2xl #{@arrival.station.name}駅
+    br
+    - if @arrival.memo
+      = f.text_field :memo
+    = f.submit "保存"

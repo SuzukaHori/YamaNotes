@@ -10,14 +10,15 @@ h2.text-2xl.font-bold.mt-4 到着履歴
           span #{@walk.publish ? '公開' : '非公開'}
 
 - @arrivals.each_with_index do |arrival, i|
-  .text-2xl.px-8.pb-4
-    p.inline
+  .px-8.pb-4
+    p.inline.text-2xl
       - if i.zero?
         | #{arrival.created_at.strftime('%k:%M')} #{arrival.station.name}駅 出発
       - else
         | #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
+        = render partial: 'edit', locals: { arrival: arrival }
         - if @walk.user == current_user && arrival == @arrivals.last
-            = button_to '削除', arrival, method: :delete, class:"text-base text-blue-600 hover:underline ml-4", form: { class: "inline" }
+          = button_to '削除', arrival, method: :delete, class:"text-base text-blue-600 hover:underline ml-4", form: { class: "inline" }
     - if arrival.memo
       p.text-zinc-500.text-base #{arrival.memo}
 

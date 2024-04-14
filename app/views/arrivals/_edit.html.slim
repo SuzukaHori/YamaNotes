@@ -1,0 +1,5 @@
+= arrival.arrived_at
+= form_with model: arrival, method: :put do |form|
+  = form.datetime_field :arrived_at, value: arrival.arrived_at.strftime('%FT%R')
+  = form.text_field :memo
+  = form.submit "保存"

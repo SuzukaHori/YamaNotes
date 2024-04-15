@@ -4,9 +4,9 @@
       - if arrival.station == arrival.walk.departure_station
         | #{arrival.created_at.strftime('%k:%M')} #{arrival.station.name}駅 出発
       - else
-        | #{arrival.arrived_at&.strftime('%k:%M')} #{arrival.station.name}駅
+        | #{arrival.arrived_at.strftime('%k:%M')} #{arrival.station.name}駅
         = link_to  "編集", edit_arrival_path(arrival.id), class: "text-base text-blue-600 hover:underline ml-4"
-        - if @walk.user == current_user && arrival == @arrivals.last
-          = button_to '削除', arrival, method: :delete, class:"text-base text-blue-600 hover:underline ml-4", form: { data: { turbo_confirm: "本当に削除しますか？" }, class: "inline" }
     - if arrival.memo
-      p.text-zinc-500.text-base #{arrival.memo}
+      span.text-zinc-500.text-base #{arrival.memo}
+  - if @walk.user == current_user && arrival == @arrivals.last && arrival.station != current_walk.departure_station
+    = link_to "削除", arrival, class: "text-base text-blue-600 hover:underline ml-4", data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか？" }

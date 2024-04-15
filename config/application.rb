@@ -34,6 +34,7 @@ module Yamanotes
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     #
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

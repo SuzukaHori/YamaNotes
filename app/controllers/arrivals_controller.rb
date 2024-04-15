@@ -1,7 +1,7 @@
 class ArrivalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_arrival, only: %i[show edit update destroy]
-  before_action :set_walk, only: [:index, :show, :create]
+  before_action :set_walk, only: %i[index show create]
 
   def index
     @arrivals = current_walk.sorted_arrivals
@@ -24,7 +24,7 @@ class ArrivalsController < ApplicationController
     if @arrival.update(arrival_params)
       redirect_to request.referer, notice: '到着記録を更新しました'
     else
-      render 'walks/show', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end
   end
 

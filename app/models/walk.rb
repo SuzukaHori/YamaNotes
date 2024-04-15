@@ -9,7 +9,7 @@ class Walk < ApplicationRecord
   end
 
   def arrived_stations
-    arrivals.includes(:station).order(arrived_at: :asc).map(&:station)
+    sorted_arrivals.map(&:station)
   end
 
   def arrivals_without_departure
@@ -17,7 +17,7 @@ class Walk < ApplicationRecord
   end
 
   def sorted_arrivals
-    arrivals.includes(:station).order(arrived_at: :asc)
+    arrivals.includes(:station).order(:id)
   end
 
   def latest_arrival

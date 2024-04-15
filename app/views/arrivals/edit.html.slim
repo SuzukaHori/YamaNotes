@@ -1,8 +1,8 @@
 = turbo_frame_tag @arrival
-  = form_with model: @arrival, method: :put do |f|
+  = form_with model: @arrival, method: :put, class: "inline" do |f|
+    = render 'shared/errors', model: f.object
     = f.time_select :arrived_at, value: @arrival.arrived_at
-    p.inline.text-2xl #{@arrival.station.name}駅
-    br
-    = f.label :memo
+    p.inline.text-2xl.mr-8 #{@arrival.station.name}駅
+    = f.label :memo, "メモ："
     = f.text_field :memo
     = f.submit "保存"

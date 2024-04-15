@@ -32,8 +32,6 @@ class Walk < ApplicationRecord
     arrivals_without_departure.length
   end
 
-  private
-
   def departure_station
     arrivals.order(:created_at).first.station
   end

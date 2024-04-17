@@ -74,8 +74,8 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     visit arrivals_path
     click_on '編集'
     time = Time.current + 60
-    select format("%02d",time.hour), from: 'arrival_arrived_at_4i'
-    select format("%02d",time.min), from: 'arrival_arrived_at_5i'
+    select format('%02d', time.hour), from: 'arrival_arrived_at_4i'
+    select format('%02d', time.min), from: 'arrival_arrived_at_5i'
     click_on '保存'
     expect(page).to have_content('到着時刻に未来の時刻は設定できません')
   end

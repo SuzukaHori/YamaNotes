@@ -1,10 +1,10 @@
 = render 'shared/errors', model: arrival
-.px-8.pb-4
-  = turbo_frame_tag arrival do
+= turbo_frame_tag arrival do
+  .px-8.py-4
     p.inline.text-2xl
       | #{arrival.arrived_at.strftime('%k:%M')} #{arrival.station.name}駅 #{arrival.station == arrival.walk.departure_station ? "出発" : nil}
     - if arrival.memo
       span.text-zinc-500.text-base.ml-4 #{arrival.memo}
     = link_to  "編集", edit_arrival_path(arrival), class: "text-base text-blue-600 hover:underline ml-4"
-  - if @walk.user == current_user && arrival == @arrivals.last && arrival.station != current_walk.departure_station
-    = link_to "到着を削除", arrival, class: "text-base text-blue-600 hover:underline ml-4", data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか？" }
+    - if @walk.user == current_user && arrival == @arrivals.last && arrival.station != current_walk.departure_station
+      = link_to "到着を削除", arrival, class: "text-base text-blue-600 hover:underline ml-4", data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか？" }

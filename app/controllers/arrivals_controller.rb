@@ -22,7 +22,9 @@ class ArrivalsController < ApplicationController
 
   def update
     if @arrival.update(arrival_params)
-      redirect_to request.referer, notice: '到着記録を更新しました'
+      # redirect_to request.referer, notice: '到着記録を更新しました'
+      @walk = current_walk
+      @arrivals = current_walk.arrivals.order(:id)
     else
       render 'edit', status: :unprocessable_entity
     end

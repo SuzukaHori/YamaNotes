@@ -64,7 +64,7 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     fill_in 'arrival_memo', with: 'もうすぐつきそう'
     click_on '保存'
     expect(page).to have_content('到着記録を更新しました')
-    click_on 'memo_modal_button'
+    visit arrivals_path
     expect(page).to have_content('もうすぐつきそう')
   end
 
@@ -77,7 +77,7 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     fill_in 'arrival_memo', with: 'まだまだつかない'
     click_on '保存'
     expect(page).to have_content('到着記録を更新しました')
-    click_on 'memo_modal_button'
+    visit arrivals_path
     expect(page).to have_content('まだまだつかない')
     expect(page).to_not have_content('もうすぐつきそう')
   end

@@ -21,5 +21,6 @@ html
       h1.text-3xl.font-bold.p-2
         | YamaNotes
       .items.px-8.py-2
-        = render 'layouts/flash'
+        #flash
+          = render 'layouts/flash'
         = yield

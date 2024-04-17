@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
     t.bigint "walk_id"
     t.bigint "station_id"
     t.string "memo"
-    t.datetime "arrived_at", null: false
+    t.datetime "arrived_at", precision: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["station_id"], name: "index_arrivals_on_station_id"

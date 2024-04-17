@@ -80,6 +80,19 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     expect(page).to have_content('到着時刻に未来の時刻は設定できません')
   end
 
+  scenario '到着記録を削除する' do
+    start_walk
+    click_on '到着'
+    click_on '地図に戻る'
+    expect(page).to have_content('現在の駅 ：大崎駅')
+    visit arrivals_path
+    expect(page).to have_content('大崎駅')
+    page.accept_confirm do
+      click_on '到着を削除'
+    end
+    expect(page).to_not have_content('大崎駅')
+  end
+
   def start_walk
     visit new_walk_path
     click_on 'はじめる'

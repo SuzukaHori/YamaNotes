@@ -58,6 +58,28 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     expect(page).to have_content('現在の駅 ：渋谷駅')
   end
 
+  scenario '到着時刻を編集する' do
+    start_walk
+    expect(page).to have_content('現在の駅 ：品川駅')
+    visit arrivals_path
+    click_on '編集'
+    select '00', from: 'arrival_arrived_at_4i'
+    select '00', from: 'arrival_arrived_at_5i'
+    click_on '保存'
+    expect(page).to have_content('到着記録を更新しました')
+  end
+
+  scenario '不正な到着時刻に編集する' do
+    start_walk
+    visit arrivals_path
+    click_on '編集'
+    time = Time.current + 60
+    select format("%02d",time.hour), from: 'arrival_arrived_at_4i'
+    select format("%02d",time.min), from: 'arrival_arrived_at_5i'
+    click_on '保存'
+    expect(page).to have_content('到着時刻に未来の時刻は設定できません')
+  end
+
   def start_walk
     visit new_walk_path
     click_on 'はじめる'

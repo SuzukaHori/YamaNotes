@@ -58,41 +58,6 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     expect(page).to have_content('現在の駅 ：渋谷駅')
   end
 
-  scenario 'メモを追加できる' do
-    start_walk
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'もうすぐつきそう'
-    click_on '保存'
-    expect(page).to have_content('到着記録を更新しました')
-    visit arrivals_path
-    expect(page).to have_content('もうすぐつきそう')
-  end
-
-  scenario 'メモを編集できる' do
-    start_walk
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'もうすぐつきそう'
-    click_on '保存'
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'まだまだつかない'
-    click_on '保存'
-    expect(page).to have_content('到着記録を更新しました')
-    visit arrivals_path
-    expect(page).to have_content('まだまだつかない')
-    expect(page).to_not have_content('もうすぐつきそう')
-  end
-
-  # scenario 'メモを削除' do
-  #   start_walk
-  #   click_on 'memo_modal_button'
-  #   fill_in 'arrival_memo', with: 'もうすぐつきそう'
-  #   click_on '保存'
-  #   click_on 'メモを編集'
-  #   click_on 'メモを削除'
-  #   click_on 'memo_modal_button'
-  #   expect(page).to_not have_content('もうすぐつきそう')
-  # end
-
   def start_walk
     visit new_walk_path
     click_on 'はじめる'

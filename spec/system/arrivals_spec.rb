@@ -58,40 +58,40 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     expect(page).to have_content('現在の駅 ：渋谷駅')
   end
 
-  scenario 'メモを追加できる' do
+  scenario '到着時刻を編集する' do
     start_walk
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'もうすぐつきそう'
+    expect(page).to have_content('現在の駅 ：品川駅')
+    visit arrivals_path
+    click_on '編集'
+    select '00', from: 'arrival_arrived_at_4i'
+    select '00', from: 'arrival_arrived_at_5i'
     click_on '保存'
     expect(page).to have_content('到着記録を更新しました')
-    visit arrivals_path
-    expect(page).to have_content('もうすぐつきそう')
   end
 
-  scenario 'メモを編集できる' do
+  scenario '不正な到着時刻に編集する' do
     start_walk
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'もうすぐつきそう'
-    click_on '保存'
-    click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: 'まだまだつかない'
-    click_on '保存'
-    expect(page).to have_content('到着記録を更新しました')
     visit arrivals_path
-    expect(page).to have_content('まだまだつかない')
-    expect(page).to_not have_content('もうすぐつきそう')
+    click_on '編集'
+    time = Time.current + 60
+    select format('%02d', time.hour), from: 'arrival_arrived_at_4i'
+    select format('%02d', time.min), from: 'arrival_arrived_at_5i'
+    click_on '保存'
+    expect(page).to have_content('到着時刻に未来の時刻は設定できません')
   end
 
-  # scenario 'メモを削除' do
-  #   start_walk
-  #   click_on 'memo_modal_button'
-  #   fill_in 'arrival_memo', with: 'もうすぐつきそう'
-  #   click_on '保存'
-  #   click_on 'メモを編集'
-  #   click_on 'メモを削除'
-  #   click_on 'memo_modal_button'
-  #   expect(page).to_not have_content('もうすぐつきそう')
-  # end
+  scenario '到着記録を削除する' do
+    start_walk
+    click_on '到着'
+    click_on '地図に戻る'
+    expect(page).to have_content('現在の駅 ：大崎駅')
+    visit arrivals_path
+    expect(page).to have_content('大崎駅')
+    page.accept_confirm do
+      click_on '到着を削除'
+    end
+    expect(page).to_not have_content('大崎駅')
+  end
 
   def start_walk
     visit new_walk_path

@@ -19,7 +19,8 @@ html
            crossorigin=''
     main
       .container.mx-auto.border.border-green-500
-        = render 'layouts/header'
+        - if !current_page?(root_path)
+          = render 'layouts/header'
         .items.px-8.py-2
           #flash
             = render 'layouts/flash'

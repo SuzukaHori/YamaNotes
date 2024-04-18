@@ -4,6 +4,7 @@ class Arrival < ApplicationRecord
   validates :arrived_at, presence: true
   validate :prohibit_arrival_without_next_station, if: -> { validation_context == :create }
   validate :check_arrived_time, if: -> { validation_context == :update }
+  validate :arrivals_count_must_be_within_limit
   before_validation :convert_blank_to_nil
   before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 
@@ -49,5 +50,9 @@ class Arrival < ApplicationRecord
 
     errors.add :station_id, '最後の到着以外は削除できません'
     throw(:abort)
+  end
+
+  def arrivals_count_must_be_within_limit
+    errors.add(:base, '駅の数以上の到着記録は作成できません') if walk.arrivals.count > Station.count
   end
 end

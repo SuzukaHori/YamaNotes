@@ -1,0 +1,9 @@
+div data-controller='slideover'
+  button data-action='slideover#open'
+    | 開く
+  dialog data-slideover-target='dialog' class='h-full max-h-full m-0 w-96 p-8'
+    ul 
+      li = link_to 'ダッシュボード', walk_path
+      li = link_to '到着一覧', arrivals_path
+      li = link_to 'ログアウト', destroy_user_session_path
+    button data-action='slideover#close'  X

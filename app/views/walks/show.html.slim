@@ -10,8 +10,10 @@
 br
 
   = render 'shared/map'
-
-  .current-info.p-4
+  - if @walk.finished?
+    p おめでとうございます🎉
+    p あなたは#{Station.count}駅全てを歩ききりました！
+  - else
     p class="inline"
       | 現在の駅  ：#{@walk.current_station.name}駅
     div data-controller="modal" class="inline-block"

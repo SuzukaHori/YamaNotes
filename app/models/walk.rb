@@ -39,4 +39,8 @@ class Walk < ApplicationRecord
   def goal
     arrivals.order(:id).last if arrivals.length == Station.count + 1
   end
+
+  def finished?
+    arrivals.count > Station.count
+  end
 end

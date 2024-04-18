@@ -32,7 +32,11 @@ class Walk < ApplicationRecord
     arrivals_without_departure.length
   end
 
-  def departure_station
-    arrivals.order(:created_at).first.station
+  def departure
+    arrivals.order(:id).first
+  end
+
+  def goal
+    arrivals.order(:id).last if arrivals.length == Station.count + 1
   end
 end

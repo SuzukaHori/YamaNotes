@@ -13,6 +13,7 @@ RSpec.describe 'Users/Arrivals', type: :system do
   scenario '公開状態の到着履歴にアクセスする' do
     visit public_arrivals_path(@user)
     expect(page).to have_content('品川駅')
+    expect(page).to_not have_content('編集')
   end
 
   scenario '未公開状態の到着履歴にアクセスする' do
@@ -27,5 +28,6 @@ RSpec.describe 'Users/Arrivals', type: :system do
     sign_in @user
     visit public_arrivals_path(@user)
     expect(page).to have_content('品川駅')
+    expect(page).to have_content('編集')
   end
 end

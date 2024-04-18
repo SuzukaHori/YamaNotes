@@ -4,7 +4,7 @@ class Users::ArrivalsController < ApplicationController
     walk = user.walk
     if walk.publish || current_user == user
       @walk = user.walk
-      @arrivals = @walk.arrivals.includes(:station)
+      @arrivals = @walk.sorted_arrivals
       render 'arrivals/index'
     else
       redirect_to root_path, notice: 'この到着記録は非公開です'

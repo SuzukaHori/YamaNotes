@@ -8,8 +8,7 @@ h2.text-2xl.font-bold.mt-4 到着履歴
           = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
           .toggle-switch.m-2
           span #{@walk.publish ? '公開' : '非公開'}
-
-= render @arrivals
+= render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival
 
 .flex.justify-end
   = link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block'

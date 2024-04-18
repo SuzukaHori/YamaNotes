@@ -18,10 +18,8 @@ html
            integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',
            crossorigin=''
     main
-      = render 'layouts/menu'
       .container.mx-auto.border.border-green-500
-        h1.text-3xl.font-bold.p-2
-          | YamaNotes
+        = render 'layouts/header'
         .items.px-8.py-2
           #flash
             = render 'layouts/flash'

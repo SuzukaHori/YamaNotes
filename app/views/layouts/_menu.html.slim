@@ -1,9 +1,12 @@
-div data-controller='slideover'
-  button data-action='slideover#open'
-    | 開く
-  dialog data-slideover-target='dialog' class='h-full max-h-full m-0 w-96 p-8'
-    ul 
-      li = link_to 'ダッシュボード', walk_path
-      li = link_to '到着一覧', arrivals_path
-      li = link_to 'ログアウト', destroy_user_session_path
-    button data-action='slideover#close'  X
+div data-controller='slideover' data-action="click->slideover#backdropClose" class='ml-auto my-0 flex justify-center'
+  button data-action='slideover#open' class='hover:bg-gray-50 p-2'
+    i class='fa-solid fa-bars text-2xl'
+  dialog data-slideover-target='dialog' class='h-full max-h-full m-0 w-96 p-8  bg-lime-50'
+    .flex
+      button data-action='slideover#close' class='ml-auto hover:bg-lime-100'
+        i class='fa-solid fa-xmark text-2xl p-2'
+    ul
+      li = link_to 'ダッシュボード', walk_path, class: 'inline-block w-full hover:bg-lime-100 py-2'
+      li = link_to '到着一覧', arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2'
+      li = link_to 'トップページ', root_path, class: 'inline-block w-full hover:bg-lime-100 py-2'
+      li = link_to 'ログアウト', destroy_user_session_path, class: 'inline-block w-full hover:bg-lime-100 py-2'

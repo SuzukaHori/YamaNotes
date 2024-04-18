@@ -17,10 +17,11 @@ html
     script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',
            integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',
            crossorigin=''
-    main.container.mx-auto.border.border-green-500
-      h1.text-3xl.font-bold.p-2
-        | YamaNotes
-      .items.px-8.py-2
-        #flash
-          = render 'layouts/flash'
-        = yield
+    main
+      .container.mx-auto.border.border-green-500
+        - if !current_page?(root_path)
+          = render 'layouts/header'
+        .items.px-8.py-2
+          #flash
+            = render 'layouts/flash'
+          = yield

@@ -16,7 +16,10 @@ RSpec.describe 'Users', type: :system do
   scenario 'ログアウトする' do
     user = FactoryBot.create(:user)
     sign_in user
-    visit root_path
+    visit new_walk_path
+    start_walk
+    visit walk_path
+    click_on 'menu_button'
     click_on 'ログアウト'
     expect(page).to have_content('ログアウトしました。')
   end

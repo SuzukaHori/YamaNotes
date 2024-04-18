@@ -5,4 +5,9 @@ module WalkHelpers
       @walk.arrivals.create!(station: next_station, arrived_at: Time.current)
     end
   end
+
+  def start_walk
+    visit new_walk_path
+    click_on 'はじめる'
+  end
 end

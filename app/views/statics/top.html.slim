@@ -1,10 +1,7 @@
-.container
-  .nav
-    - if user_signed_in?
-      = link_to destroy_user_session_path, class: 'btn-primary' do
-        | ログアウト
-    - else
-      = button_to user_google_oauth2_omniauth_authorize_path,
-        data: { turbo: false }, class: 'btn-primary' do
-        i.fa-brands.fa-google.p-2
-        | Googleでログイン
+.text-center
+  h1.text-3xl.p-2 YamaNotes
+  p.m-8 山手線一周に徒歩で挑戦する人のための記録アプリ
+  = button_to user_google_oauth2_omniauth_authorize_path,
+    data: { turbo: false }, class: 'btn-primary' do
+    i.fa-brands.fa-google.p-2
+    | Googleでログイン

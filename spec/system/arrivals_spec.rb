@@ -92,9 +92,4 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     end
     expect(page).to_not have_content('大崎駅')
   end
-
-  def start_walk
-    visit new_walk_path
-    click_on 'はじめる'
-  end
 end

@@ -55,9 +55,4 @@ RSpec.describe 'Memos', type: :system, js: true do
       expect(page).to_not have_content('もうすぐつきそう')
     end
   end
-
-  def start_walk
-    visit new_walk_path
-    click_on 'はじめる'
-  end
 end

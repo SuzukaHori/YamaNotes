@@ -18,6 +18,7 @@ RSpec.describe 'Users', type: :system do
     sign_in user
     visit new_walk_path
     start_walk
+    visit walk_path
     click_on 'menu_button'
     click_on 'ログアウト'
     expect(page).to have_content('ログアウトしました。')

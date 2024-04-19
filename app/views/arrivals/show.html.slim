@@ -16,7 +16,7 @@
           td #{l @walk.goal.arrived_at}
         tr.border
           td かかった時間
-          td #{Time.at(@walk.goal.arrived_at - @walk.departure.arrived_at).strftime('%k時間%M分')}
+          td #{Time.at(@walk.goal.arrived_at - @walk.departure.arrived_at).utc.strftime('%k時間%M分')}
 
 - else
   p #{@arrival.station.name}駅に到着しました🎉

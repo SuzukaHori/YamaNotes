@@ -10,19 +10,19 @@
       tbody
         tr.border
           td 出発した時刻
-          td #{l @walk.departure.arrived_at}
+          td #{l @walk.arrival_of_departure.arrived_at}
         tr.border
           td ゴールした時刻
           td #{l @walk.goal.arrived_at}
         tr.border
           td かかった時間
-          td #{Time.at(@walk.goal.arrived_at - @walk.departure.arrived_at).utc.strftime('%k時間%M分')}
+          td #{Time.at(@walk.goal.arrived_at - @walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')}
 
 - else
   p #{@arrival.station.name}駅に到着しました🎉
   p
-    | 歩いた駅は#{@walk.walked_stations_number}駅（残り#{Station.count - @walk.walked_stations_number}駅）、
-      歩いた距離は約#{@walk.total_distance_walked.round(2)}kmです！
+    | 歩いた駅は#{walked_stations_number}駅（残り#{Station.count - walked_stations_number}駅）、
+      歩いた距離は約#{total_distance}kmです！
 
 br
 = render partial: 'shared/memo', locals: { arrival: @arrival }

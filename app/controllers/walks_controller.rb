@@ -1,6 +1,6 @@
 class WalksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_walk, only: [:show, :update]
+  before_action :set_walk, only: [:show]
 
   def show
     @arrival = Arrival.new
@@ -8,7 +8,7 @@ class WalksController < ApplicationController
 
   def new
     @walk = Walk.new
-    @arrival = Arrival.new
+    @arrival = @walk.arrivals.new
   end
 
   def create
@@ -16,28 +16,32 @@ class WalksController < ApplicationController
       redirect_to walk_url, alert: '歩行記録は一つしか作成できません'
       return
     end
-    @walk = current_user.build_walk(clockwise: params[:clockwise])
-    if @walk.save && @walk.arrivals.create(station_id: params[:station_id], arrived_at: Time.current)
-      redirect_to walk_url, notice: '歩行記録の作成に成功しました'
-    else
-      render :new, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      walk = current_user.build_walk(clockwise: walk_params[:clockwise])
+      walk.save!
+      walk.arrivals.create!(station_id: arrival_params[:station_id], arrived_at: arrival_params[:arrived_at])
     end
+    redirect_to walk_url, notice: '歩行記録の作成に成功しました'
   end
 
   def update
-    if @walk.update(walk_params)
-      redirect_to request.referer, notice: @walk.publish ? '公開しました' : '非公開にしました'
+    if current_walk.update(walk_params)
+      redirect_to arrivals_path, notice: walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
     else
       render 'arrival/index', status: :unprocessable_entity
     end
   end
 
-  def delete; end
+  def destroy; end
 
   private
 
   def walk_params
-    params.require(:walk).permit(:user_id, :clockwise, :publish)
+    params.require(:walk).permit(:clockwise, :publish)
+  end
+
+  def arrival_params
+    params.require(:arrival).permit(:station_id, :arrived_at, :memo)
   end
 
   def set_walk

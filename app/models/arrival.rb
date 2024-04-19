@@ -46,7 +46,7 @@ class Arrival < ApplicationRecord
   end
 
   def check_arrival_location
-    return if self == walk.sorted_arrivals.last
+    return if self == walk.sorted_arrivals_with_stations.last
 
     errors.add :station_id, '最後の到着以外は削除できません'
     throw(:abort)

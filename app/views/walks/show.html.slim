@@ -13,6 +13,7 @@ br
   - if @walk.finished?
     p おめでとうございます🎉
     p あなたは#{Station.count}駅全てを歩ききりました！
+    = link_to '> 賞状を見る', @walk.goal
   - else
     p class="inline"
       | 現在の駅  ：#{@walk.current_station.name}駅

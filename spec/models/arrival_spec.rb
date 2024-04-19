@@ -54,6 +54,15 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
+  describe '#arrivals_count_must_be_within_limit' do
+    it '駅数 + 1以上の到着を追加できない' do
+      create_arrivals(30)
+      arrival = @walk.arrivals.new(station_id: 2, arrived_at: Time.current)
+      expect(arrival.valid?).to be false
+      expect(arrival.errors.full_messages.join).to eq '駅の数以上の到着記録は作成できません'
+    end
+  end
+
   private
 
   def create_second_arrival

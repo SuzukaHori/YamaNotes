@@ -3,8 +3,8 @@ class Arrival < ApplicationRecord
   belongs_to :station
   validates :arrived_at, presence: true
   validate :prohibit_arrival_without_next_station, if: -> { validation_context == :create }
+  validate :arrivals_count_must_be_within_limit, if: -> { validation_context == :create }
   validate :check_arrived_time, if: -> { validation_context == :update }
-  validate :arrivals_count_must_be_within_limit
   before_validation :convert_blank_to_nil
   before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 

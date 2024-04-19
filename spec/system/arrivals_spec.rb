@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Arrivals', type: :system, js: true do
+  let(:user) { FactoryBot.create(:user) }
+  let(:walk) { user.create_walk }
+
   before do
-    @user = FactoryBot.create(:user)
-    sign_in @user
+    sign_in user
   end
 
   scenario '歩行開始時に到着記録が作られる' do
@@ -34,6 +36,15 @@ RSpec.describe 'Arrivals', type: :system, js: true do
     click_on '到着'
     expect(page).to have_content('五反田駅に到着しました')
     expect(page).to have_content('歩いた駅は2駅（残り28駅）、 歩いた距離は約2.9kmです！')
+  end
+
+  scenario '一周終了後に専用の画面が表示される' do
+    30.times do |n|
+      walk.arrivals.create!(station_id: n + 1, arrived_at: Time.current)
+    end
+    visit walk_path
+    click_on '到着'
+    expect(page).to have_content('あなたは、山手線の30駅全てを歩ききりました')
   end
 
   scenario '到着時に現在の駅の情報が更新される' do

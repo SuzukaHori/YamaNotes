@@ -1,12 +1,10 @@
-= render 'shared/errors', model: @walk
-= render 'shared/errors', model: @arrival
-
-= form_with url: walk_path, method: :post do |f|
-  = f.radio_button :clockwise, true, checked: true
+= form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
+  = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]'
   = f.label :clockwise_true, '外回り'
-  = f.radio_button :clockwise, false
+  = f.radio_button :clockwise, false, name: 'walk[clockwise]'
   = f.label :clockwise_false, '内回り'
-  = f.label :station_id, '出発駅：'
+  = f.label :station_id, '出発駅：', name: 'arrival[station_id]'
   = f.collection_select :station_id, Station.all, :id, :name
+  = f.hidden_field :arrived_at, value: Time.current, name: 'arrival[arrived_at]'
   br
   = f.submit 'はじめる', class: 'btn-primary'

@@ -8,7 +8,7 @@ RSpec.describe 'Walks', type: :system do
 
   scenario '歩行開始時に歩行記録が作られる' do
     visit new_walk_path
-    select '大塚', from: 'station_id'
+    select '大塚', from: 'arrival_station_id'
     choose '外回り'
     expect do
       click_on 'はじめる'

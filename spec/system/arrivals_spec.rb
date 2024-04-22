@@ -10,7 +10,7 @@ RSpec.describe 'Arrivals', type: :system, js: true do
 
   scenario '歩行開始時に到着記録が作られる' do
     visit new_walk_path
-    select '大塚', from: 'station_id'
+    select '大塚', from: 'arrival_station_id'
     choose '外回り'
     expect do
       click_on 'はじめる'
@@ -20,7 +20,7 @@ RSpec.describe 'Arrivals', type: :system, js: true do
 
   scenario '到着ボタンを押した時に到着記録が作られる' do
     start_walk
-    expect(page).to have_content('到着')
+    visit walk_path
     expect do
       click_on '到着'
       expect(page).to have_content('大崎駅に到着しました')

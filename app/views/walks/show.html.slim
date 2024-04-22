@@ -5,15 +5,16 @@
 .walk-info
   p 出発から：#{elapsed_time}
     （出発：#{@walk.created_at.strftime('%m月%-d日%-H時%M分')}）
-  p 歩いた駅：#{@walk.walked_stations_number}駅（残り#{Station.count - @walk.walked_stations_number}駅）
-  p 歩いた距離：約#{@walk.total_distance_walked.round(2)}km（残り#{remaining_distance}km）
+  p 歩いた駅：#{walked_stations_number}駅（残り#{Station.count - walked_stations_number}駅）
+  p 歩いた距離：約#{total_distance}km（残り#{remaining_distance}km）
 br
 
   = render 'shared/map'
+
   - if @walk.finished?
     p おめでとうございます🎉
     p あなたは#{Station.count}駅全てを歩ききりました！
-    = link_to '> 賞状を見る', @walk.goal
+    = link_to '> 賞状を見る', @walk.arrival_of_goal
   - else
     p class="inline"
       | 現在の駅  ：#{@walk.current_station.name}駅
@@ -27,5 +28,8 @@ br
     p class="inline"
       | 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅
     .inline-flex.ml-2
-      = button_to '到着', arrivals_path,
-        params: { station_id: @walk.current_station.next(clockwise: @walk.clockwise).id }, class: 'btn-primary'
+
+    = form_with model: @arrival, url: arrivals_path do |f|
+      = f.hidden_field :station_id, value: @walk.current_station.next(clockwise: @walk.clockwise).id
+      = f.hidden_field :arrived_at, value: Time.current
+      = f.submit '到着', class: 'btn-primary'

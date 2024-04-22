@@ -4,7 +4,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     auth = request.env['omniauth.auth']
     @user = User.find_or_create_by(provider: auth.provider, uid: auth.uid)
-
     if @user.persisted?
       sign_in @user
     else

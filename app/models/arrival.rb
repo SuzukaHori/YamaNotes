@@ -1,11 +1,12 @@
 class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
-  validates :arrived_at, presence: true
-  validate :prohibit_arrival_without_next_station, if: -> { validation_context == :create }
-  validate :arrivals_count_must_be_within_limit, if: -> { validation_context == :create }
-  validate :check_arrived_time, if: -> { validation_context == :update }
   before_validation :convert_blank_to_nil
+  validates :arrived_at, presence: true
+  validate :prohibit_arrival_without_next_station, on: :create
+  validate :arrivals_count_must_be_within_limit, on: :create
+  validate :check_arrived_time, on: :update
+  before_save :truncate_seconds_of_arrived_time
   before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 
   private
@@ -22,8 +23,8 @@ class Arrival < ApplicationRecord
   def arrival_time_is_outside_of_range?
     arrivals = walk.arrivals.order(:id)
     self_index = arrivals.find_index(self)
-    next_arrival_time = arrivals[self_index + 1]&.arrived_at
-    prev_arrival_time = self_index.zero? ? nil : arrivals[self_index - 1].arrived_at
+    next_arrival_time = self == arrivals.last ? nil : arrivals[self_index + 1].arrived_at
+    prev_arrival_time = self == arrivals.first ? nil : arrivals[self_index - 1].arrived_at
     !(prev_arrival_time..next_arrival_time).cover? arrived_at
   end
 
@@ -46,10 +47,14 @@ class Arrival < ApplicationRecord
   end
 
   def check_arrival_location
-    return if self == walk.sorted_arrivals_with_stations.last
+    return if self == walk.arrivals.order(:id).last
 
     errors.add :base, '最後の到着以外は削除できません'
     throw(:abort)
+  end
+
+  def truncate_seconds_of_arrived_time
+    self.arrived_at = arrived_at.beginning_of_minute
   end
 
   def arrivals_count_must_be_within_limit

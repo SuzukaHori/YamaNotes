@@ -28,7 +28,7 @@ class Walk < ApplicationRecord
     arrivals.order(:id).first
   end
 
-  def goal
+  def arrival_of_goal
     arrivals.order(:id).last if finished?
   end
 

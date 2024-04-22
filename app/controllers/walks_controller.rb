@@ -17,16 +17,15 @@ class WalksController < ApplicationController
       return
     end
     ActiveRecord::Base.transaction do
-      walk = current_user.build_walk(clockwise: walk_params[:clockwise])
-      walk.save!
-      walk.arrivals.create!(station_id: arrival_params[:station_id], arrived_at: arrival_params[:arrived_at])
+      walk = current_user.create_walk!(walk_params)
+      walk.arrivals.create!(arrival_params)
     end
     redirect_to walk_url, notice: '歩行記録の作成に成功しました'
   end
 
   def update
     if current_walk.update(walk_params)
-      redirect_to arrivals_path, notice: walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
+      redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
     else
       render 'arrival/index', status: :unprocessable_entity
     end

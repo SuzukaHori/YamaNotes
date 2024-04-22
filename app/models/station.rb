@@ -6,7 +6,7 @@ class Station < ApplicationRecord
 
   def next(clockwise:)
     if clockwise
-      next_id = id == Station.all.map(&:id).max ? 1 : id + 1
+      next_id = id == Station.count ? 1 : id + 1
       Station.find(next_id)
     else
       Station.find_by(clockwise_next_station: self)

@@ -4,7 +4,7 @@
     p.m-2 あなたは、山手線の#{Station.count}駅全てを歩ききりました。
     p.m-2 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず精力的に歩き続けたことは、見る人に深い感動を与えました。
     p.m-2 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
-    p.m-2 #{l @walk.goal.arrived_at, format: :medium }
+    p.m-2 #{l @walk.arrival_of_goal.arrived_at, format: :medium }
     br
     table.border.my-0.mx-auto
       tbody
@@ -13,10 +13,10 @@
           td #{l @walk.arrival_of_departure.arrived_at}
         tr.border
           td ゴールした時刻
-          td #{l @walk.goal.arrived_at}
+          td #{l @walk.arrival_of_goal.arrived_at}
         tr.border
           td かかった時間
-          td #{Time.at(@walk.goal.arrived_at - @walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')}
+          td #{Time.at(@walk.arrival_of_goal.arrived_at - @walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')}
 
 - else
   p #{@arrival.station.name}駅に到着しました🎉

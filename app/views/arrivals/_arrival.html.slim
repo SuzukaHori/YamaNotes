@@ -5,7 +5,7 @@
       | #{arrival.arrived_at.strftime('%k:%M')} #{arrival.station.name}駅
       - if arrival == arrival.walk.arrival_of_departure
         | 出発
-      - elsif arrival == arrival.walk.goal
+      - elsif arrival == arrival.walk.arrival_of_goal
         | ゴール
     - if arrival.memo
       span.text-zinc-500.text-base.ml-4 #{arrival.memo}

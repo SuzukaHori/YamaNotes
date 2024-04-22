@@ -1,8 +1,8 @@
 module WalkHelpers
-  def create_arrivals(number)
+  def create_arrivals(walk, number)
     number.times do
-      next_station = @walk.current_station.next(clockwise: @walk.clockwise)
-      @walk.arrivals.create!(station: next_station, arrived_at: Time.current)
+      next_station = walk.current_station.next(clockwise: walk.clockwise)
+      FactoryBot.create(:arrival, walk:, station: next_station)
     end
   end
 

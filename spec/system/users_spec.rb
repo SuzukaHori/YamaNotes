@@ -1,24 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
+  let(:user) { FactoryBot.create(:user) }
+
   before do
     OmniAuth.config.test_mode = true
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
     OmniAuth.config.mock_auth[:google_oauth2] = google_oauth2_mock
   end
 
-  scenario 'ログインする' do
+  it 'ログインする' do
     visit root_path
     click_on 'Googleでログイン'
     expect(page).to have_content('Google アカウントによる認証に成功しました。')
   end
 
-  scenario 'ログアウトする' do
-    user = FactoryBot.create(:user)
+  it 'ログアウトする' do
     sign_in user
-    visit new_walk_path
     start_walk
-    visit walk_path
     click_on 'menu_button'
     click_on 'ログアウト'
     expect(page).to have_content('ログアウトしました。')

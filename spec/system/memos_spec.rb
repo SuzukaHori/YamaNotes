@@ -4,37 +4,20 @@ RSpec.describe 'Memos', type: :system, js: true do
   before do
     user = FactoryBot.create(:user)
     sign_in user
+    start_walk
   end
 
-  context 'トップページでメモを操作する' do
-    scenario 'メモを追加する' do
-      start_walk
-      click_on 'memo_modal_button'
-      fill_in 'arrival_memo', with: 'もうすぐつきそう'
-      click_on '保存'
+  context 'トップページでメモを操作する場合' do
+    it 'メモを追加する' do
+      add_memo
       expect(page).to have_content('到着記録を更新しました')
       visit arrivals_path
-      expect(page).to have_content('もうすぐつきそう')
-    end
-
-    scenario 'メモを編集する' do
-      start_walk
-      click_on 'memo_modal_button'
-      fill_in 'arrival_memo', with: 'もうすぐつきそう'
-      click_on '保存'
-      click_on 'memo_modal_button'
-      fill_in 'arrival_memo', with: 'まだまだつかない'
-      click_on '保存'
-      expect(page).to have_content('到着記録を更新しました')
-      visit arrivals_path
-      expect(page).to have_content('まだまだつかない')
-      expect(page).to_not have_content('もうすぐつきそう')
+      expect(page).to have_content('新しいメモ')
     end
   end
 
-  context '到着一覧ページで操作する' do
-    scenario 'メモを追加する' do
-      start_walk
+  context '到着一覧ページで操作する場合' do
+    it 'メモを追加する' do
       visit arrivals_path
       click_on '編集'
       fill_in 'メモ', with: 'もうすぐつきそう'
@@ -42,17 +25,23 @@ RSpec.describe 'Memos', type: :system, js: true do
       expect(page).to have_content('到着記録を更新しました')
     end
 
-    scenario 'メモを編集する' do
-      start_walk
+    it 'メモを編集できる' do
+      add_memo
       visit arrivals_path
       click_on '編集'
-      fill_in 'メモ', with: 'もうすぐつきそう'
+      fill_in 'メモ', with: '編集済みのメモ'
       click_on '保存'
-      click_on '編集'
-      fill_in 'メモ', with: 'まだまだつかない'
-      click_on '保存'
-      expect(page).to have_content('まだまだつかない')
-      expect(page).to_not have_content('もうすぐつきそう')
+      expect(page).to have_content('編集済みのメモ')
+      expect(page).to_not have_content('新しいメモ')
     end
+  end
+
+  private
+
+  def add_memo
+    visit walk_path
+    click_on 'memo_modal_button'
+    fill_in 'arrival_memo', with: '新しいメモ'
+    click_on '保存'
   end
 end

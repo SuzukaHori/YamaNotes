@@ -19,7 +19,7 @@ module WalksHelper
   end
 
   def walked_stations_number
-    arrivals_without_departure = current_walk.sorted_arrivals_with_stations.slice(1..-1)
+    arrivals_without_departure = current_walk.arrivals.slice(1..-1)
     arrivals_without_departure.length
   end
 end

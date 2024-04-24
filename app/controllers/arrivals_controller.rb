@@ -42,7 +42,7 @@ class ArrivalsController < ApplicationController
   end
 
   def set_arrivals
-    @arrivals = current_walk.sorted_arrivals_with_stations
+    @arrivals = current_walk.arrivals.includes(:station)
   end
 
   def set_walk

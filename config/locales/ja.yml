@@ -216,4 +216,5 @@ ja:
       long: "%Y/%m/%d %H:%M"
       medium: '%Y年%_m月%d日'
       short: "%m/%d %H:%M"
+      without_date: "%k:%M"
     pm: 午後

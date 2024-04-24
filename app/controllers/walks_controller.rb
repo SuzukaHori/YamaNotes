@@ -1,6 +1,6 @@
 class WalksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_walk, only: [:show]
+  before_action :set_walk, only: %i[show destroy]
 
   def show
     @arrival = Arrival.new
@@ -31,7 +31,10 @@ class WalksController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @walk.destroy!
+    redirect_to root_path, notice: '一周をリタイアしました'
+  end
 
   private
 

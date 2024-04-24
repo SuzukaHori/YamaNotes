@@ -5,7 +5,8 @@
     p 
       | #{@arrival.station.name}駅に到着しました🎉
       br
-      | 歩いた駅は#{number_of_walked_stations}駅（残り#{number_of_remaining_stations}駅）、歩いた距離は約#{total_distance}kmです！
+      | 歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、
+      | 歩いた距離は約#{total_distance(@walk)}kmです！
   div data-controller="modal" class="inline-block"
     button data-action="modal#open" id="memo_modal_button"
       | メモを開く

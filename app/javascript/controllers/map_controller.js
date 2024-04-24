@@ -68,7 +68,7 @@ export default class extends Controller {
       const station = stations[i];
       locations.push([station.latitude, station.longitude]);
     }
-    if (stations.length === this.allStations.length) {
+    if (stations.length === this.allStations.length + 1) {
       locations.push([stations[0].latitude, stations[0].longitude]);
     }
     L.polyline(locations, { color, weight: 15, opacity: 0.4 }).addTo(map);

@@ -2,34 +2,16 @@
   = render 'shared/errors', model: @arrival
   = link_to '> 履歴', arrivals_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
 
-.walk-info
-  p 出発から：#{elapsed_time}
-    （出発：#{@walk.created_at.strftime('%m月%-d日%-H時%M分')}）
-  p 歩いた駅：#{number_of_walked_stations}駅（残り#{number_of_remaining_stations}駅）
-  p 歩いた距離：約#{total_distance}km（残り#{remaining_distance}km）
-br
+.div
+  p 出発から：#{elapsed_time(@walk)}（出発：#{l @walk.created_at}）
+  p 歩いた駅：#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）
+  p 歩いた距離：約#{total_distance(@walk)}km（残り#{remaining_distance(@walk)}km）
 
-  = render 'shared/map'
+= render 'shared/map'
 
-  - if @walk.finished?
-    p おめでとうございます🎉
-    p あなたは#{Station.count}駅全てを歩ききりました！
-    = link_to '> 賞状を見る', @walk.arrival_of_goal
-  - else
-    p class="inline"
-      | 現在の駅  ：#{@walk.current_station.name}駅
-    div data-controller="modal" class="inline-block"
-      button data-action="modal#open" id="memo_modal_button"
-        i class="fa-regular fa-pen-to-square ml-4"
-      = render partial: 'dialogs/memo', locals: { arrival: @walk.latest_arrival }
-    p
-      i class="fa-solid fa-grip-lines-vertical ml-12 mr-2 my-2"
-      | #{@walk.current_station.clockwise_distance_to_next}km
-    p class="inline"
-      | 次の駅   ： #{@walk.current_station.next(clockwise: @walk.clockwise).name}駅
-    .inline-flex.ml-2
-
-    = form_with model: @arrival, url: arrivals_path do |f|
-      = f.hidden_field :station_id, value: @walk.current_station.next(clockwise: @walk.clockwise).id
-      = f.hidden_field :arrived_at, value: Time.current
-      = f.submit '到着', class: 'btn-primary'
+- if @walk.finished?
+  p おめでとうございます🎉
+  p あなたは#{Station.count}駅全てを歩ききりました！
+  = link_to '> 記録を見る', @walk.arrival_of_goal
+- else
+  = render partial: "walk", locals: { walk: @walk, arrival: @arrival }

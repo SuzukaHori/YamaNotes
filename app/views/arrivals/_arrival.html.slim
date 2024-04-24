@@ -12,5 +12,5 @@
 
     - if arrival.walk.user == current_user
       = link_to '編集', edit_arrival_path(arrival), class: 'text-base text-blue-600 hover:underline ml-4'
-      - if @walk.user == current_user && arrival == @arrivals.last && arrival != current_walk.arrival_of_departure
+      - if arrival == @arrivals.last && arrival != current_walk.arrival_of_departure
         = link_to '到着を削除', arrival, class: 'text-base text-blue-600 hover:underline ml-4', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

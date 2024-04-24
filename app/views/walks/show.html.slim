@@ -14,4 +14,4 @@
   p あなたは#{Station.count}駅全てを歩ききりました！
   = link_to '> 記録を見る', @walk.arrival_of_goal
 - else
-  = render partial: "walk", locals: { walk: @walk, arrival: @arrival }
+  = render partial: 'walk', locals: { walk: @walk, arrival: @arrival }

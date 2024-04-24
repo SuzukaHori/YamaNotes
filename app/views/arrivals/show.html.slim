@@ -1,8 +1,8 @@
 .text-center
   - if @walk.finished?
-    = render partial: "finished",  locals: { walk: @walk }
+    = render partial: 'finished', locals: { walk: @walk }
   - else
-    p 
+    p
       | #{@arrival.station.name}駅に到着しました🎉
       br
       | 歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、

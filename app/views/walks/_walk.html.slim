@@ -10,7 +10,7 @@ p
   | #{walk.current_station.clockwise_distance_to_next}km
 p class="inline"
   | 次の駅   ： #{walk.current_station.next(clockwise: walk.clockwise).name}駅
-  
+
 .inline-flex.ml-2
   = form_with model: arrival, url: arrivals_path do |f|
     = f.hidden_field :station_id, value: walk.current_station.next(clockwise: walk.clockwise).id

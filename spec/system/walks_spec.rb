@@ -27,4 +27,15 @@ RSpec.describe 'Walks', type: :system do
     click_on '地図に戻る'
     expect(page).to have_content('現在の駅 ：大崎駅')
   end
+
+  it 'リタイアする' do
+    start_walk
+    click_on 'menu_button'
+    expect do
+      page.accept_confirm do
+        click_on 'リタイアする'
+      end
+      expect(page).to have_content('一周をリタイアしました')
+    end.to change { Walk.count }.by(-1)
+  end
 end

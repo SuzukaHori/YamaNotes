@@ -18,8 +18,12 @@ module WalksHelper
     "#{hours}時間#{minutes}分"
   end
 
-  def walked_stations_number
+  def number_of_walked_stations
     arrivals_without_departure = current_walk.arrivals.slice(1..-1)
     arrivals_without_departure.length
+  end
+
+  def number_of_remaining_stations
+    Station.count - number_of_walked_stations
   end
 end

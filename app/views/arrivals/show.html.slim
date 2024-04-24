@@ -9,6 +9,6 @@
   div data-controller="modal" class="inline-block"
     button data-action="modal#open" id="memo_modal_button"
       | メモを開く
-    = render partial: 'shared/memo', locals: { arrival: @arrival }
+    = render partial: 'dialogs/memo', locals: { arrival: @arrival }
 
 = link_to '地図に戻る', walk_path

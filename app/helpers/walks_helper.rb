@@ -26,4 +26,10 @@ module WalksHelper
   def number_of_remaining_stations(walk)
     Station.count - number_of_walked_stations(walk)
   end
+
+  def time_to_reach_goal(walk)
+    return unless walk.finished?
+
+    Time.at(walk.arrival_of_goal.arrived_at - walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')
+  end
 end

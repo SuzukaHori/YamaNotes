@@ -1,15 +1,20 @@
 .text-center
   - if @walk.finished?
     = render partial: 'finished', locals: { walk: @walk }
+    - text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_reach_goal(@walk)}でした！"
   - else
     p
       | #{@arrival.station.name}駅に到着しました🎉
       br
       | 歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、
       | 歩いた距離は約#{total_distance(@walk)}kmです！
-  div data-controller="modal" class="inline-block"
-    button data-action="modal#open" id="memo_modal_button"
-      | メモを開く
-    = render partial: 'dialogs/memo', locals: { arrival: @arrival }
+    - text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@arrival.station.name}駅に到着しました🎉歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、歩いた距離は約#{total_distance(@walk)}kmです！"
+
+  .my-6
+    = render partial: 'shared/post', locals: {text: text_for_post}
+    div data-controller='modal' class='inline-block ml-4'
+      button data-action='modal#open' id='memo_modal_button'
+        | メモを開く
+      = render partial: 'dialogs/memo', locals: { arrival: @arrival }
 
 = link_to '地図に戻る', walk_path

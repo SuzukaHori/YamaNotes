@@ -11,12 +11,22 @@ RSpec.describe 'Users/Arrivals', type: :system do
       setting_and_visit_public_path(walk_public)
       expect(page).to have_content('編集')
     end
+
+    it '公開用URLをコピーする' do
+      sign_in user
+      setting_and_visit_public_path(walk_public)
+      url = find_field('公開用URL:').value
+      expect(url).to include(public_arrivals_path(user))
+      click_on 'copy_button'
+      expect(page).to have_content('Copied')
+    end
   end
 
   context '未ログインでアクセスした場合' do
     it '公開状態の到着履歴にアクセスする' do
       setting_and_visit_public_path(walk_public)
       expect(page).to_not have_content('編集')
+      expect(page).to_not have_content('公開用URL:')
     end
 
     it '未公開状態の到着履歴にアクセスできない' do

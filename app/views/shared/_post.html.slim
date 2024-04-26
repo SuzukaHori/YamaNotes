@@ -1,6 +1,5 @@
 = link_to "https://twitter.com/intent/tweet?text=#{text}&url=#{root_url}&hashtags=山手線を徒歩で一周",
-  target: '_blank',
-  id: 'post_button',
-  class: 'bg-zinc-950 hover:bg-zinc-400 py-2 px-4 text-white rounded-full' do 
+  target: '_blank', rel: 'noopener', id: 'post_button',
+  class: 'bg-zinc-950 hover:bg-zinc-400 py-2 px-4 text-white rounded-full' do
     i class="fa-brands fa-x-twitter pr-1"
     | ポスト

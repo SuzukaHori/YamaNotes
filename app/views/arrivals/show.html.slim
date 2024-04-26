@@ -11,7 +11,7 @@
     - text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@arrival.station.name}駅に到着しました🎉歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、歩いた距離は約#{total_distance(@walk)}kmです！"
 
   .my-6
-    = render partial: 'shared/post', locals: {text: text_for_post}
+    = render partial: 'shared/post', locals: { text: text_for_post }
     div data-controller='modal' class='inline-block ml-4'
       button data-action='modal#open' id='memo_modal_button'
         | メモを開く

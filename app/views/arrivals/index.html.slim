@@ -12,7 +12,7 @@ h2.text-2xl.font-bold.mt-4 到着履歴
     .div.flex.justify-end
       label.my-auto.mx-2 for='url' 公開用URL:
       = text_field_tag 'url', public_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg w-1/2 p-2.5 text-sm' }
-      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: public_arrivals_url(@walk.user) }, class: 'hover:bg-gray-100 p-2'
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: public_arrivals_url(@walk.user) }, class: 'hover:bg-gray-100 p-2', id: "copy_button"
         i class='fa-regular fa-copy fa-lg'
 
 = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival

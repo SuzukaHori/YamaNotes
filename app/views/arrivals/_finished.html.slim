@@ -14,4 +14,4 @@ table.border.my-0.mx-auto
       td #{l walk.arrival_of_goal.arrived_at}
     tr.border
       td かかった時間
-      td #{Time.at(walk.arrival_of_goal.arrived_at - walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')}
+      td #{time_to_reach_goal(walk)}

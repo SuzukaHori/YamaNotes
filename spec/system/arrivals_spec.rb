@@ -24,6 +24,16 @@ RSpec.describe 'Arrivals', type: :system do
       end.to change { Arrival.count }.by(1)
     end
 
+    it '到着時にツイートする' do
+      create_arrivals(walk, 2)
+      visit arrival_path(walk.arrivals.last)
+      click_on 'post_button'
+      switch_to_window(windows.last)
+      url = URI.decode_www_form_component(current_url)
+      expect(url).to have_content '大崎駅に到着しました'
+      expect(url).to have_content '&hashtags=山手線を徒歩で一周'
+    end
+
     it '到着時刻を正常な値に編集する' do
       start_walk
       visit arrivals_path
@@ -110,5 +120,15 @@ RSpec.describe 'Arrivals', type: :system do
     visit walk_path
     click_on '到着'
     expect(page).to have_content('あなたは、山手線の30駅全てを歩ききりました')
+  end
+
+  it '一周終了時にツイートする' do
+    create_arrivals(walk, 31)
+    visit arrival_path(walk.arrivals.last)
+    click_on 'post_button'
+    switch_to_window(windows.last)
+    url = URI.decode_www_form_component(current_url)
+    expect(url).to have_content '山手線30駅全てを歩ききりました'
+    expect(url).to have_content '&hashtags=山手線を徒歩で一周'
   end
 end

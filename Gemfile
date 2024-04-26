@@ -38,6 +38,8 @@ gem 'rails-i18n'
 
 gem 'gon'
 
+gem 'high_voltage', '~> 3.1.2'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

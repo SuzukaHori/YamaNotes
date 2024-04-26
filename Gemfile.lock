@@ -160,6 +160,7 @@ GEM
       thor
       tilt
     hashie (5.0.0)
+    high_voltage (3.1.2)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     i18n_generators (2.2.2)
@@ -476,6 +477,7 @@ DEPENDENCIES
   factory_bot_rails
   font-awesome-sass
   gon
+  high_voltage (~> 3.1.2)
   i18n_generators
   importmap-rails
   launchy

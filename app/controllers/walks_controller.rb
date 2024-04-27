@@ -1,6 +1,7 @@
 class WalksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_walk, only: %i[show destroy]
+  before_action :set_maptiler_key, only: %i[show]
 
   def show
     @arrival = Arrival.new
@@ -48,5 +49,9 @@ class WalksController < ApplicationController
 
   def set_walk
     @walk = current_walk
+  end
+
+  def set_maptiler_key
+    gon.maptiler_key = ENV.fetch('MAPTAILER_KEY', nil)
   end
 end

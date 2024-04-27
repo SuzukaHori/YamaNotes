@@ -10,9 +10,10 @@ module WalkHelpers
     end
   end
 
-  def start_walk
+  def start_walk(clockwise: true)
     visit new_walk_path
     click_on 'はじめる'
+    choose '内回り' unless clockwise
     expect(page).to have_content('歩行記録の作成に成功しました')
   end
 

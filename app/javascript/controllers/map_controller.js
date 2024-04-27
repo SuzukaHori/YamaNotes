@@ -36,11 +36,16 @@ export default class extends Controller {
     return new Promise((resolve) => {
       const centerPosition = [35.68032, 139.73946];
       map = L.map("map").setView(centerPosition, 12);
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright/ja">OpenStreetMap</a>contributors',
-      }).addTo(map);
+      L.tileLayer(
+        `https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=${gon.maptiler_key}`,
+        {
+          tileSize: 512,
+          zoomOffset: -1,
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> <a href="https://maptiler.jp/" target="_blank">&copy; MIERUNE</a>',
+          crossOrigin: true,
+        },
+      ).addTo(map);
       resolve();
     });
   }

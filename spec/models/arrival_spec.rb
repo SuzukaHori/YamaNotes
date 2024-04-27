@@ -41,6 +41,14 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
+  describe '#convert_blank_to_nil' do
+    it '空文字をnilに変換すること' do
+      arrival.memo = ''
+      arrival.save!
+      expect(arrival.memo.nil?).to be true
+    end
+  end
+
   describe '#check_arrival_location' do
     it '最後の到着を削除できること' do
       arrival_second = create_second_arrival

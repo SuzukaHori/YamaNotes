@@ -12,16 +12,12 @@ class Walk < ApplicationRecord
     arrivals_with_stations.map(&:station)
   end
 
-  def latest_arrival
-    arrivals_with_stations.last
-  end
-
-  def total_distance_finished
+  def finished_distance
     arrived_stations.sum(&:clockwise_distance_to_next) - current_station.clockwise_distance_to_next
   end
 
   def arrival_of_departure
-    arrivals.first
+    arrivals&.first
   end
 
   def arrival_of_goal

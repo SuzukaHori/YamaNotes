@@ -4,11 +4,11 @@ module WalksHelper
   end
 
   def total_distance(walk)
-    walk.total_distance_finished.round(2)
+    walk.finished_distance.round(2)
   end
 
   def remaining_distance(walk)
-    (Station.total_distance - walk.total_distance_finished).round(2)
+    (Station.total_distance - walk.finished_distance).round(2)
   end
 
   def elapsed_time(walk)

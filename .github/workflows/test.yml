@@ -31,3 +31,9 @@ jobs:
         run: bin/rails db:seed
       - name: Run tests
         run: bundle exec rspec
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: failed-screenshots
+          path: /home/runner/work/YamaNotes/YamaNotes/tmp/capybara/

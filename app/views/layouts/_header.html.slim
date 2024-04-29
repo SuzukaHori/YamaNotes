@@ -1,7 +1,7 @@
 .flex.border.items-center
   h1.text-3xl.font-bold.p-2 YamaNotes
-  .ml-auto.p-2.hover:bg-gray-50 data-controller='modal' data-action='click->modal#backdropClose'
-    button data-action='modal#open' id='help_button'
+  .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
+    button.p-2.hover:bg-gray-50 data-action='modal#open' id='help_button'
       i.fa-regular.fa-circle-question.fa-xl
     = render partial: 'dialogs/help'
   .div

@@ -1,7 +1,8 @@
-dialog data-modal-target="dialog" class="p-4 rounded-lg backdrop:bg-black/80"
-  span #{arrival.station.name}駅のメモを追加
-  button data-action="click->modal#close" class="float-right"
-    i class="fa-regular fa-rectangle-xmark"
+dialog.p-4.rounded-lg.backdrop:bg-black/80 data-modal-target='dialog'
+  .flex
+    h2.text-xl.font-bold.text-center.my-2 #{arrival.station.name}駅のメモを追加
+    button.ml-auto data-action='click->modal#close'
+      i.fa-regular.fa-rectangle-xmark
   = form_with model: arrival do |form|
     = form.text_area :memo, rows: '4', class: 'w-80'
     = form.submit '保存', class: 'block btn-primary mx-auto', data: { action: 'click->modal#close' }

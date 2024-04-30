@@ -1,5 +1,4 @@
 class ArrivalsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_arrivals, only: %i[index update]
   before_action :set_walk, only: %i[index show create update]

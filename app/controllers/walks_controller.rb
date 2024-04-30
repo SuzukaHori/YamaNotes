@@ -1,5 +1,4 @@
 class WalksController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_walk, only: %i[show destroy]
   before_action :set_maptiler_key, only: %i[show]
 

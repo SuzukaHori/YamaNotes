@@ -1,5 +1,6 @@
 class Users::ArrivalsController < ApplicationController
   before_action :set_walk, only: %i[index]
+  skip_before_action :authenticate_user!
 
   def index
     if @walk.publish || current_user == @walk.user

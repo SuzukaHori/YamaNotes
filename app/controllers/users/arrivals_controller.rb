@@ -1,4 +1,5 @@
 class Users::ArrivalsController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_walk, only: %i[index]
 
   def index
@@ -11,7 +12,7 @@ class Users::ArrivalsController < ApplicationController
   end
 
   def set_walk
-    user = User.find(params[:id])
+    user = User.find(params[:user_id])
     @walk = user.walk
   end
 end

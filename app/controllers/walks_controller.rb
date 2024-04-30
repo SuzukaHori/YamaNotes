@@ -1,5 +1,4 @@
 class WalksController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_walk, only: %i[show destroy]
   before_action :set_maptiler_key, only: %i[show]
 
@@ -25,11 +24,9 @@ class WalksController < ApplicationController
   end
 
   def update
-    if current_walk.update(walk_params)
-      redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
-    else
-      render 'arrival/index', status: :unprocessable_entity
-    end
+    return unless current_walk.update(walk_params)
+
+    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
   end
 
   def destroy

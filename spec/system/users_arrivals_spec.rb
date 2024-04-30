@@ -16,7 +16,7 @@ RSpec.describe 'Users/Arrivals', type: :system do
       sign_in user
       setting_and_visit_public_path(walk_public)
       url = find_field('公開用URL:').value
-      expect(url).to include(public_arrivals_path(user))
+      expect(url).to include(user_arrivals_path(user))
       click_on 'copy_button'
       expect(page).to have_content('Copied')
     end
@@ -37,6 +37,6 @@ RSpec.describe 'Users/Arrivals', type: :system do
 
   def setting_and_visit_public_path(walk)
     create_arrivals(walk, 10)
-    visit public_arrivals_path(user)
+    visit user_arrivals_path(user)
   end
 end

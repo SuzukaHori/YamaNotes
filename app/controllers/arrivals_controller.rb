@@ -1,7 +1,7 @@
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
-  before_action :set_arrivals, only: %i[index update]
   before_action :set_walk, only: %i[index show create update]
+  before_action :set_arrivals, only: %i[index update]
 
   def index; end
 
@@ -14,12 +14,15 @@ class ArrivalsController < ApplicationController
     if @arrival.save
       redirect_to @arrival
     else
-      render 'walks/show', status: :unprocessable_entity
+      redirect_to walk_path, alert: '到着記録を保存できませんでした'
     end
   end
 
   def update
-    if @arrival.update(arrival_params)
+    @arrival.assign_attributes(arrival_params)
+    return unless changed?(@arrival)
+
+    if @arrival.save
       flash.now.notice = '到着記録を更新しました'
     else
       render 'edit', status: :unprocessable_entity
@@ -27,11 +30,7 @@ class ArrivalsController < ApplicationController
   end
 
   def destroy
-    if @arrival.destroy
-      redirect_to arrivals_path, notice: '到着記録を削除しました'
-    else
-      render :index, status: :unprocessable_entity
-    end
+    redirect_to arrivals_path, notice: '到着記録を削除しました' if @arrival.destroy
   end
 
   private
@@ -50,5 +49,9 @@ class ArrivalsController < ApplicationController
 
   def arrival_params
     params.require(:arrival).permit(:station_id, :arrived_at, :memo)
+  end
+
+  def changed?(arrival)
+    arrival.changed? && arrival.changes != { 'memo' => [nil, ''] }
   end
 end

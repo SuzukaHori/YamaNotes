@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :arrivals, except: [:new]
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users do
-    resources :arrivals, only: [:index]
+    resources :arrivals, only: [:index], :to => 'users/arrivals#index'
   end
   devise_scope :user do
     post 'logout', :to => 'devise/sessions#destroy', :as => :destroy_user_session

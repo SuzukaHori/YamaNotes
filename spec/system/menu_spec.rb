@@ -23,15 +23,25 @@ RSpec.describe 'Menu', type: :system do
     expect(page).to have_css 'h2', text: '使い方'
   end
 
+  it 'ヘッダーのロゴからトップページにアクセスする' do
+    visit walk_path
+    find('img[alt="YamaNotesのロゴ"]').click
+    expect(page).to have_content('山手線一周に徒歩で挑戦する人のための記録アプリ')
+  end
+
   it 'フッターから利用規約にアクセスする' do
     visit root_path
-    click_on '利用規約'
+    within 'ul' do
+      click_on '利用規約'
+    end
     expect(page).to have_css 'h2', text: '利用規約'
   end
 
   it 'フッターからプライバシーポリシーにアクセスする' do
     visit root_path
-    click_on 'プライバシーポリシー'
+    within 'ul' do
+      click_on 'プライバシーポリシー'
+    end
     expect(page).to have_css 'h2', text: 'プライバシーポリシー'
   end
 end

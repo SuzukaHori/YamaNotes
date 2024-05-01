@@ -13,6 +13,11 @@ RSpec.describe 'Walks', type: :system do
     end.to change { Walk.count }.by(1)
   end
 
+  it '歩行記録がない場合は設定画面にリダイレクトされる' do
+    visit walk_path
+    expect(page).to have_content('一周の設定をしてください')
+  end
+
   it '歩行開始時に歩行の情報が表示される' do
     start_walk
     expect(page).to have_content('出発から：0時間0分')

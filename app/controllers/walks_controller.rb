@@ -3,6 +3,7 @@ class WalksController < ApplicationController
   before_action :set_maptiler_key, only: %i[show]
 
   def show
+    redirect_to new_walk_path if current_user.walk.nil?
     @arrival = Arrival.new
   end
 
@@ -13,7 +14,7 @@ class WalksController < ApplicationController
 
   def create
     if current_user.walk.present?
-      redirect_to walk_url, alert: '歩行記録は一つしか作成できません'
+      redirect_to walk_path, alert: '歩行記録は一つしか作成できません'
       return
     end
     ActiveRecord::Base.transaction do

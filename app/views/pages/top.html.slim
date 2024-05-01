@@ -1,22 +1,27 @@
 .text-center.py-2
-  h1.text-3xl.p-2 YamaNotes
+  = image_tag 'logo_with_name', class: 'p-1 inline', size: '300x70', alt: 'YamaNotesのロゴ'
   p.m-8 山手線一周に徒歩で挑戦する人のための記録アプリ
-  - if user_signed_in?
-    p ログイン済みの方
-    = link_to 'ダッシュボードへ', walk_path, class: 'text-blue-600 hover:underline'
-  .my-4
-    = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary' do
-      i.fa-brands.fa-google.p-2
-      | Googleでログイン
-    .text-xs
-      p ※上のボタンをクリックすることで、
-      = link_to '利用規約', page_path('terms'), class: 'text-blue-600 hover:underline'
-      p.inline ・
-      = link_to 'プライバシーポリシー', page_path('privacy'), class: 'text-blue-600 hover:underline'
-      p に同意するものとします。
-  p 挑戦を記録しよう
-  p ボタンを押すだけで、一周の進捗がわかる
-  p 到着時刻の記録やメモも簡単
+  .div
+    .my-4
+      = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary mb-2' do
+        i.fa-brands.fa-google.p-2
+        | Googleでログイン
+      .text-xs
+        p.inline ※上のボタンをクリックすることで、
+        = link_to '利用規約', page_path('terms'), class: 'text-blue-600 hover:underline'
+        p.inline および
+        = link_to 'プライバシーポリシー', page_path('privacy'), class: 'text-blue-600 hover:underline'
+        p.inline に同意するものとします。
+    - if user_signed_in?
+      = link_to 'ログイン済みの方', walk_path, class: 'text-blue-600 hover:underline'
+  p.mt-8.mb-4 挑戦を記録しよう
+  = image_tag 'phone', class: 'inline-block mx-6', size: '100x150', alt: 'スマホを使う男性のイラスト'
+  = image_tag 'walk', class: 'inline-block mx-6', size: '80x140', alt: '歩く女性のイラスト'
+  p.mt-8 ボタンを押すだけで進捗がわかる
+  イメージ
+  p.mt-8 到着時刻の記録やメモも簡単
+  イメージ
+  p.mt-8 使ってみる
   = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary' do
     i.fa-brands.fa-google.p-2
     | Googleでログイン

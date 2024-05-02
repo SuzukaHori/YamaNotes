@@ -1,6 +1,6 @@
 .flex.border.items-center.p-2
   = link_to root_path
-    = image_tag 'logo_with_name.png', class: 'p-1 inline', size: '180x45', alt: 'YamaNotesのロゴ'
+    = image_tag 'logo_with_name.svg', class: 'p-1 inline', size: '180x45', alt: 'YamaNotesのロゴ'
   .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
     button.p-2.hover:bg-gray-50 data-action='modal#open' id='help_button'
       i.fa-regular.fa-circle-question.fa-xl

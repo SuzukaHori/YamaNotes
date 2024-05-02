@@ -23,6 +23,18 @@ RSpec.describe 'Users', type: :system do
     expect(page).to have_content('ログアウトしました。')
   end
 
+  it '退会する' do
+    sign_in user
+    visit new_walk_path
+    click_on 'menu_button'
+    expect do
+      page.accept_confirm do
+        click_on '退会する'
+      end
+      expect(page).to have_content('退会しました')
+    end.to change { User.count }.by(-1)
+  end
+
   after do
     OmniAuth.config.test_mode = false
   end

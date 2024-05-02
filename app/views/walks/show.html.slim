@@ -8,11 +8,11 @@
   p 歩いた駅：#{number_of_walked(@arrivals)}駅（残り#{number_of_remaining(@arrivals)}駅）
   p 歩いた距離：約#{total_distance(@arrivals)}km（残り#{remaining_distance(@arrivals)}km）
 
-= render 'shared/map'
+= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
 
 - if @walk.finished?
   p おめでとうございます🎉
   p あなたは#{Station.count}駅全てを歩ききりました！
   = link_to '> 記録を見る', @walk.arrival_of_goal
 - else
-  = render partial: 'walk', locals: { walk: @walk, arrival: @arrival }
+  = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }

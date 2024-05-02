@@ -1,7 +1,6 @@
 class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
-  default_scope -> { order(:created_at) }
   before_validation :convert_blank_to_nil
   validates :arrived_at, presence: true
   validate :prohibit_arrival_without_next_station, on: :create
@@ -22,7 +21,7 @@ class Arrival < ApplicationRecord
   end
 
   def arrival_time_is_outside_of_range?
-    arrivals = walk.arrivals
+    arrivals = walk.arrivals.order(:created_at)
     self_index = arrivals.find_index(self)
     next_arrival_time = self == arrivals.last ? nil : arrivals[self_index + 1].arrived_at
     prev_arrival_time = self == arrivals.first ? nil : arrivals[self_index - 1].arrived_at
@@ -48,7 +47,7 @@ class Arrival < ApplicationRecord
   end
 
   def check_arrival_location
-    return if self == walk.arrivals.last
+    return if self == walk.arrivals.order(:created_at).last
 
     errors.add :base, '最後の到着以外は削除できません'
     throw(:abort)

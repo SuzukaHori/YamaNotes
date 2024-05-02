@@ -1,5 +1,5 @@
 p class="inline"
-  | 現在の駅  ：#{walk.current_station.name}駅
+  | 現在の駅  ：#{current_station.name}駅
 
 div data-controller="modal" class="inline-block"
   button data-action="modal#open" id="memo_modal_button"
@@ -7,12 +7,12 @@ div data-controller="modal" class="inline-block"
   = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.last }
 p
   i class="fa-solid fa-grip-lines-vertical ml-12 mr-2 my-2"
-  | #{walk.current_station.clockwise_distance_to_next}km
+  | #{current_station.clockwise_distance_to_next}km
 p class="inline"
-  | 次の駅   ： #{walk.current_station.next(clockwise: walk.clockwise).name}駅
+  | 次の駅   ： #{current_station.next(clockwise: walk.clockwise).name}駅
 
 .inline-flex.ml-2
   = form_with model: arrival, url: arrivals_path do |f|
-    = f.hidden_field :station_id, value: walk.current_station.next(clockwise: walk.clockwise).id
+    = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
     = f.hidden_field :arrived_at, value: Time.current
     = f.submit '到着', class: 'btn-primary'

@@ -8,7 +8,8 @@ class WalksController < ApplicationController
       return
     end
     @arrival = Arrival.new
-    @arrivals = @walk.arrivals.includes(:station)
+    @arrivals = @walk.arrivals.order(:created_at).includes(:station)
+    @station = @walk.current_station
   end
 
   def new

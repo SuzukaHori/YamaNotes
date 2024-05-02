@@ -25,7 +25,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
 
   it '到着時にツイートする' do
     create_arrivals(walk, 2)
-    visit arrival_path(walk.arrivals.last)
+    visit arrival_path(walk.arrivals.order(:created_at).last)
     click_on 'post_button'
     switch_to_window(windows.last)
     url = URI.decode_www_form_component(current_url)
@@ -57,7 +57,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   it '到着記録を削除する' do
     create_arrivals(walk, 2)
     visit arrivals_path
-    last_station_name = walk.arrivals.last.station.name
+    last_station_name = walk.arrivals.order(:created_at).last.station.name
     expect(page).to have_content(last_station_name)
     page.accept_confirm do
       click_on '到着を削除'
@@ -74,7 +74,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
 
   it '一周終了時にツイートする' do
     create_arrivals(walk, 31)
-    visit arrival_path(walk.arrivals.last)
+    visit arrival_path(walk.arrivals.order(:created_at).last)
     click_on 'post_button'
     switch_to_window(windows.last)
     url = URI.decode_www_form_component(current_url)

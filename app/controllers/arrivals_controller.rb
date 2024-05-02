@@ -12,7 +12,7 @@ class ArrivalsController < ApplicationController
   def edit; end
 
   def create
-    @arrival = current_walk.arrivals.new(arrival_params)
+    @arrival = current_walk.arrivals.order(:created_at).new(arrival_params)
     if @arrival.save
       redirect_to @arrival
     else
@@ -42,7 +42,7 @@ class ArrivalsController < ApplicationController
   end
 
   def set_arrivals
-    @arrivals = current_walk.arrivals.includes(:station)
+    @arrivals = current_walk.arrivals.order(:created_at).includes(:station)
   end
 
   def set_walk

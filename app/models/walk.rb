@@ -6,7 +6,6 @@ class Walk < ApplicationRecord
 
   def current_station
     arrivals.order(created_at: :desc).limit(1).includes(:station).first&.station
-    # arrivals.order(:created_at).limit(1).includes(:station).first&.station
   end
 
   def arrived_stations

@@ -5,8 +5,8 @@
 .div
   p class="time" data-controller="time"  data-time-departure-date-value="#{@walk.created_at.iso8601}"
     | 出発から：#{elapsed_time(@walk)}（出発：#{l @walk.created_at}）
-  p 歩いた駅：#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）
-  p 歩いた距離：約#{total_distance(@walk)}km（残り#{remaining_distance(@walk)}km）
+  p 歩いた駅：#{number_of_walked(@arrivals)}駅（残り#{number_of_remaining(@arrivals)}駅）
+  p 歩いた距離：約#{total_distance(@arrivals)}km（残り#{remaining_distance(@arrivals)}km）
 
 = render 'shared/map'
 

@@ -1,11 +1,13 @@
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show create update]
-  before_action :set_arrivals, only: %i[index update]
+  before_action :set_arrivals, only: %i[index show update]
 
   def index; end
 
-  def show; end
+  def show
+    @station = @arrival.station
+  end
 
   def edit; end
 

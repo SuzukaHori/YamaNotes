@@ -4,7 +4,7 @@ module WalksHelper
   end
 
   def total_distance(arrivals)
-    arrivals_distance(arrivals) - arrivals.last.station.clockwise_distance_to_next
+    (arrivals_distance(arrivals) - arrivals.last.station.clockwise_distance_to_next).round(2)
   end
 
   def remaining_distance(arrivals)

@@ -5,32 +5,22 @@ class Walk < ApplicationRecord
   validates :clockwise, inclusion: { in: [true, false] }
 
   def current_station
-    arrivals_with_stations.last.station unless arrivals.empty?
+    arrivals.order(created_at: :desc).limit(1).includes(:station).first&.station
   end
 
   def arrived_stations
-    arrivals_with_stations.map(&:station)
-  end
-
-  def finished_distance
-    arrived_stations.sum(&:clockwise_distance_to_next) - current_station.clockwise_distance_to_next
+    arrivals.order(:created_at).includes(:station).map(&:station)
   end
 
   def arrival_of_departure
-    arrivals&.first
+    arrivals.order(:created_at)&.first
   end
 
   def arrival_of_goal
-    arrivals.last if finished?
+    arrivals.order(:created_at).last if finished?
   end
 
   def finished?
     arrivals.count > Station.count
-  end
-
-  private
-
-  def arrivals_with_stations
-    arrivals.includes(:station)
   end
 end

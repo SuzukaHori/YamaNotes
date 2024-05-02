@@ -1,16 +1,18 @@
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show create update]
-  before_action :set_arrivals, only: %i[index update]
+  before_action :set_arrivals, only: %i[index show update]
 
   def index; end
 
-  def show; end
+  def show
+    @station = @arrival.station
+  end
 
   def edit; end
 
   def create
-    @arrival = current_walk.arrivals.new(arrival_params)
+    @arrival = current_walk.arrivals.order(:created_at).new(arrival_params)
     if @arrival.save
       redirect_to @arrival
     else
@@ -40,7 +42,7 @@ class ArrivalsController < ApplicationController
   end
 
   def set_arrivals
-    @arrivals = current_walk.arrivals.includes(:station)
+    @arrivals = current_walk.arrivals.order(:created_at).includes(:station)
   end
 
   def set_walk

@@ -63,17 +63,6 @@ RSpec.describe Walk, type: :model do
     end
   end
 
-  describe '#finished_distance' do
-    include_context 'clockwise'
-    it '到着した駅の合計距離を取得できること' do
-      expect(walk.finished_distance).to eq(0)
-      create_arrivals(walk, 1)
-      expect(walk.finished_distance).to eq(2.0)
-      create_arrivals(walk, 29)
-      expect(walk.finished_distance).to eq(Station.total_distance)
-    end
-  end
-
   describe '#arrivals_of_departure' do
     it '到着記録がない場合はnilが返ること' do
       walk = FactoryBot.create(:walk)

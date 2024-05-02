@@ -1,15 +1,22 @@
+ruby:
+  if @walk.finished?
+    time = time_to_reach_goal(@walk)
+    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"
+  else
+    number_of_walked = number_of_walked(@arrivals)
+    number_of_remaining = number_of_remaining(@arrivals)
+    total_distance = total_distance(@arrivals)
+    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{total_distance}kmです！"
+  end
 .text-center
   - if @walk.finished?
-    = render partial: 'finished', locals: { walk: @walk }
-    - text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_reach_goal(@walk)}でした！"
+    = render partial: 'finished', locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time: }
   - else
     p
-      | #{@arrival.station.name}駅に到着しました🎉
+      | #{@station.name}駅に到着しました🎉
       br
-      | 歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、
-      | 歩いた距離は約#{total_distance(@walk)}kmです！
-    - text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@arrival.station.name}駅に到着しました🎉歩いた駅は#{number_of_walked_stations(@walk)}駅（残り#{number_of_remaining_stations(@walk)}駅）、歩いた距離は約#{total_distance(@walk)}kmです！"
-
+      | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
+      | 歩いた距離は約#{total_distance}kmです！
   .my-6
     = render partial: 'shared/post', locals: { text: text_for_post }
     div data-controller='modal' class='inline-block ml-4'

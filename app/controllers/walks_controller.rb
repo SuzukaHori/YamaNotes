@@ -3,8 +3,13 @@ class WalksController < ApplicationController
   before_action :set_maptiler_key, only: %i[show]
 
   def show
-    redirect_to new_walk_path if current_user.walk.nil?
+    if current_user.walk.nil?
+      redirect_to new_walk_path
+      return
+    end
     @arrival = Arrival.new
+    @arrivals = @walk.arrivals.order(:created_at).includes(:station)
+    @station = @walk.current_station
   end
 
   def new

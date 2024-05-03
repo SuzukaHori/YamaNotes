@@ -40,6 +40,8 @@ gem 'gon'
 
 gem 'high_voltage', '~> 3.1.2'
 
+gem 'meta-tags'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

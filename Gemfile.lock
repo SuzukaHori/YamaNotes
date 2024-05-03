@@ -191,6 +191,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.21.0)
+      actionpack (>= 6.0.0, < 7.2)
     mini_mime (1.1.5)
     minitest (5.22.3)
     msgpack (1.7.2)
@@ -481,6 +483,7 @@ DEPENDENCIES
   i18n_generators
   importmap-rails
   launchy
+  meta-tags
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

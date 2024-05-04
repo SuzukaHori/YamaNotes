@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   resource :walk, except: [:index]
-  resources :arrivals, except: [:new]
+  resources :arrivals, except: [:new] do
+    resource :report, only: %i(show), controller: "arrivals/report"
+  end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, only: [:destroy] do
     resources :arrivals, only: [:index], :to => 'users/arrivals#index'

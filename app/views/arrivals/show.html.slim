@@ -1,4 +1,6 @@
 - title "#{@station.name}駅に到着"
+- image = image_url('arrived.png')
+- set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
 ruby:
   if @walk.finished?
     time = time_to_reach_goal(@walk)

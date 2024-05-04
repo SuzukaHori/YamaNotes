@@ -11,13 +11,13 @@ RSpec.describe 'Menu', type: :system do
     visit walk_path
     click_on 'menu_button'
     click_on '到着一覧'
-    expect(page).to have_content('到着履歴')
+    expect(page).to have_title '到着一覧'
     click_on 'menu_button'
     click_on 'ダッシュボード'
-    expect(page).to have_content('現在の駅')
+    expect(page).to have_title 'ダッシュボード'
   end
 
-  it 'ヘッダーのアイコンからヘルプページにアクセスする' do
+  it 'ヘッダーのアイコンからヘルプにアクセスする' do
     visit walk_path
     click_on 'help_button'
     expect(page).to have_css 'h2', text: '使い方'
@@ -26,7 +26,7 @@ RSpec.describe 'Menu', type: :system do
   it 'ヘッダーのロゴからトップページにアクセスする' do
     visit walk_path
     find('img[alt="YamaNotesのロゴ"]').click
-    expect(page).to have_content('山手線一周に徒歩で挑戦する人のための記録アプリ')
+    expect(page).to have_title 'トップページ'
   end
 
   it 'フッターから利用規約にアクセスする' do
@@ -34,7 +34,7 @@ RSpec.describe 'Menu', type: :system do
     within 'ul' do
       click_on '利用規約'
     end
-    expect(page).to have_css 'h2', text: '利用規約'
+    expect(page).to have_title '利用規約'
   end
 
   it 'フッターからプライバシーポリシーにアクセスする' do
@@ -42,6 +42,6 @@ RSpec.describe 'Menu', type: :system do
     within 'ul' do
       click_on 'プライバシーポリシー'
     end
-    expect(page).to have_css 'h2', text: 'プライバシーポリシー'
+    expect(page).to have_title 'プライバシーポリシー'
   end
 end

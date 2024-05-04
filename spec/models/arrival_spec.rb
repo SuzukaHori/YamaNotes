@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe Arrival, type: :model do
   let!(:walk) { FactoryBot.create(:walk) }
   let!(:arrival) { FactoryBot.create(:arrival, walk:, station_id: 1) }
+  let(:arrival_second) { FactoryBot.create(:arrival, walk:, station_id: 2) }
 
   describe '#prohibit_arrival_without_next_station' do
     it '近接する駅に到着できること' do
-      expect { create_second_arrival }.to change { Arrival.count }.by(1)
+      expect { arrival_second }.to change { Arrival.count }.by(1)
     end
 
     it '近接しない駅には到着できないこと' do
@@ -22,20 +23,17 @@ RSpec.describe Arrival, type: :model do
       expect(arrival.update(arrived_at:)).to be true
     end
 
-    it '未来の時刻を到着時刻に設定できないlこと' do
-      arrival = create_second_arrival
-      arrival.arrived_at += 60
-      expect(arrival.valid?).to be false
+    it '未来の時刻を到着時刻に設定できないこと' do
+      arrival_second.arrived_at += 60
+      expect(arrival_second.valid?).to be false
     end
 
     it '一つ前の到着時刻より前の時刻を設定できないこと' do
-      arrival_second = create_second_arrival
       arrival_second.arrived_at = arrival.arrived_at - 60
       expect(arrival_second.valid?).to be false
     end
 
     it '一つ後ろの到着時刻より後の時刻を設定できないこと' do
-      arrival_second = create_second_arrival
       arrival.arrived_at = arrival_second.arrived_at + 60
       expect(arrival.valid?).to be false
     end
@@ -51,12 +49,12 @@ RSpec.describe Arrival, type: :model do
 
   describe '#check_arrival_location' do
     it '最後の到着を削除できること' do
-      arrival_second = create_second_arrival
+      arrival_second
       expect { arrival_second.destroy! }.to change { Arrival.count }.by(-1)
     end
 
     it '最後の到着以外を削除できないこと' do
-      create_second_arrival
+      arrival_second
       expect { arrival.destroy! }.to raise_error(ActiveRecord::RecordNotDestroyed)
     end
   end
@@ -75,11 +73,5 @@ RSpec.describe Arrival, type: :model do
       expect(over_arrival.valid?).to be false
       expect(over_arrival.errors.full_messages.join).to eq '駅の数以上の到着記録は作成できません'
     end
-  end
-
-  private
-
-  def create_second_arrival
-    FactoryBot.create(:arrival, walk:, station_id: 2)
   end
 end

@@ -1,7 +1,7 @@
-- title "#{@station.name}駅に到着"
-- image = image_url('arrived.png')
-- set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
 ruby:
+  title "#{@station.name}駅に到着"
+  image = image_url('arrived.png')
+  set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
   if @walk.finished?
     time = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"

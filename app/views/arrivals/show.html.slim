@@ -1,7 +1,5 @@
 ruby:
   title "#{@station.name}駅に到着"
-  image = image_url('arrived.png')
-  set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
   if @walk.finished?
     time = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"
@@ -21,7 +19,7 @@ ruby:
       | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
       | 歩いた距離は約#{total_distance}kmです！
   .my-6
-    = render partial: 'shared/post', locals: { text: text_for_post }
+    = render partial: 'shared/post', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
     div data-controller='modal' class='inline-block ml-4'
       button data-action='modal#open' id='memo_modal_button'
         | メモを開く

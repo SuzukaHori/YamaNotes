@@ -34,7 +34,7 @@ export default class extends Controller {
 
   setMap() {
     return new Promise((resolve) => {
-      const centerPosition = [35.68032, 139.73946];
+      const centerPosition = [35.678, 139.73946];
       map = L.map("map").setView(centerPosition, 12);
       L.tileLayer(
         `https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=${gon.maptiler_key}`,

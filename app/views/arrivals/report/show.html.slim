@@ -2,6 +2,7 @@ ruby:
   title #{@arrival.station.name}駅に到着
   image = image_url('arrived.png')
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
+
 .text-center
   p.text-xl.font-bold.mt-4 #{@arrival.station.name}駅に到着しました🎉
   = image_tag 'arrived.png', class: 'inline p-2', size: '160x160', alt: '山手線徒歩で一周に挑戦中'

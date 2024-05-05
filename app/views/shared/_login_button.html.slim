@@ -1,0 +1,12 @@
+- if user_signed_in?
+  = link_to 'ダッシュボードへ', walk_path, class: 'text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5'
+- else
+  = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary mb-2' do
+    i.fa-brands.fa-google.p-2
+    | Googleでログイン
+  .text-xs
+    p.inline ※上のボタンをクリックすることで、
+    = link_to '利用規約', page_path('terms'), class: 'text-blue-600 hover:underline'
+    p.inline および
+    = link_to 'プライバシーポリシー', page_path('privacy'), class: 'text-blue-600 hover:underline'
+    p.inline に同意するものとします。

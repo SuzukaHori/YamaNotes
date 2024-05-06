@@ -1,16 +1,18 @@
-= render 'shared/errors', model: arrival
 = turbo_frame_tag arrival do
-  .px-8.py-4
-    p.inline.text-2xl
-      | #{l arrival.arrived_at, format: :without_date} #{arrival.station.name}駅
-      - if arrival == arrival.walk.arrival_of_departure
-        | 出発
-      - elsif arrival == arrival.walk.arrival_of_goal
-        | ゴール
-    - if arrival.memo
-      span.text-zinc-500.text-base.ml-4 #{arrival.memo}
-
-    - if arrival.walk.user == current_user
-      = link_to '編集', edit_arrival_path(arrival), class: 'text-base text-blue-600 hover:underline ml-4'
-      - if arrival == @arrivals.last && arrival != current_walk.arrival_of_departure
-        = link_to '到着を削除', arrival, class: 'text-base text-blue-600 hover:underline ml-4', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+  li.text-xl.min-h-20
+    span.inline-block.align-top style='margin-left: -4em;'
+      | #{l arrival.arrived_at, format: :without_date}
+    .station_wrapper_with_dot
+      .flex.items-center
+        p.inline-block
+          | #{arrival.station.name}駅
+          - if arrival == arrival.walk.arrival_of_departure
+            | 出発
+          - elsif arrival == arrival.walk.arrival_of_goal
+            | ゴール
+        - if arrival.walk.user == current_user
+          = link_to '編集', edit_arrival_path(arrival), class: 'inline-block text-base text-blue-600 hover:underline ml-auto'
+      - if arrival.memo
+        p.inline.text-zinc-500.text-base #{arrival.memo}
+    - if arrival == @arrivals.last && arrival != current_walk.arrival_of_departure
+      = link_to '到着を削除', arrival, class: 'block my-4 ml-2 text-base text-blue-600 hover:underline', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

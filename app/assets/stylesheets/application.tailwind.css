@@ -40,4 +40,15 @@
       transform: translateX(-100%);
     }
   }
+
+  .station_wrapper_with_dot {
+    @apply inline-block relative w-[94%] min-h-[2.5rem] align-top p-2 rounded-md mb-0.5 ml-8 bg-white;
+    ::before{
+      @apply  content-[''] absolute left-[-24px] top-0 w-5 h-5 bg-white rounded-full border-2;
+    }
+  }
+
+  .station_wrapper_form {
+    @apply inline-block relative w-[94%] min-h-[2.5rem] align-top p-2 rounded-md mb-0.5 ml-2
+  }
 }

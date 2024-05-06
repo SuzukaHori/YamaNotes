@@ -1,10 +1,12 @@
 = turbo_frame_tag @arrival
-  .px-8.py-4
-    = render 'shared/errors', model: @arrival
+  = render 'shared/errors', model: @arrival
+  li.text-xl.min-h-20
     = form_with model: @arrival, method: :put, class: 'inline' do |f|
-      = f.time_select :arrived_at, value: @arrival.arrived_at
-      p.inline.text-2xl.ml-4.mr-4
-        | #{@arrival.station.name}駅
-      = f.label :memo, 'メモ：'
-      = f.text_field :memo, class: 'mr-2'
-      = f.submit '保存', class: 'btn-primary'
+      .inline-block.align-top style='margin-left: -5em;'
+        = f.time_field :arrived_at, value: @arrival.arrived_at, class: 'rounded border border-gray-300'
+      .station_wrapper_form
+        .flex.items-center
+          p.inline-block
+            | #{@arrival.station.name}駅
+          = f.submit '保存', class: 'ml-auto mb-2 px-4 py-0.5 bg-blue-400 rounded-full text-base font-medium shadow-md hover:bg-blue-600'
+        = f.text_field :memo, class: 'w-full rounded border border-gray-300', :placeholder => "感想や疲れ具合のメモ"

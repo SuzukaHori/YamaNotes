@@ -1,7 +1,7 @@
-.div data-controller='slideover' data-action="click->slideover#backdropClose"
+div data-controller='slideover' data-action="click->slideover#backdropClose"
   button data-action='slideover#open' class='hover:bg-gray-50 p-2' id='menu_button'
     i.fa-solid.fa-bars.fa-xl
-  dialog data-slideover-target='dialog' class='h-full max-h-full w-72 m-0 p-8 bg-lime-50 slideover'
+  dialog.absolute data-slideover-target='dialog' class='h-full max-h-full w-72 m-0 p-8 bg-lime-50 slideover'
     ul
       - if current_user&.walk
         li = link_to 'ダッシュボード', walk_path, class: 'inline-block w-full hover:bg-lime-100 py-2'

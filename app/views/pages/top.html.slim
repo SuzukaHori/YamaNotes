@@ -1,14 +1,14 @@
 - title 'トップページ'
 
-.text-center.py-2
+.text-center.py-4
   = image_tag 'logo_with_name.svg', class: 'p-1 inline', size: '300x70', alt: 'YamaNotesのロゴ'
   p.m-8 山手線一周に徒歩で挑戦する人のための記録アプリ
-  .div
+  div
     .my-4
       = render partial: 'shared/login_button'
   p.mt-8.mb-4 挑戦を記録しよう
-  = image_tag 'phone.svg', class: 'inline-block mx-6', size: '100x150', alt: 'スマホを使う男性のイラスト'
-  = image_tag 'walk.svg', class: 'inline-block mx-6', size: '80x140', alt: '歩く女性のイラスト'
+  = image_tag 'phone.svg', class: 'inline-block mx-4', size: '100x150', alt: 'スマホを使う男性のイラスト'
+  = image_tag 'walk.svg', class: 'inline-block mx-4', size: '80x140', alt: '歩く女性のイラスト'
   p.mt-8 ボタンを押すだけで進捗がわかる
   イメージ
   p.mt-8 到着時刻の記録やメモも簡単

@@ -12,14 +12,10 @@ export default class extends Controller {
   copy() {
     navigator.clipboard.writeText(this.contentValue).then(
       () => {
-        this.element.innerHTML =
-          "<p class='text-xs font-semibold text-green-700'>Copied!</p>";
-        setTimeout(() => {
-          this.element.innerHTML = this.originalContent;
-        }, 2000);
+        alert("共有用URLをクリップボードにコピーしました");
       },
       () => {
-        alert("クリップボードにコピー出来ませんでした。");
+        alert("コピーに失敗しました");
       },
     );
   }

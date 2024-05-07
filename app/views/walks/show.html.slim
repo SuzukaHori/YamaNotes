@@ -16,8 +16,8 @@
       td data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
     tr
       td 歩いた駅
-      td #{number_of_walked(@arrivals)}駅（残り#{number_of_remaining(@arrivals)}駅）
+      td #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
     tr
       td.pr-1 歩いた距離
-      td 約#{total_distance(@arrivals)}km（残り#{remaining_distance(@arrivals)}km）
-  = link_to '> 履歴', arrivals_path, class: 'text-gray-500 text-base font-medium py-2 px-2 border hover:bg-gray-100 rounded ml-auto h-full'
+      td 約#{total_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
+  = link_to '履歴', arrivals_path, class: 'text-gray-500 text-base font-medium py-1 px-3 border hover:bg-gray-100 rounded-lg ml-auto h-full'

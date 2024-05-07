@@ -3,7 +3,7 @@
     h1.text-2xl.font-bold.inline-block= title '到着一覧'
     .ml-auto
       - if @walk.user == current_user
-        span.pr-1 #{@walk.publish ? '公開' : '非公開'}
+        span.pr-1.pb-3 #{@walk.publish ? '公開' : '非公開'}
     = turbo_frame_tag 'toggle' do
       = form_with model: @walk, class: 'inline-block', method: :patch do |f|
         = f.label :publish
@@ -11,9 +11,9 @@
           .toggle-switch
   - if @walk.publish
     .flex.items-center.mt-4.mb-8
-      label.text-xs.pr-1 for='url' URL:
-      = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'grow border border-gray-300 text-gray-900 rounded-lg text-sm' }
-      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 py-2 w-14', id: 'copy_button'
+      label.text-xs.pr-0.5 for='url' URL
+      = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
         i class='fa-regular fa-copy fa-lg'
   - else
     .flex.justify-end

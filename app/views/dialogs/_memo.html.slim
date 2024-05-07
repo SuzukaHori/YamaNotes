@@ -4,5 +4,5 @@ dialog.p-4.w-11/12.md:w-1/2.rounded-lg.backdrop:bg-black/80 data-modal-target='d
     button.ml-auto data-action='click->modal#close'
       i.fa-regular.fa-rectangle-xmark
   = form_with model: arrival do |form|
-    = form.text_area :memo, rows: '4', class: 'w-full text-sm', :placeholder => "今の気持ちや疲れ具合（余裕orクタクタ）を書いてみよう"
+    = form.text_area :memo, rows: '4', class: 'w-full text-sm', :placeholder => "今の気持ちや疲れ具合（余裕 or クタクタなど）を書いてみよう"
     = form.submit '保存', class: 'block btn-primary mx-auto', data: { action: 'click->modal#close' }

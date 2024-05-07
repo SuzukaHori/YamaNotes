@@ -1,23 +1,24 @@
-.bg-gray-100.p-2
-  h1.text-2xl.font-bold.mt-4 = title '到着一覧'
-  - if @walk.user == current_user
+.py-4
+  .flex.items-center
+    h1.text-2xl.font-bold.inline-block= title '到着一覧'
+    .ml-auto
+      - if @walk.user == current_user
+        span.pr-1 #{@walk.publish ? '公開' : '非公開'}
+    = turbo_frame_tag 'toggle' do
+      = form_with model: @walk, class: 'inline-block', method: :patch do |f|
+        = f.label :publish
+          = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
+          .toggle-switch
+  - if @walk.publish
+    .flex.items-center.mt-4.mb-8
+      label.text-xs.pr-1 for='url' URL:
+      = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'grow border border-gray-300 text-gray-900 rounded-lg text-sm' }
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 py-2 w-14', id: 'copy_button'
+        i class='fa-regular fa-copy fa-lg'
+  - else
     .flex.justify-end
-      = turbo_frame_tag 'toggle' do
-        = form_with model: @walk, class: 'inline-block', method: :patch do |f|
-          = f.label :publish, class: 'relative inline-flex items-center cursor-pointer'
-            = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
-            .toggle-switch.m-2
-            span #{@walk.publish ? '公開' : '非公開'}
-    - if @walk.publish
-      .div.flex.justify-end
-        label.my-auto.mx-2 for='url' 公開用URL:
-        = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg w-1/2 p-2.5 text-sm' }
-        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'hover:bg-gray-100 p-2', id: 'copy_button'
-          i class='fa-regular fa-copy fa-lg'
-
-  ul.mr-auto.border-l-8.border-lime-500.ml-20.pl-2
-    = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival
-
+      p.text-xs.w-28.pl-2.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
+  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival
   - if @walk.user == current_user
     .flex.justify-end
       = link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block'

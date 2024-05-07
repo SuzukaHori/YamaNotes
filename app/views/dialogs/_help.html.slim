@@ -1,18 +1,20 @@
-dialog.p-4.w-1/2.rounded-lg.backdrop:bg-black/80 data-modal-target='dialog'
+dialog.p-4.md:w-1/2.rounded-lg.backdrop:bg-black/80 data-modal-target='dialog'
   .flex
     h2.text-xl.font-bold.text-center.my-2 使い方
     button.ml-auto data-action="click->modal#close"
       i class="fa-regular fa-rectangle-xmark"
   ol.list-disc.pl-6.leading-8
-    li
+    li.mb-2
       | 駅に着いたら
-      = image_tag 'arrival_button.png', class: 'inline', size: '80x80', alt: '到着ボタン'
+      = image_tag 'arrival_button.png', class: 'inline', size: '80x45', alt: '到着ボタン'
       | ボタンを押しましょう。
-    li
-      | メモを追加したいときは、
-      = image_tag 'memo_button.png', class: 'inline', size: '50x50', alt: 'メモボタン'
+    li.mb-2
+      | メモを追加したいときは、 
+      i.fa-solid.fa-pencil.fa-lg.text-gray-500.mr-1
       | ボタンから追加できます。
-    li
-      | 間違って到着ボタンを押した場合は、履歴一覧ページから到着履歴を編集・削除できます。
-    li
+    li.mb-2
+      | 記録を間違った時は、
+      = link_to '到着一覧ページ', arrivals_path, class: 'text-blue-600 hover:underline'
+      | から編集・削除できます。
+    li.mb-2
       | スタート時刻や出発駅・内回り・外回りなどの設定を変えたいときは、メニューの「リタイア」から一度データを削除してください。

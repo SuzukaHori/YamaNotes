@@ -2,16 +2,13 @@
 - set_meta_tags description: '現在の一周の状態が表示される画面です。'
 
 = render 'shared/errors', model: @arrival
-
 - if @walk.finished?
   p おめでとうございます🎉
   p あなたは#{Station.count}駅全てを歩ききりました！
   = link_to '> 記録を見る', @walk.arrival_of_goal
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
-
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
-
 .flex.py-2.text-sm
   table
     tr

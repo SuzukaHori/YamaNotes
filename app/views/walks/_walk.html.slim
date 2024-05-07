@@ -4,7 +4,7 @@
     span #{current_station.name}駅
     .ml-auto data-controller="modal"
       button data-action="modal#open" id="memo_modal_button"
-        i.fa-regular.fa-pen-to-square
+        i.fa-solid.fa-pencil.fa-lg.text-gray-500
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.last }
   .text-center
     = image_tag 'shoes.png', class: 'inline p-1', size: '35x35', alt: '足跡のイラスト'
@@ -14,6 +14,6 @@
     span.mr-4 次の駅:
     span #{current_station.next(clockwise: walk.clockwise).name}駅
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
-       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
-       = f.hidden_field :arrived_at, value: Time.current
-       = f.submit '到着', class: 'bg-blue-700 hover:bg-blue-800 text-white border border-blue-700 px-6 md:px-16 rounded'
+      = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
+      = f.hidden_field :arrived_at, value: Time.current
+      = f.submit '到着', class: 'bg-blue-700 hover:bg-blue-800 text-white border px-6 md:px-16 rounded'

@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def current_walk
-    current_user.walk
+    current_user&.walk
   end
 end

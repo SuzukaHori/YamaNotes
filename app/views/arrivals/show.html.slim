@@ -10,19 +10,20 @@ ruby:
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{total_distance}kmです！"
   end
 
-.my-10.mx-auto.py-8.px-4.border-4.text-lg.text-center.md:w-2/3
-  - if @walk.finished?
-    = render partial: 'finished', locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time: }
-  - else
-      p.mb-8.text-xl.font-bold #{@station.name}駅に到着しました🎉
-      p
-        | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
-        br
-        | 歩いた距離は約#{total_distance}kmです！
-      .my-6
-        = render partial: 'shared/post', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
-        div data-controller='modal' class='inline-block ml-8'
-          button data-action='modal#open' id='memo_modal_button' class='bg-white font-medium p-2 hover:underline text-blue-500'
-            | メモを開く
-          = render partial: 'dialogs/memo', locals: { arrival: @arrival }
-  = link_to '地図に戻る', walk_path, class: 'bg-blue-500 text-white text-base font-medium py-2 px-8 border hover:bg-blue-300 rounded-full'
+- if @walk.finished?
+  = render partial: 'finished', locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time: }
+- else
+  .my-10.mx-auto.py-8.px-4.border-4.text-lg.text-center.md:w-2/3
+    p.mb-8.text-xl.font-bold #{@station.name}駅に到着しました🎉
+    p
+      | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
+      br
+      | 歩いた距離は約#{total_distance}kmです！
+    .mt-8
+      = render partial: 'shared/post', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
+      div data-controller='modal' class='inline-block ml-8'
+        button data-action='modal#open' id='memo_modal_button' class='bg-white font-medium p-2 hover:underline text-blue-500'
+          | メモを開く
+        = render partial: 'dialogs/memo', locals: { arrival: @arrival }
+.flex.mb-2
+  = link_to '地図に戻る', walk_path, class: 'mx-auto bg-blue-500 text-white text-base font-medium py-2 px-8 border hover:bg-blue-300 rounded-full'

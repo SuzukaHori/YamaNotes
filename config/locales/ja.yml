@@ -214,7 +214,7 @@ ja:
     formats:
       default: "%_m月%-e日%-k時%M分"
       long: "%Y/%m/%d %H:%M"
-      medium: '%Y年%_m月%d日'
+      medium: '%Y年%_m月%-e日'
       short: "%m/%d %H:%M"
       without_date: "%k:%M"
     pm: 午後

@@ -1,5 +1,6 @@
 ruby:
   title "#{@arrival.station.name}駅に到着"
+  - set_meta_tags description: "#{@arrival.station.name}駅到着のページです。"
   image = image_url('arrived.png')
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
 

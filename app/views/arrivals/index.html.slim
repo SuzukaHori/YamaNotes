@@ -1,5 +1,5 @@
 .py-4
-  h1.text-2xl.font-bold.inline-block= title '到着一覧'
+  h1.text-2xl.font-bold.inline-block = title '到着一覧'
   - if @walk.user == current_user
     .flex.justify-end
       span.pr-1 #{@walk.publish ? '公開' : '非公開'}

@@ -2,10 +2,10 @@
   = render 'shared/errors', model: @arrival
   = form_with model: @arrival, method: :put do |f|
     .flex.items-center.py-4
-      = f.time_select :arrived_at, {}, {class: 'rounded border border-gray-300'}
+      = f.time_select :arrived_at, {}, { class: 'rounded border border-gray-300' }
       p.ml-2 class="#{@arrival.station.name.length > 3 ? 'text-sm' : 'text-xl'}"
         | #{@arrival.station.name}駅
     .flex
-      = f.text_area :memo, class: 'w-full rounded border border-gray-300', :placeholder => "感想や疲れ具合のメモ"
+      = f.text_area :memo, class: 'w-full rounded border border-gray-300', placeholder: '感想や疲れ具合のメモ'
     .flex
       = f.submit '保存', class: 'my-2 mx-auto px-4 py-0.5 bg-blue-400 rounded-full text-base font-medium shadow-md hover:bg-blue-600'

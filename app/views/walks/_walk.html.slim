@@ -1,5 +1,5 @@
 .p-4.md:text-xl.bg-blue-50.border.border-gray-300
-  .flex.pb-1
+  #before_station.flex.pb-1
     span.mr-4 前の駅:
     span #{current_station.name}駅
     .ml-auto data-controller="modal"
@@ -10,7 +10,7 @@
     = image_tag 'shoes.png', class: 'inline p-1', size: '35x35', alt: '足跡のイラスト'
     = image_tag 'rail.png', class: 'inline p-1', size: '20x40', alt: 'ハシゴのイラスト'
     span.text-base #{current_station.clockwise_distance_to_next}km
-  .flex.items-center
+  #next_station.flex.items-center
     span.mr-4 次の駅:
     span #{current_station.next(clockwise: walk.clockwise).name}駅
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|

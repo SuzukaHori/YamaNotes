@@ -1,3 +1,7 @@
+ruby:
+  time = time_to_reach_goal(@walk)
+  text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"
+
 .my-8.mx-auto.p-2.md:w-2/3.bg-yellow-600
   .p-1.bg-white
     .border-double.border-4.border-yellow-200.m-2.p-4.text-center
@@ -19,3 +23,5 @@
             tr
               td かかった時間
               td #{time}
+        .text-center.my-1
+          = render partial: 'shared/buttons', locals: { text: text_for_post, url: arrival_report_url(@arrival) }

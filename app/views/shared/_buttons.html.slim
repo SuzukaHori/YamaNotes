@@ -3,3 +3,7 @@
   class: 'bg-zinc-800 hover:bg-zinc-400 py-1 px-4 text-white rounded' do
     i class="fa-brands fa-x-twitter pr-1"
     | ポスト
+div data-controller='modal' class='inline-block ml-8'
+  button data-action='modal#open' id='memo_modal_button' class='font-medium p-2 hover:underline text-blue-500'
+    | メモを開く
+  = render partial: 'dialogs/memo', locals: { arrival: @arrival }

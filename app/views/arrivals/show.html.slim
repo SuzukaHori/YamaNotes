@@ -1,6 +1,6 @@
 ruby:
   title "#{@station.name}駅に到着"
-  set_meta_tags description: '到着記録の詳細ページです。'
+  set_meta_tags description: "#{@station.name}駅に到着の詳細ページです。"
   if @walk.finished?
     time = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"

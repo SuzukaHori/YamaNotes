@@ -13,15 +13,15 @@
   .-mt-2
     = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
-.flex.text-sm.md:text-base.mt-4
-  table
+.flex.text-sm.md:text-xl.mt-2
+  table.border-collapse.border.border-neutral-200.flex-1.mr-1
     tr
-      td 出発から
-      td data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
+      td.py-2.border.border-neutral-200.border-dashed 出発から
+      td.py-2.border.border-neutral-200.border-dashed data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
     tr
-      td 歩いた駅
-      td #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
+      td.py-2.border.border-neutral-200.border-dashed 歩いた駅
+      td.py-2.border.border-neutral-200.border-dashed #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
     tr
-      td.pr-1 歩いた距離
-      td 約#{total_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
+      td.py-2.pr-1 歩いた距離
+      td.py-2.border.border-neutral-200.border-dashed 約#{total_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
   = link_to '履歴', arrivals_path, class: 'text-gray-500 text-base font-medium py-1 px-3 border hover:bg-gray-100 rounded-lg ml-auto h-full'

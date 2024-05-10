@@ -4,6 +4,6 @@
     i class="fa-brands fa-x-twitter pr-1"
     | ポスト
 div data-controller='modal' class='inline-block ml-8'
-  button data-action='modal#open' id='memo_modal_button' class='font-medium p-2 hover:underline text-blue-500'
+  button#memo_modal_button.p-2.font-medium.hover:underline.text-blue-500 data-action='modal#open'
     | メモを開く
   = render partial: 'dialogs/memo', locals: { arrival: @arrival }

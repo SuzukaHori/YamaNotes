@@ -3,7 +3,7 @@
     span.mr-4 前の駅:
     span #{current_station.name}駅
     .ml-auto data-controller="modal"
-      button data-action="modal#open" id="memo_modal_button"
+      button#memo_modal_button.p-1.hover:bg-blue-100 data-action="modal#open"
         i.fa-solid.fa-pencil.fa-lg.text-gray-500
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.last }
   .text-center

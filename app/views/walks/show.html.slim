@@ -10,7 +10,7 @@
       = link_to '初めからやり直す', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mr-4 border p-2 hover:underline rounded-lg'
       = link_to '記録を見る', @walk.arrival_of_goal, class: 'text-blue-600 hover:underline'
 - else
-  .-mt-4
+  .-mt-2
     = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
 .flex.text-sm.md:text-base.mt-4

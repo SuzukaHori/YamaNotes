@@ -1,6 +1,7 @@
-header.bg-white.flex.border.items-center.py-2.h-10.md:h-14.relative
-  = link_to root_path
-    = image_tag 'logo_with_name.svg', class: 'inline', size: '160x40', alt: 'YamaNotesのロゴ'
+header.bg-white.flex.border.items-center.py-2.px-2.h-10.md:h-14
+  h1.flex.items-center.justify-center.text-neutral-700
+    = image_tag 'logo.svg', class: 'inline h-6', alt: 'YamaNotesのロゴ'
+    p.ml-1.text-lg.font-meiryo YamaNotes
   - if current_user
     .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
       button.p-2.hover:bg-gray-50 data-action='modal#open' id='help_button'

@@ -30,4 +30,14 @@
       @apply translate-x-full border-white;
     }
   }
+
+  dialog.slideover[open] {
+    animation: slide-in-from-left 300ms forwards ease;
+  }
+
+  @keyframes slide-in-from-left{
+    from {
+      transform: translateX(-100%);
+    }
+  }
 }

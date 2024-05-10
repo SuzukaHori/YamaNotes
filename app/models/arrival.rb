@@ -21,7 +21,7 @@ class Arrival < ApplicationRecord
   end
 
   def arrival_time_is_outside_of_range?
-    arrivals = Arrival.where(walk:)
+    arrivals = Arrival.where(walk:).order(:created_at)
     self_index = arrivals.find_index(self)
     next_arrival_time = self == arrivals.last ? nil : arrivals[self_index + 1].arrived_at
     prev_arrival_time = self == arrivals.first ? nil : arrivals[self_index - 1].arrived_at
@@ -29,10 +29,10 @@ class Arrival < ApplicationRecord
   end
 
   def prohibit_arrival_without_next_station
-    arrivals = Arrival.includes(:station).where(walk:)
-    return if arrivals.empty?
+    arrival_last = Arrival.includes(:station).where(walk:).order(:created_at).last
+    return unless arrival_last
 
-    current_station = arrivals.last.station
+    current_station = arrival_last.station
     is_correct_next_station =
       if walk.clockwise
         current_station.clockwise_next_station == station

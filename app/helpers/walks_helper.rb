@@ -1,6 +1,6 @@
 module WalksHelper
   def current_walk
-    current_user.walk
+    current_user&.walk
   end
 
   def total_distance(arrivals)
@@ -31,6 +31,10 @@ module WalksHelper
     return unless walk.finished?
 
     Time.at(walk.arrival_of_goal.arrived_at - walk.arrival_of_departure.arrived_at).utc.strftime('%k時間%M分')
+  end
+
+  def deletable?(arrival, walk)
+    current_user == walk.user && arrival == walk.arrivals.last && arrival != walk.arrival_of_departure
   end
 
   private

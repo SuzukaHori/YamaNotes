@@ -1,19 +1,27 @@
 - title 'ダッシュボード'
-.info-container
-  = render 'shared/errors', model: @arrival
-  = link_to '> 履歴', arrivals_path, class: 'dark:text-gray-500 hover:underline inline-block float-right'
+- set_meta_tags description: '現在の一周の状態が表示される画面です。'
 
-.div
-  p class="time" data-controller="time"  data-time-departure-date-value="#{@walk.created_at.iso8601}"
-    | 出発から：#{elapsed_time(@walk)}
-  p 歩いた駅：#{number_of_walked(@arrivals)}駅（残り#{number_of_remaining(@arrivals)}駅）
-  p 歩いた距離：約#{total_distance(@arrivals)}km（残り#{remaining_distance(@arrivals)}km）
-
-= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
-
+= render 'shared/errors', model: @arrival
 - if @walk.finished?
-  p おめでとうございます🎉
-  p あなたは#{Station.count}駅全てを歩ききりました！
-  = link_to '> 記録を見る', @walk.arrival_of_goal
+  .py-2
+    p おめでとうございます🎉
+    p #{Station.count}駅全てを歩ききりました！
+    .flex.items-center.justify-center.my-2
+      = link_to '初めからやり直す', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mr-4 border p-2 hover:underline rounded-lg'
+      = link_to '記録を見る', @walk.arrival_of_goal, class: 'text-blue-600 hover:underline'
 - else
-  = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
+  .-mt-4
+    = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
+= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
+.flex.text-sm.md:text-base.mt-4
+  table
+    tr
+      td 出発から
+      td data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
+    tr
+      td 歩いた駅
+      td #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
+    tr
+      td.pr-1 歩いた距離
+      td 約#{total_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
+  = link_to '履歴', arrivals_path, class: 'text-gray-500 text-base font-medium py-1 px-3 border hover:bg-gray-100 rounded-lg ml-auto h-full'

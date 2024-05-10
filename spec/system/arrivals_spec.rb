@@ -19,7 +19,8 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     expect do
       click_on '到着'
       expect(page).to have_content('大崎駅に到着しました')
-      expect(page).to have_content('歩いた駅は1駅（残り29駅）、歩いた距離は約2.0kmです')
+      expect(page).to have_content('歩いた駅は1駅（残り29駅')
+      expect(page).to have_content('歩いた距離は約2.0kmです')
     end.to change { Arrival.count }.by(1)
   end
 

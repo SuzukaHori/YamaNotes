@@ -12,6 +12,7 @@ html
     = include_gon
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')
+    = favicon_link_tag 'apple-touch-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png'
   body.bg-gray-200.max-w-screen-sm.mx-auto.min-h-screen.flex.flex-col
     script src="#{fontawesome_url}" crossorigin=''
     script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',

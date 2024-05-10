@@ -8,7 +8,6 @@
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.last }
   .text-center
     = image_tag 'shoes.png', class: 'inline p-1', size: '35x35', alt: '足跡のイラスト'
-    = image_tag 'rail.png', class: 'inline p-1', size: '20x40', alt: 'ハシゴのイラスト'
     span.text-base #{current_station.clockwise_distance_to_next}km
   #next_station.flex.items-center
     span.mr-4 次の駅:

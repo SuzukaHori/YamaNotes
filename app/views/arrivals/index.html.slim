@@ -2,7 +2,7 @@
 - set_meta_tags description: '到着記録の一覧ページです。'
 
 .py-4
-  h1.text-2xl.font-bold.inline-block '到着一覧'
+  h2.text-2xl.font-bold.inline-block 到着一覧
   - if @walk.user == current_user
     .flex.justify-end
       span.pr-1 #{@walk.publish ? '公開' : '非公開'}

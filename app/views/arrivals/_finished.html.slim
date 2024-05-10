@@ -1,17 +1,15 @@
 ruby:
-  time = time_to_reach_goal(@walk)
-  text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time}でした！"
+  time_to_goal = time_to_reach_goal(walk)
+  text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_goal}でした！"
 
-.my-8.mx-auto.p-2.md:w-2/3.bg-yellow-600
+.mt-10.mb-4.p-2.mx-auto.md:w-2/3.bg-yellow-600
   .p-1.bg-white
     .border-double.border-4.border-yellow-200.m-2.p-4.text-center
       h2.py-2.text-3xl.font-extrabold 表彰状
-      .text-base.text-left
+      .text-sm.md:text-base.text-left
         p.my-1 あなたは、山手線の#{Station.count}駅全てを歩ききりました。
         p.my-1 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず精力的に歩き続けたことは、見る人に深い感動を与えました。
         p.my-1 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
-        .flex.justify-end
-          p #{l arrival_of_goal.arrived_at, format: :medium }
         table.mt-4.mx-auto.text-sm
           tbody
             tr
@@ -23,5 +21,5 @@ ruby:
             tr
               td かかった時間
               td #{time}
-        .text-center.my-1
+        .text-center
           = render partial: 'shared/buttons', locals: { text: text_for_post, url: arrival_report_url(@arrival) }

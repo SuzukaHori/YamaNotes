@@ -19,7 +19,7 @@ html
            crossorigin=''
     - unless current_page?(root_path)
       = render 'layouts/header'
-    main.px-4.py-2.flex-auto.bg-white
+    main.px-4.py-2.flex-1.bg-white
       = render 'layouts/flash'
       = yield
     footer.bg-lime-50.p-4.text-xs.flex.justify-center

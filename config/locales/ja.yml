@@ -23,7 +23,7 @@ ja:
       user:
         arrivals: 到着
         provider: プロバイダー
-        uid: ウイド
+        uid: ユーザID
         walk_id: 歩行記録
       walk:
         arrivals: 到着

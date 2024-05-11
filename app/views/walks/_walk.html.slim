@@ -1,4 +1,4 @@
-.px-4.py-2.md:text-xl.bg-blue-50.border.border-gray-300.mb-2
+.px-4.py-2.md:text-xl.bg-blue-50.border.border-gray-300
   #before_station.flex.pb-1
     span.mr-4 前の駅:
     span #{current_station.name}駅
@@ -15,4 +15,4 @@
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
       = f.hidden_field :arrived_at, value: Time.current
-      = f.submit '到着', class: 'bg-blue-700 hover:bg-blue-800 text-white border px-6 py-1 md:px-16 rounded-lg'
+      = f.submit '到着', class: 'bg-blue-700 hover:bg-blue-800 text-white border px-6 py-0.5 md:px-16 rounded-lg'

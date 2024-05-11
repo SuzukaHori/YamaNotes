@@ -12,7 +12,7 @@
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
-.flex.text-sm.md:text-xl.mt-2.items-start
+.flex.text-sm.md:text-base.md:mt-2.items-start
   table.border-collapse.flex-1.mr-4
     tr
       td.px-2.py-1.border-dashed 出発から

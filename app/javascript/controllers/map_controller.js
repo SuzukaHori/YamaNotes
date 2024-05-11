@@ -37,6 +37,7 @@ export default class extends Controller {
       const centerPosition = [35.678, 139.73946];
       map = L.map("map", {
         touchZoom: false,
+        dragging:false,
         scrollWheelZoom: false,
       }).setView(centerPosition, 12);
       L.tileLayer(

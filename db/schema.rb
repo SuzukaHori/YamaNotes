@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
   create_table "arrivals", force: :cascade do |t|
     t.bigint "walk_id"
     t.bigint "station_id"
-    t.string "memo"
+    t.string "memo", limit: 140
     t.datetime "arrived_at", precision: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.float "clockwise_distance_to_next", null: false
-    t.integer "clockwise_next_station_id"
+    t.integer "clockwise_next_station_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

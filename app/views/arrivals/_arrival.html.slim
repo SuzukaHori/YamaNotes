@@ -14,6 +14,6 @@
         - if arrival.walk.user == current_user
           = link_to '編集', edit_arrival_path(arrival), class: 'ml-auto text-blue-600 hover:underline'
       - if arrival.memo
-        p.text-sm.text-zinc-500 #{arrival.memo}
+        p.text-sm.text-zinc-500.break-all #{arrival.memo}
       - if deletable?(arrival, arrival.walk)
         = link_to '到着を削除', arrival, class: 'block text-base text-blue-600 hover:underline', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

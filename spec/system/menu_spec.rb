@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Menu', type: :system do
+  let(:user) { FactoryBot.create(:user) }
   before do
-    user = FactoryBot.create(:user)
     sign_in user
     start_walk
   end
@@ -23,10 +23,18 @@ RSpec.describe 'Menu', type: :system do
     expect(page).to have_css 'h2', text: '使い方'
   end
 
-  it 'ヘッダーのロゴからトップページにアクセスする' do
-    visit walk_path
-    find('img[alt="YamaNotesのロゴ"]').click
-    expect(page).to have_title 'トップページ'
+  context 'ヘッダーのロゴをクリックする' do
+    it 'ログイン済みの場合、トップページにアクセスする' do
+      visit walk_path
+      find('img[alt="YamaNotesのロゴ"]').click
+      expect(page).to have_title 'ダッシュボード'
+    end
+
+    it '未ログインの場合、トップページにアクセスする' do
+      sign_out(user)
+      find('img[alt="YamaNotesのロゴ"]').click
+      expect(page).to have_title 'トップページ'
+    end
   end
 
   it 'フッターから利用規約にアクセスする' do

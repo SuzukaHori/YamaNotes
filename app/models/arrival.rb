@@ -3,6 +3,7 @@ class Arrival < ApplicationRecord
   belongs_to :station
   before_validation :convert_blank_to_nil, on: :update
   validates :arrived_at, presence: true
+  validates :memo, length: { maximum: 140 }
   validate :prohibit_arrival_without_next_station, on: :create
   validate :arrivals_count_must_be_within_limit, on: :create
   validate :check_arrived_time, on: :update

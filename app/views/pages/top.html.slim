@@ -1,17 +1,25 @@
 - title 'トップページ'
 
-.text-center.py-4
-  = image_tag 'logo_with_name.svg', class: 'p-1 inline', size: '300x70', alt: 'YamaNotesのロゴ'
-  p.m-8 山手線一周に徒歩で挑戦する人のための記録アプリ
-  div
-    .my-4
+.text-center.my-8
+  .my-8
+    h1.my-1.mx-4.flex.items-center.justify-center.text-neutral-700
+      = image_tag 'logo.svg', class: 'inline h-12', alt: 'YamaNotesのロゴ'
+      p.ml-2.text-4xl.md:text-5xl.font-meiryo YamaNotes
+    p.text-neutral-500.text-sm.mx-10.my-4
+      | 山手線一周に徒歩で挑戦する人のための記録アプリ
+    .my-8
       = render partial: 'shared/login_button'
-  p.mt-8.mb-4 挑戦を記録しよう
-  = image_tag 'phone.svg', class: 'inline-block mx-4', size: '100x150', alt: 'スマホを使う男性のイラスト'
-  = image_tag 'walk.svg', class: 'inline-block mx-4', size: '80x140', alt: '歩く女性のイラスト'
-  p.mt-8 ボタンを押すだけで進捗がわかる
-  イメージ
-  p.mt-8 到着時刻の記録やメモも簡単
-  イメージ
-  p.mt-8.mb-2 使ってみる
-  = render partial: 'shared/login_button'
+.-mx-4.px-7
+  .flex.items-center.py-8.justify-center.border-t
+    p あなたの山手線一周の挑戦を記録します
+    = image_tag 'phone.svg', class: 'inline-block h-24 mr-7', alt: 'スマホを使う男性のイラスト'
+    = image_tag 'walk.svg', class: 'inline-block h-24', alt: '歩く女性のイラスト'
+  .flex.items-center.py-8.justify-center.border-t
+    = image_tag 'map.png', class: 'inline h-80 rounded-lg', alt: '地図の画面のキャプチャ'
+    p.ml-4 一周の進捗が地図でわかります
+  .flex.items-center.py-8.justify-center.border-t
+    p.mr-7 到着時刻の記録やメモも簡単にできます
+    = image_tag 'arrivals.png', class: 'inline-block h-72', alt: '一覧画面のキャプチャ'
+  .bg-white.text-center.border-t.py-8
+    p.mb-4 さあ出発しましょう！
+    = render partial: 'shared/login_button'

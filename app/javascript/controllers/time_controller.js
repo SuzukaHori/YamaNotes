@@ -13,7 +13,7 @@ export default class extends Controller {
     if (element) {
       const now = new Date();
       const elapsedTime = this._localizeTime(now - departureDate);
-      element.textContent = `出発から：${elapsedTime}`;
+      element.textContent = elapsedTime;
     }
   }
 

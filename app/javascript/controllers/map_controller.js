@@ -4,7 +4,6 @@ let map = null; // 地図が複数回初期化されるとエラーが発生す�
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["currentId"];
   static values = {
     stations: Array,
     arrivedIds: Array,

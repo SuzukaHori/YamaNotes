@@ -13,10 +13,11 @@
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
 .flex.text-sm.md:text-base.md:mt-2.items-start
-  table.border-collapse.flex-1.mr-4
+  table.border-collapse.flex-1.mr-4 data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"
     tr
       td.px-2.py-1.border-dashed 出発から
-      td.time.px-2.py-1.border-dashed data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
+      td.px-2.py-1.border-dashed data-time-target="elapsed"
+        | #{elapsed_time(@walk)}
     tr
       td.px-2.py-1.border-dashed 歩いた駅
       td.px-2.py-1.border-dashed #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)

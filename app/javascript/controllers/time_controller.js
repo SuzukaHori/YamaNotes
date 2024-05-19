@@ -1,20 +1,19 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  static targets = ["elapsed"];
   static values = { departureDate: String };
 
-  connect() {
-    const departureDate = new Date(this.departureDateValue);
-    setInterval(() => this._displayTime(departureDate), 1000);
+  elapsedTargetConnected() {
+    setInterval(() => this._displayTime(), 1000);
   }
 
-  _displayTime(departureDate) {
-    const element = document.querySelector(".time");
-    if (element) {
-      const now = new Date();
-      const elapsedTime = this._localizeTime(now - departureDate);
-      element.textContent = elapsedTime;
-    }
+  _displayTime() {
+    const now = new Date();
+    const departureDate = new Date(this.departureDateValue);
+    const elapsedTime = this._localizeTime(now - departureDate);
+    const element = this.elapsedTarget;
+    element.textContent = elapsedTime;
   }
 
   _localizeTime(time) {

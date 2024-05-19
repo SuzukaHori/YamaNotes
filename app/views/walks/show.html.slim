@@ -16,7 +16,7 @@
   table.border-collapse.flex-1.mr-4
     tr
       td.px-2.py-1.border-dashed 出発から
-      td.px-2.py-1.border-dashed data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
+      td.time.px-2.py-1.border-dashed data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}" #{elapsed_time(@walk)}
     tr
       td.px-2.py-1.border-dashed 歩いた駅
       td.px-2.py-1.border-dashed #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)

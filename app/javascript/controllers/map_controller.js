@@ -12,73 +12,71 @@ export default class extends Controller {
   };
 
   /* eslint-disable no-undef */
-  connect() {
+  async connect() {
     this.allStations = this.stationsValue;
-    this.arrivedStations = this.setArrivedStations();
-    this.currentStationId = parseInt(this.currentIdValue);
+    this.arrivedStations = this._setArrivedStations();
+    this.currentStation = this._setCurrentStation();
 
     if (!document.getElementById("map")._leaflet_id) {
-      this.setMap().then(() => {
-        this.addLine({ stations: this.allStations, color: "green" });
-        this.addPins(this.allStations);
-        this.addLine({ stations: this.arrivedStations, color: "red" });
-      });
+      this._setMap();
+      this._addLine({ stations: this.allStations, color: "green" });
+      this._addPins(this.allStations);
+      this._addLine({ stations: this.arrivedStations, color: "red" });
     }
   }
 
-  setArrivedStations() {
+  _setArrivedStations() {
     return this.arrivedIdsValue.map((id) =>
       this.allStations.find((station) => station.id === id),
     );
   }
 
-  setMap() {
-    return new Promise((resolve) => {
-      const centerPosition = [35.678, 139.73946];
-      map = L.map("map", {
-        touchZoom: false,
-        // dragging:false,
-        scrollWheelZoom: false,
-      }).setView(centerPosition, 12);
-      L.tileLayer(
-        `https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=${gon.maptiler_key}`,
-        {
-          tileSize: 512,
-          zoomOffset: -1,
-          attribution:
-            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> <a href="https://maptiler.jp/" target="_blank">&copy; MIERUNE</a>',
-          crossOrigin: true,
-        },
-      ).addTo(map);
-      L.control.scale().addTo(map);
-      resolve();
-    });
+  _setCurrentStation() {
+    const currentStationId = parseInt(this.currentIdValue);
+    return this.allStations.find((station) => station.id === currentStationId);
   }
 
-  addPins(stations) {
-    const myIcon = L.divIcon({ className: "map-icon" });
+  _setMap() {
+    const centerPosition = [35.678, 139.73946];
+    map = L.map("map", {
+      touchZoom: false,
+      scrollWheelZoom: false,
+    }).setView(centerPosition, 12);
+    L.tileLayer(
+      `https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=${gon.maptiler_key}`,
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        attribution:
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> <a href="https://maptiler.jp/" target="_blank">&copy; MIERUNE</a>',
+        crossOrigin: true,
+      },
+    ).addTo(map);
+    L.control.scale().addTo(map);
+  }
 
+  _addPins(stations) {
     for (let i = 0; i < stations.length; i++) {
       const station = stations[i];
       const pin = L.marker([station.latitude, station.longitude], {
-        icon: myIcon,
+        icon: L.divIcon({ className: "map-icon" }),
       })
         .addTo(map)
         .bindPopup(`${station.name}駅`);
 
-      if (station.id === this.currentStationId) {
+      if (station === this.currentStation) {
         pin.openPopup();
       }
     }
   }
 
-  addLine({ stations, color }) {
+  _addLine({ stations, color }) {
     const locations = [];
     for (let i = 0; i < stations.length; i++) {
       const station = stations[i];
       locations.push([station.latitude, station.longitude]);
     }
-    if (stations.length === this.allStations.length + 1 || color === "green") {
+    if (color === "green" || stations.length === this.allStations.length + 1) {
       locations.push([stations[0].latitude, stations[0].longitude]);
     }
     L.polyline(locations, { color, weight: 15, opacity: 0.4 }).addTo(map);

@@ -3,12 +3,12 @@ module ArrivalsHelper
     current_user&.walk
   end
 
-  def total_distance(arrivals)
-    (arrivals_distance(arrivals) - arrivals.last.station.clockwise_distance_to_next).round(2)
+  def arrived_distance(arrivals)
+    (arrivals_distance(arrivals) - arrivals.order(:created_at).last.station.clockwise_distance_to_next).round(2)
   end
 
   def remaining_distance(arrivals)
-    (Station.total_distance - total_distance(arrivals)).round(2)
+    (Station.total_distance - arrived_distance(arrivals)).round(2)
   end
 
   def number_of_walked(arrivals)
@@ -21,7 +21,7 @@ module ArrivalsHelper
   end
 
   def deletable?(arrival, walk)
-    current_user == walk.user && arrival == walk.arrivals.last && arrival != walk.arrival_of_departure
+    current_user == walk.user && arrival == walk.arrivals.order(:created_at).last && arrival != walk.arrival_of_departure
   end
 
   private

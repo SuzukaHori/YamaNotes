@@ -22,5 +22,5 @@
       td.px-2.py-1.border-dashed #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
     tr
       td.px-2.py-1.pr-1 歩いた距離
-      td.px-2.py-1.border-dashed 約#{total_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
+      td.px-2.py-1.border-dashed 約#{arrived_distance(@arrivals)}km(残り#{remaining_distance(@arrivals)}km)
   = link_to '履歴', arrivals_path, class: 'text-base font-medium py-1 px-5 border hover:bg-gray-100 rounded-lg ml-auto'

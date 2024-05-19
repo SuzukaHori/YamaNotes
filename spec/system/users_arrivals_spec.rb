@@ -36,6 +36,8 @@ RSpec.describe 'Users/Arrivals', type: :system do
     end
   end
 
+  private
+
   def setting_and_visit_public_path(walk)
     create_arrivals(walk, 10)
     visit user_arrivals_path(user)

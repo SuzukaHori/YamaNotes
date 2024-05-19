@@ -8,6 +8,7 @@ module WalkHelpers
         FactoryBot.create(:arrival, walk:, station: next_station)
       end
     end
+    walk.arrivals
   end
 
   def start_walk(clockwise: true)

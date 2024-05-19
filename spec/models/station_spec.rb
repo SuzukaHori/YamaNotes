@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Station, type: :model do
   describe '#next' do
     context '内回りモードの場合' do
-      it 'idが一つ後ろの駅が返る' do
+      it 'idが一つ後の駅が返る' do
         station = Station.find(1)
         expect(station.next(clockwise: true).id).to eq(2)
       end
 
-      it 'idが最後の場合は1の駅が返る' do
+      it 'idが最後の場合は、最初の駅が返る' do
         station = Station.find(Station.count)
         expect(station.next(clockwise: true).id).to eq(1)
       end
@@ -20,7 +20,7 @@ RSpec.describe Station, type: :model do
         expect(station.next(clockwise: false).id).to eq(1)
       end
 
-      it 'idが最初の場合は30の駅が返る' do
+      it 'idが最初の場合は、最後の駅が返る' do
         station = Station.find(1)
         expect(station.next(clockwise: false).id).to eq(Station.count)
       end

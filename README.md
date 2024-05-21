@@ -1,10 +1,47 @@
 # YamaNotes
+## サービス概要
+山手線一周に徒歩で挑戦する人向けの、到着駅や到着時間の記録アプリです。
 
-山手線一周に徒歩で挑戦する人向けの、移動履歴記録アプリです。
+## できること
+- 到着ボタンを押すと、到着駅と時間を記録し、残りの駅数や距離を取得します。
+- 駅に到着時にポストボタンを押すと、Xに投稿できます。
+- 駅のメモを追加します。メモは後から編集することもできます。
+- 到着時刻の記録やメモを、一覧で見ることができます。
+- 公開機能をONにしてURLをシェアすることで、自分の記録を他の人と共有できます。
 
-## YamaNotesでできること
+## URL
+```
+https://yamanotes.onrender.com/
+```
 
-- 駅に到着した際、ボタンを押すだけで「到着時刻・残りの距離・残りの駅数」を自動で取得する。
-- 駅ごとの疲れ具合や気持ちなどを、メモとして記録する。
-- 記録した情報をその都度、進捗としてSNSへ投稿する。
-- 挑戦終了後に一周の記録をまとめて見やすく出力する。
+## 動作環境
+- Ruby 3.3.0
+- Ruby on Rails 7.1.3.2
+- Hotwire
+
+
+## 環境変数
+|  名称  |  説明  |
+| :---: | :---:| 
+| GOOGLE_CLIENT_ID | GoogleのクライアントID  |
+| GOOGLE_CLIENT_SECRET  | Googleのクライアントシークレット |
+| FONTAWESOME_URL | Font AwesomeのCDNコード |
+| MAPTAILER_KEY | MapTailerのアクセストークン |
+
+## インストールと起動
+```zsh
+$ git clone
+$ cd YamaNotes
+$ bin/setup
+$ bin/dev
+```
+
+## Lint/Test
+- Lint
+  ```zsh
+  $ bin/lint
+  ```
+- Test
+  ```zsh
+  $ bundle exec rspec
+  ```

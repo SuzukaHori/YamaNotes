@@ -1,62 +1,24 @@
-inherit_from: .rubocop_todo.yml
-
-require:
-  - rubocop-performance
-  - rubocop-rails
-  - rubocop-capybara
-
 inherit_gem:
   rubocop-fjord:
     - "config/rubocop.yml"
     - "config/rails.yml"
+require:
+  - rubocop-capybara
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-factory_bot
 
 AllCops:
-  NewCops: enable
+  TargetRubyVersion: 3.3.0
 
-Metrics:
-  Enabled: true
+RSpec/MultipleExpectations:
+  Max: 3
 
-Layout/LineLength:
-  Enabled: true
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-Style/AsciiComments:
+RSpec/DescribedClass:
   Enabled: false
 
-Style/Documentation:
+RSpec/ContextWording:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/GuardClause:
-  Enabled: true
-
-Style/StringLiterals:
-  Enabled: true
-
-Style/SymbolArray:
-  Enabled: true
-
-Style/WordArray:
-  Enabled: true
-
-Naming/VariableNumber:
-  Enabled: true
-
-Lint/AssignmentInCondition:
-  Enabled: true
-
-Naming/PredicateName:
-  Enabled: true
-
-Rails/I18nLocaleTexts:
-  Enabled: false
-
-Rails/LexicallyScopedActionFilter:
-  Enabled: true
+RSpec/ExampleLength:
+  Max: 8

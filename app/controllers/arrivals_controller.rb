@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show create update]

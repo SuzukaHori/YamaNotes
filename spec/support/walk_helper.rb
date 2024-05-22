@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WalkHelpers
   def create_arrivals(walk, number)
     number.times do

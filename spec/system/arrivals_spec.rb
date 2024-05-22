@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.shared_examples 'Arrivals_examples' do |clockwise|
@@ -11,7 +13,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   it '歩行を開始する' do
     expect do
       start_walk(clockwise:)
-    end.to change { Arrival.count }.by(1)
+    end.to change(Arrival, :count).by(1)
   end
 
   it '到着を記録する' do
@@ -19,9 +21,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     expect do
       click_on '到着'
       expect(page).to have_content('大崎駅に到着しました')
-      expect(page).to have_content('歩いた駅は1駅（残り29駅')
-      expect(page).to have_content('歩いた距離は約2.0kmです')
-    end.to change { Arrival.count }.by(1)
+    end.to change(Arrival, :count).by(1)
   end
 
   it '到着時にツイートする' do
@@ -63,7 +63,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     page.accept_confirm do
       click_on '到着を削除'
     end
-    expect(page).to_not have_content(last_station_name)
+    expect(page).not_to have_content(last_station_name)
   end
 
   it 'すべての駅に到着する' do

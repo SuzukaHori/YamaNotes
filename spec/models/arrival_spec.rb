@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Arrival, type: :model do
@@ -7,7 +9,7 @@ RSpec.describe Arrival, type: :model do
 
   describe '#prohibit_arrival_without_next_station' do
     it '近接する駅に到着できること' do
-      expect { arrival_second }.to change { Arrival.count }.by(1)
+      expect { arrival_second }.to change(Arrival, :count).by(1)
     end
 
     it '近接しない駅には到着できないこと' do
@@ -50,7 +52,7 @@ RSpec.describe Arrival, type: :model do
   describe '#check_arrival_location' do
     it '最後の到着を削除できること' do
       arrival_second
-      expect { arrival_second.destroy! }.to change { Arrival.count }.by(-1)
+      expect { arrival_second.destroy! }.to change(Arrival, :count).by(-1)
     end
 
     it '最後の到着以外を削除できないこと' do

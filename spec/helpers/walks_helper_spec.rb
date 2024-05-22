@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe WalksHelper, type: :helper do
@@ -13,7 +15,7 @@ RSpec.describe WalksHelper, type: :helper do
     expect(helper.elapsed_time(walk)).to eq('24時間1分')
   end
 
-  context '#time_to_reach_goal' do
+  describe '#time_to_reach_goal' do
     it '歩行が終了していない時、nilが返る' do
       create_arrivals(walk, 29)
       expect(helper.time_to_reach_goal(walk)).to be nil

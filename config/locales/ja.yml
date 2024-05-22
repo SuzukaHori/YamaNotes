@@ -12,6 +12,7 @@ ja:
         memo: メモ
         station_id: 到着駅
         walk_id: 歩行記録
+        station: 駅
       station:
         arrivals: 到着
         clockwise_distance_to_next: 次の駅までの距離（外回り）

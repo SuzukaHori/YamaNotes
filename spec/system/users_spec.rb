@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
@@ -7,6 +9,10 @@ RSpec.describe 'Users', type: :system do
     OmniAuth.config.test_mode = true
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
     OmniAuth.config.mock_auth[:google_oauth2] = google_oauth2_mock
+  end
+
+  after do
+    OmniAuth.config.test_mode = false
   end
 
   it 'ログインする' do
@@ -28,15 +34,9 @@ RSpec.describe 'Users', type: :system do
     visit new_walk_path
     click_on 'menu_button'
     expect do
-      page.accept_confirm do
-        click_on '退会する'
-      end
+      page.accept_confirm { click_on '退会する' }
       expect(page).to have_content('退会しました')
-    end.to change { User.count }.by(-1)
-  end
-
-  after do
-    OmniAuth.config.test_mode = false
+    end.to change(User, :count).by(-1)
   end
 
   private

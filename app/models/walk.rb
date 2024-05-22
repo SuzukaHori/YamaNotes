@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Walk < ApplicationRecord
   belongs_to :user
   has_many :arrivals, dependent: :destroy

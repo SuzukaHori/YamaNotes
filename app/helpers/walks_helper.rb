@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WalksHelper
   def current_walk
     current_user&.walk

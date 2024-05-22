@@ -11,6 +11,10 @@ RSpec.describe 'Users', type: :system do
     OmniAuth.config.mock_auth[:google_oauth2] = google_oauth2_mock
   end
 
+  after do
+    OmniAuth.config.test_mode = false
+  end
+
   it 'ログインする' do
     visit root_path
     click_on 'Googleでログイン', match: :first
@@ -30,15 +34,9 @@ RSpec.describe 'Users', type: :system do
     visit new_walk_path
     click_on 'menu_button'
     expect do
-      page.accept_confirm do
-        click_on '退会する'
-      end
+      page.accept_confirm { click_on '退会する' }
       expect(page).to have_content('退会しました')
-    end.to change { User.count }.by(-1)
-  end
-
-  after do
-    OmniAuth.config.test_mode = false
+    end.to change(User, :count).by(-1)
   end
 
   private

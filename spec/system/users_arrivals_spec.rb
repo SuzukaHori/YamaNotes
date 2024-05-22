@@ -27,9 +27,9 @@ RSpec.describe 'Users/Arrivals', type: :system do
   context '未ログインでアクセスした場合' do
     it '公開状態の到着履歴にアクセスする' do
       setting_and_visit_public_path(walk_public)
-      expect(page).to_not have_content('編集')
-      expect(page).to_not have_content('到着を削除')
-      expect(page).to_not have_content('URL')
+      expect(page).not_to have_content('編集')
+      expect(page).not_to have_content('到着を削除')
+      expect(page).not_to have_content('URL')
     end
 
     it '未公開状態の到着履歴にアクセスできない' do

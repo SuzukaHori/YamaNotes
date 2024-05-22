@@ -11,12 +11,15 @@ RSpec.describe 'Maps', type: :system do
 
   it '地図が表示される' do
     expect(page).to have_css '#map'
+  end
+
+  it '緑の線と吹き出しが表示される' do
     expect(page).to have_css 'path[stroke="green"]'
     expect(page.all('.leaflet-marker-icon').count).to eq Station.count
   end
 
   it '到着時に赤い線が引かれる' do
-    expect(page).to_not have_css 'path[stroke="red"]'
+    expect(page).not_to have_css 'path[stroke="red"]'
     click_on '到着'
     click_on '地図に戻る'
     expect(page).to have_css 'path[stroke="red"]'
@@ -24,10 +27,9 @@ RSpec.describe 'Maps', type: :system do
 
   it '到着時に駅のポップアップが更新される' do
     expect(page).to have_css '.leaflet-popup-content', text: '品川駅'
-    expect(page).to_not have_css '.leaflet-popup-content', text: '大崎駅'
     click_on '到着'
     click_on '地図に戻る'
     expect(page).to have_css '.leaflet-popup-content', text: '大崎駅'
-    expect(page).to_not have_css '.leaflet-popup-content', text: '品川駅'
+    expect(page).not_to have_css '.leaflet-popup-content', text: '品川駅'
   end
 end

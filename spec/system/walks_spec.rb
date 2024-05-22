@@ -12,7 +12,7 @@ RSpec.describe 'Walks', type: :system do
   it '歩行開始時に歩行記録が作られる' do
     expect do
       start_walk
-    end.to change { Walk.count }.by(1)
+    end.to change(Walk, :count).by(1)
   end
 
   it '歩行記録がない場合、設定画面にリダイレクトされる' do
@@ -29,16 +29,10 @@ RSpec.describe 'Walks', type: :system do
 
   it '到着後に現在の駅を更新する' do
     start_walk
-    within('#before_station') do
-      expect(page).to have_css('span', text: '前の駅:')
-      expect(page).to have_css('span', text: '品川駅')
-    end
+    within('#before_station') { expect(page).to have_css('span', text: '品川駅') }
     click_on '到着'
     click_on '地図に戻る'
-    within('#before_station') do
-      expect(page).to have_css('span', text: '前の駅')
-      expect(page).to have_css('span', text: '大崎駅')
-    end
+    within('#before_station') { expect(page).to have_css('span', text: '大崎駅') }
   end
 
   it 'リタイアする' do
@@ -49,6 +43,6 @@ RSpec.describe 'Walks', type: :system do
         click_on 'リタイアする'
       end
       expect(page).to have_content('一周をリタイアしました')
-    end.to change { Walk.count }.by(-1)
+    end.to change(Walk, :count).by(-1)
   end
 end

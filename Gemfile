@@ -42,6 +42,8 @@ group :development do
   gem 'rubocop-fjord', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
   gem 'slim_lint', require: false
   gem 'web-console'
 end

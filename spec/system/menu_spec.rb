@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Menu', type: :system do
   let(:user) { FactoryBot.create(:user) }
+
   before do
     sign_in user
     start_walk

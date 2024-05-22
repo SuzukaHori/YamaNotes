@@ -33,6 +33,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
     t.integer "clockwise_next_station_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["clockwise_next_station_id"], name: "index_stations_on_clockwise_next_station_id", unique: true
+    t.index ["longitude", "latitude"], name: "index_stations_on_longitude_and_latitude", unique: true
+    t.index ["name"], name: "index_stations_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

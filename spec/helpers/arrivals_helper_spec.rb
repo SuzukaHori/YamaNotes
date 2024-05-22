@@ -13,7 +13,7 @@ RSpec.describe ArrivalsHelper, type: :helper do
 
   it '#remaining_distance' do
     create_arrivals(walk, 3)
-    expect(helper.remaining_distance(walk.arrivals)).to eq(31.6)
+    expect(helper.remaining_distance(walk.arrivals)).to eq(Station.total_distance - 2.9)
   end
 
   it '#number_of_walked' do
@@ -23,7 +23,7 @@ RSpec.describe ArrivalsHelper, type: :helper do
 
   it '#number_of_remaining' do
     create_arrivals(walk, 3)
-    expect(helper.number_of_remaining(walk.arrivals)).to eq(28)
+    expect(helper.number_of_remaining(walk.arrivals)).to eq(Station.count - 2)
   end
 
   it '#deletable?' do

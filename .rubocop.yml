@@ -22,3 +22,7 @@ RSpec/ContextWording:
 
 RSpec/ExampleLength:
   Max: 8
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'

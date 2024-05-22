@@ -31,7 +31,7 @@ RSpec.describe Station, type: :model do
 
   describe '.total_distance' do
     it 'すべての駅の合計を取得できること' do
-      expect(Station.total_distance).to eq(34.5)
+      expect(Station.total_distance).to eq(37.8)
     end
   end
 end

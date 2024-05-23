@@ -31,8 +31,8 @@
     }
   }
 
-  dialog.slideover[open] {
-    animation: slide-in-from-left 300ms forwards ease;
+  dialog.slideover[open] ul {
+    animation: slide-in-from-left .3s forwards ease;
   }
 
   @keyframes slide-in-from-left{

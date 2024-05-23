@@ -14,7 +14,7 @@ class ArrivalsController < ApplicationController
   def edit; end
 
   def create
-    @arrival = current_walk.arrivals.order(:created_at).new(arrival_params)
+    @arrival = current_walk.arrivals.new(arrival_params)
     if @arrival.save
       redirect_to @arrival
     else

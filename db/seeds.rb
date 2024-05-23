@@ -42,3 +42,17 @@ else
     puts '駅のデータを作成しました'
   end
 end
+
+if User.exists?
+  puts 'ユーザが存在するため、テストユーザを作成しませんでした'
+else
+  ActiveRecord::Base.transaction do
+    user = User.create!(uid: 108_291_120_728_823_030_470, provider: 'google_oauth2')
+    walk = user.create_walk!
+    (Station.count + 1).times do |n|
+      station_id = n >= Station.count ? 1 : n + 1
+      walk.arrivals.create!(station_id:, arrived_at: Time.current)
+    end
+  end
+  puts 'テストユーザとデータを作成しました'
+end

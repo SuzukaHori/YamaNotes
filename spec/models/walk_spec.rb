@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Walk, type: :model do
   let!(:walk) { FactoryBot.create(:walk) }
-  # let!(:arrival) { FactoryBot.create(:arrival, walk:, station_id: 1) }
 
   describe '#current_station' do
     it '現在の駅を取得できること' do

@@ -7,7 +7,7 @@ class Walk < ApplicationRecord
   validates :clockwise, inclusion: { in: [true, false] }
 
   def current_station
-    arrivals.order(created_at: :desc).limit(1).includes(:station).first&.station
+    arrivals.includes(:station).order(:created_at).last&.station
   end
 
   def arrived_stations

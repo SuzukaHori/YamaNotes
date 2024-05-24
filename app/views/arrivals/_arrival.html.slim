@@ -3,7 +3,7 @@
     .h-4.w-4.bg-white.border.border-lime-500.absolute.-left-3.top-3.rounded-full
     .pb-8
       .flex.items-center.py-2
-        span.-ml-24.pl-2.mr-9.text-xl
+        span.-ml-24.pl-2.mr-9.text-xl.w-16
           | #{l arrival.arrived_at, format: :without_date}
         p class="#{arrival.station.name.length > 4 ? 'text-sm md:text-xl' : 'text-xl'}"
           | #{arrival.station.name}駅

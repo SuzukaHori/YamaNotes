@@ -16,6 +16,6 @@
         = f.label :clockwise_false, '内回り', class: 'ml-1'
         = f.hidden_field :arrived_at, value: Time.current, name: 'arrival[arrived_at]'
         .mt-4
-          = image_tag 'clockwise.svg', alt: '内回りの説明', data: { clockwise_target: 'guide' }
+          = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
       div
         = f.submit 'はじめる', class: 'btn-primary'

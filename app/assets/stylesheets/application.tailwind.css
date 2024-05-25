@@ -5,7 +5,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-block px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow hover:bg-bright-orange-50 focus:outline-none focus:ring focus:ring-red-400 focus:ring-opacity-75 h-11;
+    @apply inline-flex items-center justify-center  px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow hover:bg-bright-orange-50 focus:outline-none focus:ring focus:ring-red-400 focus:ring-opacity-75 h-11 cursor-pointer;
   }
 
   .map-icon {

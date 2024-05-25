@@ -5,13 +5,13 @@ ja:
       arrival: 到着
       station: 駅
       user: ユーザー
-      walk: 歩行記録
+      walk: 歩行記録ノート
     attributes:
       arrival:
         arrived_at: 到着時刻
         memo: メモ
         station_id: 到着駅
-        walk_id: 歩行記録
+        walk_id: 歩行記録ノート
         station: 駅
       station:
         arrivals: 到着
@@ -20,12 +20,12 @@ ja:
         latitude: 緯度
         longitude: 経度
         name: 名前
-        walks: 歩行記録
+        walks: 歩行記録ノート
       user:
         arrivals: 到着
         provider: プロバイダー
         uid: ユーザID
-        walk_id: 歩行記録
+        walk_id: 歩行記録ノート
       walk:
         arrivals: 到着
         clockwise: 外回り

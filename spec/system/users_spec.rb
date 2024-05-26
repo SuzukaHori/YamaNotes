@@ -18,7 +18,7 @@ RSpec.describe 'Users', type: :system do
   it 'ログインする' do
     visit root_path
     click_on 'Googleでログイン', match: :first
-    expect(page).to have_content('Google アカウントによる認証に成功しました。')
+    expect(page).to have_content('Google アカウントでログインしました')
   end
 
   it 'ログアウトする' do

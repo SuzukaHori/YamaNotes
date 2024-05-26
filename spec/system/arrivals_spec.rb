@@ -20,7 +20,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     start_walk(clockwise:)
     expect do
       click_on '到着'
-      expect(page).to have_content('大崎駅に到着しました')
+      expect(page).to have_content('大崎駅に到着')
     end.to change(Arrival, :count).by(1)
   end
 

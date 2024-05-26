@@ -3,25 +3,26 @@
 
 = render 'shared/errors', model: @arrival
 - if @walk.finished?
-  .py-2
+  .my-4
     p おめでとうございます🎉
     p #{Station.count}駅全てを歩ききりました！
-    .flex.items-center.justify-center.my-2
-      = link_to '初めから歩く', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mx-4 border p-2 hover:underline rounded-lg'
+    .flex.items-center.justify-center.my-4
       = link_to '記録を見る', @walk.arrival_of_goal, class: 'mx-4 text-blue-600 hover:underline'
+      = link_to '初めから歩く', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mx-4 link-important'
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
-.flex.text-sm.md:text-base.md:mt-2.items-start
-  table.border-collapse.flex-1.mr-4 data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"
+.my-4.text-center
+  h2.font-bold.mb-2 ここまでの記録
+  table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"
     tr
-      td.px-2.py-1.border-dashed 出発から
-      td.px-2.py-1.border-dashed data-time-target="elapsed"
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 出発から
+      td.border.border-gray-400.text-left.px-4.py-1 data-time-target="elapsed"
         | #{elapsed_time(@walk)}
     tr
-      td.px-2.py-1.border-dashed 歩いた駅
-      td.px-2.py-1.border-dashed #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた駅
+      td.border.border-gray-400.text-left.px-4.py-1 #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
     tr
-      td.px-2.py-1.pr-1 歩いた距離
-      td.px-2.py-1.border-dashed 約#{arrived_distance(@arrivals)}km(残り約#{remaining_distance(@arrivals)}km)
-  = link_to '履歴', arrivals_path, class: 'text-base font-medium py-1 px-5 border hover:bg-gray-100 rounded-lg ml-auto'
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた距離
+      td.border.border-gray-400.text-left.px-4.py-1 約#{arrived_distance(@arrivals)}km(残り約#{remaining_distance(@arrivals)}km)
+  = link_to '履歴を見る', arrivals_path, class: 'link-important ml-auto'

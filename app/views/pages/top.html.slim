@@ -1,25 +1,41 @@
 - title 'トップページ'
-
-.text-center.my-8
+.mx-4.my-8.md:mx-10
+  .text-center
+    p.text-yamanote-green-100.text-2xl.md:text-3xl.font-pop
+      | 徒歩で山手線一周に
+      br
+      | 挑戦しよう！！
+    h1
+      = image_tag 'logo.svg', class: 'inline h-9 md:h-11 mt-4', alt: 'YamaNotesのロゴ'
+    p.text-sm.my-4
+      | ヤマノートは山手線一周に徒歩で
+      br
+      | 挑戦する時の記録アプリです。
+    = render partial: 'shared/login_button'
   .my-8
-    h1.my-1.mx-4.flex.items-center.justify-center.text-neutral-700
-      = image_tag 'logo.svg', class: 'inline h-12', alt: 'YamaNotesのロゴ'
-      p.ml-2.text-4xl.md:text-5xl.font-meiryo YamaNotes
-    p.text-neutral-500.text-sm.mx-10.my-4
-      | 山手線一周に徒歩で挑戦する人のための記録アプリ
-    .my-8
-      = render partial: 'shared/login_button'
-.-mx-4.px-7
-  .flex.items-center.py-8.justify-center.border-t
-    p あなたの山手線一周の挑戦を記録します
-    = image_tag 'phone.svg', class: 'inline-block h-24 mr-7', alt: 'スマホを使う男性のイラスト'
-    = image_tag 'walk.svg', class: 'inline-block h-24', alt: '歩く女性のイラスト'
-  .flex.items-center.py-8.justify-center.border-t
-    = image_tag 'map.png', class: 'inline h-80 rounded-lg', alt: '地図の画面のキャプチャ'
-    p.ml-4 一周の進捗が地図でわかります
-  .flex.items-center.py-8.justify-center.border-t
-    p.mr-7 到着時刻の記録やメモも簡単にできます
-    = image_tag 'arrivals.png', class: 'inline-block h-72', alt: '一覧画面のキャプチャ'
-  .bg-white.text-center.border-t.py-8
-    p.mb-4 さあ出発しましょう！
+    h2.text-lg.md:text-xl.my-1.font-pop.text-yamanote-green-100
+      = image_tag 'logo_icon.svg', class: 'inline h-6 mr-1 mb-1', alt: 'YamaNotesのロゴ'
+      | 挑戦を記録
+    .flex
+      p.w-2/3.text-sm.mr-6
+        | 到着時間や駅、疲れ具合などのメモを簡単に記録できます。記録した情報は、ボタン１つでXに投稿できます。
+      = image_tag 'phone.svg', class: 'w-1/3 h-20 mx-auto', alt: 'スマホを使う男性のイラスト'
+  .my-8
+    h2.text-lg.md:text-xl.my-1.font-pop.text-yamanote-green-100
+      = image_tag 'logo_icon.svg', class: 'inline h-6 mr-1 mb-1', alt: 'YamaNotesのロゴ'
+      | 進捗を地図で確認
+    .flex
+      p.w-2/3.text-sm.mr-6
+        | 地図に線が引かれるので、進捗が一目でわかります。
+        | 残りの駅数や距離などを、計算する必要がありません。
+      = image_tag 'map.png', class: 'w-1/3 ml-auto', alt: '地図の画面のキャプチャ'
+  .my-8
+    h2.text-lg.md:text-xl.my-1.font-pop.text-yamanote-green-100
+      = image_tag 'logo_icon.svg', class: 'inline h-6 mr-1 mb-1', alt: 'YamaNotesのロゴ'
+      | 一覧で確認や編集
+    .flex
+      p.w-2/3.text-sm.mr-6 記録した情報を、一覧で見ることができ、編集や削除ができます。公開機能で、他の人と共有もできます。
+      = image_tag 'arrivals.png', class: 'w-1/3 ml-auto', alt: '一覧画面のキャプチャ'
+  .text-center.mt-8
+    p.mb-2.font-semibold.md:text-xl.text-yamanote-green-100 さあ出発！
     = render partial: 'shared/login_button'

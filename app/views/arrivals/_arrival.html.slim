@@ -5,7 +5,7 @@
       .flex.items-center.py-2
         span.-ml-24.pl-2.mr-9.text-xl.w-16
           | #{l arrival.arrived_at, format: :without_date}
-        p class="#{arrival.station.name.length > 4 ? 'text-sm md:text-xl' : 'text-xl'}"
+        p.text-xl
           | #{arrival.station.name}駅
           - if arrival == arrival.walk.arrival_of_departure
             | 出発
@@ -14,6 +14,6 @@
         - if arrival.walk.user == current_user
           = link_to '編集', edit_arrival_path(arrival), class: 'ml-auto text-blue-600 hover:underline'
       - if arrival.memo
-        p.text-sm.text-zinc-500.break-all #{arrival.memo}
+        p.text-sm.text-zinc-500.break-all.ml-1 #{arrival.memo}
       - if deletable?(arrival, arrival.walk)
         = link_to '到着を削除', arrival, class: 'block text-base text-blue-600 hover:underline', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

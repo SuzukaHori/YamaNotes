@@ -4,20 +4,18 @@
 .my-10.mx-auto.py-8.px-4.border-4.text-lg.text-center.md:w-2/3
   .text-center.my-0.mx-auto
     h2.mb-2 YamaNotesへようこそ！
-    p.mb-6 一周の設定をしてください
+    p.mb-6 一周の設定をしてください。
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       .mb-6
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
-        = f.collection_select :station_id, Station.all, :id, :name
-      .mb-6
-        = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]'
+        = f.collection_select :station_id, Station.all, :id, :name, {}, { class: 'rounded-lg' }
+      div data-controller='clockwise'
+        = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
         = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
-        = f.radio_button :clockwise, false, name: 'walk[clockwise]'
+        = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false' }, class: 'text-bright-orange-100'
         = f.label :clockwise_false, '内回り', class: 'ml-1'
         = f.hidden_field :arrived_at, value: Time.current, name: 'arrival[arrived_at]'
+        .mt-4
+          = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
       div
         = f.submit 'はじめる', class: 'btn-primary'
-.text-base.mt-8.mb-2.text-center
-  h3.underline.decoration-sky-500 内回り？外回り？
-  = image_tag 'clockwise_description.png', class: 'my-4 inline', size: '400x280', alt: '内回り・外回りの説明'
-  p 時計回りが外回り、反時計回りが内回りです

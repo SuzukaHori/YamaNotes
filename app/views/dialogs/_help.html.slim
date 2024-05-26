@@ -1,21 +1,20 @@
-dialog.p-4.md:w-1/2.rounded-lg.backdrop:bg-black/80 data-modal-target='dialog'
-  .flex
-    h2.text-xl.font-bold.text-center.my-2 使い方
-    button.ml-auto.focus:outline-none data-action="click->modal#close" autofocus=true
-      i class="fa-regular fa-rectangle-xmark"
+dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal-target='dialog'
+  h2.text-2xl.font-bold.text-center.my-2.mx-auto 使い方
+  button.focus:outline-none.absolute.top-0.right-0.p-2.m-2.hover:bg-gray-100 data-action="click->modal#close" autofocus=true
+    i.fa-solid.fa-xmark.fa-2xl
   ol.list-disc.pl-6.leading-8
     li.mb-2
       | 駅に着いたら
-      button.bg-blue-700.hover:bg-blue-800.text-white.border.py-1.px-4.rounded
+      button.btn-primary.inline-block.mx-1
         | 到着
       | ボタンを押しましょう。
     li.mb-2
-      | メモを追加したいときは、
-      i.fa-solid.fa-pencil.fa-lg.text-gray-500.mr-1
-      | ボタンから追加できます。
+      a.link-important.mx-1
+        | メモ
+      | ボタンから、各駅のメモを追加できます。
     li.mb-2
       | 記録を間違った時は、
-      = link_to '到着一覧ページ', arrivals_path, class: 'text-blue-600 hover:underline'
+      = link_to '到着一覧ページ', arrivals_path, class: 'text-blue-600 underline'
       | から編集・削除できます。
     li.mb-2
-      | スタート時刻や出発駅・内回り・外回りなどの設定を変えたいときは、メニューの「リタイア」から一度データを削除してください。
+      | スタート時刻や内回り・外回りなどの設定を変えたいときは、メニューの「リタイア」から一度データを削除してください。

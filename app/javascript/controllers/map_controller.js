@@ -38,8 +38,9 @@ export default class extends Controller {
   _setMap() {
     const centerPosition = [35.678, 139.73946];
     map = L.map("map", {
-      touchZoom: false,
       scrollWheelZoom: false,
+      dragging: !L.Browser.mobile,
+      tap: !L.Browser.mobile,
     }).setView(centerPosition, 12);
     L.tileLayer(
       `https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=${gon.maptiler_key}`,

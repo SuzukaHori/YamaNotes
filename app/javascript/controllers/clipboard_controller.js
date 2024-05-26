@@ -2,15 +2,11 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = {
-    content: String,
+    url: String,
   };
 
-  connect() {
-    this.originalContent = this.element.innerHTML;
-  }
-
   copy() {
-    navigator.clipboard.writeText(this.contentValue).then(
+    navigator.clipboard.writeText(this.urlValue).then(
       () => {
         alert("共有用URLをクリップボードにコピーしました");
       },

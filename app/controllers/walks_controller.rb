@@ -21,14 +21,14 @@ class WalksController < ApplicationController
 
   def create
     if current_user.walk.present?
-      redirect_to walk_path, alert: '歩行記録は一つしか作成できません'
+      redirect_to walk_path, alert: '歩行記録ノートは一つしか作成できません'
       return
     end
     ActiveRecord::Base.transaction do
       walk = current_user.create_walk!(walk_params)
       walk.arrivals.create!(arrival_params)
     end
-    redirect_to walk_url, notice: '歩行記録の作成に成功しました'
+    redirect_to walk_url, notice: '歩行記録ノートを作成しました'
   end
 
   def update

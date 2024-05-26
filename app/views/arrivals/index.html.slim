@@ -13,15 +13,15 @@
             .toggle-switch
     - if @walk.publish
       .flex.items-center.mb-10
-        label.text-xs.pr-0.5 for='url' URL
+        label.text-xs.pr-1 for='url' URL
         = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
-          i class='fa-regular fa-copy fa-lg'
+        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
+          i class='fa-regular fa-copy fa-xl'
     - else
       .flex.justify-end
         p.text-xs.w-28.pl-2.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
 
 = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival
 - if @walk.user == current_user
-  .flex.justify-end
-    = link_to '> 地図に戻る', walk_path, class: 'dark:text-gray-500 hover:underline inline-block'
+  .text-center.my-4
+    = link_to '地図に戻る', walk_path, class: 'link-important'

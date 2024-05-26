@@ -1,5 +1,5 @@
 doctype html
-html
+html  class='text-[#4f4f64]'
   head
     meta name='viewport' content='width=device-width,initial-scale=1'
     = display_meta_tags(default_meta_tags)
@@ -13,16 +13,14 @@ html
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')
     = favicon_link_tag 'apple-touch-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png'
-  body.bg-gray-200.max-w-screen-sm.mx-auto.min-h-screen.flex.flex-col
+  body.bg-yamanote-green-50.max-w-screen-sm.mx-auto.min-h-screen.flex.flex-col
     - unless current_page?(root_path)
       = render 'layouts/header'
-    main.px-4.pb-2.flex-1.bg-white
+    main.pb-2.flex-1.bg-white
       = render 'layouts/flash'
-      = yield
-    footer.bg-lime-50.p-4.text-xs.flex.justify-center
-      ul
-        li.inline-block.px-4 = link_to '利用規約', page_path('terms')
-        li.inline-block.px-4 = link_to 'プライバシーポリシー', page_path('privacy')
+      .px-4
+        = yield
+    = render 'layouts/footer'      
     script src="#{fontawesome_url}" crossorigin=''
     script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',
            integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',

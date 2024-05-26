@@ -11,7 +11,26 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        pop: ['Mochiy Pop One', 'sans-serif'],
         meiryo: ['メイリオ', 'Meiryo','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','ＭＳ Ｐゴシック','MS PGothic', 'MS UI Gothic','Helvetica','Arial']
+      },
+      colors: {
+        'yamanote-green': {
+          50: '#D7DDD1',
+          80: '#D6E6C1',
+          100: '#6F9142',
+          200: '#374821'
+        },
+        'bright-orange': {
+          50: '#f2bf91',
+          100: '#FD5B40',
+          200: '#cc6206'
+        },
+        'dark-blue': {
+          50: '#e6f8ff',
+          100: '#CAE7F2',
+          200: '#007FB1'
+        }
       },
     },
   },

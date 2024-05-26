@@ -15,7 +15,7 @@
       .flex.items-center.mb-10
         label.text-xs.pr-0.5 for='url' URL
         = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_content_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
+        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
           i class='fa-regular fa-copy fa-lg'
     - else
       .flex.justify-end

@@ -8,11 +8,11 @@
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       .mb-6
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
-        = f.collection_select :station_id, Station.all, :id, :name, {}, {class: 'rounded-lg'}
-      div data-controller="clockwise"
-        = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: {action: "click->clockwise#true" }, class: 'text-dark-blue-200'
+        = f.collection_select :station_id, Station.all, :id, :name, {}, { class: 'rounded-lg' }
+      div data-controller='clockwise'
+        = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
         = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
-        = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: {action: "click->clockwise#false" }, class: 'text-bright-orange-100'
+        = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false' }, class: 'text-bright-orange-100'
         = f.label :clockwise_false, '内回り', class: 'ml-1'
         = f.hidden_field :arrived_at, value: Time.current, name: 'arrival[arrived_at]'
         .mt-4

@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         'yamanote-green': {
           50: '#D7DDD1',
+          80: '#D6E6C1',
           100: '#6F9142',
           200: '#374821'
         },

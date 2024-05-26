@@ -28,7 +28,7 @@ class WalksController < ApplicationController
       walk = current_user.create_walk!(walk_params)
       walk.arrivals.create!(arrival_params)
     end
-    redirect_to walk_url, notice: '歩行記録ノートの作成に成功しました'
+    redirect_to walk_url, notice: '歩行記録ノートを作成しました'
   end
 
   def update

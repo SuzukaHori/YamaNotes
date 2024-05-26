@@ -1,18 +1,18 @@
-.px-4.py-2.md:text-xl.bg-blue-50.border.border-gray-300
-  #before_station.flex.pb-1
-    span.mr-4 前の駅:
-    span #{current_station.name}駅
+.w-3/4.my-4.mx-auto
+  #before_station.flex.items-center
+    span.mr-2 前の駅:
+    span.font-bold.text-lg.max-w-28 #{current_station.name}駅
     .ml-auto data-controller="modal"
-      button#memo_modal_button.p-1.hover:bg-blue-100 data-action="modal#open"
-        i.fa-solid.fa-pencil.fa-lg.text-gray-500
+      button#memo_modal_button.link-important.px-6 data-action="modal#open"
+        | メモ
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.order(:created_at).last }
-  .text-center
-    = image_tag 'shoes.png', class: 'inline-block rotate-180 h-4 mx-2', alt: '足跡のイラスト'
-    span.text-base #{current_station.clockwise_distance_to_next}km
+  .text-center.my-1
+    i.fa-solid.fa-arrow-down.pr-2
+    span #{current_station.clockwise_distance_to_next}km
   #next_station.flex.items-center
-    span.mr-4 次の駅:
-    span #{current_station.next(clockwise: walk.clockwise).name}駅
+    span.mr-2 次の駅:
+    span.font-bold.text-lg #{current_station.next(clockwise: walk.clockwise).name}駅
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
       = f.hidden_field :arrived_at, value: Time.current
-      = f.submit '到着', class: 'bg-blue-700 hover:bg-blue-800 text-white border px-6 py-0.5 md:px-16 rounded-lg'
+      = f.submit '到着', class: 'px-6 btn-primary'

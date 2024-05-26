@@ -1,11 +1,11 @@
 header.bg-yamanote-green-100.flex.border.items-center.py-2.px-3.h-10.md:h-14.text-white
   = link_to current_user ? walk_path : root_path do
     h1.flex.items-center.justify-center
-      = image_tag 'logo_header.png', class: 'inline h-11 py-1 md:py-0', alt: 'YamaNotesのロゴ'
+      = image_tag 'logo_header.png', class: 'inline h-11 py-1 md:py-0 hover:scale-95', alt: 'YamaNotesのロゴ'
   - if current_user
     .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
       button.p-2.hover:bg-yamanote-green-200 data-action='modal#open' id='help_button'
-        i.fa-regular.fa-circle-question.fa-xl
+        i.fa-solid.fa-circle-question.fa-xl
       = render partial: 'dialogs/help'
     div
       div data-controller='slideover' data-action="click->slideover#backdropClose"

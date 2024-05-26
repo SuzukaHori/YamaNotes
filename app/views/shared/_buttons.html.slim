@@ -1,9 +1,0 @@
-= link_to "https://twitter.com/intent/tweet?text=#{text}&url=#{url}&hashtags=山手線を徒歩で一周",
-  target: '_blank', rel: 'noopener', id: 'post_button',
-  class: 'bg-zinc-800 hover:bg-zinc-400 py-1 px-4 text-white rounded' do
-    i class="fa-brands fa-x-twitter pr-1"
-    | ポスト
-div data-controller='modal' class='inline-block ml-8'
-  button#memo_modal_button.p-2.font-medium.hover:underline.text-blue-500 data-action='modal#open'
-    | メモを開く
-  = render partial: 'dialogs/memo', locals: { arrival: @arrival }

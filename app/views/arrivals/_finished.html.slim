@@ -1,25 +1,18 @@
-ruby:
-  time_to_goal = time_to_reach_goal(walk)
-  text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_goal}でした！"
+.border.border-4.border-bright-orange-50.m-2.p-6.text-center
+  h2.py-2.text-2xl.font-extrabold 表彰状
+  .text-sm.md:text-base.text-left
+    p.my-1 あなたは、山手線の#{Station.count}駅全てを歩ききりました。
+    p.my-1 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず、精力的に歩き続けたことは、見る人に深い感動を与えました。
+    p.my-1 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
+  table.mt-4.mx-auto.text-sm data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"
+    tr
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 出発時刻
+      td.border.border-gray-400.px-4.py-1
+        | #{l arrival_of_departure.arrived_at}
+    tr
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 ゴール時刻
+      td.border.border-gray-400.px-4.py-1 #{l arrival_of_goal.arrived_at}
+    tr
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 かかった時間
+      td.border.border-gray-400.px-4.py-1 #{time}
 
-.my-8.p-2.mx-auto.md:w-2/3.bg-yellow-600
-  .p-1.bg-white
-    .border-double.border-4.border-yellow-200.m-2.p-4.text-center
-      h2.py-2.text-3xl.font-extrabold 表彰状
-      .text-sm.md:text-base.text-left
-        p.my-1 あなたは、山手線の#{Station.count}駅全てを歩ききりました。
-        p.my-1 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず精力的に歩き続けたことは、見る人に深い感動を与えました。
-        p.my-1 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
-        table.mt-4.mx-auto.text-sm
-          tbody
-            tr
-              td 出発した時刻
-              td #{l arrival_of_departure.arrived_at}
-            tr
-              td.pr-4 ゴールした時刻
-              td #{l arrival_of_goal.arrived_at}
-            tr
-              td かかった時間
-              td #{time}
-        .text-center
-          = render partial: 'shared/buttons', locals: { text: text_for_post, url: arrival_report_url(@arrival) }

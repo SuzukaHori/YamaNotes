@@ -3,12 +3,9 @@
 class WalksController < ApplicationController
   before_action :set_walk, only: %i[show destroy]
   before_action :set_maptiler_key, only: %i[show]
+  before_action :redirect_if_walk_not_exist, only: %i[show]
 
   def show
-    if current_user.walk.nil?
-      redirect_to new_walk_path
-      return
-    end
     @arrival = Arrival.new
     @arrivals = @walk.arrivals.order(:created_at).includes(:station)
     @station = @walk.current_station
@@ -20,7 +17,7 @@ class WalksController < ApplicationController
   end
 
   def create
-    if current_user.walk.present?
+    if current_walk.present?
       redirect_to walk_path, alert: '歩行記録ノートは一つしか作成できません'
       return
     end
@@ -43,6 +40,12 @@ class WalksController < ApplicationController
   end
 
   private
+
+  def redirect_if_walk_not_exist
+    return unless current_walk.nil?
+
+    redirect_to new_walk_path
+  end
 
   def walk_params
     params.require(:walk).permit(:clockwise, :publish)

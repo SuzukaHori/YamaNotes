@@ -24,7 +24,7 @@ class ArrivalsController < ApplicationController
 
   def update
     @arrival.assign_attributes(arrival_params)
-    return unless changed?(@arrival)
+    return unless @arrival.updated?
 
     if @arrival.save
       flash.now.notice = '到着記録を更新しました'
@@ -53,9 +53,5 @@ class ArrivalsController < ApplicationController
 
   def arrival_params
     params.require(:arrival).permit(:station_id, :arrived_at, :memo)
-  end
-
-  def changed?(arrival)
-    arrival.changed? && arrival.changes != { 'memo' => [nil, ''] }
   end
 end

@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module WalksHelper
-  def current_walk
-    current_user&.walk
-  end
-
   def elapsed_time(walk)
     elapsed_seconds = Time.current - walk.created_at
     convert_to_local_time(elapsed_seconds)

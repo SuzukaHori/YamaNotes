@@ -6,11 +6,6 @@ RSpec.describe WalksHelper, type: :helper do
   let!(:user) { FactoryBot.create(:user) }
   let!(:walk) { user.create_walk(created_at: (1.day.ago - 1.minute).beginning_of_minute) }
 
-  it '#current_walk' do
-    allow(helper).to receive(:current_user).and_return(user)
-    expect(helper.current_walk).to eq(walk)
-  end
-
   it '#elapsed_time' do
     expect(helper.elapsed_time(walk)).to eq('24時間1分')
   end

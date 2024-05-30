@@ -14,7 +14,7 @@
               .toggle-switch.cursor-pointer
         - if !@walk.publish
           p.text-xs.w-28.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
-  - if @walk.publish
+  - if @walk.user == current_user && @walk.publish
     .flex.items-center.mt-4
       label.text-xs.pr-1 for='url' URL
       = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }

@@ -1,10 +1,12 @@
 = turbo_frame_tag @arrival
   = render 'shared/errors', model: @arrival
   = form_with model: @arrival, method: :put do |f|
-    .flex.items-center.py-4
+    = f.label :arrived_at, class: 'inline-block mt-4 mb-1'
+    .flex.items-center
       = f.time_select :arrived_at, {}, { class: 'rounded border border-gray-300' }
       p.ml-2.text-xl
         | #{@arrival.station.name}駅
-    = f.text_area :memo, class: 'w-full rounded border border-gray-300', placeholder: '感想や疲れ具合のメモ', maxlength: 140, autofocus: true
+    = f.label :memo, class: 'inline-block mt-4 mb-1'
+    = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: '辛くなってきた！自転車が羨ましい><', maxlength: 140, autofocus: true
     .text-center.my-2
       = f.submit '保存', class: 'btn-primary'

@@ -2,24 +2,24 @@
 - set_meta_tags description: '到着記録の一覧ページです。'
 
 .py-4
-  h2.text-2xl.font-bold.inline-block 到着一覧
-  - if @walk.user == current_user
-    .flex.justify-end
-      span.pr-1 #{@walk.publish ? '公開' : '非公開'}
-      = form_with model: @walk, class: 'inline-block', method: :patch do |f|
-        = f.label :publish
-          = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
-          .toggle-switch.cursor-pointer
-    - if @walk.publish
-      .flex.items-center.mb-10
-        label.text-xs.pr-1 for='url' URL
-        = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-        = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
-          i class='fa-regular fa-copy fa-xl'
-    - else
-      .flex.justify-end
-        p.text-xs.w-28.pl-2.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
-
+  .flex.items-center
+    h2.text-2xl.font-bold.inline-block 到着一覧
+    .ml-auto
+      - if @walk.user == current_user
+        .flex
+          span.pr-2 #{@walk.publish ? '公開' : '非公開'}
+          = form_with model: @walk, class: 'inline-block', method: :patch do |f|
+            = f.label :publish
+              = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
+              .toggle-switch.cursor-pointer
+        - if !@walk.publish
+          p.text-xs.w-28.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
+  - if @walk.publish
+    .flex.items-center.mt-4
+      label.text-xs.pr-1 for='url' URL
+      = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
+        i class='fa-regular fa-copy fa-xl'
 = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival
 - if @walk.user == current_user
   .text-center.my-4

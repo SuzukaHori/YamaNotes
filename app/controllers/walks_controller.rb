@@ -17,15 +17,16 @@ class WalksController < ApplicationController
   end
 
   def create
-    if current_walk.present?
-      redirect_to walk_path, alert: '歩行記録ノートは一つしか作成できません'
+    walk = Walk.new(**walk_params, user: current_user)
+    if walk.invalid?
+      redirect_to walk_url(walk), alert: walk.errors.full_messages.join
       return
     end
-    ActiveRecord::Base.transaction do
-      walk = current_user.create_walk!(walk_params)
+    walk.transaction do
+      walk.save!
       walk.arrivals.create!(arrival_params)
     end
-    redirect_to walk_url, notice: '歩行記録ノートを作成しました'
+    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました'
   end
 
   def update

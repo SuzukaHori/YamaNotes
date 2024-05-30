@@ -6,11 +6,10 @@
   - if @walk.user == current_user
     .flex.justify-end
       span.pr-1 #{@walk.publish ? '公開' : '非公開'}
-      = turbo_frame_tag 'toggle' do
-        = form_with model: @walk, class: 'inline-block', method: :patch do |f|
-          = f.label :publish
-            = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
-            .toggle-switch
+      = form_with model: @walk, class: 'inline-block', method: :patch do |f|
+        = f.label :publish
+          = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
+          .toggle-switch.cursor-pointer
     - if @walk.publish
       .flex.items-center.mb-10
         label.text-xs.pr-1 for='url' URL

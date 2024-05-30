@@ -16,4 +16,4 @@
       - if arrival.memo
         p.text-sm.text-zinc-500.break-all.ml-1 #{arrival.memo}
       - if deletable?(arrival, arrival.walk)
-        = link_to '到着を削除', arrival, class: 'block text-base text-blue-600 hover:underline', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+        = link_to '到着を削除', arrival, class: 'block text-base text-blue-600 hover:underline', data: { turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

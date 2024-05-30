@@ -3,12 +3,9 @@
 class WalksController < ApplicationController
   before_action :set_walk, only: %i[show destroy]
   before_action :set_maptiler_key, only: %i[show]
+  before_action :redirect_if_walk_not_exist, only: %i[show]
 
   def show
-    if current_user.walk.nil?
-      redirect_to new_walk_path
-      return
-    end
     @arrival = Arrival.new
     @arrivals = @walk.arrivals.order(:created_at).includes(:station)
     @station = @walk.current_station
@@ -20,15 +17,16 @@ class WalksController < ApplicationController
   end
 
   def create
-    if current_user.walk.present?
-      redirect_to walk_path, alert: '歩行記録ノートは一つしか作成できません'
+    walk = Walk.new(**walk_params, user: current_user)
+    if walk.invalid?
+      redirect_to walk_url(walk), alert: walk.errors.full_messages.join
       return
     end
-    ActiveRecord::Base.transaction do
-      walk = current_user.create_walk!(walk_params)
+    walk.transaction do
+      walk.save!
       walk.arrivals.create!(arrival_params)
     end
-    redirect_to walk_url, notice: '歩行記録ノートを作成しました'
+    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました'
   end
 
   def update
@@ -43,6 +41,12 @@ class WalksController < ApplicationController
   end
 
   private
+
+  def redirect_if_walk_not_exist
+    return unless current_walk.nil?
+
+    redirect_to new_walk_path
+  end
 
   def walk_params
     params.require(:walk).permit(:clockwise, :publish)

@@ -13,6 +13,8 @@ class Users::ArrivalsController < ApplicationController
     end
   end
 
+  private
+
   def set_walk
     user = User.find(params[:user_id])
     @walk = user.walk

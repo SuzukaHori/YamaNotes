@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ArrivalsHelper
-  def current_walk
-    current_user&.walk
-  end
-
   def arrived_distance(arrivals)
     (arrivals_distance(arrivals) - arrivals.order(:created_at).last.station.clockwise_distance_to_next).round(2)
   end

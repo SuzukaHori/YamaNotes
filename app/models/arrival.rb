@@ -12,10 +12,6 @@ class Arrival < ApplicationRecord
   before_save :truncate_seconds_of_arrived_time
   before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 
-  def updated?
-    changed? && changes != { 'memo' => [nil, ''] }
-  end
-
   private
 
   def check_arrived_time

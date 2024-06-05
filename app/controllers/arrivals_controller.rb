@@ -18,7 +18,7 @@ class ArrivalsController < ApplicationController
     if @arrival.save
       redirect_to @arrival
     else
-      redirect_to walk_path, alert: '到着記録を保存できませんでした'
+      redirect_to walk_path, alert: '到着記録を保存できませんでした。'
     end
   end
 
@@ -27,14 +27,14 @@ class ArrivalsController < ApplicationController
     return unless @arrival.updated?
 
     if @arrival.save
-      flash.now.notice = '到着記録を更新しました'
+      flash.now.notice = '到着記録を更新しました。'
     else
       render 'edit', status: :unprocessable_entity
     end
   end
 
   def destroy
-    redirect_to arrivals_path, notice: '到着記録を削除しました' if @arrival.destroy
+    redirect_to arrivals_path, notice: '到着記録を削除しました。' if @arrival.destroy
   end
 
   private

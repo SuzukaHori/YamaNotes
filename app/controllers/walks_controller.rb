@@ -32,7 +32,7 @@ class WalksController < ApplicationController
   def update
     return unless current_walk.update(walk_params)
 
-    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
+    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました'
   end
 
   def destroy

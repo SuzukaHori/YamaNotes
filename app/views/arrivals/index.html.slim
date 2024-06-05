@@ -2,18 +2,21 @@
 - set_meta_tags description: '到着記録の一覧ページです。'
 
 .py-4
-  .flex.items-center
-    h2.text-2xl.font-bold.inline-block 到着一覧
+  .flex
+    h2.text-2xl.font-bold.inline-block 到着履歴
     .ml-auto
       - if @walk.user == current_user
-        .flex
+        .flex.justify-end
           span.pr-2 #{@walk.publish ? '公開' : '非公開'}
           = form_with model: @walk, class: 'inline-block', method: :patch do |f|
             = f.label :publish
               = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
               .toggle-switch.cursor-pointer
         - if !@walk.publish
-          p.text-xs.w-28.text-gray-500 公開をONにすると到着履歴のURLを他の人とシェアできます
+          p.text-xs.text-gray-500
+            | 公開をONにすると到着履歴の
+            br
+            | URLを他の人とシェアできます。
   - if @walk.user == current_user && @walk.publish
     .flex.items-center.mt-4
       label.text-xs.pr-1 for='url' URL

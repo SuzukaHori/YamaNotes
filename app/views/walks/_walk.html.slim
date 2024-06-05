@@ -1,7 +1,7 @@
 .w-3/4.my-4.mx-auto
   #before_station.flex.items-center
     span.mr-2 前の駅:
-    span.font-bold.text-lg.max-w-28 #{current_station.name}駅
+    span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.name}駅
     .ml-auto data-controller="modal"
       button#memo_modal_button.link-important.px-6 data-action="modal#open"
         | メモ

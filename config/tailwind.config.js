@@ -16,14 +16,15 @@ module.exports = {
       },
       colors: {
         'yamanote-green': {
-          50: '#D7DDD1',
+          50: '#e3edd5',
           80: '#D6E6C1',
-          100: '#6F9142',
+          100: '#a8cf75',
+          150: '#6F9142',
           200: '#374821'
         },
         'bright-orange': {
           50: '#f2bf91',
-          100: '#FD5B40',
+          100: '#e57a68',
           200: '#cc6206'
         },
         'dark-blue': {

@@ -26,18 +26,18 @@ class WalksController < ApplicationController
       walk.save!
       walk.arrivals.create!(arrival_params)
     end
-    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました'
+    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました。'
   end
 
   def update
     return unless current_walk.update(walk_params)
 
-    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました' : '到着履歴を非公開にしました'
+    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
   end
 
   def destroy
     @walk.destroy!
-    redirect_to root_path, notice: '一周をリタイアしました'
+    redirect_to root_path, notice: '歩行記録ノートを削除しました。'
   end
 
   private

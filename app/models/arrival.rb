@@ -20,7 +20,7 @@ class Arrival < ApplicationRecord
 
   def check_arrived_time
     errors.add :arrived_at, 'に未来の時刻は設定できません' if arrival_time_is_later_than_current?
-    errors.add :arrived_at, 'は一つ前の到着時刻より前、一つ後ろの到着時間より後の時刻を設定してください' if arrival_time_is_outside_of_range?
+    errors.add :arrived_at, 'は、一つ前の到着時刻より後、一つ後ろの到着時間より前の時刻を設定してください' if arrival_time_is_outside_of_range?
   end
 
   def arrival_time_is_later_than_current?

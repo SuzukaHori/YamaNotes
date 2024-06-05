@@ -1,7 +1,7 @@
 = turbo_frame_tag arrival do
-  .ml-16.border-l-8.pl-4.border-lime-500.relative
+  .ml-16.border-l-8.pl-4.pb-6.border-lime-500.relative
     .h-4.w-4.bg-white.border.border-lime-500.absolute.-left-3.top-3.rounded-full
-    .pb-8
+    .mb-2
       .flex.items-center.py-2
         span.-ml-24.pl-2.mr-9.text-xl.w-16
           | #{l arrival.arrived_at, format: :without_date}
@@ -11,9 +11,9 @@
           p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
         p.text-xl
           | #{arrival.station.name}駅
-        - if arrival.walk.user == current_user
-          = link_to '編集', edit_arrival_path(arrival), class: 'ml-auto text-blue-600 hover:underline'
       - if arrival.memo
         p.text-sm.text-zinc-500.break-all.ml-1 #{arrival.memo}
-      - if deletable?(arrival, arrival.walk)
-        = link_to '到着を削除', arrival, class: 'block text-base text-blue-600 hover:underline pl-1', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+    - if arrival.walk.user == current_user
+      = link_to '編集', edit_arrival_path(arrival), class: 'text-sm link-important'
+    - if deletable?(arrival, arrival.walk)
+      = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

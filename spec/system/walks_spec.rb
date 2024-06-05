@@ -42,7 +42,7 @@ RSpec.describe 'Walks', type: :system do
       page.accept_confirm do
         click_on 'リタイアする'
       end
-      expect(page).to have_content('一周をリタイアしました')
+      expect(page).to have_content('歩行記録ノートを削除しました。')
     end.to change(Walk, :count).by(-1)
   end
 end

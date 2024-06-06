@@ -35,6 +35,10 @@
     }
   }
 
+  dialog {
+    @apply text-base-black
+  }
+
   dialog.slideover[open] ul {
     animation: slide-in-from-left .3s forwards ease;
   }

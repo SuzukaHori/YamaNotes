@@ -14,7 +14,7 @@ class ArrivalsController < ApplicationController
   def edit; end
 
   def create
-    @arrival = current_walk.arrivals.new(arrival_params)
+    @arrival = current_walk.arrivals.new(**arrival_params, arrived_at: Time.current)
     if @arrival.save
       redirect_to @arrival
     else

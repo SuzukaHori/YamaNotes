@@ -2,14 +2,14 @@
 
 module WalksHelper
   def elapsed_time(walk)
-    elapsed_seconds = Time.current - walk.created_at
+    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
     convert_to_local_time(elapsed_seconds)
   end
 
   def time_to_reach_goal(walk)
     return unless walk.finished?
 
-    convert_to_local_time(walk.arrival_of_goal.arrived_at - walk.created_at)
+    convert_to_local_time(walk.arrival_of_goal.arrived_at - walk.arrival_of_departure.arrived_at)
   end
 
   private

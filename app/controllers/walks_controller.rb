@@ -24,7 +24,7 @@ class WalksController < ApplicationController
     end
     walk.transaction do
       walk.save!
-      walk.arrivals.create!(arrival_params)
+      walk.arrivals.create!(**arrival_params, arrived_at: Time.current)
     end
     redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました。'
   end

@@ -14,5 +14,4 @@
     span.font-bold.text-lg #{current_station.next(clockwise: walk.clockwise).name}駅
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
-      = f.hidden_field :arrived_at, value: Time.current
       = f.submit '到着', class: 'px-6 btn-primary'

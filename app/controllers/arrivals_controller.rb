@@ -24,7 +24,7 @@ class ArrivalsController < ApplicationController
 
   def update
     @arrival.assign_attributes(arrival_params)
-    return unless @arrival.changed? && @arrival.changes != { 'memo' => [nil, ''] }
+    return unless @arrival.changed?
 
     if @arrival.save
       flash.now.notice = '到着記録を更新しました。'

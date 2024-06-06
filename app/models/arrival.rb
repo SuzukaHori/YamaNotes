@@ -3,7 +3,7 @@
 class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
-  before_validation :convert_blank_to_nil, on: :update
+  before_save :convert_nil_to_blank
   validates :arrived_at, presence: true
   validates :memo, length: { maximum: 140 }
   validate :prohibit_arrival_without_next_station, on: :create
@@ -47,8 +47,8 @@ class Arrival < ApplicationRecord
     errors.add :station_id, '隣駅以外に到着することはできません'
   end
 
-  def convert_blank_to_nil
-    self.memo = nil if memo.blank?
+  def convert_nil_to_blank
+    self.memo = '' if memo.nil?
   end
 
   def check_arrival_location

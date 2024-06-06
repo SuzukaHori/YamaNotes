@@ -49,11 +49,11 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
-  describe '#convert_blank_to_nil' do
+  describe '#convert_nil_to_blank' do
     it '空文字をnilに変換すること' do
-      arrival.memo = ''
+      arrival.memo = nil
       arrival.save!
-      expect(arrival.memo.nil?).to be true
+      expect(arrival.memo == '').to be true
     end
   end
 

@@ -11,7 +11,7 @@
           p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
         p.text-xl
           | #{arrival.station.name}駅
-      - if arrival.memo
+      - if arrival.memo.present?
         p.text-sm.text-zinc-500.break-all.ml-1 #{arrival.memo}
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do

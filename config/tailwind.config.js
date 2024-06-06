@@ -31,7 +31,8 @@ module.exports = {
           50: '#e6f8ff',
           100: '#CAE7F2',
           200: '#007FB1'
-        }
+        },
+        'base-black': '#4f4f64'
       },
     },
   },

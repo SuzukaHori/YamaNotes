@@ -12,7 +12,7 @@ https://www.yamanotes.com
 現在の進捗を地図で表示します。残りの駅数や距離などを、計算する必要がありません。
 <img width="1184" alt="ダッシュボードのキャプチャ" src="https://github.com/SuzukaHori/YamaNotes/assets/129706209/4a23d1af-2498-4956-b906-1eaee33d2676">
 
-### 記録
+### 到着記録
 「到着」ボタンを押すことで、時間と駅を記録できます。記録した情報は、Xに投稿することもできます。
 <img width="1188" alt="到着画面のキャプチャ" src="https://github.com/SuzukaHori/YamaNotes/assets/129706209/8b973b18-e7d8-407c-9ce5-9719820a119e">
 

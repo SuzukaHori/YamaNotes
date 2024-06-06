@@ -14,7 +14,7 @@
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
 .my-4.text-center
   h2.font-bold.mb-2 ここまでの記録
-  table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"
+  table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 出発から
       td.border.border-gray-400.text-left.px-4.py-1 data-time-target="elapsed"

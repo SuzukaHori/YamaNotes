@@ -20,6 +20,14 @@ RSpec.describe 'Walks', type: :system do
     expect(page).to have_content('一周の設定をしてください')
   end
 
+  it '歩行記録が存在した場合、ダッシュボードにリダイレクトされる' do
+    start_walk
+    visit new_walk_path
+    click_on 'はじめる'
+    expect(page).to have_content('ユーザ一人につき、歩行記録は一つしか作成できません')
+    expect(page).to have_title 'ダッシュボード'
+  end
+
   it '歩行開始時に歩行の情報が表示される' do
     start_walk
     expect(page).to have_content('出発から 0時間0分')

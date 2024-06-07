@@ -8,8 +8,16 @@ RSpec.describe Arrival, type: :model do
   let(:arrival_second) { FactoryBot.create(:arrival, walk:, station_id: 2) }
 
   describe '#prohibit_arrival_without_next_station' do
-    it '近接する駅に到着できること' do
-      expect { arrival_second }.to change(Arrival, :count).by(1)
+    context '近接する駅に到着できること' do
+      it '外回りモードの場合' do
+        expect { arrival_second }.to change(Arrival, :count).by(1)
+      end
+
+      it '内回りモードの場合' do
+        walk = FactoryBot.create(:walk, clockwise: false)
+        FactoryBot.create(:arrival, walk:, station_id: 1)
+        expect { FactoryBot.create(:arrival, walk:, station_id: 30) }.to change(Arrival, :count).by(1)
+      end
     end
 
     it '近接しない駅には到着できないこと' do

@@ -19,11 +19,4 @@ module WalkHelpers
     choose '内回り' unless clockwise
     expect(page).to have_content('歩行記録ノートを作成しました')
   end
-
-  def start_counter_clockwise_walk
-    visit new_walk_path
-    choose '内回り'
-    click_on 'はじめる'
-    expect(page).to have_content('歩行記録ノートを作成しました')
-  end
 end

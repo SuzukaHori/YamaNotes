@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_055616) do
     t.string "provider", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "remember_created_at", precision: nil
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 

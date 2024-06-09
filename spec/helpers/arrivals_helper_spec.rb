@@ -6,14 +6,22 @@ RSpec.describe ArrivalsHelper, type: :helper do
   let(:user) { FactoryBot.create(:user) }
   let(:walk) { user.create_walk(clockwise: true) }
 
-  it '#arrived_distance' do
-    create_arrivals(walk, 3)
-    expect(helper.arrived_distance(walk.arrivals)).to eq(2.9)
+  describe '#arrived_distance' do
+    it '外回りモードの時' do
+      create_arrivals(walk, 3)
+      expect(helper.arrived_distance(arrivals: walk.arrivals, clockwise: walk.clockwise)).to eq(2.9)
+    end
+
+    it '内回りモードの時' do
+      walk = user.create_walk(clockwise: false)
+      create_arrivals(walk, 3)
+      expect(helper.arrived_distance(arrivals: walk.arrivals, clockwise: walk.clockwise)).to eq(2.7)
+    end
   end
 
   it '#remaining_distance' do
     create_arrivals(walk, 3)
-    expect(helper.remaining_distance(walk.arrivals)).to eq(Station.total_distance - 2.9)
+    expect(helper.remaining_distance(arrivals: walk.arrivals, clockwise: walk.clockwise)).to eq(Station.total_distance - 2.9)
   end
 
   it '#number_of_walked' do

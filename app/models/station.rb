@@ -22,4 +22,12 @@ class Station < ApplicationRecord
   def self.total_distance
     Station.all.sum(&:clockwise_distance_to_next)
   end
+
+  def distance_to_next(clockwise:)
+    if clockwise
+      clockwise_distance_to_next
+    else
+      self.next(clockwise:).clockwise_distance_to_next
+    end
+  end
 end

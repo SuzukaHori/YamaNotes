@@ -8,7 +8,7 @@
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.order(:created_at).last }
   .text-center.my-1
     i.fa-solid.fa-arrow-down.pr-2
-    span #{current_station.clockwise_distance_to_next}km
+    span #{current_station.distance_to_next(clockwise: walk.clockwise)}km
   #next_station.flex.items-center
     span.mr-2 次の駅:
     span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.next(clockwise: walk.clockwise).name}駅

@@ -32,7 +32,7 @@ RSpec.describe 'Walks', type: :system do
     start_walk
     expect(page).to have_content('出発から 0時間0分')
     expect(page).to have_content("歩いた駅 0駅(残り#{Station.count}駅)")
-    expect(page).to have_content("歩いた距離 約0.0km(残り約#{Station.total_distance}km)")
+    expect(page).to have_content("歩いた距離 約0km(残り約#{Station.total_distance}km)")
   end
 
   it '到着後に現在の駅を更新する' do

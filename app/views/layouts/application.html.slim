@@ -9,19 +9,19 @@ html  class='text-base-black'
     = stylesheet_link_tag 'https://unpkg.com/leaflet@1.6.0/dist/leaflet.css',
       integrity: 'sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==',
       crossorigin: ''
+    script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',
+      integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',
+      crossorigin=''
+    script src="#{fontawesome_url}" crossorigin=''
     = include_gon
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')
     = favicon_link_tag 'apple-touch-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png'
   body.bg-yamanote-green-50.max-w-screen-sm.mx-auto.min-h-screen.flex.flex-col
     - unless current_page?(root_path)
-      = render 'layouts/header'
+      = render partial: 'layouts/header', cached: true
     main.pb-2.flex-1.bg-white
       = render 'layouts/flash'
       .px-4
         = yield
-    = render 'layouts/footer'
-    script src="#{fontawesome_url}" crossorigin=''
-    script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',
-           integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',
-           crossorigin=''
+    = render partial: 'layouts/footer', cached: true

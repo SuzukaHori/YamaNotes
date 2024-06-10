@@ -15,6 +15,7 @@
     "fix": "prettier --write 'app/javascript/**/*.js'"
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001632",
     "leaflet": "^1.9.4",
     "tailwindcss-stimulus-components": "^5.1.1"
   }

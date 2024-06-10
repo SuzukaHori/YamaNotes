@@ -5,9 +5,9 @@
       .flex.items-center.py-2
         span.-ml-24.pl-2.mr-9.text-xl.w-16
           | #{l arrival.arrived_at, format: :without_date}
-        - if arrival == arrival.walk.arrival_of_departure
+        - if arrival == arrivals.first
           p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm 出発
-        - elsif arrival == arrival.walk.arrival_of_goal
+        - elsif arrival == arrivals.last && arrival.walk.finished?
           p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
         p.text-xl
           | #{arrival.station.name}駅
@@ -16,5 +16,5 @@
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
         .text-sm.h-8.link-important 編集
-    - if deletable?(arrival, arrival.walk)
-      = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+      - if deletable?(editable:, arrival:, arrivals:)
+        = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

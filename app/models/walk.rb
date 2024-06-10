@@ -15,6 +15,12 @@ class Walk < ApplicationRecord
     arrivals.order(:created_at).includes(:station).map(&:station)
   end
 
+  def arrived_distance
+    exclude_station_id = clockwise ? arrivals.order(:created_at).last&.station_id : arrivals.order(:created_at).first&.station_id
+    distance_list = arrivals.joins(:station).where.not(station_id: exclude_station_id).pluck('stations.clockwise_distance_to_next')
+    distance_list.sum.round(2)
+  end
+
   def arrival_of_departure
     arrivals.order(:created_at)&.first
   end
@@ -23,7 +29,11 @@ class Walk < ApplicationRecord
     arrivals.order(:created_at).last if finished?
   end
 
+  def number_of_walked
+    arrivals.count - 1
+  end
+
   def finished?
-    arrivals.count > Station.count
+    arrivals.count > Station.cache_count
   end
 end

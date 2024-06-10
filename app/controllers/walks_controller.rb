@@ -7,8 +7,10 @@ class WalksController < ApplicationController
 
   def show
     @arrival = Arrival.new
-    @arrivals = @walk.arrivals.order(:created_at).includes(:station)
+    @arrivals = @walk.arrivals.order(:created_at)
     @station = @walk.current_station
+    @arrived_distance = @walk.arrived_distance
+    @number_of_walked = @walk.number_of_walked
   end
 
   def new

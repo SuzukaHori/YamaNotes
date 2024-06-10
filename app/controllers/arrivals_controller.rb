@@ -2,8 +2,8 @@
 
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
-  before_action :set_walk, only: %i[index show update]
-  before_action :set_arrivals, only: %i[index update]
+  before_action :set_walk, only: %i[index show]
+  before_action :set_arrivals, only: %i[index]
 
   def index
     @user = current_user
@@ -44,7 +44,7 @@ class ArrivalsController < ApplicationController
   private
 
   def set_arrival
-    @arrival = Arrival.find(params[:id])
+    @arrival = current_user.arrivals.find(params[:id])
   end
 
   def set_arrivals

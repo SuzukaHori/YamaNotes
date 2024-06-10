@@ -5,7 +5,9 @@ class ArrivalsController < ApplicationController
   before_action :set_walk, only: %i[index show update]
   before_action :set_arrivals, only: %i[index update]
 
-  def index; end
+  def index
+    @user = current_user
+  end
 
   def show
     @station = @arrival.station

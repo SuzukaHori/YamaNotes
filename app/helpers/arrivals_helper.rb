@@ -9,7 +9,7 @@ module ArrivalsHelper
     Station.total_count - number_of_walked
   end
 
-  def deletable?(arrival, walk)
-    current_user == walk.user && arrival == walk.arrivals.order(:created_at).last && arrival != walk.arrival_of_departure
+  def deletable?(editable:, arrival:, arrivals:)
+    editable && arrival == arrivals.last && arrival != arrivals.first
   end
 end

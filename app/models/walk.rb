@@ -22,7 +22,7 @@ class Walk < ApplicationRecord
     else
       arrivals.order(:created_at).first&.station_id
     end
-    arrivals.joins(:station).where.not(station_id: exclude_station_id).pluck('stations.clockwise_distance_to_next').sum
+    arrivals.joins(:station).where.not(station_id: exclude_station_id).pluck('stations.clockwise_distance_to_next').sum.round(2)
   end
 
   def arrival_of_departure

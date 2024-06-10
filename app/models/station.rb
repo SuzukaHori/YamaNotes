@@ -12,7 +12,7 @@ class Station < ApplicationRecord
 
   def next(clockwise:)
     if clockwise
-      next_id = id == Station.count ? 1 : id + 1
+      next_id = id == Station.total_count ? 1 : id + 1
       Station.find(next_id)
     else
       Station.find_by(clockwise_next_station: self)
@@ -21,6 +21,12 @@ class Station < ApplicationRecord
 
   def self.total_distance
     Station.all.sum(&:clockwise_distance_to_next)
+  end
+
+  def self.total_count
+    Rails.cache.fetch('station_count', expires_in: 12.hours) do
+      Station.count
+    end
   end
 
   def distance_to_next(clockwise:)

@@ -49,8 +49,8 @@ else
   ActiveRecord::Base.transaction do
     user = User.create!(uid: 108_291_120_728_823_030_470, provider: 'google_oauth2')
     walk = user.create_walk!
-    (Station.count + 1).times do |n|
-      station_id = n >= Station.count ? 1 : n + 1
+    (Station.total_count + 1).times do |n|
+      station_id = n >= Station.total_count ? 1 : n + 1
       walk.arrivals.create!(station_id:, arrived_at: Time.current)
     end
   end

@@ -1,7 +1,7 @@
 .border.border-4.border-bright-orange-50.m-2.p-6.text-center
   h2.py-2.text-2xl.font-extrabold 表彰状
   .text-sm.md:text-base.text-left
-    p.my-1 あなたは、山手線の#{Station.count}駅全てを歩ききりました。
+    p.my-1 あなたは、山手線の#{Station.total_count}駅全てを歩ききりました。
     p.my-1 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず、精力的に歩き続けたことは、見る人に深い感動を与えました。
     p.my-1 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
   table.mt-4.mx-auto.text-sm data-controller="time" data-time-departure-date-value="#{@walk.created_at.iso8601}"

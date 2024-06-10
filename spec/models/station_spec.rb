@@ -11,7 +11,7 @@ RSpec.describe Station, type: :model do
       end
 
       it 'idが最後の場合は、最初の駅が返る' do
-        station = Station.find(Station.count)
+        station = Station.find(Station.total_count)
         expect(station.next(clockwise: true).id).to eq(1)
       end
     end
@@ -24,7 +24,7 @@ RSpec.describe Station, type: :model do
 
       it 'idが最初の場合は、最後の駅が返る' do
         station = Station.find(1)
-        expect(station.next(clockwise: false).id).to eq(Station.count)
+        expect(station.next(clockwise: false).id).to eq(Station.total_count)
       end
     end
   end

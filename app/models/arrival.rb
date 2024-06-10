@@ -67,6 +67,6 @@ class Arrival < ApplicationRecord
   end
 
   def arrivals_count_must_be_within_limit
-    errors.add(:base, '駅の数以上の到着記録は作成できません') if walk.arrivals.count > Station.count
+    errors.add(:base, '駅の数以上の到着記録は作成できません') if walk.arrivals.count > Station.total_count
   end
 end

@@ -6,7 +6,7 @@ module ArrivalsHelper
   end
 
   def number_of_remaining(number_of_walked)
-    Station.count - number_of_walked
+    Station.total_count - number_of_walked
   end
 
   def deletable?(arrival, walk)

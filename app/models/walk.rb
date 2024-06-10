@@ -34,6 +34,6 @@ class Walk < ApplicationRecord
   end
 
   def finished?
-    arrivals.count > Station.count
+    arrivals.count > Station.total_count
   end
 end

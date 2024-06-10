@@ -16,13 +16,13 @@ class Walk < ApplicationRecord
   end
 
   def arrived_distance
+    exclude_station_id = 
     if clockwise
-      exclude_station_id = arrivals.order(:created_at).last&.station_id
+      arrivals.order(:created_at).last&.station_id
     else
-      exclude_station_id = arrivals.order(:created_at).first&.station_id
+      arrivals.order(:created_at).first&.station_id
     end
-    total_distance = arrivals.includes(:station).where.not(station_id: exclude_station_id).sum { |arrival| arrival.station.clockwise_distance_to_next }
-    total_distance.round(2)
+    arrivals.joins(:station).where.not(station_id: exclude_station_id).pluck('stations.clockwise_distance_to_next').sum
   end
 
   def arrival_of_departure

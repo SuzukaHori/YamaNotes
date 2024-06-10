@@ -6,11 +6,11 @@ class Arrival < ApplicationRecord
   before_validation :convert_blank_to_nil, on: :update
   validates :arrived_at, presence: true
   validates :memo, length: { maximum: 140 }
-  # validate :prohibit_arrival_without_next_station, on: :create
-  # validate :arrivals_count_must_be_within_limit, on: :create
-  # validate :check_arrived_time, on: :update
-  # before_save :truncate_seconds_of_arrived_time
-  # before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
+  validate :prohibit_arrival_without_next_station, on: :create
+  validate :arrivals_count_must_be_within_limit, on: :create
+  validate :check_arrived_time, on: :update
+  before_save :truncate_seconds_of_arrived_time
+  before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 
   def updated?
     changed? && changes != { 'memo' => [nil, ''] }

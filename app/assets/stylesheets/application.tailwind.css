@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@font-face {
+  font-family: 'Mochiy Pop One';
+  src: url('../fonts/Mochiy_Pop_One.woff');
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

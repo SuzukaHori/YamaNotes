@@ -11,8 +11,8 @@ html  class='text-base-black'
       crossorigin: ''
     script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js',
       integrity='sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==',
-      crossorigin=''
-    script src="#{fontawesome_url}" crossorigin=''
+      crossorigin='', asyncr: true
+    script src="#{fontawesome_url}" crossorigin='' async='true'
     = include_gon
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')

@@ -19,21 +19,29 @@ class Station < ApplicationRecord
     end
   end
 
-  def self.total_distance
-    Station.all.sum(&:clockwise_distance_to_next)
-  end
-
-  def self.cache_count
-    Rails.cache.fetch('station_count', expires_in: 12.hours) do
-      Station.count.to_i
-    end
-  end
-
   def distance_to_next(clockwise:)
     if clockwise
       clockwise_distance_to_next
     else
       self.next(clockwise:).clockwise_distance_to_next
+    end
+  end
+
+  class << self
+    def total_distance
+      Station.cache_all.sum(&:clockwise_distance_to_next)
+    end
+
+    def cache_count
+      Rails.cache.fetch('station_count', expires_in: 12.hours) do
+        Station.count.to_i
+      end
+    end
+
+    def cache_all
+      Rails.cache.fetch('station_all', expires_in: 12.hours) do
+        Station.all.to_a
+      end
     end
   end
 end

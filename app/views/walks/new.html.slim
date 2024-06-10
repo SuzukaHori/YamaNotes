@@ -8,7 +8,7 @@
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       .mb-6
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
-        = f.collection_select :station_id, Station.all, :id, :name, {}, { class: 'rounded-lg' }
+        = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg' }
       div data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
         = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
         = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'

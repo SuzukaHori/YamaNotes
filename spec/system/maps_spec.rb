@@ -15,7 +15,7 @@ RSpec.describe 'Maps', type: :system do
 
   it '緑の線と吹き出しが表示される' do
     expect(page).to have_css 'path[stroke="green"]'
-    expect(page.all('.leaflet-marker-icon').count).to eq Station.total_count
+    expect(page.all('.leaflet-marker-icon').count).to eq Station.cache_count
   end
 
   it '到着時に赤い線が引かれる' do

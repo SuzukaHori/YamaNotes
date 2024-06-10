@@ -5,7 +5,7 @@
 - if @walk.finished?
   .my-4
     p おめでとうございます🎉
-    p #{Station.total_count}駅全てを歩ききりました！
+    p #{Station.cache_count}駅全てを歩ききりました！
     .flex.items-center.justify-center.my-4
       = link_to '記録を見る', @walk.arrival_of_goal, class: 'mx-4 text-blue-600 hover:underline'
       = link_to '初めから歩く', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mx-4 link-important'

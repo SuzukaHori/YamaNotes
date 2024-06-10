@@ -31,7 +31,7 @@ RSpec.describe ArrivalsHelper, type: :helper do
 
   it '#number_of_remaining' do
     create_arrivals(walk, 3)
-    expect(helper.number_of_remaining(walk.arrivals)).to eq(Station.total_count - 2)
+    expect(helper.number_of_remaining(walk.arrivals)).to eq(Station.cache_count - 2)
   end
 
   it '#deletable?' do

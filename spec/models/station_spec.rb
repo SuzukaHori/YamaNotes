@@ -29,9 +29,37 @@ RSpec.describe Station, type: :model do
     end
   end
 
+  describe '#distance_to_next' do
+    context '内回りモードの場合' do
+      it '現在の駅のclockwise_distance_to_nextの値が返る' do
+        station = Station.find(1)
+        expect(station.distance_to_next(clockwise: true)).to eq(2.0)
+      end
+    end
+
+    context '外回りモードの場合' do
+      it '次の駅のclockwise_distance_to_nextの値が返る' do
+        station = Station.find(1)
+        expect(station.distance_to_next(clockwise: false)).to eq(1.0)
+      end
+    end
+  end
+
   describe '.total_distance' do
     it 'すべての駅の合計を取得できること' do
       expect(Station.total_distance).to eq(37.8)
+    end
+  end
+
+  describe '.cache_count' do
+    it '駅数を取得できること' do
+      expect(Station.cache_count).to eq(30)
+    end
+  end
+
+  describe '.cache_all' do
+    it 'すべての駅の配列を取得できること' do
+      expect(Station.cache_all).to eq(Station.all)
     end
   end
 end

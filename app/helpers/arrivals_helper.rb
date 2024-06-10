@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module ArrivalsHelper
-  def remaining_distance(arrived_distance)
+  def remaining_distance(arrived_distance:)
     (Station.total_distance - arrived_distance).round(2)
   end
 
-  def number_of_remaining(number_of_walked)
+  def number_of_remaining(number_of_walked:)
     Station.cache_count - number_of_walked
   end
 

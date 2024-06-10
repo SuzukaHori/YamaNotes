@@ -19,6 +19,19 @@ RSpec.describe Walk, type: :model do
     end
   end
 
+  describe '#arrived_distance' do
+    it '外回りモードの時' do
+      create_arrivals(walk, 3)
+      expect(walk.arrived_distance).to eq(2.9)
+    end
+
+    it '内回りモードの時' do
+      walk = FactoryBot.create(:walk, clockwise: false)
+      create_arrivals(walk, 3)
+      expect(walk.arrived_distance).to eq(2.7)
+    end
+  end
+
   describe '#arrivals_of_departure' do
     it '到着記録がない場合はnilが返ること' do
       walk = FactoryBot.create(:walk)
@@ -41,6 +54,13 @@ RSpec.describe Walk, type: :model do
     it '到着記録がある場合は最後の記録が返ること' do
       create_arrivals(walk, Station.cache_count + 1)
       expect(walk.arrival_of_goal).to eq(walk.arrivals.last)
+    end
+  end
+
+  describe '#number_of_walked' do
+    it '歩行済みの駅数が返ること' do
+      create_arrivals(walk, 5)
+      expect(walk.number_of_walked).to eq(4)
     end
   end
 

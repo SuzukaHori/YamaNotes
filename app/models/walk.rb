@@ -29,6 +29,10 @@ class Walk < ApplicationRecord
     arrivals.order(:created_at).last if finished?
   end
 
+  def number_of_walked
+    arrivals.count - 1
+  end
+
   def finished?
     arrivals.count > Station.cache_count
   end

@@ -16,5 +16,5 @@
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
         .text-sm.h-8.link-important 編集
-      - if deletable?(editable:, arrival:, arrivals: )
+      - if deletable?(editable:, arrival:, arrivals:)
         = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }

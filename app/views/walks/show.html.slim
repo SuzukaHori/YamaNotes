@@ -21,8 +21,8 @@
         | #{elapsed_time(@walk)}
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた駅
-      td.border.border-gray-400.text-left.px-4.py-1 #{number_of_walked(@arrivals)}駅(残り#{number_of_remaining(@arrivals)}駅)
+      td.border.border-gray-400.text-left.px-4.py-1 #{@number_of_walked}駅(残り#{number_of_remaining(@number_of_walked)}駅)
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた距離
-      td.border.border-gray-400.text-left.px-4.py-1 約#{arrived_distance(arrivals: @arrivals, clockwise: @walk.clockwise)}km(残り約#{remaining_distance(arrivals: @arrivals, clockwise: @walk.clockwise)}km)
+      td.border.border-gray-400.text-left.px-4.py-1 約#{@arrived_distance}km(残り約#{remaining_distance(@arrived_distance)}km)
   = link_to '履歴を見る', arrivals_path, class: 'link-important ml-auto'

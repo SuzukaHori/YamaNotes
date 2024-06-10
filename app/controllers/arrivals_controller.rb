@@ -2,13 +2,15 @@
 
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
-  before_action :set_walk, only: %i[index show create update]
-  before_action :set_arrivals, only: %i[index show update]
+  before_action :set_walk, only: %i[index show update]
+  before_action :set_arrivals, only: %i[index update]
 
   def index; end
 
   def show
     @station = @arrival.station
+    @arrived_distance = @walk.arrived_distance
+    @number_of_walked = @walk.arrivals.slice(1..-1).length
   end
 
   def edit; end

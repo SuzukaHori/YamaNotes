@@ -5,9 +5,9 @@ ruby:
     time_to_reach_goal = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_reach_goal}でした！"
   else
-    number_of_walked = number_of_walked(@arrivals)
-    number_of_remaining = number_of_remaining(@arrivals)
-    arrived_distance = arrived_distance(arrivals: @arrivals, clockwise: @walk.clockwise)
+    number_of_walked = @number_of_walked
+    number_of_remaining = number_of_remaining(number_of_walked)
+    arrived_distance = @arrived_distance
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{arrived_distance}kmです！"
   end
 

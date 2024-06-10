@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 ruby '3.3.0'
 
 gem 'bootsnap', require: false
-gem 'dartsass-rails', '~> 0.5.0'
 gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails'

@@ -28,6 +28,17 @@ RSpec.describe 'Walks', type: :system do
     expect(page).to have_title 'ダッシュボード'
   end
 
+  it '歩行開始時のみ注意書きのモーダルが表示される' do
+    visit new_walk_path
+    click_on 'はじめる'
+    expect(page).to have_content('山手線一周の注意')
+    click_on '確認しました'
+    visit root_path
+    visit walk_path
+    expect(page).to have_title 'ダッシュボード'
+    expect(page).to have_no_content('山手線一周の注意')
+  end
+
   it '歩行開始時に歩行の情報が表示される' do
     start_walk
     expect(page).to have_content('出発から 0時間0分')

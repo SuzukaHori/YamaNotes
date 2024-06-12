@@ -1,0 +1,21 @@
+dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative transition-all duration-1000 ease-in-out' data-caution-target='dialog'
+  h2.text-2xl.font-bold.text-center.my-4.mx-auto 山手線一周の注意
+  ol.list-disc.pl-6.leading-8
+    li.mb-2
+      | 山手線を徒歩で一周するには、約12時間かかります。
+      br
+      | 体調管理には十分注意し、無理をしないようにしてください。
+    li.mb-2
+      | アプリ使用時は、立ち止まって操作してください。
+    li.mb-2
+      = link_to 'https://scrapbox.io/yamanotes/%E5%B1%B1%E6%89%8B%E7%B7%9A%E5%BE%92%E6%AD%A9%E4%B8%80%E5%91%A8%E3%81%AE%E6%BA%96%E5%82%99%E3%83%AA%E3%82%B9%E3%83%88',
+        class: 'underline hover:text-gray-400'
+        | 山手線一周の準備リスト
+      p.inline ・
+      = link_to 'https://scrapbox.io/yamanotes/%E5%B1%B1%E6%89%8B%E7%B7%9A%E4%B8%80%E5%91%A8%E3%81%AE%E6%B3%A8%E6%84%8F',
+        class: 'underline hover:text-gray-400'
+        | 歩行上の注意
+      | を参考にしてください。
+    li.mb-2
+      | 怪我や事故などが発生した場合、開発者は一切の責任を負いかねます。
+  button.block.link-important.mx-auto.outline-none.mt-4.mb-2 data-action="click->caution#close" autofocus=true 確認しました

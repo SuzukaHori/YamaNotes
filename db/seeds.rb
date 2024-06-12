@@ -56,7 +56,3 @@ else
   end
   puts 'テストユーザとデータを作成しました'
 end
-
-Arrival.find_each do |arrival|
-  arrival.update!(memo: '') unless arrival.memo
-end

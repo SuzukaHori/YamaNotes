@@ -3,10 +3,10 @@
 class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show]
-  before_action :set_arrivals, only: %i[index]
+  before_action :set_user, only: %i[index]
 
   def index
-    @user = current_user
+    @arrivals = current_walk.arrivals.order(:created_at).includes(:station)
   end
 
   def show
@@ -47,8 +47,8 @@ class ArrivalsController < ApplicationController
     @arrival = current_user.arrivals.find(params[:id])
   end
 
-  def set_arrivals
-    @arrivals = current_walk.arrivals.order(:created_at).includes(:station)
+  def set_user
+    @user = current_user
   end
 
   def set_walk

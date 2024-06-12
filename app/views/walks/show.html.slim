@@ -13,7 +13,7 @@ div data-controller='caution'
       = link_to '初めから歩く', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' }, class: 'mx-4 link-important'
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
-= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals.pluck(:station_id) }
+= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals }
 .my-4.text-center
   h2.font-bold.mb-2 ここまでの記録
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"

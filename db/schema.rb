@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_09_104109) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_085111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_104109) do
     t.datetime "arrived_at", precision: nil, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_arrivals_on_created_at"
     t.index ["station_id"], name: "index_arrivals_on_station_id"
     t.index ["walk_id"], name: "index_arrivals_on_walk_id"
   end
@@ -43,7 +44,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_104109) do
     t.string "provider", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "remember_created_at", precision: nil
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 

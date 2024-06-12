@@ -3,15 +3,47 @@
   <head>
     <title>The page you were looking for doesn't exist (404)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="/assets/tailwind.css" data-turbo-track="reload" />
+    <style>
+      html {
+        color: #4f4f64;
+      }
+      body {
+        background-color: #F1FAEE;
+        max-width: 640px;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+      main {
+        padding-bottom: 0.5rem;
+        flex: 1;
+        background-color: #FFFFFF;
+      }
+      .container {
+        margin: 2rem auto;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.125rem;
+        max-width: 66.6667%;
+      }
+      .container h1 {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      .container h2 {
+        margin-bottom: 2rem;
+      }
+      .container p {
+        font-size: 1rem;
+      }
+    </style>
   </head>
 
-  <body class="bg-yamanote-green-50 max-w-screen-sm mx-auto min-h-screen flex flex-col">
-    <main class="pb-2 flex-1 bg-white">
-      <div class="my-8 mx-auto py-8 px-4 text-lg text-center md:w-2/3">
-        <h1 class="text-xl font-bold">ご指定のページが見つかりません</h1>
-        <h2 class="mb-8">404 Not Found</h2>
-        <p class="text-base">アドレスが間違っているか、ページが移動した可能性があります。</p>
+  <body>
+    <main>
+      <div class="container">
+        <h1>ご指定のページが見つかりません</h1>
+        <h2>404 Not Found</h2>
+        <p>アドレスが間違っているか、ページが移動した可能性があります。</p>
       </div>
     </main>
   </body>

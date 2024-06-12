@@ -17,6 +17,6 @@ module WalkHelpers
     visit new_walk_path
     click_on 'はじめる'
     choose '内回り' unless clockwise
-    expect(page).to have_content('歩行記録ノートを作成しました')
+    click_on '確認しました'
   end
 end

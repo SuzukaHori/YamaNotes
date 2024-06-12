@@ -1,6 +1,8 @@
 - title 'ダッシュボード'
 - set_meta_tags description: '現在の一周の状態が表示される画面です。'
 
+div data-controller='caution'
+  = render partial: 'dialogs/caution'
 = render 'shared/errors', model: @arrival
 - if @walk.finished?
   .my-4

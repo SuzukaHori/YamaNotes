@@ -42,7 +42,7 @@ RSpec.describe 'Menu', type: :system do
 
   it 'フッターから利用規約にアクセスする' do
     visit root_path
-    within 'ul' do
+    within 'footer' do
       click_on '利用規約'
     end
     expect(page).to have_title '利用規約'
@@ -50,7 +50,7 @@ RSpec.describe 'Menu', type: :system do
 
   it 'フッターからプライバシーポリシーにアクセスする' do
     visit root_path
-    within 'ul' do
+    within 'footer' do
       click_on 'プライバシーポリシー'
     end
     expect(page).to have_title 'プライバシーポリシー'

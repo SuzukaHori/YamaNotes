@@ -1,4 +1,11 @@
-footer.bg-white.border-t.border-gray-200.p-4.text-xs.flex.justify-center
-  ul
-    li.inline-block.px-4 = link_to '利用規約', page_path('terms')
-    li.inline-block.px-4 = link_to 'プライバシーポリシー', page_path('privacy')
+footer.bg-white.border-t.border-gray-200.text-xs.text-center.pt-4.pb-3
+  ul.flex.justify-center.items-center.pb-2
+    li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to '利用規約', page_path('terms')
+    li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to 'プライバシーポリシー', page_path('privacy')
+    li.text-xl.px-4.hover:text-gray-400
+      = link_to "https://github.com/SuzukaHori/YamaNotes"
+        i.fa-brands.fa-github
+  ul.flex.justify-center.items-center
+    li.px-4
+      p.inline.pr-2 © 2024
+      = link_to "suzuka_hori", "https://x.com/suzuka_hori", class: "hover:underline hover:text-gray-400"

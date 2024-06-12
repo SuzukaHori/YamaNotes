@@ -6,7 +6,6 @@ application.register("modal", Modal);
 
 export default class extends Modal {
   connect() {
-    localStorage.removeItem("confirm");
     if (!localStorage.getItem("confirm")) {
       setTimeout(() => {
         this.open();

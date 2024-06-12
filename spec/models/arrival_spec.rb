@@ -49,11 +49,11 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
-  describe '#convert_blank_to_nil' do
+  describe '#convert_nil_to_blank' do
     it '空文字をnilに変換すること' do
-      arrival.memo = ''
+      arrival.memo = nil
       arrival.save!
-      expect(arrival.memo.nil?).to be true
+      expect(arrival.memo == '').to be true
     end
   end
 
@@ -82,18 +82,6 @@ RSpec.describe Arrival, type: :model do
       over_arrival = walk.arrivals.new(station_id: 2, arrived_at: Time.current)
       expect(over_arrival.valid?).to be false
       expect(over_arrival.errors.full_messages.join).to eq '駅の数以上の到着記録は作成できません'
-    end
-  end
-
-  describe '#updated?' do
-    it '編集済みの場合はtrueが返ること' do
-      arrival.assign_attributes({ memo: '新しいメモ' })
-      expect(arrival.updated?).to be true
-    end
-
-    it 'メモが空文字の場合はfalseが返ること' do
-      arrival.assign_attributes({ memo: '' })
-      expect(arrival.updated?).to be false
     end
   end
 end

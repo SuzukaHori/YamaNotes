@@ -4,14 +4,14 @@
     p.my-1 あなたは、山手線の#{Station.cache_count}駅全てを歩ききりました。
     p.my-1 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず、精力的に歩き続けたことは、見る人に深い感動を与えました。
     p.my-1 よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
-  table.mt-4.mx-auto.text-sm data-controller="time" data-time-departure-date-value="#{walk.created_at.iso8601}"
+  table.mt-6.mx-auto.text-sm.border.border-gray-400 data-controller="time" data-time-departure-date-value="#{walk.created_at.iso8601}"
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 出発時刻
-      td.border.border-gray-400.px-4.py-1
+      th.font-normal.bg-yamanote-green-50.px-3.md:px-4 出発時刻
+      td.py-1.px-3.md:px-4
         | #{l arrival_of_departure.arrived_at}
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 ゴール時刻
-      td.border.border-gray-400.px-4.py-1 #{l arrival_of_goal.arrived_at}
+      th.font-normal.bg-yamanote-green-50.px-3.md:px-4 ゴール時刻
+      td.py-1.px-3.md:px-4 #{l arrival_of_goal.arrived_at}
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.px-4.py-1 かかった時間
-      td.border.border-gray-400.px-4.py-1 #{time_to_reach_goal}
+      th.font-normal.bg-yamanote-green-50.px-3.md:px-4 かかった時間
+      td.py-1.px-3.md:px-4 #{time_to_reach_goal}

@@ -1,7 +1,7 @@
 ruby:
-  title "#{@arrival.station.name}駅に到着"
-  set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
   finish = @arrival == @walk.arrival_of_goal
+  title finish ? "#{@arrival.station.name}駅にゴール" : "#{@arrival.station.name}駅に到着"
+  set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
   image = image_url(finish ? 'finished.png' : 'arrived.png')
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
 

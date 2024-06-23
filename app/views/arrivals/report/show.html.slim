@@ -1,10 +1,22 @@
 ruby:
-  title "#{@arrival.station.name}駅に到着"
-  set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
-  image = image_url('arrived.png')
+  finish = @arrival == @walk.arrival_of_goal
+  if finish
+    title "#{@arrival.station.name}駅にゴール"
+    set_meta_tags description: '一周の表彰ページです'
+    image = image_url('finished.png')
+  else
+    title "#{@arrival.station.name}駅に到着"
+    set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
+    image = image_url('arrived.png')
+  end
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
 
-.text-center.my-8
-  p.text-3xl.font-bold.mt-4 #{@arrival.station.name}駅に到着しました🎉
-  = image_tag 'arrived.png', class: 'inline w-2/3 py-4', alt: '山手線徒歩で一周に挑戦中'
-  p.text-3xl みんなで応援しよう！
+- if finish
+  .my-8.mx-auto.py-8.px-4.text-lg.text-center.md:w-2/3
+    = render partial: 'arrivals/finished',
+      locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time_to_reach_goal: time_to_reach_goal(@walk) }
+- else
+  .text-center.my-8
+    p.text-3xl.font-bold.mt-4 #{@arrival.station.name}駅に到着しました🎉
+    = image_tag image, class: 'inline w-2/3 py-4', alt: '山手線徒歩で一周に挑戦中'
+    p.text-3xl みんなで応援しよう！

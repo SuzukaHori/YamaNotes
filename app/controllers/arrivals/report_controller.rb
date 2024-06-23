@@ -5,5 +5,6 @@ class Arrivals::ReportController < ApplicationController
 
   def show
     @arrival = Arrival.find(params[:arrival_id])
+    @walk = @arrival.walk
   end
 end

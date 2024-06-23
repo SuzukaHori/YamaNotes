@@ -1,7 +1,7 @@
 ruby:
   if @walk.finished?
     title "#{@station.name}駅にゴール"
-    set_meta_tags description: "一周の表彰ページです"
+    set_meta_tags description: '一周の表彰ページです'
     finish = true
     time_to_reach_goal = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.cache_count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_reach_goal}でした！"

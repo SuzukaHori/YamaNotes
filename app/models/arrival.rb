@@ -4,6 +4,7 @@ class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
   before_save :convert_nil_to_blank
+  before_update :add_space_after_url
   validates :arrived_at, presence: true
   validates :memo, length: { maximum: 140 }, allow_blank: true
   validate :prohibit_arrival_without_next_station, on: :create
@@ -49,6 +50,15 @@ class Arrival < ApplicationRecord
 
   def convert_nil_to_blank
     self.memo = '' if memo.nil?
+  end
+
+  def add_space_after_url
+    urls = URI.extract(memo)
+    return if urls.empty?
+
+    urls.each do |url|
+      memo.gsub!(/#{Regexp.escape(url)}(?!\s)/, "#{url} ") # rinku gemでURLの切れ目が正しく判定できない場合があるため、空白を追加
+    end
   end
 
   def check_arrival_location

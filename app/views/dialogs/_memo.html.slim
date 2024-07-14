@@ -3,5 +3,5 @@ dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal
   button.focus:outline-none.absolute.top-0.right-0.p-2.m-2.hover:bg-gray-100 data-action="click->modal#close" autofocus=true
     i.fa-solid.fa-xmark.fa-2xl
   = form_with model: arrival do |form|
-    = form.text_area :memo, rows: '6', class: 'w-full  text-base rounded-lg', placeholder: '辛くなってきた！自転車が羨ましい><', autofocus: true, maxlength: '140'
+    = form.text_area :memo, rows: '6', class: 'w-full  text-base rounded-lg', placeholder: '辛くなってきた！自転車が羨ましい><', autofocus: true, maxlength: '250'
     = form.submit '保存', class: 'block btn-primary mx-auto mt-2', data: { action: 'click->modal#close' }

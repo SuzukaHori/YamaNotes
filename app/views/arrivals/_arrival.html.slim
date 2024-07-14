@@ -12,7 +12,8 @@
         p.text-xl
           | #{arrival.station.name}駅
       - if arrival.memo.present?
-        = Rinku.auto_link(simple_format(arrival.memo), :all, 'target="_blank"').html_safe
+        #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
+          = Rinku.auto_link(simple_format(arrival.memo), :all, 'target="_blank"').html_safe
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
         .text-sm.h-8.link-important 編集

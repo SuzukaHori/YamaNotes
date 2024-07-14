@@ -308,7 +308,6 @@ GEM
       railties (>= 5.2)
     rexml (3.2.8)
       strscan (>= 3.0.9)
-    rinku (2.0.6)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -492,7 +491,6 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   rails-i18n
-  rinku
   rspec-rails
   rubocop
   rubocop-capybara

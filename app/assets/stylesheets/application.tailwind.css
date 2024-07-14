@@ -51,8 +51,4 @@
       transform: translateX(-100%);
     }
   }
-
-  #arrival_memo a {
-    @apply text-blue-400;
-  }
 }

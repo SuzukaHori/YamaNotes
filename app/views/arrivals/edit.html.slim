@@ -7,6 +7,6 @@
       p.ml-2.text-xl
         | #{@arrival.station.name}駅
     = f.label :memo, class: 'inline-block mt-4 mb-1'
-    = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: '辛くなってきた！自転車が羨ましい><', maxlength: 140, autofocus: true
+    = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: '辛くなってきた！自転車が羨ましい><', maxlength: 250, autofocus: true
     .text-center.my-2
       = f.submit '保存', class: 'btn-primary'

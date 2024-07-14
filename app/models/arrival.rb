@@ -6,7 +6,7 @@ class Arrival < ApplicationRecord
   before_save :convert_nil_to_blank
   before_update :add_space_after_url
   validates :arrived_at, presence: true
-  validates :memo, length: { maximum: 140 }, allow_blank: true
+  validates :memo, length: { maximum: 250 }, allow_blank: true # DBの制限は255字だが、リンクでスペースを生成する場合があるため250に設定
   validate :prohibit_arrival_without_next_station, on: :create
   validate :arrivals_count_must_be_within_limit, on: :create
   validate :check_arrived_time, on: :update

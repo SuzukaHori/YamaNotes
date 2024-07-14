@@ -26,11 +26,24 @@ RSpec.describe 'Memos', type: :system, js: true do
     expect(page).not_to have_content('新しいメモ')
   end
 
+  it "メモにリンクを貼る" do
+    visit walk_path
+    url1 = "https://github.com/users/SuzukaHori/projects/4"
+    url2 = "https://x.com/suzuka_hori"
+    add_memo(url1 + "と" + url2 + "をつなげます")
+    visit arrivals_path
+    expect(page).to have_link(url1)
+    expect(page).to have_link(url2)
+    click_on url1
+    switch_to_window(windows.last)
+    expect(page).to have_title("Backlog · YamaNotes")
+  end
+
   private
 
-  def add_memo
+  def add_memo(text = '新しいメモ')
     click_on 'memo_modal_button'
-    fill_in 'arrival_memo', with: '新しいメモ'
+    fill_in 'arrival_memo', with: text
     click_on '保存'
   end
 

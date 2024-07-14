@@ -57,7 +57,7 @@ class Arrival < ApplicationRecord
     return if urls.empty?
 
     urls.each do |url|
-      memo.gsub!(/#{Regexp.escape(url)}(?!\s)/, "#{url} ") # rinku gemでURLの切れ目が正しく判定できない場合があるため、空白を追加
+      memo.gsub!(/#{url}(?!\s)/, "#{url} ") # rinku gemでURLの切れ目が正しく判定できない場合があるため、空白を追加
     end
   end
 

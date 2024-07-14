@@ -62,7 +62,7 @@ RSpec.describe Arrival, type: :model do
       url = 'https://bimi.jorudan.co.jp/topics/14022.html'
       arrival.memo = "新宿駅の美味しいランチに#{url}行ってきたよ！"
       arrival.save!
-      expect(arrival.memo).to eq "新宿駅の美味しいランチに#{url + ' '}行ってきたよ！"
+      expect(arrival.memo).to eq "新宿駅の美味しいランチに#{url} 行ってきたよ！"
     end
   end
 

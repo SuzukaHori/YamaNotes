@@ -1,3 +1,4 @@
+- # rubocop:disable Rails/OutputSafety
 = turbo_frame_tag arrival do
   .ml-16.border-l-8.pl-4.pb-6.border-lime-500.relative
     .h-4.w-4.bg-white.border.border-lime-500.absolute.-left-3.top-3.rounded-full
@@ -13,9 +14,11 @@
           | #{arrival.station.name}駅
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
-          = Rinku.auto_link(simple_format(arrival.memo), :all, 'target="_blank"').html_safe
+          / XSSが起きないことを確認の上、slimlintから除外
+          = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
         .text-sm.h-8.link-important 編集
       - if deletable?(editable:, arrival:, arrivals:)
         = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: '_top', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+- # rubocop:enable Rails/OutputSafety

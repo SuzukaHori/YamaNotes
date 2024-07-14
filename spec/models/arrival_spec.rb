@@ -57,6 +57,15 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
+  describe '#add_space_after_url' do
+    it 'URLの直後に半角スペースを追加すること' do
+      url = 'https://bimi.jorudan.co.jp/topics/14022.html'
+      arrival.memo = "新宿駅の美味しいランチに#{url}行ってきたよ！"
+      arrival.save!
+      expect(arrival.memo).to eq "新宿駅の美味しいランチに#{url} 行ってきたよ！"
+    end
+  end
+
   describe '#check_arrival_location' do
     it '最後の到着を削除できること' do
       arrival_second

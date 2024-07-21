@@ -8,7 +8,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env['omniauth.auth']
     @user = User.find_or_create_by(provider: auth.provider, uid: auth.uid)
     if @user.persisted?
-      sign_in @user
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['omniauth.auth'] = auth
+      sign_in @user, event: :authentication
     else
       session['devise.google_oauth2_data'] = request.env['omniauth.auth'].except(:extra)
     end

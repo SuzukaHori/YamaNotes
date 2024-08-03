@@ -19,6 +19,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
+    error = request.env["omniauth.error"]
+    error_type = request.env["omniauth.error.type"]
+
+    Rails.logger.error "OmniAuth認証失敗: #{error.message} (Type: #{error_type})"
+
+    flash[:alert] = "認証に失敗しました。もう一度お試しください。"
     redirect_to root_path
   end
 end

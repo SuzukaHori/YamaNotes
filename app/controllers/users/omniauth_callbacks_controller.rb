@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include Devise::Controllers::Rememberable 
   skip_before_action :verify_authenticity_token, only: :google_oauth2
   skip_before_action :authenticate_user!
 
@@ -10,6 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       request.env['devise.mapping'] = Devise.mappings[:user]
       request.env['omniauth.auth'] = auth
+      remember_me(@user)
       sign_in @user, event: :authentication
     else
       session['devise.google_oauth2_data'] = request.env['omniauth.auth'].except(:extra)

@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.0'
+ruby '3.3.4'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -10,15 +10,15 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'font-awesome-sass'
 gem 'gon'
-gem 'high_voltage', '~> 3.1.2'
+gem 'high_voltage'
 gem 'importmap-rails'
 gem 'meta-tags'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
-gem 'pg', '~> 1.1'
-gem 'puma', '>= 5.0'
-gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
+gem 'pg'
+gem 'puma'
+gem 'rails', '7.2.0'
 gem 'rails-i18n'
 gem 'rinku'
 gem 'sentry-rails'
@@ -38,7 +38,7 @@ end
 
 group :development do
   gem 'bullet'
-  gem 'dockerfile-rails', '>= 1.6'
+  gem 'dockerfile-rails'
   gem 'i18n_generators', require: false
   gem 'prettier', require: false
   gem 'rubocop', require: false

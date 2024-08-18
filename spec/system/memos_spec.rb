@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Memos', type: :system, js: true do
+RSpec.describe 'Memos', :js, type: :system do
   before do
     user = FactoryBot.create(:user)
     sign_in user

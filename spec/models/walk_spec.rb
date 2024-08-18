@@ -35,7 +35,7 @@ RSpec.describe Walk, type: :model do
   describe '#arrivals_of_departure' do
     it '到着記録がない場合はnilが返ること' do
       walk = FactoryBot.create(:walk)
-      expect(walk.arrival_of_departure).to eq(nil)
+      expect(walk.arrival_of_departure).to be_nil
     end
 
     it '到着記録がある場合は最初の記録が返ること' do
@@ -48,7 +48,7 @@ RSpec.describe Walk, type: :model do
   describe '#arrival_of_goal' do
     it '一周終了していない場合はnilが返ること' do
       create_arrivals(walk, Station.cache_count)
-      expect(walk.arrival_of_goal).to eq(nil)
+      expect(walk.arrival_of_goal).to be_nil
     end
 
     it '到着記録がある場合は最後の記録が返ること' do

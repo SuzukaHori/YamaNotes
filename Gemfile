@@ -21,8 +21,11 @@ gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'rails-i18n'
 gem 'rinku'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'slim-rails'
 gem 'sprockets-rails'
+gem 'stackprof'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
@@ -35,6 +38,7 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'dockerfile-rails', '>= 1.6'
   gem 'i18n_generators', require: false
   gem 'prettier', require: false
   gem 'rubocop', require: false
@@ -55,5 +59,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
 end
-
-gem 'dockerfile-rails', '>= 1.6', group: :development

@@ -20,8 +20,8 @@ https://www.yamanotes.com
 <img width="1182" alt="履歴画面のキャプチャ" src="https://github.com/SuzukaHori/YamaNotes/assets/129706209/dca34d4f-048e-496a-828d-160551f4944f">
 
 ## 動作環境
-- Ruby 3.3.0
-- Ruby on Rails 7.1.3.3
+- Ruby 3.3.4
+- Ruby on Rails 7.2.0
 - Hotwire
 
 ## 環境変数

@@ -27,7 +27,6 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   it '到着ページが表示される' do
     create_arrivals(walk, 2)
     visit arrival_path(walk.arrivals.order(:created_at).last)
-    p walk.arrivals.last.station
     expect(page).to have_selector('img[alt="大崎駅のイラスト"]')
   end
 

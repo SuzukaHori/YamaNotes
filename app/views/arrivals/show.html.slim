@@ -16,7 +16,7 @@ ruby:
   - if finish
     = render partial: 'finished', locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time_to_reach_goal: }
   - else
-    = render partial: 'arrived', locals: { station: @station, number_of_walked: @number_of_walked, number_of_remaining: number_of_remaining, arrived_distance: @arrived_distance }
+    = render partial: 'arrived', locals: { station: @station, number_of_walked: @number_of_walked, number_of_remaining:, arrived_distance: @arrived_distance }
   .mt-4 data-controller='modal'
     button#memo_modal_button.link-important.w-44 data-action='modal#open'
       | メモを追加

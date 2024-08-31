@@ -17,6 +17,6 @@ ruby:
       locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time_to_reach_goal: time_to_reach_goal(@walk) }
 - else
   .text-center.my-8
-    p.text-3xl.font-bold.mt-4 #{@arrival.station.name}駅に到着しました🎉
-    = image_tag image, class: 'inline w-2/3 py-4', alt: '山手線徒歩で一周に挑戦中'
+    p.text-3xl.font-bold.m-4 #{@arrival.station.name}駅に到着しました🎉
+    = image_tag station_image_path(station: @arrival.station), class: 'max-w-40 max-h-40 mb-8 mx-auto', alt: "#{@arrival.station.name}駅のイラスト"
     p.text-3xl みんなで応援しよう！

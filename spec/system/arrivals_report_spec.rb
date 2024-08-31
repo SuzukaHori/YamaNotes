@@ -9,6 +9,7 @@ RSpec.describe 'Reports', type: :system do
     create_arrivals(walk, 1)
     visit arrival_report_path(walk.arrivals.last)
     expect(page).to have_title '品川駅に到着'
+    expect(page).to have_selector('img[alt="品川駅のイラスト"]')
   end
 
   it 'ゴール時にレポートページにアクセスする' do

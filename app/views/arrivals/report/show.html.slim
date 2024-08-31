@@ -18,5 +18,5 @@ ruby:
 - else
   .text-center.my-8
     p.text-3xl.font-bold.m-4 #{@arrival.station.name}駅に到着しました🎉
-    = image_tag station_image_path(station: @arrival.station), class: 'max-w-40 max-h-40 mb-8 mx-auto', alt: "#{@arrival.station.name}のイラスト"
+    = image_tag station_image_path(station: @arrival.station), class: 'max-w-40 max-h-40 mb-8 mx-auto', alt: "#{@arrival.station.name}駅のイラスト"
     p.text-3xl みんなで応援しよう！

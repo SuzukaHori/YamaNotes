@@ -8,21 +8,15 @@ ruby:
   else
     title "#{@station.name}駅に到着"
     set_meta_tags description: "#{@station.name}駅に到着の詳細ページです。"
-    number_of_walked = @number_of_walked
-    number_of_remaining = number_of_remaining(number_of_walked:)
-    arrived_distance = @arrived_distance
-    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{arrived_distance}kmです！"
+    number_of_remaining = number_of_remaining(number_of_walked: @number_of_walked)
+    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{@number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{@arrived_distance}kmです！"
   end
 
 .my-8.mx-auto.py-8.px-4.text-lg.text-center.md:w-2/3
   - if finish
     = render partial: 'finished', locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time_to_reach_goal: }
   - else
-      h2.mb-8.text-xl.font-bold #{@station.name}駅に到着🎉
-      p
-        | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
-        br
-        | 歩いた距離は約#{arrived_distance}kmです！
+    = render partial: 'arrived', locals: { station: @station, number_of_walked: @number_of_walked, number_of_remaining: number_of_remaining, arrived_distance: @arrived_distance }
   .mt-8 data-controller='modal'
     button#memo_modal_button.link-important.w-44 data-action='modal#open'
       | メモを追加

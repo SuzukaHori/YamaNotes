@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class ArrivalsController < ApplicationController
+class Walks::ArrivalsController < ApplicationController
+  before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show]
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index]
@@ -38,7 +39,7 @@ class ArrivalsController < ApplicationController
   end
 
   def destroy
-    redirect_to arrivals_path if @arrival.destroy
+    redirect_to arrivals_path, notice: '到着記録を削除しました。' if @arrival.destroy
   end
 
   private

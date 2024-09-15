@@ -55,7 +55,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_08_10_113902) do
     t.boolean "clockwise", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_walks_on_user_id", unique: true
+    t.boolean "finished", default: false, null: false
+    t.index ["user_id"], name: "index_walks_on_user_id"
   end
 
   add_foreign_key "arrivals", "stations"

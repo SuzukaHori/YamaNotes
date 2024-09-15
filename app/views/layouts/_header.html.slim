@@ -1,8 +1,8 @@
 header.bg-yamanote-green-100.flex.items-center.py-2.px-3.h-12.md:h-14.text-white
-  = link_to current_user ? walk_path : root_path do
+  = link_to current_user ? walks_path(current_user.active_walk) : root_path do
     h1.flex.items-center.justify-center
       = image_tag 'logo_header.png', class: 'inline h-11 py-1 transition duration-200 ease-in-out md:py-0 hover:scale-95', alt: 'YamaNotesのロゴ'
-  - if user_signed_in?
+  - if user_signed_in? && current_walk
     .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
       button.p-2.transition-all.duration-500.ease-out.rounded-lg.hover:bg-yamanote-green-200 data-action='modal#open' id='help_button'
         i.fa-solid.fa-circle-question.fa-xl

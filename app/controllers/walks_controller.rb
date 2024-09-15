@@ -19,22 +19,22 @@ class WalksController < ApplicationController
   end
 
   def create
-    walk = Walk.new(**walk_params, user: current_user)
-    if walk.invalid?
-      redirect_to walk_url(walk), alert: walk.errors.full_messages.join
+    if current_user.active_walk.present?
+      redirect_to walk_url(current_user.active_walk.id), alert: '新しく歩行を開始するには、一周を歩き終えるか、リタイアボタンから記録を削除してください。'
       return
     end
+    walk = current_user.walks.new
     walk.transaction do
       walk.save!
       walk.arrivals.create!(**arrival_params, arrived_at: Time.current)
     end
-    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました。'
+    redirect_to walk_url(walk), notice: '歩行記録ノートを作成しました。'
   end
 
   def update
     return unless current_walk.update(walk_params)
 
-    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
+    redirect_to  walk_arrivals_path(current_walk), notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
   end
 
   def destroy

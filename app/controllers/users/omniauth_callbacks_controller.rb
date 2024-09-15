@@ -18,7 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session['devise.google_oauth2_data'] = request.env['omniauth.auth'].except(:extra)
     end
     set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
-    redirect_to @user.walk ? walk_path : new_walk_path
+    redirect_to @user.active_walk.present? ? walk_path(@user.active_walk) : new_walk_path
   end
 
   def failure

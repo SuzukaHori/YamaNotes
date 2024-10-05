@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Walks::ArrivalsController < ApplicationController
+class ArrivalsController < ApplicationController
   before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show]
   before_action :set_arrival, only: %i[show edit update destroy]
@@ -21,7 +21,7 @@ class Walks::ArrivalsController < ApplicationController
   def create
     @arrival = current_walk.arrivals.new(**arrival_params, arrived_at: Time.current)
     if @arrival.save
-      redirect_to @arrival
+      redirect_to walk_arrival_path(walk_id: @arrival.walk.id, id: @arrival.id)
     else
       redirect_to walk_path, alert: '到着記録を保存できませんでした。'
     end
@@ -45,7 +45,7 @@ class Walks::ArrivalsController < ApplicationController
   private
 
   def set_arrival
-    @arrival = current_user.arrivals.find(params[:id])
+    @arrival = current_walk.arrivals.find(params[:id])
   end
 
   def set_user

@@ -17,8 +17,11 @@
           / XSSが起きないことを確認の上、slimlintから除外
           = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
     - if arrival.walk.user == current_user
-      = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
+      = link_to edit_walk_arrival_path(walk_id: arrival.walk.id, id: arrival.id), class: 'inline-block h-11 content-center' do
         .text-sm.h-8.link-important 編集
       - if deletable?(editable:, arrival:, arrivals:)
-        = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+        = link_to '到着を削除する',
+                  walk_arrival_path(walk_id: arrival.walk.id, id: arrival.id),
+                  class: 'text-sm text-gray-400 underline pl-4 hover:text-black',
+                  data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
 - # rubocop:enable Rails/OutputSafety

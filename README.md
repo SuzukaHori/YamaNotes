@@ -26,7 +26,7 @@ https://www.yamanotes.com
 
 ## 環境変数
 |  名称  |  説明  |
-| :---: | :---:| 
+| :---: | :---:|
 | GOOGLE_CLIENT_ID | GoogleのクライアントID  |
 | GOOGLE_CLIENT_SECRET  | Googleのクライアントシークレット |
 | FONTAWESOME_URL | Font AwesomeのCDNコード |
@@ -36,8 +36,11 @@ https://www.yamanotes.com
 ```
 $ git clone
 $ cd YamaNotes
+$ cp .env.example .env
+$ vi .env # set your secret keys
 $ bin/setup
 $ bin/dev
+$ open http://localhost:3000/
 ```
 
 ## Lint/Test

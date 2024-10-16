@@ -1,6 +1,6 @@
 = turbo_frame_tag @arrival
   = render 'shared/errors', model: @arrival
-  = form_with model: @arrival, method: :put do |f|
+  = form_with model: @arrival, url: walk_arrival_path(walk_id: @arrival.walk.id, id: @arrival.id), method: :put do |f|
     = f.label :arrived_at, class: 'inline-block mt-4 mb-1'
     .flex.items-center
       = f.time_select :arrived_at, {}, { class: 'rounded border border-gray-300' }

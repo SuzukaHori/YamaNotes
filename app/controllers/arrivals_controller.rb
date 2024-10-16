@@ -20,7 +20,7 @@ class ArrivalsController < ApplicationController
   def create
     @arrival = current_walk.arrivals.new(**arrival_params, arrived_at: Time.current)
     if @arrival.save
-      redirect_to @arrival
+      redirect_to walk_arrival_path(walk_id: @arrival.walk.id, id: @arrival.id)
     else
       redirect_to walk_path, alert: '到着記録を保存できませんでした。'
     end
@@ -38,13 +38,13 @@ class ArrivalsController < ApplicationController
   end
 
   def destroy
-    redirect_to arrivals_path, notice: '到着記録を削除しました。' if @arrival.destroy
+    redirect_to  walk_arrivals_path(id: @arrival.walk), notice: '到着記録を削除しました。' if @arrival.destroy
   end
 
   private
 
   def set_arrival
-    @arrival = current_user.arrivals.find(params[:id])
+    @arrival = current_walk.arrivals.find(params[:id])
   end
 
   def set_user

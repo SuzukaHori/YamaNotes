@@ -27,4 +27,4 @@
 = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }
 - if editable
   .text-center.my-4
-    = link_to '地図に戻る', walk_path, class: 'link-important'
+    = link_to '地図に戻る', walk_path(id: @walk.id), class: 'link-important'

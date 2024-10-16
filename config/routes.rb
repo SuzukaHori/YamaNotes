@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resource :walk, except: [:index]
-  resources :arrivals, except: [:new] do
-    resource :report, only: %i(show), controller: "arrivals/report"
+  resources :walks, except: [:index] do
+    resources :arrivals, except: [:new] do
+      resource :report, only: %i(show), controller: "arrivals/report"
+    end
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, only: [:destroy] do

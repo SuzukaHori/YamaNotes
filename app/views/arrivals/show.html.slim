@@ -22,6 +22,6 @@ ruby:
       | メモを追加
     = render partial: 'dialogs/memo', locals: { arrival: @arrival }
   .m-4
-    = render partial: 'shared/post_button', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
+    = render partial: 'shared/post_button', locals: { text: text_for_post, url: walk_arrival_report_path(walk_id: @walk.id, arrival_id: @arrival.id) }
   .mt-8
     = link_to '地図に戻る', walk_path, class: 'link-important w-44'

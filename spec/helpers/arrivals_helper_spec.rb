@@ -6,9 +6,29 @@ RSpec.describe ArrivalsHelper, type: :helper do
   let(:user) { FactoryBot.create(:user) }
   let(:walk) { user.create_walk(clockwise: true) }
 
-  it '#remaining_distance' do
-    create_arrivals(walk, 3)
-    expect(helper.remaining_distance(arrived_distance: walk.arrived_distance)).to eq(Station.total_distance - 2.9)
+  describe '#remaining_distance' do
+    context '1駅のみに到着した時' do
+      it '全部の距離 - 1駅の距離が表示されること' do
+        create_arrivals(walk, 2)
+        remaining_distance = Station.total_distance - walk.arrived_stations.first.distance_to_next(clockwise: true)
+        expect(helper.remaining_distance(arrived_distance: walk.arrived_distance)).to eq(remaining_distance)
+      end
+    end
+
+    context '残り1駅の場合' do
+      it '残り1駅の距離が表示されること' do
+        create_arrivals(walk, 30)
+        remaining_distance = walk.current_station.clockwise_distance_to_next
+        expect(helper.remaining_distance(arrived_distance: walk.arrived_distance)).to eq(remaining_distance)
+      end
+    end
+
+    context 'ゴール後の場合' do
+      it '0が表示されること' do
+        create_arrivals(walk, 31)
+        expect(helper.remaining_distance(arrived_distance: walk.arrived_distance)).to eq(0)
+      end
+    end
   end
 
   it '#number_of_remaining' do

@@ -7,7 +7,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   let(:walk) { user.create_walk(clockwise:) }
 
   before do
-    sign_in user
+    # sign_in user
   end
 
   it '歩行を開始する' do

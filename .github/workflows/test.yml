@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
       - name: Upload screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: failed-screenshots

@@ -20,15 +20,33 @@ RSpec.describe Walk, type: :model do
   end
 
   describe '#arrived_distance' do
-    it '外回りモードの時' do
-      create_arrivals(walk, 3)
-      expect(walk.arrived_distance).to eq(2.9)
+    context '外回りモードの時' do
+      let!(:walk) { FactoryBot.create(:walk, clockwise: true) }
+
+      it '歩行済みの距離が取得できること' do
+        create_arrivals(walk, 3)
+        expect(walk.arrived_distance).to eq(2.9)
+      end
+
+      it '歩行終了時に合計距離と同じになること' do
+        create_arrivals(walk, 31)
+        expect(walk.arrived_distance).to eq(37.8)
+      end
     end
 
-    it '内回りモードの時' do
-      walk = FactoryBot.create(:walk, clockwise: false)
-      create_arrivals(walk, 3)
-      expect(walk.arrived_distance).to eq(2.7)
+    context '内回りモードの時' do
+      let!(:walk) { FactoryBot.create(:walk, clockwise: false) }
+
+      it '歩行済みの距離が取得できること' do
+        create_arrivals(walk, 3)
+        p walk.arrived_stations
+        expect(walk.arrived_distance).to eq(2.7)
+      end
+
+      it '歩行終了時に合計距離と同じになること' do
+        create_arrivals(walk, 31)
+        expect(walk.arrived_distance).to eq(37.8)
+      end
     end
   end
 

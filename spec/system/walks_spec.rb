@@ -17,12 +17,14 @@ RSpec.describe 'Walks', type: :system do
 
   it '歩行記録がない場合、設定画面にリダイレクトされる' do
     visit walk_path
-    expect(page).to have_content('一周の設定をしてください')
+    expect(page).to have_content('まずは、出発駅を決めましょう！')
   end
 
   it '歩行記録が存在した場合、ダッシュボードにリダイレクトされる' do
     start_walk
     visit new_walk_path
+    click_on '進む'
+    click_on '進む'
     click_on 'はじめる'
     expect(page).to have_content('ユーザ一人につき、歩行記録は一つしか作成できません')
     expect(page).to have_title 'ダッシュボード'
@@ -30,12 +32,12 @@ RSpec.describe 'Walks', type: :system do
 
   it '歩行開始時のみ注意書きのモーダルが表示される' do
     visit new_walk_path
+    click_on '進む'
+    click_on '進む'
     click_on 'はじめる'
     expect(page).to have_content('山手線一周の注意')
     click_on '確認しました'
-    visit root_path
     visit walk_path
-    expect(page).to have_title 'ダッシュボード'
     expect(page).to have_no_content('山手線一周の注意')
   end
 

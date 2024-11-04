@@ -6,14 +6,15 @@
     h2.mb-2 YamaNotesへようこそ！
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       #page-1.hidden
-        p.mb-6 まずは出発駅を決めましょう！
+        h3.mb-6 まずは出発駅を決めましょう！
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
         = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg' }
+        p 自宅または宿泊場所に近い駅にするのがおすすめです。（帰りが楽になります。）
         .mt-6
           = link_to '#', data: { controller: 'introduction', action: 'introduction#next' }, class: 'link-important'
             | 次へ
       #page-2.hidden
-        p.mb-6 内回り・外回りを決めましょう
+        h3.mb-6 内回り・外回りを選びましょう
         div data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
           = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
           = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
@@ -21,15 +22,22 @@
           = f.label :clockwise_false, '内回り', class: 'ml-1'
           .mt-4
             = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
+          ul
+            li 内回り・外回りで、距離の差はほぼありません。お好みで選びましょう。
+            li 線路の内側・外側のどちらを歩くかで、歩行距離が変わる可能性があります。体力に応じてルートを決めてください。
         .mt-6
           = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
             | 前へ
           = link_to '#', data: { controller: 'introduction', action: 'introduction#next' }, class: 'link-important'
             | 次へ
       #page-3.hidden
-        p 以下の設定でよろしいですか？
-        p#selected_station
-        p#clockwise_mode
+        h3 この設定で始めてよろしいですか？
+        p
+          span#selected_station
+          | から
+        p
+          span#clockwise_mode
+          | で歩く
         = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
           | 設定し直す
         = f.submit 'はじめる', class: 'btn-primary'

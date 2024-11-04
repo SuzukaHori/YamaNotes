@@ -1,43 +1,46 @@
 - title '一周の設定'
 - set_meta_tags description: '一周の設定をするページです'
 
-.my-10.mx-auto.py-8.px-4.border-4.text-lg.text-center.md:w-2/3
-  .text-center.my-0.mx-auto
-    h2.mb-2 YamaNotesへようこそ！
+h2.text-lg.mt-10.mb-2.text-center YamaNotesへようこそ！
+.mb-10.mx-auto.py-8.px-6.border-4.text-lg.text-center.md:w-2/3
+  .text-center.my-0.mx-auto data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       #page-1.hidden
-        h3.mb-6 まずは出発駅を決めましょう！
+        h3.mb-6 まずは、出発駅を決めましょう！
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
         = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg' }
-        p 自宅または宿泊場所に近い駅にするのがおすすめです。（帰りが楽になります。）
-        .mt-6
+        = image_tag 'yamanote-line.png', alt: '山手線の路線図'
+        p.text-sm.list-disc.text-left おすすめは自宅や宿泊場所に近い駅です。<br>（帰りが楽になるため）
+        .mt-4.flex.justify-end
           = link_to '#', data: { controller: 'introduction', action: 'introduction#next' }, class: 'link-important'
-            | 次へ
+            | 進む
       #page-2.hidden
-        h3.mb-6 内回り・外回りを選びましょう
-        div data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
-          = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
-          = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
-          = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false' }, class: 'text-bright-orange-100'
-          = f.label :clockwise_false, '内回り', class: 'ml-1'
-          .mt-4
-            = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
-          ul
-            li 内回り・外回りで、距離の差はほぼありません。お好みで選びましょう。
-            li 線路の内側・外側のどちらを歩くかで、歩行距離が変わる可能性があります。体力に応じてルートを決めてください。
-        .mt-6
+        h3.mb-6 次に、回り方を決めましょう
+        = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
+        = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
+        = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false' }, class: 'text-bright-orange-100'
+        = f.label :clockwise_false, '内回り', class: 'ml-1'
+        .mt-4
+          = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
+        p.text-sm.list-disc.text-left 内回り・外回りで距離の差はほぼないので、お好みで選びましょう。
+        .mt-4.flex.justify-between
           = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
-            | 前へ
+            | 戻る
           = link_to '#', data: { controller: 'introduction', action: 'introduction#next' }, class: 'link-important'
-            | 次へ
+            | 進む
       #page-3.hidden
-        h3 この設定で始めてよろしいですか？
-        p
-          span#selected_station
-          | から
-        p
-          span#clockwise_mode
-          | で歩く
-        = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
-          | 設定し直す
-        = f.submit 'はじめる', class: 'btn-primary'
+        h3 この設定でよろしいですか？
+        .flex.justify-center.mt-4
+          table.text-left.text-xl
+            tr
+              td.pr-6 出発駅
+              td.font-semibold#selected_station
+            tr
+              td.pr-6 回り方
+              td.font-semibold#clockwise_mode
+        = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
+        p.text-sm.list-disc.text-left 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
+        .mt-4.flex.justify-between
+          = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important mr-12'
+            | 設定し直す
+          = f.submit 'はじめる', class: 'btn-primary'

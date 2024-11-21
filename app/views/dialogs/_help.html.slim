@@ -14,7 +14,7 @@ dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal
       | ボタンから、各駅のメモを追加できます。
     li.mb-2
       | 記録を間違った時は、
-      = link_to '到着一覧ページ', arrivals_path, class: 'text-blue-600 underline hover:text-gray-400'
+      = link_to '到着一覧ページ', walk_arrivals_path(current_walk&.id), class: 'text-blue-600 underline hover:text-gray-400'
       | から編集・削除できます。
     li.mb-2
       | スタート時刻や内回り・外回りなどの設定を変えたいときは、メニューの「リタイアする」から一度データを削除してください。

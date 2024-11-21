@@ -5,7 +5,7 @@
   .text-center.my-0.mx-auto
     h2.mb-2 YamaNotesへようこそ！
     p.mb-6 一周の設定をしてください。
-    = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
+    = form_with model: [@walk, @arrival], url: walks_path, method: :post do |f|
       .mb-6
         = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
         = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg' }

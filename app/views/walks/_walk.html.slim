@@ -12,6 +12,6 @@
   #next_station.flex.items-center
     span.mr-2 次の駅:
     span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.next(clockwise: walk.clockwise).name}駅
-    = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
+    = form_with model: arrival, url:  walk_arrivals_path(current_walk), class: 'ml-auto' do |f|
       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
       = f.submit '到着', class: 'px-6 btn-primary'

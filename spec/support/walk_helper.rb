@@ -15,8 +15,11 @@ module WalkHelpers
 
   def start_walk(clockwise: true)
     visit new_walk_path
-    click_on 'はじめる'
+    select '品川'
+    click_on '進む'
     choose '内回り' unless clockwise
+    click_on '進む'
+    click_on 'はじめる'
     click_on '確認しました'
   end
 end

@@ -39,7 +39,6 @@ RSpec.describe Walk, type: :model do
 
       it '歩行済みの距離が取得できること' do
         create_arrivals(walk, 3)
-        p walk.arrived_stations
         expect(walk.arrived_distance).to eq(2.7)
       end
 

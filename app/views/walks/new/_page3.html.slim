@@ -4,10 +4,10 @@
     table.text-left.text-xl
       tr
         td.pr-6 出発駅
-        td.font-semibold data-introduction-target="selectedStation"
+        td.font-semibold data-introduction-target='selectedStation'
       tr
         td.pr-6 回り方
-        td.font-semibold#clockwise_mode
+        td.font-semibold data-introduction-target='selectedClockwiseMode'
   = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
   p.text-sm.list-disc.text-left 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
   .mt-4.flex.justify-between

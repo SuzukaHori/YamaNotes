@@ -4,7 +4,7 @@ let currentPageNumber = 1;
 const totalPageNumber = 3;
 
 export default class extends Controller {
-  static targets = [ "selectedStation" ]
+  static targets = [ "selectedStation", "selectedClockwiseMode" ]
   connect() {
     const currentPage = document.getElementById(`page-${currentPageNumber}`);
     currentPage.classList.remove("hidden");
@@ -49,23 +49,21 @@ export default class extends Controller {
     const defaultStationName = "品川";
 
     const departureStationInput = document.getElementById("arrival_station_id");
-    const selectedStation = this.selectedStationTarget;
-    selectedStation.textContent = defaultStationName;
+    this.selectedStationTarget.textContent = defaultStationName;
 
     departureStationInput.addEventListener("input", () => {
-      selectedStation.textContent =
+      this.selectedStationTarget.textContent =
           departureStationInput.options[departureStationInput.selectedIndex].text;
     });
   }
 
   _selectMode() {
     const defaultClockwiseMode = "外回り";
-    const selectedClockwiseMode = document.getElementById("clockwise_mode");
-    selectedClockwiseMode.textContent = defaultClockwiseMode;
+    this.selectedClockwiseModeTarget.textContent = defaultClockwiseMode;
 
     document.querySelectorAll('input[name="walk[clockwise]"]').forEach((radioButton) => {
       radioButton.addEventListener("change", (event) => {
-        selectedClockwiseMode.textContent = event.target.value === "true" ? "外回り" : "内回り";
+        this.selectedClockwiseModeTarget.textContent = event.target.value === "true" ? "外回り" : "内回り";
       });
     });
   }

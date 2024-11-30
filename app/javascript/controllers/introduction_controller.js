@@ -4,6 +4,7 @@ let currentPageNumber = 1;
 const totalPageNumber = 3;
 
 export default class extends Controller {
+  static targets = [ "selectedStation" ]
   connect() {
     const currentPage = document.getElementById(`page-${currentPageNumber}`);
     currentPage.classList.remove("hidden");
@@ -48,7 +49,7 @@ export default class extends Controller {
     const defaultStationName = "品川";
 
     const departureStationInput = document.getElementById("arrival_station_id");
-    const selectedStation = document.getElementById("selected_station");
+    const selectedStation = this.selectedStationTarget;
     selectedStation.textContent = defaultStationName;
 
     departureStationInput.addEventListener("input", () => {

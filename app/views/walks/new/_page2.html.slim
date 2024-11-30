@@ -8,7 +8,7 @@
     = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
   p.text-sm.list-disc.text-left 内回り・外回りで距離の差はほぼないので、お好みで選びましょう。
   .mt-4.flex.justify-between
-    = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
+    = link_to '#', data: { action: 'introduction#back' }, class: 'link-important'
       | 戻る
-    = link_to '#', data: { controller: 'introduction', action: 'introduction#next' }, class: 'link-important'
+    = link_to '#', data: { action: 'introduction#next' }, class: 'link-important'
       | 進む

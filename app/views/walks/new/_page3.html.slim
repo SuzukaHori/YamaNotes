@@ -1,4 +1,4 @@
-#page-3.hidden
+#page-3.hidden data-pagination-target="page"
   h3 この設定でよろしいですか？
   .flex.justify-center.mt-4
     table.text-left.text-xl
@@ -11,6 +11,6 @@
   = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
   p.text-sm.list-disc.text-left 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
   .mt-4.flex.justify-between
-    = link_to '#', data: { action: 'introduction#back' }, class: 'link-important'
+    = link_to '#', data: { action: 'pagination#backStartPage' }, class: 'link-important'
       | 設定し直す
     = f.submit 'はじめる', class: 'btn-primary'

@@ -1,9 +1,9 @@
-#page-1
+#page-1 data-pagination-target="page"
   h3.mb-6 まずは、出発駅を決めましょう！
   = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
   = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg', data: { action: 'input->introduction#changeStation' } }
   = image_tag 'yamanote-line.png', alt: '山手線の路線図'
   p.text-sm.list-disc.text-left おすすめは自宅や宿泊場所に近い駅です。<br>（帰りが楽になるため）
   .mt-4.flex.justify-end
-    = link_to '#', data: { action: 'introduction#next' }, class: 'link-important'
+    = link_to '#', data: { action: 'pagination#next' }, class: 'link-important'
       | 進む

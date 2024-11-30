@@ -2,7 +2,7 @@
 - set_meta_tags description: '一周の設定をするページです'
 
 h2.text-lg.mt-10.mb-2.text-center YamaNotesへようこそ！
-.mb-10.mx-auto.py-8.px-6.border-4.text-lg.text-center.md:w-2/3 data-controller='introduction'
+.mb-10.mx-auto.py-8.px-6.border-4.text-lg.text-center.md:w-2/3 data-controller="pagination introduction" data-pagination-total-pages-value="3" data-pagination-current-page-value="1"
   .text-center.my-0.mx-auto data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
     = form_with model: [@walk, @arrival], url: walk_path, method: :post do |f|
       = render partial: 'walks/new/page1', locals: { f: }

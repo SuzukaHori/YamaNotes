@@ -1,8 +1,8 @@
 #page-2.hidden
   h3.mb-6 次に、回り方を決めましょう
-  = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true' }, class: 'text-dark-blue-200'
+  = f.radio_button :clockwise, true, checked: true, name: 'walk[clockwise]', data: { action: 'click->clockwise#true change->introduction#changeClockwiseMode' }, class: 'text-dark-blue-200'
   = f.label :clockwise_true, '外回り', class: 'ml-1 mr-4'
-  = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false' }, class: 'text-bright-orange-100'
+  = f.radio_button :clockwise, false, name: 'walk[clockwise]', data: { action: 'click->clockwise#false change->introduction#changeClockwiseMode' }, class: 'text-bright-orange-100'
   = f.label :clockwise_false, '内回り', class: 'ml-1'
   .mt-4
     = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }

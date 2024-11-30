@@ -4,13 +4,12 @@ let currentPageNumber = 1;
 const totalPageNumber = 3;
 
 export default class extends Controller {
-  static targets = [ "selectedStation", "selectedClockwiseMode" ]
+  static targets = ["selectedStation", "selectedClockwiseMode"];
   connect() {
     const currentPage = document.getElementById(`page-${currentPageNumber}`);
     currentPage.classList.remove("hidden");
-
-    this._selectStation();
-    this._selectMode();
+    this.selectedStationTarget.textContent = "品川"
+    this.selectedClockwiseModeTarget.textContent = "外回り";
   }
 
   disconnect() {
@@ -45,26 +44,14 @@ export default class extends Controller {
     }
   }
 
-  _selectStation() {
-    const defaultStationName = "品川";
-
-    const departureStationInput = document.getElementById("arrival_station_id");
-    this.selectedStationTarget.textContent = defaultStationName;
-
-    departureStationInput.addEventListener("input", () => {
-      this.selectedStationTarget.textContent =
-          departureStationInput.options[departureStationInput.selectedIndex].text;
-    });
+  changeStation(event) {
+    const selectedStationName =
+      event.target.options[event.target.selectedIndex].text;
+    this.selectedStationTarget.textContent = selectedStationName;
   }
 
-  _selectMode() {
-    const defaultClockwiseMode = "外回り";
-    this.selectedClockwiseModeTarget.textContent = defaultClockwiseMode;
-
-    document.querySelectorAll('input[name="walk[clockwise]"]').forEach((radioButton) => {
-      radioButton.addEventListener("change", (event) => {
-        this.selectedClockwiseModeTarget.textContent = event.target.value === "true" ? "外回り" : "内回り";
-      });
-    });
+  changeClockwiseMode(event) {
+    this.selectedClockwiseModeTarget.textContent =
+      event.target.value === "true" ? "外回り" : "内回り";
   }
 }

@@ -41,6 +41,6 @@ h2.text-lg.mt-10.mb-2.text-center YamaNotesへようこそ！
         = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
         p.text-sm.list-disc.text-left 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
         .mt-4.flex.justify-between
-          = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important mr-12'
+          = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
             | 設定し直す
           = f.submit 'はじめる', class: 'btn-primary'

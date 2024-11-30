@@ -1,4 +1,4 @@
-#page-1.hidden
+#page-1
   h3.mb-6 まずは、出発駅を決めましょう！
   = f.label :station_id, '出発駅', name: 'arrival[station_id]', class: 'pr-2'
   = f.collection_select :station_id, Station.cache_all, :id, :name, {}, { class: 'rounded-lg' }

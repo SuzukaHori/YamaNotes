@@ -12,6 +12,10 @@ export default class extends Controller {
     this._selectMode();
   }
 
+  disconnect() {
+    currentPageNumber = 0;
+  }
+
   next(event) {
     event.preventDefault();
     if (currentPageNumber < totalPageNumber) {
@@ -49,7 +53,7 @@ export default class extends Controller {
 
     departureStationInput.addEventListener("input", () => {
       selectedStation.textContent =
-        departureStationInput.options[departureStationInput.selectedIndex].text;
+          departureStationInput.options[departureStationInput.selectedIndex].text;
     });
   }
 
@@ -58,13 +62,10 @@ export default class extends Controller {
     const selectedClockwiseMode = document.getElementById("clockwise_mode");
     selectedClockwiseMode.textContent = defaultClockwiseMode;
 
-    document
-      .querySelectorAll('input[name="walk[clockwise]"]')
-      .forEach((radioButton) => {
-        radioButton.addEventListener("change", (event) => {
-          selectedClockwiseMode.textContent =
-            event.target.value === "true" ? "外回り" : "内回り";
-        });
+    document.querySelectorAll('input[name="walk[clockwise]"]').forEach((radioButton) => {
+      radioButton.addEventListener("change", (event) => {
+        selectedClockwiseMode.textContent = event.target.value === "true" ? "外回り" : "内回り";
       });
+    });
   }
 }

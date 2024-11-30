@@ -1,0 +1,16 @@
+#page-3.hidden
+  h3 この設定でよろしいですか？
+  .flex.justify-center.mt-4
+    table.text-left.text-xl
+      tr
+        td.pr-6 出発駅
+        td.font-semibold#selected_station
+      tr
+        td.pr-6 回り方
+        td.font-semibold#clockwise_mode
+  = image_tag 'clockwise.png', alt: '内回りの説明', data: { clockwise_target: 'guide' }
+  p.text-sm.list-disc.text-left 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
+  .mt-4.flex.justify-between
+    = link_to '#', data: { controller: 'introduction', action: 'introduction#back' }, class: 'link-important'
+      | 設定し直す
+    = f.submit 'はじめる', class: 'btn-primary'

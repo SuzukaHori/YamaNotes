@@ -58,10 +58,13 @@ export default class extends Controller {
     const selectedClockwiseMode = document.getElementById("clockwise_mode");
     selectedClockwiseMode.textContent = defaultClockwiseMode;
 
-    document.querySelectorAll('input[name="walk[clockwise]"]').forEach((radioButton) => {
-      radioButton.addEventListener("change", (event) => {
-        selectedClockwiseMode.textContent = event.target.value === "true" ? "外回り" : "内回り";
+    document
+      .querySelectorAll('input[name="walk[clockwise]"]')
+      .forEach((radioButton) => {
+        radioButton.addEventListener("change", (event) => {
+          selectedClockwiseMode.textContent =
+            event.target.value === "true" ? "外回り" : "内回り";
+        });
       });
-    });
   }
 }

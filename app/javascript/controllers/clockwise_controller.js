@@ -14,12 +14,12 @@ export default class extends Controller {
   async true() {
     this.guideTargets.forEach((target) => {
       target.src = this.truePath;
-    })
+    });
   }
 
   false() {
     this.guideTargets.forEach((target) => {
-      target.src = this.falsePath
-    })
+      target.src = this.falsePath;
+    });
   }
 }

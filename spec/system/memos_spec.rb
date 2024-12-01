@@ -33,7 +33,7 @@ RSpec.describe 'Memos', :js, type: :system do
     expect(page).to have_link(url1)
     click_on url2
     switch_to_window(windows.last)
-    expect(page).to have_title('Backlog · YamaNotes')
+    expect(page).to have_title('YamaNotes')
   end
 
   private

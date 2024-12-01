@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.4'
+ruby '3.3.6'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -18,7 +18,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'puma'
-gem 'rails', '7.2.0'
+gem 'rails', '8.0.0'
 gem 'rails-i18n'
 gem 'rinku'
 gem 'sentry-rails'

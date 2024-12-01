@@ -30,7 +30,7 @@ https://www.yamanotes.com
 ## 動作環境
 
 - Ruby 3.3.6
-- Ruby on Rails 7.2.0
+- Ruby on Rails 8.0.0
 - Hotwire
 
 ## 環境変数

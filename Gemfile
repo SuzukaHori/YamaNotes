@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.4'
+ruby '3.3.6'
 
 gem 'bootsnap', require: false
 gem 'devise'

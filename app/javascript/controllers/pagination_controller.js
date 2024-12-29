@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["page"];
-  static values = { totalPages: Number, currentPage: { type: Number, default: 1 } };
+  static values = {
+    totalPages: Number,
+    currentPage: { type: Number, default: 1 },
+  };
 
   connect() {
     this.showPage(this.currentPageValue);

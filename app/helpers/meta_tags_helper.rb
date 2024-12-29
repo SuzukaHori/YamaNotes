@@ -22,7 +22,7 @@ module MetaTagsHelper
       title: :title,
       description: :description,
       type: 'website',
-      url: request.original_url,
+      url: request.url,
       image: image_url('ogp.png'),
       local: 'ja-JP'
     }
@@ -31,7 +31,8 @@ module MetaTagsHelper
   def twitter
     {
       card: 'summary_large_image',
-      image: image_url('ogp.png')
+      image: image_url('ogp.png'),
+      url: request.url
     }
   end
 end

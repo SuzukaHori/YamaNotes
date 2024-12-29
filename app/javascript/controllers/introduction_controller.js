@@ -10,12 +10,12 @@ export default class extends Controller {
 
   changeStation(event) {
     const selectedStationName =
-        event.target.options[event.target.selectedIndex].text;
+      event.target.options[event.target.selectedIndex].text;
     this.selectedStationTarget.textContent = selectedStationName;
   }
 
   changeClockwiseMode(event) {
     this.selectedClockwiseModeTarget.textContent =
-        event.target.value === "true" ? "外回り" : "内回り";
+      event.target.value === "true" ? "外回り" : "内回り";
   }
 }

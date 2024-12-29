@@ -9,7 +9,7 @@ ruby:
     set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
     image = image_url('arrived.png')
   end
-  set_meta_tags({ og: { image: }, twitter: { card: 'summary', image: } })
+  set_meta_tags({ og: { image: }, twitter: { card: 'summary', image:, url: request.url } })
 
 - if finish
   .my-8.mx-auto.py-8.px-4.text-lg.text-center.md:w-2/3

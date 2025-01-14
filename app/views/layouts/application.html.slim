@@ -13,6 +13,8 @@ html  class='text-base-black'
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')
     = favicon_link_tag 'apple-touch-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png'
+    - if params[:id].present? && current_page?(arrival_path(params[:id]))
+      meta name='robots' content='noindex'
   body.bg-yamanote-green-50.max-w-screen-sm.mx-auto.min-h-screen.flex.flex-col
     - unless current_page?(root_path)
       = render partial: 'layouts/header', cached: true

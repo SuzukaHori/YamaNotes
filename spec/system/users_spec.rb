@@ -21,6 +21,28 @@ RSpec.describe 'Users', type: :system do
     expect(page).to have_content('Google アカウントでログインしました')
   end
 
+  context 'ログイン済みの場合 / 歩行データが存在しない時' do
+    it 'アラートが出ること / リダイレクトされること' do
+      visit root_path
+      sign_in user
+      click_on 'Googleでログイン', match: :first
+      expect(page).to have_title '一周の設定'
+    end
+  end
+
+  context 'ログイン済みの場合 / 歩行データが存在する時' do
+    let!(:walk) { FactoryBot.create(:walk, user: user) }
+    let!(:arrival) { FactoryBot.create(:arrival, walk:, station_id: 1) }
+
+    it 'アラートが出ること / リダイレクトされること' do
+      visit root_path
+      sign_in user
+      click_on 'Googleでログイン', match: :first
+      expect(page).to have_content('すでにログインしています。')
+      expect(page).to have_title 'ダッシュボード'
+    end
+  end
+
   it 'ログアウトする' do
     sign_in user
     start_walk

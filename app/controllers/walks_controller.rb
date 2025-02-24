@@ -38,7 +38,12 @@ class WalksController < ApplicationController
   end
 
   def destroy
-    @walk.destroy!
+    ActiveRecord::Base.transaction do
+      # N+1 が発生するため、arrivalを先に削除する
+      # 最後の到着駅以外は削除できないバリデーションがあるため、`delete_all`にしている
+      @walk.arrivals.delete_all
+      @walk.destroy!
+    end
     redirect_to root_path, notice: '歩行記録ノートを削除しました。'
   end
 

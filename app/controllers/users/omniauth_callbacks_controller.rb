@@ -2,8 +2,9 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include Devise::Controllers::Rememberable
-  skip_before_action :verify_authenticity_token, only: :google_oauth2
+  skip_before_action :verify_authenticity_token, only: %i[google_oauth2 failure]
   skip_before_action :authenticate_user!
+  before_action :redirect_if_already_logged_in
 
   def google_oauth2
     auth = request.env['omniauth.auth']
@@ -28,5 +29,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     flash[:alert] = '認証に失敗しました。もう一度お試しください。'
     redirect_to root_path
+  end
+
+  private
+
+  def redirect_if_already_logged_in
+    return unless user_signed_in?
+
+    alert = 'すでにログインしています。'
+    if current_walk
+      redirect_to walk_path, alert: alert
+    else
+      redirect_to new_walk_path, alert: alert
+    end
   end
 end

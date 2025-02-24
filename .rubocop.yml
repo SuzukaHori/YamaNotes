@@ -9,7 +9,7 @@ require:
   - rubocop-factory_bot
 
 AllCops:
-  TargetRubyVersion: 3.3.6
+  TargetRubyVersion: 3.4.2
 
 RSpec/MultipleExpectations:
   Max: 3

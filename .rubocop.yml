@@ -4,9 +4,10 @@ inherit_gem:
     - "config/rails.yml"
 require:
   - rubocop-capybara
-  - rubocop-rspec
   - rubocop-rspec_rails
   - rubocop-factory_bot
+plugins:
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.4.2

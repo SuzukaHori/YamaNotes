@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.6'
+ruby '3.4.2'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -18,7 +18,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'puma'
-gem 'rails', '8.0.0'
+gem 'rails', '8.0.1'
 gem 'rails-i18n'
 gem 'rinku'
 gem 'sentry-rails'
@@ -27,7 +27,7 @@ gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stackprof'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails'
+gem 'tailwindcss-rails', '~> 3.3.1' # 一時的に3.3.1に固定する cf. https://github.com/rails/tailwindcss-rails
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 

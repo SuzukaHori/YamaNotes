@@ -23,6 +23,9 @@ RSpec/ContextWording:
 RSpec/ExampleLength:
   Max: 8
 
+RSpec/LetSetup:
+  Enabled: false
+
 Rails/Output:
   Exclude:
     - 'db/seeds.rb'

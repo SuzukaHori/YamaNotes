@@ -88,6 +88,14 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     expect(url).to have_content '山手線30駅全てを歩ききりました'
     expect(url).to have_content '&hashtags=山手線を徒歩で一周'
   end
+
+  it '歩行記録を削除した状態でアクセスする' do
+    start_walk(clockwise:)
+    expect(user.reload.walk).to be_present
+    user.walk.destroy!
+    visit arrivals_path
+    expect(page).to have_content('歩行記録が存在しません。')
+  end
 end
 
 RSpec.describe 'Arrivals', type: :system do

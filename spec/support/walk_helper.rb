@@ -21,5 +21,6 @@ module WalkHelpers
     click_on '進む'
     click_on 'はじめる'
     click_on '確認しました'
+    expect(page).to have_content('歩行記録ノートを作成しました。')
   end
 end

@@ -19,5 +19,9 @@ class Users::ArrivalsController < ApplicationController
   def set_walk
     user = User.find(params[:user_id])
     @walk = user.walk
+
+    return if @walk
+
+    redirect_to root_path, alert: '歩行記録が存在しません。'
   end
 end

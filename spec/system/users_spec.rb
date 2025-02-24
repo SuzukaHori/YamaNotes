@@ -32,7 +32,7 @@ RSpec.describe 'Users', type: :system do
 
   context 'ログイン済みの場合 / 歩行データが存在する時' do
     let!(:walk) { FactoryBot.create(:walk, user: user) }
-    let!(:arrival) { FactoryBot.create(:arrival, walk:, station_id: 1) }
+    let(:arrival) { FactoryBot.create(:arrival, walk:, station_id: 1) }
 
     it 'アラートが出ること / リダイレクトされること' do
       visit root_path

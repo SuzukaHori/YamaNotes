@@ -89,7 +89,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     expect(url).to have_content '&hashtags=山手線を徒歩で一周'
   end
 
-  it "歩行記録を削除した状態でアクセスする" do
+  it '歩行記録を削除した状態でアクセスする' do
     start_walk(clockwise:)
     expect(user.walk).to be_present
     user.reload.walk.destroy!

@@ -4,12 +4,13 @@ inherit_gem:
     - "config/rails.yml"
 require:
   - rubocop-capybara
-  - rubocop-rspec
   - rubocop-rspec_rails
   - rubocop-factory_bot
+plugins:
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.3.6
+  TargetRubyVersion: 3.4.2
 
 RSpec/MultipleExpectations:
   Max: 3
@@ -22,6 +23,9 @@ RSpec/ContextWording:
 
 RSpec/ExampleLength:
   Max: 8
+
+RSpec/LetSetup:
+  Enabled: false
 
 Rails/Output:
   Exclude:

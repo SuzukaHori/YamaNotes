@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ArrivalsController < ApplicationController
-  before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_walk, only: %i[index show]
+  before_action :set_arrival, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index]
 
   def index
@@ -53,6 +53,10 @@ class ArrivalsController < ApplicationController
 
   def set_walk
     @walk = current_walk
+
+    return if @walk
+
+    redirect_to root_path, alert: '歩行記録が存在しません。'
   end
 
   def arrival_params

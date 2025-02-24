@@ -91,8 +91,8 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
 
   it '歩行記録を削除した状態でアクセスする' do
     start_walk(clockwise:)
-    expect(user.walk).to be_present
-    user.reload.walk.destroy!
+    expect(user.reload.walk).to be_present
+    user.walk.destroy!
     visit arrivals_path
     expect(page).to have_content('歩行記録が存在しません。')
   end

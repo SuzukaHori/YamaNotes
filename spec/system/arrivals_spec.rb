@@ -37,7 +37,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     switch_to_window(windows.last)
     url = URI.decode_www_form_component(current_url)
     expect(url).to have_content '駅に到着しました'
-    expect(url).to have_content '&button_hashtags=山手線を徒歩で一周'
+    expect(url).to have_content '&hashtags=山手線を徒歩で一周'
   end
 
   it '到着時刻を正常な値に編集する' do
@@ -86,7 +86,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
     switch_to_window(windows.last)
     url = URI.decode_www_form_component(current_url)
     expect(url).to have_content '山手線30駅全てを歩ききりました'
-    expect(url).to have_content '&button_hashtags=山手線を徒歩で一周'
+    expect(url).to have_content '&hashtags=山手線を徒歩で一周'
   end
 
   it '歩行記録を削除した状態でアクセスする' do

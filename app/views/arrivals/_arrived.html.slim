@@ -1,10 +1,11 @@
 h2.text-xl.font-bold.mb-4 #{station.name}駅に到着🎉
 
 = image_tag station_image_path(station:),
-            class: 'md:max-w-40 md:max-h-40 max-h-32 max-w-32 mb-4 mx-auto',
+            class: 'md:max-w-40 md:max-h-40 max-h-32 max-w-32 mx-auto',
+            width: "200", height: "200",
             alt: "#{station.name}駅のイラスト"
 
-p
+p.mt-2
   | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
   br
   | 歩いた距離は約#{arrived_distance}kmです！

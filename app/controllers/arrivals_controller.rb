@@ -38,7 +38,7 @@ class ArrivalsController < ApplicationController
   end
 
   def destroy
-    redirect_to arrivals_path, notice: '到着記録を削除しました。' if @arrival.destroy
+    redirect_to arrivals_path if @arrival.destroy
   end
 
   private

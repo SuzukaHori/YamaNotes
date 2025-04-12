@@ -27,7 +27,7 @@ gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stackprof'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 3.3.1' # 一時的に3.3.1に固定する cf. https://github.com/rails/tailwindcss-rails
+gem 'tailwindcss-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 

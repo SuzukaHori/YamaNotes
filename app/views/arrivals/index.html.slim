@@ -24,7 +24,9 @@
       = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
       = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
         i class='fa-regular fa-copy fa-xl'
-= render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }
+= turbo_frame_tag 'arrivals-list' do
+  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }
+
 - if editable
   .text-center.my-4
     = link_to '地図に戻る', walk_path, class: 'link-important'

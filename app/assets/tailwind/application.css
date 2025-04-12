@@ -1,0 +1,103 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-pop: Mochiy Pop One, sans-serif;
+  --font-meiryo:
+    メイリオ, Meiryo, Hiragino Kaku Gothic ProN, ヒラギノ角ゴ ProN W3,
+    ＭＳ Ｐゴシック, MS PGothic, MS UI Gothic, Helvetica, Arial;
+
+  --color-yamanote-green-50: #e3edd5;
+  --color-yamanote-green-80: #d6e6c1;
+  --color-yamanote-green-100: #a8cf75;
+  --color-yamanote-green-150: #6f9142;
+  --color-yamanote-green-200: #374821;
+
+  --color-bright-orange-50: #f2bf91;
+  --color-bright-orange-100: #e57a68;
+  --color-bright-orange-200: #cc6206;
+
+  --color-dark-blue-50: #e6f8ff;
+  --color-dark-blue-100: #cae7f2;
+  --color-dark-blue-200: #007fb1;
+
+  --color-base-black: #4f4f64;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow-sm transition-all	duration-200 ease-out hover:bg-bright-orange-50 focus:outline-hidden focus:ring-3 focus:ring-red-400 focus:ring-opacity-75 h-11 cursor-pointer;
+}
+
+@utility link-important {
+  @apply inline-flex items-center justify-center px-6 border border-gray-400 transition-all	duration-200 ease-out hover:bg-gray-100 rounded-lg h-11 cursor-pointer;
+}
+
+@utility map-icon {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+@utility toggle-switch {
+  @apply w-11 h-6 bg-gray-400 rounded-full relative 
+            peer-focus:outline-hidden peer-focus:ring-blue-300 peer-checked:bg-blue-600;
+
+  &::after {
+    @apply content-[''] absolute top-[2px] left-[2px] 
+              bg-white border rounded-full 
+              h-5 w-5 transition-all;
+  }
+
+  .peer:checked + &::after {
+    @apply translate-x-full border-white;
+  }
+}
+
+@utility slideover {
+  &dialog[open] ul {
+    animation: slide-in-from-left 0.3s forwards ease;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Mochiy Pop One';
+    src: url('../fonts/Mochiy_Pop_One.woff');
+  }
+}
+
+@layer components {
+
+  dialog {
+    @apply text-base-black
+  }
+
+  @keyframes slide-in-from-left{
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  #arrival_memo a {
+    @apply text-blue-400;
+  }
+}

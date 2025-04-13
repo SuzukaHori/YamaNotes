@@ -1,10 +1,10 @@
 dialog data-slideover-target='dialog' class='h-full max-h-full w-[640px] max-w-full my-0 mx-auto bg-transparent slideover'
   ul.p-8.bg-lime-50.h-full.w-56.md:w-72
-    - if current_user&.walk
-      li = link_to 'ダッシュボード', walk_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
+    - if current_walk
+      li = link_to 'ダッシュボード', walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
       li = link_to '到着一覧', arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-      li = link_to 'リタイアする', walk_path, data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' },
-                                            class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+      li = link_to 'リタイアする', walk_path(current_walk), data: { turbo_method: :delete, turbo_confirm: '歩行データはすべて削除されます。よろしいですか？' },
+                                                          class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
     li = link_to '退会する', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'データをすべて削除して退会します。よろしいですか？' }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
     li = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :post }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
     li = link_to 'トップページ', root_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'

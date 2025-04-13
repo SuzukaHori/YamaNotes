@@ -22,7 +22,7 @@ class ArrivalsController < ApplicationController
     if @arrival.save
       redirect_to @arrival
     else
-      redirect_to walk_path, alert: '到着記録を保存できませんでした。'
+      redirect_to walk_path(current_walk), alert: '到着記録を保存できませんでした。'
     end
   end
 

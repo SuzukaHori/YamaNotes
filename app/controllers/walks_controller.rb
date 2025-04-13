@@ -45,7 +45,7 @@ class WalksController < ApplicationController
       @walk.arrivals.delete_all
       @walk.destroy!
     end
-    redirect_to root_path, notice: '歩行記録ノートを削除しました。'
+    redirect_to new_walk_path, notice: '歩行記録ノートを削除しました。'
   end
 
   private

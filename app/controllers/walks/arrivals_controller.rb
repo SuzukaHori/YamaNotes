@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class Users::ArrivalsController < ApplicationController
+class Walks::ArrivalsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_walk, only: %i[index]
 
   def index
-    if @walk.publish || current_user == @walk.user
+    if @walk.publish
       @arrivals = @walk.arrivals.order(:created_at).includes(:station)
       @user = current_user
       render 'arrivals/index'
@@ -17,8 +17,7 @@ class Users::ArrivalsController < ApplicationController
   private
 
   def set_walk
-    user = User.find(params[:user_id])
-    @walk = user.walk
+    @walk = Walk.find(params[:walk_id])
 
     return if @walk
 

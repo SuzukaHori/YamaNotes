@@ -21,8 +21,8 @@
   - if editable && @walk.publish
     .flex.items-center.mt-4
       label.text-xs.pr-1 for='url' URL
-      = text_field_tag 'url', user_arrivals_url(@walk.user), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: user_arrivals_url(@walk.user) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
+      = text_field_tag 'url', walk_arrivals_url(@walk), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: walk_arrivals_url(@walk) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
         i class='fa-regular fa-copy fa-xl'
 = turbo_frame_tag 'arrivals-list' do
   = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }

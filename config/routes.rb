@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resource :walk, only: %i(show create update destroy new edit)
+  resources :walks
   resources :arrivals, except: [:new] do
     resource :report, only: %i(show), controller: "arrivals/report"
   end

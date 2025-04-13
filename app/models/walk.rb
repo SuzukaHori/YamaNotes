@@ -5,6 +5,7 @@ class Walk < ApplicationRecord
   has_many :arrivals, dependent: :destroy
   has_many :stations, through: :arrivals
   validates :clockwise, inclusion: { in: [true, false] }
+  validates :user_id, uniqueness: { message: '一人につき、歩行記録は一つしか作成できません' }
 
   def current_station
     arrivals.includes(:station).order(:created_at).last&.station

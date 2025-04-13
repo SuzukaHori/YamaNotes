@@ -21,7 +21,7 @@ class WalksController < ApplicationController
   def create
     walk = Walk.new(**walk_params, user: current_user)
     if walk.invalid?
-      redirect_to walk_path(walk), alert: walk.errors.full_messages.join
+      redirect_to walk_path(current_walk), alert: walk.errors.full_messages.join
       return
     end
 

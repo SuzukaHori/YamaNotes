@@ -48,7 +48,7 @@ if User.exists?
 else
   ActiveRecord::Base.transaction do
     user = User.create!(uid: 108_291_120_728_823_030_470, provider: 'google_oauth2')
-    walk = user.create_walk!
+    walk = user.walks.create!
     (Station.cache_count + 1).times do |n|
       station_id = n >= Station.cache_count ? 1 : n + 1
       walk.arrivals.create!(station_id:, arrived_at: Time.current)

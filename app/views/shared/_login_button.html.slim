@@ -1,5 +1,5 @@
-- if user_signed_in?
-  = link_to 'ダッシュボードへ', walk_path, class: 'btn-primary px-12'
+- if current_walk
+  = link_to 'ダッシュボードへ', walk_path(current_walk), class: 'btn-primary px-12'
 - else
   = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary px-12' do
     | Googleでログイン

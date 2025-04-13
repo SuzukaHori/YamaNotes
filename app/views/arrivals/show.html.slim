@@ -24,4 +24,4 @@ ruby:
   .m-4
     = render partial: 'shared/post_button', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
   .mt-8
-    = link_to '地図に戻る', walk_path, class: 'link-important w-44'
+    = link_to '地図に戻る', walk_path(current_walk), class: 'link-important w-44'

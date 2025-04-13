@@ -8,13 +8,16 @@ Rails.application.routes.draw do
     resource :report, only: %i(show), controller: "arrivals/report"
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  # resources :users, only: [:destroy] do
-  #   resources :arrivals, only: [:index], :to => 'users/arrivals#index'
-  # end
   resources :users, only: [:destroy]
   devise_scope :user do
     post 'logout', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
+
+  # 以下の2つのルーティングはURLの修正に伴いリダイレクトさせているが、後に削除する
+  resources :users, only: [] do
+    get "/arrivals", :to => 'temp/arrivals#index'
+  end
+  get '/walk', :to => 'temp/walks#show'
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 end

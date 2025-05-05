@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Temp::ArrivalsController < ApplicationController
+class Tmp::ArrivalsController < ApplicationController
   skip_before_action :authenticate_user!
   # URL変更のため一時的に定義しているが、後に削除する
 

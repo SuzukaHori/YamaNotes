@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   # 以下の2つのルーティングはURLの修正に伴いリダイレクトさせているが、後に削除する
-  scope module: 'temp' do
+  scope module: 'tmp' do
     resources :users, only: [] do
       resources :arrivals, only: :index
     end

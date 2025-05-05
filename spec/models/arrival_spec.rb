@@ -50,10 +50,10 @@ RSpec.describe Arrival, type: :model do
   end
 
   describe '#convert_nil_to_blank' do
-    it '空文字をnilに変換すること' do
+    it 'nilを空文字に変換すること' do
       arrival.memo = nil
       arrival.save!
-      expect(arrival.memo == '').to be true
+      expect(arrival.memo).to eq ''
     end
   end
 

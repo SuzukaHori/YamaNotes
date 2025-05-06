@@ -16,6 +16,7 @@ gem 'meta-tags'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'ostruct' # 本来このGemは記述不要なので、後ほど削除する
 gem 'pg'
 gem 'puma'
 gem 'rails', '8.0.1'

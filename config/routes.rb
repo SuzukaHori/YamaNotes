@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   end
 
   # 以下の2つのルーティングはURLの修正に伴いリダイレクトさせているが、後に削除する
-  scope module: 'tmp' do
-    resources :users, only: [] do
-      resources :arrivals, only: :index
-    end
-    get '/walk', to: 'walks#show'
-  end
+  # scope module: 'tmp' do
+  #   resources :users, only: [] do
+  #     resources :arrivals, only: :index
+  #   end
+  #   get '/walk', to: 'walks#show'
+  # end
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 end

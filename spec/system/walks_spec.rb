@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Walks', type: :system do
   let(:user) { FactoryBot.create(:user) }
+  let(:walk) { user.walks.take }
 
   before do
     sign_in user
@@ -15,10 +16,10 @@ RSpec.describe 'Walks', type: :system do
     end.to change(Walk, :count).by(1)
   end
 
-  it '歩行記録がない場合、設定画面にリダイレクトされる' do
-    visit walk_path
-    expect(page).to have_content('まずは、出発駅を決めましょう！')
-  end
+  # it '歩行記録がない場合、設定画面にリダイレクトされる' do
+  #   visit walk_path
+  #   expect(page).to have_content('まずは、出発駅を決めましょう！')
+  # end
 
   it '歩行記録が存在した場合、ダッシュボードにリダイレクトされる' do
     start_walk
@@ -26,7 +27,7 @@ RSpec.describe 'Walks', type: :system do
     click_on '進む'
     click_on '進む'
     click_on 'はじめる'
-    expect(page).to have_content('ユーザ一人につき、歩行記録は一つしか作成できません')
+    expect(page).to have_content('一人につき、実施中の歩行記録は一つしか作成できません')
     expect(page).to have_title 'ダッシュボード'
   end
 
@@ -37,7 +38,7 @@ RSpec.describe 'Walks', type: :system do
     click_on 'はじめる'
     expect(page).to have_content('山手線一周の注意')
     click_on '確認しました'
-    visit walk_path
+    visit current_path
     expect(page).to have_no_content('山手線一周の注意')
   end
 

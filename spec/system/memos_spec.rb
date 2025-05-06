@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Memos', :js, type: :system do
+  let!(:user) { FactoryBot.create(:user) }
+  let(:walk) { user.walks.take }
+
   before do
-    user = FactoryBot.create(:user)
     sign_in user
     start_walk
-    visit walk_path
+    visit walk_path(walk)
   end
 
   it 'メモを追加する' do

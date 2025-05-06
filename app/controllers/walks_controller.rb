@@ -65,7 +65,7 @@ class WalksController < ApplicationController
   end
 
   def set_walk
-    @walk = current_walk
+    @walk = current_user.walks.find(params[:id])
   end
 
   def set_maptiler_key

@@ -5,7 +5,7 @@ class Walk < ApplicationRecord
   has_many :arrivals, dependent: :destroy
   has_many :stations, through: :arrivals
   validates :clockwise, inclusion: { in: [true, false] }
-  validates :user_id, uniqueness: { message: '一人につき、歩行記録は一つしか作成できません' }
+  validate :active_walk_uniqueness, on: :create
 
   def current_station
     arrivals.includes(:station).order(:created_at).last&.station
@@ -39,5 +39,14 @@ class Walk < ApplicationRecord
 
   def finished?
     arrivals.count > Station.cache_count
+  end
+
+  private
+
+  def active_walk_uniqueness
+    # TODO: 後ほど active な walk のみを対象に限定する
+    return if user.walks.empty?
+
+    errors.add(:user_id, '一人につき、実施中の歩行記録は一つしか作成できません')
   end
 end

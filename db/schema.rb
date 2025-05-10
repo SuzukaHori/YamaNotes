@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_08_10_113902) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_10_053612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "arrivals", force: :cascade do |t|
     t.bigint "walk_id"
     t.bigint "station_id"
-    t.string "memo", limit: 255
-    t.datetime "arrived_at", precision: 0, null: false
+    t.string "memo", limit: 255, default: "", null: false
+    t.datetime "arrived_at", precision: nil, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_arrivals_on_created_at"
@@ -40,7 +40,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_08_10_113902) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.decimal "uid", null: false
+    t.string "uid", null: false
     t.string "provider", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

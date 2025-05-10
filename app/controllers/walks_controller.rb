@@ -21,14 +21,15 @@ class WalksController < ApplicationController
   def create
     walk = Walk.new(**walk_params, user: current_user)
     if walk.invalid?
-      redirect_to walk_url(walk), alert: walk.errors.full_messages.join
+      redirect_to walk_path(current_walk), alert: walk.errors.full_messages.join
       return
     end
+
     walk.transaction do
       walk.save!
       walk.arrivals.create!(**arrival_params, arrived_at: Time.current)
     end
-    redirect_to walk_url(@walk), notice: '歩行記録ノートを作成しました。'
+    redirect_to walk_path(walk), notice: '歩行記録ノートを作成しました。'
   end
 
   def update
@@ -44,7 +45,7 @@ class WalksController < ApplicationController
       @walk.arrivals.delete_all
       @walk.destroy!
     end
-    redirect_to root_path, notice: '歩行記録ノートを削除しました。'
+    redirect_to new_walk_path, notice: '歩行記録ノートを削除しました。'
   end
 
   private
@@ -64,7 +65,7 @@ class WalksController < ApplicationController
   end
 
   def set_walk
-    @walk = current_walk
+    @walk = current_user.walks.find(params[:id])
   end
 
   def set_maptiler_key

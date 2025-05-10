@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   let(:user) { FactoryBot.create(:user) }
-  let(:walk) { user.create_walk(clockwise:) }
+  let(:walk) { user.walks.create(clockwise:) }
 
   before do
     sign_in user
@@ -74,7 +74,7 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
 
   it 'すべての駅に到着する' do
     create_arrivals(walk, 30)
-    visit walk_path
+    visit walk_path(walk)
     click_on '到着'
     expect(page).to have_content('あなたは、山手線の30駅全てを歩ききりました')
   end
@@ -90,9 +90,8 @@ RSpec.shared_examples 'Arrivals_examples' do |clockwise|
   end
 
   it '歩行記録を削除した状態でアクセスする' do
-    start_walk(clockwise:)
-    expect(user.reload.walk).to be_present
-    user.walk.destroy!
+    expect(walk).to be_present
+    walk.destroy!
     visit arrivals_path
     expect(page).to have_content('歩行記録が存在しません。')
   end

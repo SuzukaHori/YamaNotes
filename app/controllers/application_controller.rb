@@ -2,8 +2,13 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  helper_method :current_walk
 
   def current_walk
-    current_user&.walk
+    # TODO: テストを直す
+    return nil unless user_signed_in?
+    return nil if current_user.walks.empty?
+
+    current_user.walks.order(:created_at).last
   end
 end

@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Menu', type: :system do
   let(:user) { FactoryBot.create(:user) }
+  let(:walk) { user.walks.take }
 
   before do
     sign_in user
@@ -11,7 +12,7 @@ RSpec.describe 'Menu', type: :system do
   end
 
   it 'メニューバーから到着ページにアクセスする' do
-    visit walk_path
+    visit walk_path(walk)
     click_on 'menu_button'
     click_on '到着一覧'
     expect(page).to have_title '到着一覧'
@@ -21,14 +22,14 @@ RSpec.describe 'Menu', type: :system do
   end
 
   it 'ヘッダーのアイコンからヘルプにアクセスする' do
-    visit walk_path
+    visit walk_path(walk)
     click_on 'help_button'
     expect(page).to have_css 'h2', text: '使い方'
   end
 
   context 'ヘッダーのロゴをクリックする' do
     it 'ログイン済みの場合、トップページにアクセスする' do
-      visit walk_path
+      visit walk_path(walk)
       find('img[alt="YamaNotesのロゴ"]').click
       expect(page).to have_title 'ダッシュボード'
     end

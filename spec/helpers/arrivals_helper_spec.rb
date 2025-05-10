@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ArrivalsHelper, type: :helper do
   let(:user) { FactoryBot.create(:user) }
-  let(:walk) { user.create_walk(clockwise: true) }
+  let(:walk) { user.walks.create(clockwise: true) }
 
   describe '#remaining_distance' do
     context '1駅のみに到着した時' do

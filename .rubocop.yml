@@ -24,6 +24,9 @@ RSpec/ContextWording:
 RSpec/ExampleLength:
   Max: 8
 
+RSpec/NestedGroups:
+  Max: 4
+
 RSpec/LetSetup:
   Enabled: false
 

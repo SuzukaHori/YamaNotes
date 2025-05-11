@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+puts "#{Rails.env}環境のテストデータ作成"
+
 stations = [
   { "id": 1, "name": '品川', "latitude": 35.628471, "longitude": 139.73876, "clockwise_distance_to_next": 2.0, "clockwise_next_station_id": 2 },
   { "id": 2, "name": '大崎', "latitude": 35.6197, "longitude": 139.728553, "clockwise_distance_to_next": 0.9, "clockwise_next_station_id": 3 },
@@ -55,4 +57,5 @@ else
     end
   end
   puts 'テストユーザとデータを作成しました'
+  puts '--------'
 end

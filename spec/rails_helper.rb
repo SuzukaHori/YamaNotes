@@ -71,5 +71,11 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :helper
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.include WalkHelpers
+
+  # TODO: Remove when Devise fixes https://github.com/heartcombo/devise/issues/5705
+  config.before do
+    Rails.application.reload_routes_unless_loaded
+  end
 end

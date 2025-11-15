@@ -33,7 +33,7 @@ class ArrivalsController < ApplicationController
     if @arrival.save
       flash.now.notice = '到着記録を更新しました。'
     else
-      render 'edit', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_content
     end
   end
 

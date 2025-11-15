@@ -146,7 +146,7 @@ RSpec.describe 'Arrivals', type: :request do
           expect do
             patch arrival_path(arrival), params: { arrival: arrival_params }
           end.not_to(change { arrival.reload.memo })
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end

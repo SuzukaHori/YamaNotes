@@ -10,7 +10,7 @@ plugins:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.4.2
+  TargetRubyVersion: 3.4.7
 
 RSpec/MultipleExpectations:
   Max: 3

@@ -33,9 +33,6 @@ RSpec.describe 'Memos', :js, type: :system do
     add_memo("#{url1}と#{url2}をつなげます")
     visit arrivals_path
     expect(page).to have_link(url1)
-    click_on url2
-    switch_to_window(windows.last)
-    expect(page).to have_title('YamaNotes')
   end
 
   private

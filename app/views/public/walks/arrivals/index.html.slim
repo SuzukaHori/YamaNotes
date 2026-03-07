@@ -1,0 +1,26 @@
+- title '到着一覧'
+- set_meta_tags description: '到着記録の一覧ページです。'
+
+.py-4
+  .flex
+    h2.text-2xl.font-bold.inline-block 到着履歴
+
+  - @arrivals.each do |arrival|
+    .ml-16.border-l-8.pl-4.pb-6.border-lime-500.relative
+      .h-4.w-4.bg-white.border.border-lime-500.absolute.-left-3.top-3.rounded-full
+      .mb-2
+        .flex.items-center.py-2
+          span.-ml-24.pl-2.mr-9.text-xl.w-16
+            | #{l arrival.arrived_at, format: :without_date}
+          - if arrival == @arrivals.first
+            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm 出発
+          - elsif arrival == @arrivals.last && arrival.walk.finished?
+            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
+          p.text-xl
+            | #{arrival.station.name}駅
+        - if arrival.memo.present?
+          #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
+            / XSSが起きないことを確認の上、slimlintから除外
+            - # rubocop:disable Rails/OutputSafety
+            = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
+            - # rubocop:enable Rails/OutputSafety

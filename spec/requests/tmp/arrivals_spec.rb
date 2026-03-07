@@ -11,7 +11,7 @@ RSpec.describe 'Tmp::Arrivals', type: :request do
 
     it '歩行記録の到着一覧にリダイレクトされる' do
       get_tmp_arrivals
-      expect(response).to redirect_to(walk_arrivals_url(walk))
+      expect(response).to redirect_to(public_walk_arrivals_url(walk))
     end
   end
 end

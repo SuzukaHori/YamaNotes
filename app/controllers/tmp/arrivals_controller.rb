@@ -7,6 +7,6 @@ class Tmp::ArrivalsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     walk = user.walks.order(:created_at).first!
-    redirect_to walk_arrivals_url(walk)
+    redirect_to public_walk_arrivals_url(walk)
   end
 end

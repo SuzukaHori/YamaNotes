@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Walks::ArrivalsController < ApplicationController
+class Public::Walks::ArrivalsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_walk, only: %i[index]
 

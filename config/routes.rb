@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :walks do
-    resources :arrivals, only: [:index], :to => 'walks/arrivals#index'
+  resources :walks
+  namespace :public do
+    resources :walks, only: [] do
+      resources :arrivals, only: [:index], controller: 'walks/arrivals'
+    end
   end
   resources :arrivals, except: [:new] do
     resource :report, only: %i(show), controller: "arrivals/report"

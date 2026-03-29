@@ -9,6 +9,23 @@ RSpec.describe 'Walks', type: :request do
     sign_in user
   end
 
+  describe 'GET /walks' do
+    subject(:index_walks) { get walks_path }
+
+    context '歩行記録がない場合' do
+      it { is_expected.to eq(200) }
+    end
+
+    context '歩行記録がある場合' do
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
+
+      it '歩行記録の一覧が表示される' do
+        index_walks
+        expect(response.body).to include('歩行記録一覧')
+      end
+    end
+  end
+
   describe 'POST /walks' do
     subject(:create_walk) { post walks_path, params: walk_params }
 
@@ -26,13 +43,26 @@ RSpec.describe 'Walks', type: :request do
       expect(flash[:notice]).to eq('歩行記録ノートを作成しました。')
     end
 
-    context '既に歩行記録が存在する場合' do
+    context '未完了の歩行記録が既に存在する場合' do
       let!(:existing_walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
 
       it '既存の歩行記録ページにリダイレクトされる' do
         create_walk
         expect(response).to redirect_to walk_path(existing_walk)
         expect(flash[:alert]).to eq('ユーザ一人につき、実施中の歩行記録は一つしか作成できません')
+      end
+    end
+
+    context '完了済みの歩行記録のみ存在する場合' do
+      let!(:finished_walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
+
+      before do
+        allow_any_instance_of(Walk).to receive(:finished?).and_return(true)
+      end
+
+      it '新しい歩行記録が作成される' do
+        expect { create_walk }.to change(Walk, :count).by(1)
+        expect(response).to redirect_to walk_path(Walk.last)
       end
     end
   end

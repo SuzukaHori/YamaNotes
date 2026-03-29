@@ -1,0 +1,29 @@
+- title '歩行記録一覧'
+- set_meta_tags description: '過去の歩行記録の一覧ページです。'
+
+.py-4
+  .flex.items-center.mb-4
+    h2.text-2xl.font-bold 歩行記録一覧
+    - unless current_walk
+      .ml-auto
+        = link_to '新しい歩行を開始', new_walk_path, class: 'link-important'
+
+  - if @walks.empty?
+    p.text-gray-500.text-center.py-8 歩行記録がありません。
+  - else
+    ul.divide-y.divide-gray-200
+      - @walks.each do |walk|
+        li.py-4.flex.items-center.gap-4
+          .flex-1
+            .flex.items-center.gap-2.mb-1
+              - if walk.finished?
+                span.text-xs.bg-yamanote-green-150.text-white.px-2.py-0.5.rounded-full 完了
+              - else
+                span.text-xs.bg-yellow-400.text-white.px-2.py-0.5.rounded-full 進行中
+              span.text-sm.text-gray-500
+                = l walk.arrival_of_departure.arrived_at, format: :long
+            p.text-sm #{walk.number_of_walked}駅 / #{walk.clockwise ? '外回り' : '内回り'}
+          - if walk.finished?
+            = link_to '記録を見る', walk_arrivals_path(walk), class: 'text-blue-600 hover:underline text-sm'
+          - else
+            = link_to 'ダッシュボード', walk_path(walk), class: 'text-blue-600 hover:underline text-sm'

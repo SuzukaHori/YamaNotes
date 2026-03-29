@@ -5,10 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_walk
 
   def current_walk
-    # TODO: テストを直す
     return nil unless user_signed_in?
-    return nil if current_user.walks.empty?
 
-    current_user.walks.order(:created_at).last
+    current_user.walks.find_by(active: true)
   end
 end

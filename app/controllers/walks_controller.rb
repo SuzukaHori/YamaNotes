@@ -5,6 +5,10 @@ class WalksController < ApplicationController
   before_action :set_maptiler_key, only: %i[show]
   before_action :redirect_if_walk_not_exist, only: %i[show]
 
+  def index
+    @walks = current_user.walks.includes(:arrivals).order(created_at: :desc)
+  end
+
   def show
     @arrival = Arrival.new
     @arrivals = @walk.arrivals.order(:created_at).pluck(:station_id)
@@ -19,6 +23,8 @@ class WalksController < ApplicationController
   end
 
   def create
+    current_walk&.update!(active: false) if current_walk&.finished?
+
     walk = Walk.new(**walk_params, user: current_user)
     if walk.invalid?
       redirect_to walk_path(current_walk), alert: walk.errors.full_messages.join
@@ -39,13 +45,9 @@ class WalksController < ApplicationController
   end
 
   def destroy
-    ActiveRecord::Base.transaction do
-      # N+1 が発生するため、arrivalを先に削除する
-      # 最後の到着駅以外は削除できないバリデーションがあるため、`delete_all`にしている
-      @walk.arrivals.delete_all
-      @walk.destroy!
-    end
-    redirect_to new_walk_path, notice: '歩行記録ノートを削除しました。'
+    # deactivate コントローラーの create アクションとかの方が良さそう
+    @walk.update!(active: false)
+    redirect_to new_walk_path, notice: @walk.finished? ? '歩行を完了しました。' : 'リタイアしました'
   end
 
   private

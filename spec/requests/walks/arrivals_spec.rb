@@ -5,6 +5,30 @@ require 'rails_helper'
 RSpec.describe 'Walks::Arrivals', type: :request do
   let(:user) { FactoryBot.create(:user) }
 
+  describe 'GET /walks/:walk_id/arrivals' do
+    subject(:show_arrivals) { get walk_arrivals_path(walk) }
+
+    before { sign_in user }
+
+    context '自分の歩行記録の場合' do
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
+
+      it { is_expected.to eq(200) }
+
+      it '到着履歴が表示される' do
+        show_arrivals
+        expect(response.body).to include('到着履歴')
+      end
+    end
+
+    context '他のユーザーの歩行記録の場合' do
+      let(:other_user) { FactoryBot.create(:user) }
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user: other_user, clockwise: true) }
+
+      it { is_expected.to eq(404) }
+    end
+  end
+
   describe 'GET /public/walks/:walk_id/arrivals' do
     subject(:get_walk_arrivals) { get public_walk_arrivals_path(walk) }
 

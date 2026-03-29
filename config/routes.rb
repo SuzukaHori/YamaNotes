@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :walks
+  resources :walks do
+    resources :arrivals, only: [:index], controller: 'walks/arrivals'
+  end
   namespace :public do
     resources :walks, only: [] do
       resources :arrivals, only: [:index], controller: 'walks/arrivals'

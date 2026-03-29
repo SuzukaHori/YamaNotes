@@ -1,0 +1,12 @@
+- title '到着履歴'
+- set_meta_tags description: '過去の歩行記録の到着履歴ページです。'
+
+.py-4
+  .flex.items-center.mb-4
+    h2.text-2xl.font-bold.inline-block 到着履歴
+  .text-sm.text-gray-500.mb-4
+    span #{@walk.clockwise ? '外回り' : '内回り'} ／ 開始日:
+    = l @walk.arrival_of_departure.arrived_at, format: :long
+  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: current_user, arrivals: @arrivals, editable: false }
+  .text-center.my-4
+    = link_to '一覧に戻る', walks_path, class: 'link-important'

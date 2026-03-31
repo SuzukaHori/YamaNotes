@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   helper_method :current_walk
 
+  # 現在実施中の歩行を返す
+  # active: true の歩行は一度に一つしか持てない仕様
   def current_walk
-    # TODO: テストを直す
     return nil unless user_signed_in?
-    return nil if current_user.walks.empty?
 
-    current_user.walks.order(:created_at).last
+    current_user.walks.find_by(active: true).presence
   end
 end

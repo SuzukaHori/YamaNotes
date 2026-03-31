@@ -44,8 +44,7 @@ class Walk < ApplicationRecord
   private
 
   def active_walk_uniqueness
-    # TODO: 後ほど active な walk のみを対象に限定する
-    return if user.walks.empty?
+    return unless user.walks.exists?(active: true)
 
     errors.add(:user_id, '一人につき、実施中の歩行記録は一つしか作成できません')
   end

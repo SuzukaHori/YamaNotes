@@ -10,29 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_08_10_113902) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_30_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "arrivals", force: :cascade do |t|
-    t.bigint "walk_id"
-    t.bigint "station_id"
-    t.string "memo", limit: 255
-    t.datetime "arrived_at", precision: 0, null: false
+    t.datetime "arrived_at", precision: nil, null: false
     t.datetime "created_at", null: false
+    t.string "memo", limit: 255, default: "", null: false
+    t.bigint "station_id"
     t.datetime "updated_at", null: false
+    t.bigint "walk_id"
     t.index ["created_at"], name: "index_arrivals_on_created_at"
     t.index ["station_id"], name: "index_arrivals_on_station_id"
     t.index ["walk_id"], name: "index_arrivals_on_walk_id"
   end
 
   create_table "stations", force: :cascade do |t|
-    t.string "name", null: false
-    t.float "longitude", null: false
-    t.float "latitude", null: false
     t.float "clockwise_distance_to_next", null: false
     t.integer "clockwise_next_station_id", null: false
     t.datetime "created_at", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
     t.index ["clockwise_next_station_id"], name: "index_stations_on_clockwise_next_station_id", unique: true
     t.index ["longitude", "latitude"], name: "index_stations_on_longitude_and_latitude", unique: true
@@ -40,21 +40,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_08_10_113902) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.decimal "uid", null: false
-    t.string "provider", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "provider", null: false
     t.datetime "remember_created_at"
     t.text "remember_token"
+    t.decimal "uid", null: false
+    t.datetime "updated_at", null: false
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "walks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.boolean "publish", default: false, null: false
+    t.boolean "active", default: true, null: false
     t.boolean "clockwise", default: true, null: false
     t.datetime "created_at", null: false
+    t.boolean "publish", default: false, null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_walks_on_user_id", unique: true
   end
 

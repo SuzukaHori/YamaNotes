@@ -29,6 +29,6 @@ RSpec/NestedGroups:
 RSpec/LetSetup:
   Enabled: false
 
-Rails/Output:
+RSpec/Output:
   Exclude:
     - 'db/seeds.rb'

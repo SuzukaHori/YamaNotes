@@ -2,12 +2,11 @@ inherit_gem:
   rubocop-fjord:
     - "config/rubocop.yml"
     - "config/rails.yml"
-require:
+plugins:
+  - rubocop-rspec
   - rubocop-capybara
   - rubocop-rspec_rails
   - rubocop-factory_bot
-plugins:
-  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.4.7

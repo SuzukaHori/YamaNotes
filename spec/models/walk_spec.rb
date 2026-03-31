@@ -109,12 +109,20 @@ RSpec.describe Walk, type: :model do
     let!(:user) { FactoryBot.create(:user) }
     let!(:walk) { FactoryBot.build(:walk, user: user) }
 
-    context '同じユーザーの歩行記録が存在する場合' do
-      let!(:other_walk) { FactoryBot.create(:walk, user: user) }
+    context '同じユーザーの active な歩行記録が存在する場合' do
+      let!(:other_walk) { FactoryBot.create(:walk, user: user, active: true) }
 
       it 'invalid になること' do
         expect(walk).to be_invalid
         expect(walk.errors).to be_added(:user_id, '一人につき、実施中の歩行記録は一つしか作成できません')
+      end
+    end
+
+    context '同じユーザーの active でない歩行記録が存在する場合' do
+      let!(:other_walk) { FactoryBot.create(:walk, user: user, active: false) }
+
+      it 'valid になること' do
+        expect(walk).to be_valid
       end
     end
 

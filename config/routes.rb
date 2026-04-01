@@ -3,11 +3,16 @@
 Rails.application.routes.draw do
   resources :walks, except: [:destroy] do
     resource :deactivation, only: [:create], controller: 'walks/deactivations'
+    scope module: 'walk' do
+      resources :arrivals, only: [:index]
+    end
   end
 
   namespace :public do
     resources :walks, only: [] do
-      resources :arrivals, only: [:index], controller: 'walks/arrivals'
+      scope module: 'walks' do
+        resources :arrivals, only: [:index]
+      end
     end
   end
 
@@ -27,9 +32,6 @@ Rails.application.routes.draw do
       resources :arrivals, only: :index
     end
     get '/walk', to: 'walks#show'
-    resources :walks, only: [] do
-      resources :arrivals, only: :index, controller: 'walks/arrivals'
-    end
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

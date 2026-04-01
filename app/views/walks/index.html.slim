@@ -9,22 +9,25 @@
     ul.space-y-4
       - @walks.each do |walk|
         li.border.border-gray-200.rounded-lg.p-4
-          .flex.items-center.gap-2
-            p.text-xl.mb-2
+          .flex.items-center.gap-2.mb-4
+            p.text-xl
               = l walk.arrival_of_departure.arrived_at, format: :medium
             = walk_status_label(walk)
-          table.text-sm
-            tbody
-              tr
-                td.text-gray-500.pr-6 コース
-                td = walk.clockwise ? '外回り' : '内回り'
-              tr
-                td.text-gray-500.pr-6 出発時刻
-                td = l walk.arrival_of_departure.arrived_at
-              - if walk.finished?
+          .flex.w-full
+            table.text-sm
+              tbody
                 tr
-                  td.text-gray-500.pr-6 ゴール時刻
-                  td = l walk.arrival_of_goal.arrived_at
+                  td.text-gray-500.pr-6 コース
+                  td = walk.clockwise ? '外回り' : '内回り'
                 tr
-                  td.text-gray-500.pr-6 かかった時間
-                  td = time_to_reach_goal(walk)
+                  td.text-gray-500.pr-6 出発時刻
+                  td = l walk.arrival_of_departure.arrived_at
+                - if walk.finished?
+                  tr
+                    td.text-gray-500.pr-6 ゴール時刻
+                    td = l walk.arrival_of_goal.arrived_at
+                  tr
+                    td.text-gray-500.pr-6 かかった時間
+                    td = time_to_reach_goal(walk)
+            .flex.flex-col.justify-end.ml-auto
+              = link_to '詳細', walk_arrivals_path(walk), class: 'text-sm h-8 link-important'

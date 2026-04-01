@@ -8,27 +8,28 @@
   - else
     ul.space-y-4
       - @walks.each do |walk|
-        li.border.border-gray-300.rounded-lg.p-4
-          .flex.items-center.gap-2.mb-2
-            h3.font-bold
-              = "#{l walk.arrival_of_departure.arrived_at, format: :medium}の記録"
+        li.border.border-gray-200.rounded-lg.p-4
+          .flex.items-center.gap-2
+            p.text-xl.mb-2
+              = l walk.arrival_of_departure.arrived_at, format: :medium
             - if walk.finished?
-              span.text-sm.text-white.bg-yamanote-green-100.rounded.px-2.py-0.5 一周達成
+              span.inline-flex.items-center.rounded-md.bg-green-50.px-2.py-1.text-xs.font-medium.text-green-700.ring-1.ring-inset class="ring-green-600/20" 一周完了
             - elsif walk.active?
-              span.text-sm.text-white.bg-bright-orange-100.rounded.px-2.py-0.5 歩行中
+              span.inline-flex.items-center.rounded-md.bg-blue-50.px-2.py-1.text-xs.font-medium.text-blue-700.ring-1.ring-inset class="ring-blue-700/10" 歩行中
             - else
-              span.text-sm.text-white.bg-gray-400.rounded.px-2.py-0.5 リタイア
-          ul.text-sm.space-y-1
-            li
-              span.text-gray-500.mr-2 コース
-              = walk.clockwise ? '外回り' : '内回り'
-            li
-              span.text-gray-500.mr-2 出発時刻
-              = l walk.arrival_of_departure.arrived_at
-            - if walk.finished?
-              li
-                span.text-gray-500.mr-2 ゴール時刻
-                = l walk.arrival_of_goal.arrived_at
-              li
-                span.text-gray-500.mr-2 かかった時間
-                = time_to_reach_goal(walk)
+              span.inline-flex.items-center.rounded-md.bg-gray-50.px-2.py-1.text-xs.font-medium.text-gray-600.ring-1.ring-inset class="ring-gray-500/10" リタイア
+          table.text-sm
+            tbody
+              tr
+                td.text-gray-500.pr-6 コース
+                td = walk.clockwise ? '外回り' : '内回り'
+              tr
+                td.text-gray-500.pr-6 出発時刻
+                td = l walk.arrival_of_departure.arrived_at
+              - if walk.finished?
+                tr
+                  td.text-gray-500.pr-6 ゴール時刻
+                  td = l walk.arrival_of_goal.arrived_at
+                tr
+                  td.text-gray-500.pr-6 かかった時間
+                  td = time_to_reach_goal(walk)

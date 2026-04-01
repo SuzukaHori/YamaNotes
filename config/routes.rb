@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :walks do
+  resources :walks, except: [:destroy] do
     resource :deactivation, only: [:create], controller: 'walks/deactivations'
   end
 

@@ -76,17 +76,4 @@ RSpec.describe 'Walks', type: :request do
       end
     end
   end
-
-  describe 'DELETE /walks/:id' do
-    subject(:destroy_walk) { delete walk_path(walk) }
-
-    let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
-
-    it '歩行記録が削除される' do
-      expect { destroy_walk }.to change(Walk, :count).by(-1)
-      expect(response).to redirect_to new_walk_path
-      follow_redirect!
-      expect(flash[:notice]).to eq('歩行記録ノートを削除しました。')
-    end
-  end
 end

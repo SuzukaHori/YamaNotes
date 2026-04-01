@@ -26,11 +26,13 @@ class Walk < ApplicationRecord
   end
 
   def arrival_of_departure
-    arrivals.order(:created_at)&.first
+    arrivals.loaded? ? arrivals.min_by(&:created_at) : arrivals.order(:created_at).first
   end
 
   def arrival_of_goal
-    arrivals.order(:created_at).last if finished?
+    return unless finished?
+
+    arrivals.loaded? ? arrivals.max_by(&:created_at) : arrivals.order(:created_at).last
   end
 
   def number_of_walked
@@ -38,7 +40,7 @@ class Walk < ApplicationRecord
   end
 
   def finished?
-    arrivals.count > Station.cache_count
+    arrivals.size > Station.cache_count
   end
 
   private

@@ -1,0 +1,34 @@
+- title '歩行記録一覧'
+- set_meta_tags description: '過去の歩行記録の一覧ページです。'
+
+.py-4
+  h2.text-2xl.font-bold.mb-4 歩行記録一覧
+  - if @walks.empty?
+    p.text-gray-500 歩行記録はありません。
+  - else
+    ul.space-y-4
+      - @walks.each do |walk|
+        li.border.border-gray-300.rounded-lg.p-4
+          .flex.items-center.gap-2.mb-2
+            h3.font-bold
+              = "#{l walk.arrival_of_departure.arrived_at, format: :medium}の記録"
+            - if walk.finished?
+              span.text-sm.text-white.bg-yamanote-green-100.rounded.px-2.py-0.5 一周達成
+            - elsif walk.active?
+              span.text-sm.text-white.bg-bright-orange-100.rounded.px-2.py-0.5 歩行中
+            - else
+              span.text-sm.text-white.bg-gray-400.rounded.px-2.py-0.5 リタイア
+          ul.text-sm.space-y-1
+            li
+              span.text-gray-500.mr-2 コース
+              = walk.clockwise ? '外回り' : '内回り'
+            li
+              span.text-gray-500.mr-2 出発時刻
+              = l walk.arrival_of_departure.arrived_at
+            - if walk.finished?
+              li
+                span.text-gray-500.mr-2 ゴール時刻
+                = l walk.arrival_of_goal.arrived_at
+              li
+                span.text-gray-500.mr-2 かかった時間
+                = time_to_reach_goal(walk)

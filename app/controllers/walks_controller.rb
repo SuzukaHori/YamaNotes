@@ -5,6 +5,10 @@ class WalksController < ApplicationController
   before_action :set_maptiler_key, only: %i[show]
   before_action :redirect_if_walk_not_exist, only: %i[show]
 
+  def index
+    @walks = current_user.walks.includes(:arrivals).order(id: :desc)
+  end
+
   def show
     @arrival = Arrival.new
     @arrivals = @walk.arrivals.order(:created_at).pluck(:station_id)

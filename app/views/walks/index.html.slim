@@ -12,12 +12,7 @@
           .flex.items-center.gap-2
             p.text-xl.mb-2
               = l walk.arrival_of_departure.arrived_at, format: :medium
-            - if walk.finished?
-              span.inline-flex.items-center.rounded-md.bg-green-50.px-2.py-1.text-xs.font-medium.text-green-700.ring-1.ring-inset class="ring-green-600/20" 一周完了
-            - elsif walk.active?
-              span.inline-flex.items-center.rounded-md.bg-blue-50.px-2.py-1.text-xs.font-medium.text-blue-700.ring-1.ring-inset class="ring-blue-700/10" 歩行中
-            - else
-              span.inline-flex.items-center.rounded-md.bg-gray-50.px-2.py-1.text-xs.font-medium.text-gray-600.ring-1.ring-inset class="ring-gray-500/10" リタイア
+            = walk_status_label(walk)
           table.text-sm
             tbody
               tr

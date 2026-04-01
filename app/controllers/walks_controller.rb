@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WalksController < ApplicationController
-  before_action :set_walk, only: %i[show destroy]
+  before_action :set_walk, only: %i[show]
   before_action :set_maptiler_key, only: %i[show]
   before_action :redirect_if_walk_not_exist, only: %i[show]
 
@@ -36,16 +36,6 @@ class WalksController < ApplicationController
     return unless current_walk.update(walk_params)
 
     redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
-  end
-
-  def destroy
-    ActiveRecord::Base.transaction do
-      # N+1 が発生するため、arrivalを先に削除する
-      # 最後の到着駅以外は削除できないバリデーションがあるため、`delete_all`にしている
-      @walk.arrivals.delete_all
-      @walk.destroy!
-    end
-    redirect_to new_walk_path, notice: '歩行記録ノートを削除しました。'
   end
 
   private

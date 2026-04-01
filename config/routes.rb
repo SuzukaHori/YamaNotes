@@ -32,9 +32,6 @@ Rails.application.routes.draw do
       resources :arrivals, only: :index
     end
     get '/walk', to: 'walks#show'
-    resources :walks, only: [] do
-      resources :arrivals, only: :index, controller: 'walks/arrivals'
-    end
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

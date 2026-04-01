@@ -5,7 +5,6 @@ class Walk::ArrivalsController < ApplicationController
 
   def index
     @arrivals = @walk.arrivals.order(:created_at).includes(:station)
-    render 'walk/arrivals/index'
   end
 
   private

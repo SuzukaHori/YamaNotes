@@ -8,6 +8,7 @@ class Public::Walks::ArrivalsController < ApplicationController
     if @walk.publish
       @arrivals = @walk.arrivals.order(:created_at).includes(:station)
       @user = current_user
+      render 'walk/arrivals/index'
     else
       redirect_to root_path, notice: 'この到着記録は非公開です'
     end

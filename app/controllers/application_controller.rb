@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   def current_walk
     return nil unless user_signed_in?
 
-    current_user.walks.find_by(active: true).presence
+    @current_walk ||= current_user.walks.find_by(active: true)
   end
 end

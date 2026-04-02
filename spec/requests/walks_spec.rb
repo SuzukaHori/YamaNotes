@@ -76,4 +76,46 @@ RSpec.describe 'Walks', type: :request do
       end
     end
   end
+
+  describe 'DELETE /walks/:id' do
+    subject(:destroy_walk) { delete walk_path(walk) }
+
+    context 'active: false の歩行記録の場合' do
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, active: false) }
+
+      it '歩行記録が削除される' do
+        expect { destroy_walk }.to change(Walk, :count).by(-1)
+      end
+
+      it '歩行記録一覧にリダイレクトされる' do
+        destroy_walk
+        expect(response).to redirect_to walks_path
+        expect(flash[:notice]).to eq('歩行記録を削除しました。')
+      end
+    end
+
+    context 'active: true の歩行記録の場合' do
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:) }
+
+      it '歩行記録が削除されない' do
+        expect { destroy_walk }.not_to change(Walk, :count)
+      end
+
+      it '歩行記録一覧にリダイレクトされる' do
+        destroy_walk
+        expect(response).to redirect_to walks_path
+        expect(flash[:alert]).to eq('実施中の歩行記録は削除できません。')
+      end
+    end
+
+    context '他のユーザーの歩行記録の場合' do
+      let(:other_user) { FactoryBot.create(:user) }
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user: other_user, active: false) }
+
+      it '歩行記録が削除されず、404になる' do
+        expect { destroy_walk }.not_to change(Walk, :count)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end

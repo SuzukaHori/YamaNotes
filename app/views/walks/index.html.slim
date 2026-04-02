@@ -31,3 +31,8 @@
                     td = time_to_reach_goal(walk)
             .flex.flex-col.justify-end.ml-auto
               = link_to '詳細', walk_arrivals_path(walk), class: 'text-sm h-8 link-important'
+          - unless walk.active?
+            .text-center.mt-2
+              = link_to '歩行記録を削除する', walk_path(walk),
+                        class: 'text-sm text-gray-400 underline hover:text-black',
+                        data: { turbo_method: 'delete', turbo_confirm: '歩行記録・到着履歴を全て削除します。よろしいですか？（この操作は取り消しできません。）' }

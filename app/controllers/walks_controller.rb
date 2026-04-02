@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class WalksController < ApplicationController
-  before_action :set_walk, only: %i[show]
+  before_action :set_walk, only: %i[show destroy]
   before_action :set_maptiler_key, only: %i[show]
-  before_action :redirect_if_walk_not_exist, only: %i[show]
+  before_action :redirect_if_walk_not_exist, only: %i[show update]
 
   def index
     @walks = current_user.walks.includes(:arrivals).order(id: :desc)
@@ -36,8 +36,18 @@ class WalksController < ApplicationController
     redirect_to walk_path(walk), notice: '歩行記録ノートを作成しました。'
   end
 
+  def destroy
+    if @walk.active?
+      redirect_to walks_path, alert: '実施中の歩行記録は削除できません。'
+      return
+    end
+
+    @walk.destroy!
+    redirect_to walks_path, notice: '歩行記録を削除しました。'
+  end
+
   def update
-    return unless current_walk.update(walk_params)
+    current_walk.update!(walk_params)
 
     redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
   end

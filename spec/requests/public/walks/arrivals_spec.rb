@@ -7,7 +7,7 @@ RSpec.describe 'Public::Walks::Arrivals', type: :request do
     subject(:get_public_walk_arrivals) { get public_walk_arrivals_path(walk_id: walk_id) }
 
     context '公開されている歩行記録の場合' do
-      let(:walk_id) { FactoryBot.create(:walk, publish: true).id }
+      let(:walk_id) { FactoryBot.create(:walk, :with_arrivals, publish: true).id }
 
       it '200が返る' do
         get_public_walk_arrivals
@@ -16,7 +16,7 @@ RSpec.describe 'Public::Walks::Arrivals', type: :request do
     end
 
     context '非公開の歩行記録の場合' do
-      let(:walk_id) { FactoryBot.create(:walk, publish: false).id }
+      let(:walk_id) { FactoryBot.create(:walk, :with_arrivals, publish: false).id }
 
       it 'rootにリダイレクトされる' do
         get_public_walk_arrivals

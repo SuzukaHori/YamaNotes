@@ -3,7 +3,7 @@ dialog data-slideover-target='dialog' class='h-full max-h-full w-[640px] max-w-f
     - if current_walk
       li = link_to 'ダッシュボード', walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
       li = link_to '到着一覧', arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-      li = link_to 'リタイアする', walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: '歩行データは閲覧できなくなります。よろしいですか？' },
+      li = link_to 'リタイアする', walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: 'リタイアすると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）' },
                                                                        class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
     li = link_to '過去の歩行記録', walks_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
     li = link_to '退会する', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'データをすべて削除して退会します。よろしいですか？' }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'

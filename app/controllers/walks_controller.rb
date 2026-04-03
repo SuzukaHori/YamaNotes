@@ -33,23 +33,23 @@ class WalksController < ApplicationController
       walk.save!
       walk.arrivals.create!(**arrival_params, arrived_at: Time.current)
     end
-    redirect_to walk_path(walk), notice: '歩行記録ノートを作成しました。'
+    redirect_to walk_path(walk), notice: t('flash.walks.create.success')
   end
 
   def destroy
     if @walk.active?
-      redirect_to walks_path, alert: '実施中の歩行記録は削除できません。'
+      redirect_to walks_path, alert: t('flash.walks.destroy.active_error')
       return
     end
 
     @walk.destroy!
-    redirect_to walks_path, notice: '歩行記録を削除しました。'
+    redirect_to walks_path, notice: t('flash.walks.destroy.success')
   end
 
   def update
     current_walk.update!(walk_params)
 
-    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
+    redirect_to arrivals_path, notice: current_walk.publish ? t('flash.walks.update.published') : t('flash.walks.update.unpublished')
   end
 
   private

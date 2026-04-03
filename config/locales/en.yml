@@ -43,6 +43,24 @@ en:
       messages:
         create: '%{model} was created'
 
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      long: "%B %-d, %Y (%a)"
+      short: "%m/%d"
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%B %-d, %-I:%M %p"
+      long: "%Y/%m/%d %H:%M"
+      medium: "%B %-d, %Y"
+      short: "%m/%d %H:%M"
+      without_date: "%k:%M"
+
   helpers:
     select:
       prompt: Please select
@@ -50,6 +68,39 @@ en:
       create: Register
       submit: Save
       update: Update
+    walks:
+      status:
+        finished: Completed
+        active: Walking
+        retired: Retired
+      duration: "%{hours}h %{minutes}m"
+      hour_unit: h
+      minute_unit: m
+
+  flash:
+    walks:
+      create:
+        success: Your walk log has been created.
+      destroy:
+        success: Your walk record has been deleted.
+        active_error: Cannot delete an active walk record.
+      update:
+        published: Your arrival history is now public. Share the URL with others!
+        unpublished: Your arrival history is now private.
+      deactivations:
+        finished: You have completed your walk!
+        retired: You have retired from this walk.
+    arrivals:
+      create:
+        error: Failed to save arrival record.
+      update:
+        success: Arrival record updated.
+      not_found: No walk record found.
+    users:
+      destroy:
+        success: Your account has been deleted.
+    public_arrivals:
+      private: This arrival history is private.
 
   arrivals:
     index:
@@ -61,6 +112,8 @@ en:
       publish_hint_1: Turn Public on to share your
       publish_hint_2: arrival history URL with others.
       url_label: URL
+      copy_success: URL copied to clipboard
+      copy_error: Failed to copy
       back_to_map: Back to Map
     show:
       title_goal: "Reached %{name} - Goal!"

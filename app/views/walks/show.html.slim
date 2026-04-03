@@ -16,11 +16,15 @@ div data-controller='caution'
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals }
 .my-4.text-center
   h2.font-bold.mb-2 = t('.record_so_far')
+  - initial_hours, initial_minutes = elapsed_time_parts(@walk)
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.since_departure')
-      td.border.border-gray-400.text-left.px-4.py-1 data-time-target="elapsed"
-        | #{elapsed_time(@walk)}
+      td.border.border-gray-400.text-left.px-4.py-1
+        span data-time-target="hours" = initial_hours
+        = t('helpers.walks.hour_unit')
+        span data-time-target="minutes" = initial_minutes
+        = t('helpers.walks.minute_unit')
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.stations_walked')
       td.border.border-gray-400.text-left.px-4.py-1 = t('.stations_walked_count', count: @number_of_walked, remaining: number_of_remaining(number_of_walked: @number_of_walked))

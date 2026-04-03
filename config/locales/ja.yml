@@ -156,6 +156,14 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    walks:
+      status:
+        finished: 一周完了
+        active: 歩行中
+        retired: リタイア
+      duration: "%{hours}時間%{minutes}分"
+      hour_unit: 時間
+      minute_unit: 分
   number:
     currency:
       format:
@@ -220,6 +228,31 @@ ja:
       without_date: "%k:%M"
     pm: 午後
 
+  flash:
+    walks:
+      create:
+        success: 歩行記録ノートを作成しました。
+      destroy:
+        success: 歩行記録を削除しました。
+        active_error: 実施中の歩行記録は削除できません。
+      update:
+        published: 到着履歴を公開しました。URLで到着履歴を共有しましょう。
+        unpublished: 到着履歴を非公開にしました。
+      deactivations:
+        finished: 歩行を完了しました。
+        retired: リタイアしました。
+    arrivals:
+      create:
+        error: 到着記録を保存できませんでした。
+      update:
+        success: 到着記録を更新しました。
+      not_found: 歩行記録が存在しません。
+    users:
+      destroy:
+        success: 退会しました。
+    public_arrivals:
+      private: この到着記録は非公開です
+
   arrivals:
     index:
       title: 到着一覧
@@ -230,6 +263,8 @@ ja:
       publish_hint_1: 公開をONにすると到着履歴の
       publish_hint_2: URLを他の人とシェアできます。
       url_label: URL
+      copy_success: 共有用URLをクリップボードにコピーしました
+      copy_error: コピーに失敗しました
       back_to_map: 地図に戻る
     show:
       title_goal: "%{name}駅にゴール"

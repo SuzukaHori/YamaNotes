@@ -5,7 +5,7 @@ class Walks::DeactivationsController < ApplicationController
 
   def create
     @walk.update!(active: false)
-    redirect_to new_walk_path, notice: @walk.finished? ? '歩行を完了しました。' : 'リタイアしました。'
+    redirect_to new_walk_path, notice: @walk.finished? ? t('flash.walks.deactivations.finished') : t('flash.walks.deactivations.retired')
   end
 
   private

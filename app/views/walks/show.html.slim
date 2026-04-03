@@ -1,30 +1,34 @@
-- title 'ダッシュボード'
-- set_meta_tags description: '現在の一周の状態が表示される画面です。'
+- title t('.title')
+- set_meta_tags description: t('.description')
 
 div data-controller='caution'
   = render partial: 'dialogs/caution'
 = render 'shared/errors', model: @arrival
 - if @walk.finished?
   .my-4
-    p おめでとうございます🎉
-    p #{Station.cache_count}駅全てを歩ききりました！
+    p = t('.congratulations')
+    p = t('.finished_all', count: Station.cache_count)
     .flex.items-center.justify-center.my-4
-      = link_to '記録を見る', @walk.arrival_of_goal, class: 'mx-4 text-blue-600 hover:underline'
-      = link_to '初めから歩く', walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: '新しい歩行を開始すると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）' }, class: 'mx-4 link-important'
+      = link_to t('.see_record'), @walk.arrival_of_goal, class: 'mx-4 text-blue-600 hover:underline'
+      = link_to t('.walk_again'), walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: t('.walk_again_confirm') }, class: 'mx-4 link-important'
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
 = render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals }
 .my-4.text-center
-  h2.font-bold.mb-2 ここまでの記録
+  h2.font-bold.mb-2 = t('.record_so_far')
+  - initial_hours, initial_minutes = elapsed_time_parts(@walk)
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 出発から
-      td.border.border-gray-400.text-left.px-4.py-1 data-time-target="elapsed"
-        | #{elapsed_time(@walk)}
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.since_departure')
+      td.border.border-gray-400.text-left.px-4.py-1
+        span data-time-target="hours" = initial_hours
+        = t('helpers.walks.hour_unit')
+        span data-time-target="minutes" = initial_minutes
+        = t('helpers.walks.minute_unit')
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた駅
-      td.border.border-gray-400.text-left.px-4.py-1 #{@number_of_walked}駅(残り#{number_of_remaining(number_of_walked: @number_of_walked)}駅)
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.stations_walked')
+      td.border.border-gray-400.text-left.px-4.py-1 = t('.stations_walked_count', count: @number_of_walked, remaining: number_of_remaining(number_of_walked: @number_of_walked))
     tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 歩いた距離
-      td.border.border-gray-400.text-left.px-4.py-1 約#{@arrived_distance}km(残り約#{remaining_distance(arrived_distance: @arrived_distance)}km)
-  = link_to '履歴を見る', arrivals_path, class: 'link-important ml-auto'
+      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.distance_walked')
+      td.border.border-gray-400.text-left.px-4.py-1 = t('.distance_walked_value', distance: @arrived_distance, remaining: remaining_distance(arrived_distance: @arrived_distance))
+  = link_to t('.see_history'), arrivals_path, class: 'link-important ml-auto'

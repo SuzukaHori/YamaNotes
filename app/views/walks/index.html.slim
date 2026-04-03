@@ -1,10 +1,10 @@
-- title '歩行記録の一覧'
-- set_meta_tags description: '歩行記録の一覧ページです。'
+- title t('.title')
+- set_meta_tags description: t('.description')
 
 .py-4
-  h2.text-2xl.font-bold.mb-4 歩行記録の一覧
+  h2.text-2xl.font-bold.mb-4 = t('.heading')
   - if @walks.empty?
-    p.text-gray-500 歩行記録はありません。
+    p.text-gray-500 = t('.empty')
   - else
     ul.space-y-4
       - @walks.each do |walk|
@@ -17,22 +17,22 @@
             table.text-sm
               tbody
                 tr
-                  td.text-gray-500.pr-6 コース
-                  td = walk.clockwise ? '外回り' : '内回り'
+                  td.text-gray-500.pr-6 = t('.course')
+                  td = walk.clockwise ? t('.clockwise') : t('.counterclockwise')
                 tr
-                  td.text-gray-500.pr-6 出発時刻
+                  td.text-gray-500.pr-6 = t('.departure_time')
                   td = l walk.arrival_of_departure.arrived_at
                 - if walk.finished?
                   tr
-                    td.text-gray-500.pr-6 ゴール時刻
+                    td.text-gray-500.pr-6 = t('.goal_time')
                     td = l walk.arrival_of_goal.arrived_at
                   tr
-                    td.text-gray-500.pr-6 かかった時間
+                    td.text-gray-500.pr-6 = t('.elapsed_time')
                     td = time_to_reach_goal(walk)
             .flex.flex-col.justify-end.ml-auto
-              = link_to '詳細', walk_arrivals_path(walk), class: 'text-sm h-8 link-important'
+              = link_to t('.detail'), walk_arrivals_path(walk), class: 'text-sm h-8 link-important'
           - unless walk.active?
             .text-center.mt-2
-              = link_to '歩行記録を削除する', walk_path(walk),
+              = link_to t('.delete'), walk_path(walk),
                         class: 'text-sm text-gray-400 underline hover:text-black',
-                        data: { turbo_method: 'delete', turbo_confirm: '歩行記録・到着履歴を全て削除します。よろしいですか？（この操作は取り消しできません。）' }
+                        data: { turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }

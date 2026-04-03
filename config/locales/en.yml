@@ -1,0 +1,295 @@
+---
+en:
+  activerecord:
+    models:
+      arrival: Arrival
+      station: Station
+      user: User
+      walk: Walk Log
+    attributes:
+      arrival:
+        arrived_at: Arrival Time
+        memo: Memo
+        station_id: Arrival Station
+        walk_id: Walk Log
+        station: Station
+      station:
+        arrivals: Arrivals
+        clockwise_distance_to_next: Distance to next station (outer loop)
+        counterclockwise_distance_to_next: Distance to next station (inner loop)
+        latitude: Latitude
+        longitude: Longitude
+        name: Name
+        walks: Walk Logs
+      user:
+        arrivals: Arrivals
+        provider: Provider
+        uid: User ID
+        walk_id: Walk Log
+      walk:
+        arrivals: Arrivals
+        clockwise: Outer Loop
+        publish: Public
+        stations: Stations
+        user_id: User
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist
+        restrict_multiple_creation: Only one %{model} can be created
+    success:
+      messages:
+        create: '%{model} was created'
+
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      long: "%B %-d, %Y (%a)"
+      short: "%m/%d"
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%B %-d, %-I:%M %p"
+      long: "%Y/%m/%d %H:%M"
+      medium: "%B %-d, %Y"
+      short: "%m/%d %H:%M"
+      without_date: "%k:%M"
+
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Register
+      submit: Save
+      update: Update
+    walks:
+      status:
+        finished: Completed
+        active: Walking
+        retired: Retired
+      duration: "%{hours}h %{minutes}m"
+      hour_unit: h
+      minute_unit: m
+
+  station:
+    name_with_suffix: "%{name} Station"
+
+  flash:
+    walks:
+      create:
+        success: Your walk log has been created.
+      destroy:
+        success: Your walk record has been deleted.
+        active_error: Cannot delete an active walk record.
+      update:
+        published: Your arrival history is now public. Share the URL with others!
+        unpublished: Your arrival history is now private.
+      deactivations:
+        finished: You have completed your walk!
+        retired: You have retired from this walk.
+    arrivals:
+      create:
+        error: Failed to save arrival record.
+      update:
+        success: Arrival record updated.
+      not_found: No walk record found.
+    users:
+      destroy:
+        success: Your account has been deleted.
+    public_arrivals:
+      private: This arrival history is private.
+
+  arrivals:
+    index:
+      title: Arrival History
+      description: A list of your arrival records.
+      heading: Arrival History
+      publish: Public
+      unpublish: Private
+      publish_hint_1: Turn Public on to share your
+      publish_hint_2: arrival history URL with others.
+      url_label: URL
+      copy_success: URL copied to clipboard
+      copy_error: Failed to copy
+      back_to_map: Back to Map
+    show:
+      title_goal: "Reached %{name} Station - Goal!"
+      title_arrived: "Arrived at %{name} Station"
+      description_goal: Completion award page
+      description_arrived: "Arrival details page for %{name} Station."
+      add_memo: Add Memo
+      back_to_map: Back to Map
+    edit:
+      save: Save
+    arrival:
+      departure: Start
+      goal: Goal
+      edit: Edit
+      delete: Delete arrival
+      delete_confirm: Are you sure you want to delete this?
+    arrived:
+      heading: "Arrived at %{name} Station! 🎉"
+      stats: "Stations walked: %{walked} (Remaining: %{remaining}),"
+      distance: "Distance walked: approx. %{distance}km!"
+    finished:
+      heading: Certificate of Achievement
+      body1: "You have walked all %{count} stations of the Yamanote Line."
+      body2: Under the harsh conditions of the city, you kept walking energetically, overcoming fatigue and sore feet — deeply moving all who watched.
+      body3: Therefore, in recognition of your indomitable spirit and tireless effort, we hereby commend you.
+      departure_time: Departure Time
+      goal_time: Goal Time
+      elapsed_time: Time Taken
+    report:
+      show:
+        title_goal: "Reached %{name} Station - Goal!"
+        title_arrived: "Arrived at %{name} Station"
+        description_goal: Completion award page
+        description_arrived: "Arrival page for %{name} Station."
+        heading_arrived: "Arrived at %{name} Station! 🎉"
+        cheer: Cheer them on!
+
+  dialogs:
+    caution:
+      heading: Warnings for the Yamanote Line Walk
+      duration_note: Walking the entire Yamanote Line takes approximately 12 hours.
+      health_caution: Please take good care of your physical condition and do not push yourself too hard. Avoid walking on hot days or in bad weather.
+      stop_while_using: Please stop walking before using the app.
+      preparation_list: Preparation checklist for the Yamanote Line walk
+      caution_note: Walking precautions
+      see_links_suffix: " before you start."
+      disclaimer: The developer assumes no responsibility for any injuries or accidents that may occur.
+      confirm: Got it
+    help:
+      heading: How to Use
+      press_arrival_prefix: "When you arrive at a station, press the"
+      arrival_button_label: Arrive
+      press_arrival_suffix: button.
+      memo_button_label: Memo
+      memo_button_suffix: button to add a memo for each station.
+      mistake_correction_prefix: "If you made a mistake in your records, go to the"
+      arrivals_list_link: Arrival History page
+      mistake_correction_suffix: to edit or delete.
+      reset_settings_note: "To change settings like start time or direction (inner/outer loop), delete your data using \"Retire\" from the menu."
+      walking_guide_prefix: "For walking tips, check out the"
+      preparation_list: Preparation checklist for the Yamanote Line walk
+      caution_note: Walking precautions
+      walking_guide_suffix: " for reference."
+    memo:
+      heading: Add Memo
+      save: Save
+    menu:
+      dashboard: Dashboard
+      arrivals: Arrival History
+      retire: Retire
+      retire_confirm: "Retiring will prevent you from editing this walk record. Are you sure? (This action cannot be undone.)"
+      past_walks: Past Walk Records
+      withdraw: Delete Account
+      withdraw_confirm: "This will delete all your data and close your account. Are you sure?"
+      logout: Log Out
+      logout_confirm: Are you sure you want to log out?
+      top: Top Page
+
+  layouts:
+    footer:
+      terms: Terms of Service
+      privacy: Privacy Policy
+
+  pages:
+    top:
+      title: Top Page
+      catchphrase1: Walk the entire
+      catchphrase2: Yamanote Line!
+      description1: YamaNotes is a tracking app for your
+      description2: Yamanote Line walking challenge.
+      feature1_heading: Track Your Journey
+      feature1_body: Easily record arrival times, stations, and notes on how you're feeling. Share your records to X with just one tap.
+      feature2_heading: Track Progress on the Map
+      feature2_body1: Lines are drawn on the map so you can see your progress at a glance.
+      feature2_body2: No need to manually calculate remaining stations or distances.
+      feature3_heading: View and Edit Your List
+      feature3_body: View all your records in a list, and edit or delete them. Share your progress with the public feature.
+      cta: "Let's go!"
+
+  shared:
+    login_button:
+      to_dashboard: Go to Dashboard
+      google_login: Sign in with Google
+      terms: Terms of Service
+      privacy: Privacy Policy
+      agree1: ""
+      agree2: By logging in, you agree to the above.
+    post_button:
+      post: Post on X
+
+  walk:
+    arrivals:
+      index:
+        title: Arrival History
+        description: A list of your arrival records.
+        departure: Start
+        goal: Goal
+
+  walks:
+    index:
+      title: Walk Records
+      description: A list of your walk records.
+      heading: Walk Records
+      empty: No walk records found.
+      course: Route
+      clockwise: Outer Loop
+      counterclockwise: Inner Loop
+      departure_time: Departure Time
+      goal_time: Goal Time
+      elapsed_time: Time Taken
+      detail: Details
+      delete: Delete walk record
+      delete_confirm: "This will delete all walk records and arrival history. Are you sure? (This action cannot be undone.)"
+    show:
+      title: Dashboard
+      description: Shows the current status of your Yamanote Line walk.
+      congratulations: "Congratulations! 🎉"
+      finished_all: "You've walked all %{count} stations!"
+      see_record: View Record
+      walk_again: Start Over
+      walk_again_confirm: "Starting a new walk will prevent you from editing this walk record. Are you sure? (This action cannot be undone.)"
+      record_so_far: Progress So Far
+      since_departure: Since Departure
+      stations_walked: Stations Walked
+      stations_walked_count: "%{count} stations (%{remaining} remaining)"
+      distance_walked: Distance Walked
+      distance_walked_value: "approx. %{distance}km (approx. %{remaining}km remaining)"
+      see_history: View History
+    new:
+      title: Walk Settings
+      description: Set up your Yamanote Line walk.
+      welcome: Welcome to YamaNotes!
+      page1:
+        heading: "First, choose your starting station!"
+        departure_station: Starting Station
+        hint_html: "We recommend a station near your home or hotel.<br>(It makes the return trip easier)"
+        next: Next
+      page2:
+        heading: "Next, choose your direction"
+        clockwise: Outer Loop
+        counterclockwise: Inner Loop
+        hint: The distance difference between inner and outer loops is negligible — choose whichever you prefer.
+        back: Back
+        next: Next
+      page3:
+        heading: Are these settings correct?
+        departure_station: Starting Station
+        course: Direction
+        hint: The route you walk (inside or outside the tracks) affects the total distance. Choose based on your fitness level.
+        reconfigure: Change Settings
+        start: Start!
+    walk:
+      previous_station: "Previous:"
+      memo: Memo
+      next_station: "Next:"
+      arrival: Arrive

@@ -7,18 +7,18 @@
         span.-ml-24.pl-2.mr-9.text-xl.w-16
           | #{l arrival.arrived_at, format: :without_date}
         - if arrival == arrivals.first
-          p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm 出発
+          p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm = t('.departure')
         - elsif arrival == arrivals.last && arrival.walk.finished?
-          p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
+          p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm = t('.goal')
         p.text-xl
-          | #{arrival.station.name}駅
+          | #{arrival.station.display_name}
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
           / XSSが起きないことを確認の上、slimlintから除外
           = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
     - if arrival.walk.user == current_user
       = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
-        .text-sm.h-8.link-important 編集
+        .text-sm.h-8.link-important = t('.edit')
       - if deletable?(editable:, arrival:, arrivals:)
-        = link_to '到着を削除する', arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: '本当に削除しますか？' }
+        = link_to t('.delete'), arrival, class: 'text-sm text-gray-400 underline pl-4 hover:text-black', data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }
 - # rubocop:enable Rails/OutputSafety

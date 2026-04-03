@@ -1,17 +1,17 @@
 .w-3/4.my-4.mx-auto
   #before_station.flex.items-center
-    span.mr-2 前の駅:
-    span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.name}駅
+    span.mr-2 = t('.previous_station')
+    span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.display_name}
     .ml-auto data-controller="modal"
       button#memo_modal_button.link-important.px-6 data-action="modal#open"
-        | メモ
+        = t('.memo')
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.order(:created_at).last }
   .text-center.my-1
     i.fa-solid.fa-arrow-down.pr-2
     span #{current_station.distance_to_next(clockwise: walk.clockwise)}km
   #next_station.flex.items-center
-    span.mr-2 次の駅:
-    span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.next(clockwise: walk.clockwise).name}駅
+    span.mr-2 = t('.next_station')
+    span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.next(clockwise: walk.clockwise).display_name}
     = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
       = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
-      = f.submit '到着', class: 'px-6 btn-primary'
+      = f.submit t('.arrival'), class: 'px-6 btn-primary'

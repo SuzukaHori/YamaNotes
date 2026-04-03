@@ -1,11 +1,11 @@
 dialog data-slideover-target='dialog' class='h-full max-h-full w-[640px] max-w-full my-0 mx-auto bg-transparent slideover'
   ul.p-8.bg-lime-50.h-full.w-56.md:w-72
     - if current_walk
-      li = link_to 'ダッシュボード', walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
-      li = link_to '到着一覧', arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-      li = link_to 'リタイアする', walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: 'リタイアすると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）' },
+      li = link_to t('.dashboard'), walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
+      li = link_to t('.arrivals'), arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+      li = link_to t('.retire'), walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: t('.retire_confirm') },
                                                                        class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-    li = link_to '過去の歩行記録', walks_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-    li = link_to '退会する', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'データをすべて削除して退会します。よろしいですか？' }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-    li = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :post,  turbo_confirm: 'ログアウトします。よろしいですか？' }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
-    li = link_to 'トップページ', root_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+    li = link_to t('.past_walks'), walks_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+    li = link_to t('.withdraw'), user_path(current_user), data: { turbo_method: :delete, turbo_confirm: t('.withdraw_confirm') }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+    li = link_to t('.logout'), destroy_user_session_path, data: { turbo_method: :post, turbo_confirm: t('.logout_confirm') }, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
+    li = link_to t('.top'), root_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'

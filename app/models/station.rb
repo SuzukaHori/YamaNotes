@@ -10,6 +10,14 @@ class Station < ApplicationRecord
   validates :latitude, presence: true, numericality: true
   validates :clockwise_distance_to_next, presence: true, numericality: true
 
+  def localized_name
+    I18n.locale == :en ? name_en.presence || name : name
+  end
+
+  def display_name
+    I18n.t('station.name_with_suffix', name: localized_name)
+  end
+
   def next(clockwise:)
     if clockwise
       next_id = id == Station.cache_count ? 1 : id + 1

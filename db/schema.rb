@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_31_063833) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_03_050016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_31_063833) do
     t.float "latitude", null: false
     t.float "longitude", null: false
     t.string "name", null: false
+    t.string "name_en"
     t.datetime "updated_at", null: false
     t.index ["clockwise_next_station_id"], name: "index_stations_on_clockwise_next_station_id", unique: true
     t.index ["longitude", "latitude"], name: "index_stations_on_longitude_and_latitude", unique: true

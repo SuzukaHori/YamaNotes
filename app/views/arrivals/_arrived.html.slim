@@ -1,9 +1,9 @@
-h2.text-xl.font-bold.mb-4 = t('.heading', name: station.name)
+h2.text-xl.font-bold.mb-4 = t('.heading', name: station.localized_name)
 
 = image_tag station_image_path(station:),
             class: 'md:max-w-40 md:max-h-40 max-h-32 max-w-32 mx-auto',
             width: "200", height: "200",
-            alt: "#{station.name}駅のイラスト"
+            alt: "#{station.localized_name}駅のイラスト"
 
 p.mt-2
   = t('.stats', walked: number_of_walked, remaining: number_of_remaining)

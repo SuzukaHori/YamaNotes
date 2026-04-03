@@ -77,6 +77,9 @@ en:
       hour_unit: h
       minute_unit: m
 
+  station:
+    name_with_suffix: "%{name} Station"
+
   flash:
     walks:
       create:
@@ -116,10 +119,10 @@ en:
       copy_error: Failed to copy
       back_to_map: Back to Map
     show:
-      title_goal: "Reached %{name} - Goal!"
-      title_arrived: "Arrived at %{name}"
+      title_goal: "Reached %{name} Station - Goal!"
+      title_arrived: "Arrived at %{name} Station"
       description_goal: Completion award page
-      description_arrived: "Arrival details page for %{name}."
+      description_arrived: "Arrival details page for %{name} Station."
       add_memo: Add Memo
       back_to_map: Back to Map
     edit:
@@ -131,7 +134,7 @@ en:
       delete: Delete arrival
       delete_confirm: Are you sure you want to delete this?
     arrived:
-      heading: "Arrived at %{name}! 🎉"
+      heading: "Arrived at %{name} Station! 🎉"
       stats: "Stations walked: %{walked} (Remaining: %{remaining}),"
       distance: "Distance walked: approx. %{distance}km!"
     finished:
@@ -144,11 +147,11 @@ en:
       elapsed_time: Time Taken
     report:
       show:
-        title_goal: "Reached %{name} - Goal!"
-        title_arrived: "Arrived at %{name}"
+        title_goal: "Reached %{name} Station - Goal!"
+        title_arrived: "Arrived at %{name} Station"
         description_goal: Completion award page
-        description_arrived: "Arrival page for %{name}."
-        heading_arrived: "Arrived at %{name}! 🎉"
+        description_arrived: "Arrival page for %{name} Station."
+        heading_arrived: "Arrived at %{name} Station! 🎉"
         cheer: Cheer them on!
 
   dialogs:

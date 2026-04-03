@@ -228,6 +228,9 @@ ja:
       without_date: "%k:%M"
     pm: 午後
 
+  station:
+    name_with_suffix: "%{name}駅"
+
   flash:
     walks:
       create:

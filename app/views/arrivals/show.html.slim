@@ -1,15 +1,15 @@
 ruby:
   if @walk.finished?
-    title t('.title_goal', name: @station.name)
+    title t('.title_goal', name: @station.localized_name)
     set_meta_tags description: t('.description_goal')
     finish = true
     time_to_reach_goal = time_to_reach_goal(@walk)
     text_for_post = "【山手線を徒歩で一周に挑戦中】%0a山手線#{Station.cache_count}駅全てを歩ききりました🎉🎉かかった時間は#{time_to_reach_goal}でした！"
   else
-    title t('.title_arrived', name: @station.name)
-    set_meta_tags description: t('.description_arrived', name: @station.name)
+    title t('.title_arrived', name: @station.localized_name)
+    set_meta_tags description: t('.description_arrived', name: @station.localized_name)
     number_of_remaining = number_of_remaining(number_of_walked: @number_of_walked)
-    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.name}駅に到着しました🎉歩いた駅は#{@number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{@arrived_distance}kmです！"
+    text_for_post = "【山手線を徒歩で一周に挑戦中】%0a#{@station.localized_name}駅に到着しました🎉歩いた駅は#{@number_of_walked}駅（残り#{number_of_remaining}駅）、歩いた距離は約#{@arrived_distance}kmです！"
   end
 
 .my-8.md:my-12.mx-auto.px-4.text-lg.text-center.md:w-2/3

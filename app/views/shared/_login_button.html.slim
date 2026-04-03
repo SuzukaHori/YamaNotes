@@ -1,13 +1,13 @@
 - if current_walk
-  = link_to 'ダッシュボードへ', walk_path(current_walk), class: 'btn-primary px-12'
+  = link_to t('.to_dashboard'), walk_path(current_walk), class: 'btn-primary px-12'
 - else
   = button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn-primary px-12' do
-    | Googleでログイン
+    = t('.google_login')
   .mt-2
     p class='text-[10px]'
-      = link_to '利用規約', page_path('terms'), class: 'text-blue-600 hover:underline'
+      = link_to t('.terms'), page_path('terms'), class: 'text-blue-600 hover:underline'
       | ・
-      = link_to 'プライバシーポリシー', page_path('privacy'), class: 'text-blue-600 hover:underline'
-      | に
+      = link_to t('.privacy'), page_path('privacy'), class: 'text-blue-600 hover:underline'
+      = t('.agree1')
       br
-      | ​同意した上で​ログインしてください。
+      = t('.agree2')

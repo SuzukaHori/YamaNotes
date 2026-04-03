@@ -1,10 +1,10 @@
-- title '到着一覧'
-- set_meta_tags description: '到着記録の一覧ページです。'
+- title t('.title')
+- set_meta_tags description: t('.description')
 
 .py-4
   .flex.items-center.mb-4
     h2.text-2xl.font-bold.inline-block
-      = "到着履歴　#{l @walk.arrival_of_departure.arrived_at, format: :medium}"
+      = "#{t('arrivals.index.heading')}　#{l @walk.arrival_of_departure.arrived_at, format: :medium}"
 
   - @arrivals.each do |arrival|
     .ml-16.border-l-8.pl-4.pb-6.border-lime-500.relative
@@ -14,9 +14,9 @@
           span.-ml-24.pl-2.mr-9.text-xl.w-16
             | #{l arrival.arrived_at, format: :without_date}
           - if arrival == @arrivals.first
-            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm 出発
+            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm = t('.departure')
           - elsif arrival == @arrivals.last && arrival.walk.finished?
-            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm ゴール
+            p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm = t('.goal')
           p.text-xl
             | #{arrival.station.name}駅
         - if arrival.memo.present?

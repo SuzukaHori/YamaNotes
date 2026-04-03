@@ -1,12 +1,12 @@
 ruby:
   finish = @arrival == @walk.arrival_of_goal
   if finish
-    title "#{@arrival.station.name}駅にゴール"
-    set_meta_tags description: '一周の表彰ページです'
+    title t('.title_goal', name: @arrival.station.name)
+    set_meta_tags description: t('.description_goal')
     image = image_url('finished.png')
   else
-    title "#{@arrival.station.name}駅に到着"
-    set_meta_tags description: "#{@arrival.station.name}駅の到着のページです。"
+    title t('.title_arrived', name: @arrival.station.name)
+    set_meta_tags description: t('.description_arrived', name: @arrival.station.name)
     image = image_url('arrived.png')
   end
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image:, url: request.url } })
@@ -17,6 +17,6 @@ ruby:
       locals: { walk: @walk, arrival_of_departure: @walk.arrival_of_departure, arrival_of_goal: @walk.arrival_of_goal, time_to_reach_goal: time_to_reach_goal(@walk) }
 - else
   .text-center.my-8
-    p.text-3xl.font-bold.m-4 #{@arrival.station.name}駅に到着しました🎉
+    p.text-3xl.font-bold.m-4 = t('.heading_arrived', name: @arrival.station.name)
     = image_tag station_image_path(station: @arrival.station), class: 'max-w-40 max-h-40 mb-8 mx-auto', alt: "#{@arrival.station.name}駅のイラスト"
-    p.text-3xl みんなで応援しよう！
+    p.text-3xl = t('.cheer')

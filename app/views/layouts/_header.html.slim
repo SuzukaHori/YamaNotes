@@ -11,7 +11,7 @@ header.bg-yamanote-green-100.flex.items-center.py-2.px-3.h-12.md:h-14.text-white
       div data-controller='dropdown' data-action='click@window->dropdown#hide touchstart@window->dropdown#hide keydown.esc->dropdown#hide'
         button.p-2.transition-all.duration-500.ease-out.rounded-lg.hover:bg-yamanote-green-200 data-action='dropdown#toggle:stop'
           i.fa-regular.fa-user.fa-xl
-        .hidden data-dropdown-target='menu' class='absolute bg-white rounded-lg shadow-lg border border-gray-200 text-sm text-base-black' style="margin-left: -20px"
+        .hidden data-dropdown-target='menu' class='absolute bg-white rounded-lg shadow-lg border border-gray-200 text-sm text-base-black' style="margin-left: -18px"
           = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :post, turbo_confirm: 'ログアウトします。よろしいですか？' },
                     class: 'hover:bg-gray-100 block p-4 rounded-lg'
           = link_to '退会する', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'データをすべて削除して退会します。よろしいですか？' },

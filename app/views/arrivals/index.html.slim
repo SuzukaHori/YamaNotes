@@ -1,18 +1,14 @@
 - title '到着一覧'
-- set_meta_tags description: '到着記録の一覧ページです。'
-- editable = @walk.user == @user
 
 .py-4
   .flex.items-center
     h2.text-2xl.font-bold.inline-block 到着履歴
     .ml-auto.flex.items-center.gap-3
-      - if editable
-        span.text-sm.text-gray-600.mr-1 #{@walk.publish ? '公開中' : '非公開'}
-        = link_to edit_walk_path(@walk), class: 'hover:text-gray-600 text-gray-400'
-          i class='fa-solid fa-gear fa-lg'
+      span.text-sm.text-gray-600.mr-1 #{@walk.publish ? '公開中' : '非公開'}
+      = link_to edit_walk_path(@walk), class: 'text-gray-400 hover:text-black'
+        i class='fa-solid fa-gear fa-lg'
 = turbo_frame_tag 'arrivals-list' do
-  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }
+  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals }
 
-- if editable
-  .text-center.my-4
-    = link_to '地図に戻る', walk_path(current_walk), class: 'link-important'
+.text-center.my-4
+  = link_to '地図に戻る', walk_path(current_walk), class: 'link-important'

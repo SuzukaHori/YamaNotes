@@ -39,6 +39,6 @@ RSpec.describe ArrivalsHelper, type: :helper do
   it '#deletable?' do
     allow(helper).to receive(:current_user).and_return(user)
     create_arrivals(walk, 3)
-    expect(helper.deletable?(editable: true, arrival: walk.arrivals.order(:created_at).last, arrivals: walk.arrivals)).to be true
+    expect(helper.deletable?(arrival: walk.arrivals.order(:created_at).last, arrivals: walk.arrivals)).to be true
   end
 end

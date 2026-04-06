@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class WalksController < ApplicationController
-  before_action :set_walk, only: %i[show destroy]
+  before_action :set_walk, only: %i[show destroy edit update]
   before_action :set_maptiler_key, only: %i[show]
-  before_action :redirect_if_walk_not_exist, only: %i[show update]
+  before_action :redirect_if_walk_not_exist, only: %i[show]
 
   def index
     @walks = current_user.walks.includes(:arrivals).order(id: :desc)
@@ -16,6 +16,8 @@ class WalksController < ApplicationController
     @arrived_distance = @walk.arrived_distance
     @number_of_walked = @walk.number_of_walked
   end
+
+  def edit; end
 
   def new
     @walk = Walk.new
@@ -47,9 +49,9 @@ class WalksController < ApplicationController
   end
 
   def update
-    current_walk.update!(walk_params)
+    @walk.update!(walk_params)
 
-    redirect_to arrivals_path, notice: current_walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
+    redirect_to edit_walk_path(@walk), notice: @walk.publish ? '到着履歴を公開しました。URLで到着履歴を共有しましょう。' : '到着履歴を非公開にしました。'
   end
 
   private

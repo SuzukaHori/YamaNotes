@@ -51,6 +51,29 @@ RSpec.describe 'Walks', type: :request do
     end
   end
 
+  describe 'GET /walks/:id/edit' do
+    subject(:edit_walk) { get edit_walk_path(walk) }
+
+    context '自分の歩行記録の場合' do
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
+
+      it 'アクセスできる' do
+        edit_walk
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context '他のユーザーの歩行記録の場合' do
+      let(:other_user) { FactoryBot.create(:user) }
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user: other_user) }
+
+      it '404になる' do
+        edit_walk
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe 'PATCH /walks/:id' do
     let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user:, clockwise: true) }
 
@@ -59,7 +82,7 @@ RSpec.describe 'Walks', type: :request do
 
       it '到着履歴を公開できる' do
         publish_walk
-        expect(response).to redirect_to arrivals_path
+        expect(response).to redirect_to edit_walk_path(walk)
         follow_redirect!
         expect(flash[:notice]).to eq('到着履歴を公開しました。URLで到着履歴を共有しましょう。')
       end
@@ -70,9 +93,19 @@ RSpec.describe 'Walks', type: :request do
 
       it '到着履歴を非公開にできる' do
         unpublish_walk
-        expect(response).to redirect_to arrivals_path
+        expect(response).to redirect_to edit_walk_path(walk)
         follow_redirect!
         expect(flash[:notice]).to eq('到着履歴を非公開にしました。')
+      end
+    end
+
+    context '他のユーザーの歩行記録の場合' do
+      let(:other_user) { FactoryBot.create(:user) }
+      let!(:walk) { FactoryBot.create(:walk, :with_arrivals, user: other_user, active: false) }
+
+      it '404になる' do
+        patch walk_path(walk), params: { walk: { publish: true } }
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

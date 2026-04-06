@@ -9,7 +9,7 @@ module ArrivalsHelper
     Station.cache_count - number_of_walked
   end
 
-  def deletable?(editable:, arrival:, arrivals:)
-    editable && arrival == arrivals.last && arrival != arrivals.first
+  def deletable?(arrival:, arrivals:)
+    arrival == arrivals.last && arrival != arrivals.first
   end
 end

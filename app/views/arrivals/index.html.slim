@@ -3,27 +3,13 @@
 - editable = @walk.user == @user
 
 .py-4
-  .flex
+  .flex.items-center
     h2.text-2xl.font-bold.inline-block 到着履歴
-    .ml-auto
+    .ml-auto.flex.items-center.gap-3
       - if editable
-        .flex.justify-end
-          span.pr-2 #{@walk.publish ? '公開' : '非公開'}
-          = form_with model: @walk, class: 'inline-block', method: :patch do |f|
-            = f.label :publish
-              = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
-              .toggle-switch.cursor-pointer
-        - if !@walk.publish
-          p.text-xs.text-gray-500
-            | 公開をONにすると到着履歴の
-            br
-            | URLを他の人とシェアできます。
-  - if editable && @walk.publish
-    .flex.items-center.mt-4
-      label.text-xs.pr-1 for='url' URL
-      = text_field_tag 'url', public_walk_arrivals_url(@walk), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: public_walk_arrivals_url(@walk) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
-        i class='fa-regular fa-copy fa-xl'
+        span.text-sm.text-gray-600 #{@walk.publish ? '公開中' : '非公開'}
+        = link_to edit_walk_path(@walk), class: 'hover:text-gray-600 text-gray-400'
+          i class='fa-solid fa-gear fa-lg'
 = turbo_frame_tag 'arrivals-list' do
   = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals, editable: }
 

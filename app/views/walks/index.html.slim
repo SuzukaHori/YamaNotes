@@ -14,7 +14,7 @@
               = l walk.arrival_of_departure.arrived_at, format: :medium
             = walk_status_label(walk)
             .flex.items-center.gap-1.ml-auto
-              span.text-xs.text-gray-500.mr-1 = walk.publish ? '公開中' : '非公開'
+              span.text-xs.text-gray-500 = walk.publish ? '公開中' : '非公開'
               = link_to edit_walk_path(walk), class: 'text-gray-400 hover:text-black'
                 i.fa-solid.fa-gear
           .flex.w-full

@@ -3,8 +3,8 @@
 .py-4
   .flex.items-center
     h2.text-2xl.font-bold.inline-block 到着履歴
-    .ml-auto.flex.items-center.gap-3
-      span.text-sm.text-gray-600.mr-1 #{@walk.publish ? '公開中' : '非公開'}
+    .ml-auto.flex.items-center.gap-1
+      span.text-sm.text-gray-600 #{@walk.publish ? '公開中' : '非公開'}
       = link_to edit_walk_path(@walk), class: 'text-gray-400 hover:text-black'
         i class='fa-solid fa-gear fa-lg'
 = turbo_frame_tag 'arrivals-list' do

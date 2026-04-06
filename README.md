@@ -29,7 +29,7 @@ https://www.yamanotes.com
 
 ## 動作環境
 
-- Ruby 3.4.7
+- Ruby 4.0.2
 - Ruby on Rails 8.1.1
 - Hotwire
 

@@ -19,9 +19,9 @@ ruby:
     = render partial: 'arrived', locals: { station: @station, number_of_walked: @number_of_walked, number_of_remaining:, arrived_distance: @arrived_distance }
   .mt-4 data-controller='modal'
     button#memo_modal_button.link-important.w-44 data-action='modal#open'
-      | メモを追加
+      = t('.add_memo')
     = render partial: 'dialogs/memo', locals: { arrival: @arrival }
   .m-4
     = render partial: 'shared/post_button', locals: { text: text_for_post, url: arrival_report_url(@arrival) }
   .mt-8
-    = link_to '地図に戻る', walk_path(current_walk), class: 'link-important w-44'
+    = link_to t('.back_to_map'), walk_path(current_walk), class: 'link-important w-44'

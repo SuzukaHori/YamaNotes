@@ -1,0 +1,61 @@
+---
+ja:
+  walks:
+    show:
+      title: ダッシュボード
+      congratulations: "おめでとうございます\U0001F389"
+      all_walked: "%{count}駅全てを歩ききりました！"
+      view_record: 記録を見る
+      walk_again: 初めから歩く
+      walk_again_confirm: 新しい歩行を開始すると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）
+      here_record: ここまでの記録
+      elapsed_since: 出発から
+      walked_stations: 歩いた駅
+      walked_distance: 歩いた距離
+      view_history: 履歴を見る
+    index:
+      title: 歩行記録の一覧
+      no_records: 歩行記録はありません。
+      course: コース
+      clockwise: 外回り
+      counterclockwise: 内回り
+      departure_time: 出発時刻
+      goal_time: ゴール時刻
+      elapsed_time: かかった時間
+      detail: 詳細
+      delete: 歩行記録を削除する
+      delete_confirm: 歩行記録・到着履歴を全て削除します。よろしいですか？（この操作は取り消しできません。）
+    edit:
+      title: 歩行記録設定
+      heading: 歩行記録の設定
+      public_hint: 公開をONにすると、到着履歴のURLを他の人とシェアできます。
+    new:
+      title: 一周の設定
+      welcome: YamaNotesへようこそ！
+      page1:
+        heading: まずは、出発駅を決めましょう！
+        station_label: 出発駅
+        station_alt: 山手線の路線図
+        hint: おすすめは自宅や宿泊場所に近い駅です。（帰りが楽になるため）
+        next: 進む
+      page2:
+        heading: 次に、回り方を決めましょう
+        clockwise: 外回り
+        counterclockwise: 内回り
+        guide_alt: 内回りの説明
+        hint: 内回り・外回りで距離の差はほぼないので、お好みで選びましょう。
+        back: 戻る
+        next: 進む
+      page3:
+        heading: この設定でよろしいですか？
+        departure_station: 出発駅
+        direction: 回り方
+        guide_alt: 内回りの説明
+        hint: 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
+        reconfigure: 設定し直す
+        start: はじめる
+    walk:
+      previous_station: "前の駅:"
+      next_station: "次の駅:"
+      memo: メモ
+      arrive: 到着

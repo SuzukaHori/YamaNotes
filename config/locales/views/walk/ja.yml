@@ -1,0 +1,9 @@
+---
+ja:
+  walk:
+    arrivals:
+      index:
+        title: 到着一覧
+        history: 到着履歴
+        departure_badge: 出発
+        goal_badge: ゴール

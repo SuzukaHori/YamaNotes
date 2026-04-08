@@ -1,0 +1,12 @@
+---
+ja:
+  shared:
+    login_button:
+      to_dashboard: ダッシュボードへ
+      login_with_google: Googleでログイン
+      terms: 利用規約
+      privacy: プライバシーポリシー
+      consent_prefix: に
+      consent_suffix: 同意した上でログインしてください。
+    post_button:
+      post_to_x: にポストする

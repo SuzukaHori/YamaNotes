@@ -1,0 +1,19 @@
+---
+ja:
+  activerecord:
+    models:
+      walk: 歩行記録ノート
+    attributes:
+      walk:
+        arrivals: 到着
+        clockwise: 外回り
+        publish: 公開
+        unpublish: 非公開
+        stations: 駅
+        user_id: ユーザ
+    errors:
+      messages:
+        restrict_multiple_creation: "%{model}は1つしか作成できません"
+    success:
+      messages:
+        create: '%{model}を作成しました'

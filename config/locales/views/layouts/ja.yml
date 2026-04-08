@@ -1,0 +1,11 @@
+---
+ja:
+  layouts:
+    footer:
+      terms: 利用規約
+      privacy: プライバシーポリシー
+    header:
+      logout: ログアウト
+      logout_confirm: ログアウトします。よろしいですか？
+      withdraw: 退会する
+      withdraw_confirm: データをすべて削除して退会します。よろしいですか？

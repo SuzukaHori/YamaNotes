@@ -1,0 +1,11 @@
+---
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        arrivals: 到着
+        provider: プロバイダー
+        uid: ユーザID
+        walk_id: 歩行記録ノート

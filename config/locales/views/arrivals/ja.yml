@@ -1,0 +1,37 @@
+---
+ja:
+  arrivals:
+    show:
+      add_memo: メモを追加
+      back_to_map: 地図に戻る
+    index:
+      title: 到着一覧
+      history: 到着履歴
+      back_to_map: 地図に戻る
+    edit:
+      memo_placeholder: 辛くなってきた！自転車が羨ましい><
+      save: 保存
+    arrived:
+      heading: "%{station_name}駅に到着\U0001F389"
+      station_alt: "%{station_name}駅のイラスト"
+      walked_info: "歩いた駅は%{number_of_walked}駅（残り%{number_of_remaining}駅）、"
+      distance_info: "歩いた距離は約%{arrived_distance}kmです！"
+    finished:
+      certificate_title: 表彰状
+      certificate_body1: "あなたは、山手線の%{count}駅全てを歩ききりました。"
+      certificate_body2: 都会の過酷な条件下で、身体の疲れや足の痛みやにも負けず、精力的に歩き続けたことは、見る人に深い感動を与えました。
+      certificate_body3: よってここに、その不屈の精神と絶え間ない努力を称え、表彰します。
+      departure_time: 出発時刻
+      goal_time: ゴール時刻
+      elapsed_time: かかった時間
+    arrival:
+      departure_badge: 出発
+      goal_badge: ゴール
+      edit: 編集
+      delete: 到着を削除する
+      delete_confirm: 本当に削除しますか？
+    report:
+      show:
+        arrived_message: "%{station_name}駅に到着しました\U0001F389"
+        station_alt: "%{station_name}駅のイラスト"
+        cheer: みんなで応援しよう！

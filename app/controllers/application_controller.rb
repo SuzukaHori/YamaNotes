@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :set_locale
+  around_action :switch_locale
   helper_method :current_walk
 
   # 現在実施中の歩行を返す
@@ -15,12 +15,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_locale
-    I18n.locale = extract_locale || I18n.default_locale
-  end
-
-  def extract_locale
-    parsed = params[:locale]&.to_sym
-    parsed if I18n.available_locales.include?(parsed)
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 end

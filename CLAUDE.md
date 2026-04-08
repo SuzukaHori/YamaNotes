@@ -60,7 +60,7 @@ npm run lint   # prettier --check + eslint
 ## Development Workflow
 
 - 作業開始時は必ず専用ブランチを作成する。main ブランチでの作業は禁止
-- コミットメッセージは日本語で書く
+- コミットメッセージは日本語で書き、コミットする前に必ずユーザーに許可を取る
 - PR 作成時は「概要・変更内容・テスト方法」を記載し、assignee に SuzukaHori を指定する
 - 新機能実装時は要件定義書を作成してから実装を始める
 

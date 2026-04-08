@@ -76,18 +76,15 @@ config/locales/
 │   ├── station/
 │   ├── user/
 │   └── walk/
-└── views/           # ViewのUI文字列（コントローラー/機能単位で分割）
+└── views/           # ViewのUI文字列（コントローラー単位で分割）
     ├── arrivals/
     ├── dialogs/
     ├── layouts/
     ├── pages/
-    ├── shared/      # shared.buttons: 複数箇所で使うボタンラベル（edit/delete/save/back/next/post_to_x）
+    ├── shared/      # shared.buttons: 複数箇所で使うボタンラベル
     ├── walk/
     └── walks/
 ```
-
-- `Walk.human_attribute_name(:publish)` / `Walk.human_attribute_name(:unpublish)` で公開状態ラベルを参照する
-- 共通ボタンラベルは `t('shared.buttons.xxx')` で参照する
 
 ## Environment Variables
 

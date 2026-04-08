@@ -1,0 +1,9 @@
+---
+en:
+  walk:
+    arrivals:
+      index:
+        title: Arrival list
+        history: Arrival history
+        departure_badge: Start
+        goal_badge: Goal

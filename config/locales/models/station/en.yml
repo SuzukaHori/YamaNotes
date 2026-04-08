@@ -1,0 +1,14 @@
+---
+en:
+  activerecord:
+    models:
+      station: Station
+    attributes:
+      station:
+        arrivals: Arrivals
+        clockwise_distance_to_next: Distance to next station (outer loop)
+        counterclockwise_distance_to_next: Distance to next station (inner loop)
+        latitude: Latitude
+        longitude: Longitude
+        name: Name
+        walks: Walk logs

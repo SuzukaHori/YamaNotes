@@ -1,0 +1,12 @@
+---
+en:
+  activerecord:
+    models:
+      arrival: Arrival
+    attributes:
+      arrival:
+        arrived_at: Arrived at
+        memo: Memo
+        station_id: Station
+        walk_id: Walk log
+        station: Station

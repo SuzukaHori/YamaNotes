@@ -1,0 +1,11 @@
+---
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        arrivals: Arrivals
+        provider: Provider
+        uid: User ID
+        walk_id: Walk log

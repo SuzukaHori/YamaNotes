@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  around_action :switch_locale
   helper_method :current_walk
 
   # 現在実施中の歩行を返す
@@ -10,5 +11,16 @@ class ApplicationController < ActionController::Base
     return nil unless user_signed_in?
 
     @current_walk ||= current_user.walks.find_by(active: true)
+  end
+
+  private
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
+
+  def default_url_options
+    I18n.locale == I18n.default_locale ? {} : { locale: I18n.locale }
   end
 end

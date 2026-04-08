@@ -52,3 +52,11 @@ en:
       next_station: "Next station:"
       memo: Memo
       arrive: Arrive
+    create:
+      created: Walk record notebook has been created.
+    destroy:
+      deleted: Walk record has been deleted.
+      cannot_delete_active: Active walk records cannot be deleted.
+    update:
+      published: "Arrival history is now public. Share the URL with others!"
+      unpublished: Arrival history is now private.

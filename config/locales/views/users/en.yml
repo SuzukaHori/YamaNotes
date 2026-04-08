@@ -1,0 +1,9 @@
+---
+en:
+  users:
+    destroy:
+      withdrawn: You have successfully withdrawn your account.
+    omniauth_callbacks:
+      failure:
+        auth_failed: Authentication failed. Please try again.
+      already_logged_in: You are already logged in.

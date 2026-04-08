@@ -1,0 +1,7 @@
+---
+en:
+  public:
+    walks:
+      arrivals:
+        index:
+          private: This arrival record is private.

@@ -1,0 +1,7 @@
+---
+ja:
+  public:
+    walks:
+      arrivals:
+        index:
+          private: この到着記録は非公開です

@@ -1,0 +1,7 @@
+---
+en:
+  walks:
+    deactivations:
+      create:
+        completed: Walk completed!
+        retired: You have retired from the walk.

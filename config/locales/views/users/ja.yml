@@ -1,0 +1,9 @@
+---
+ja:
+  users:
+    destroy:
+      withdrawn: 退会しました。
+    omniauth_callbacks:
+      failure:
+        auth_failed: 認証に失敗しました。もう一度お試しください。
+      already_logged_in: すでにログインしています。

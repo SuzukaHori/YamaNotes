@@ -10,6 +10,11 @@ en:
       back_to_map: Back to map
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
+    create:
+      no_walk: No walk record found.
+      save_failed: Could not save the arrival record.
+    update:
+      updated: Arrival record has been updated.
     arrived:
       heading: "Arrived at %{station_name} station \U0001F389"
       station_alt: "Illustration of %{station_name} station"

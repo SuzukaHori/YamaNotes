@@ -27,7 +27,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     Rails.logger.error "OmniAuth認証失敗: #{error.message} (Type: #{error_type})"
 
-    flash[:alert] = '認証に失敗しました。もう一度お試しください。'
+    flash[:alert] = t('users.omniauth_callbacks.failure.auth_failed')
     redirect_to root_path
   end
 
@@ -36,7 +36,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def redirect_if_already_logged_in
     return unless user_signed_in?
 
-    alert = 'すでにログインしています。'
+    alert = t('users.omniauth_callbacks.already_logged_in')
     if current_walk
       redirect_to walk_path(current_walk), alert: alert
     else

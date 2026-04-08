@@ -6,6 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 YamaNotes は山手線一周徒歩チャレンジの記録アプリ。Ruby on Rails + Hotwire (Turbo/Stimulus) + TailwindCSS で構築されている。
 
+## Development Workflow
+
+- 作業開始時は必ず専用ブランチを作成する。main ブランチでの作業は禁止
+- 新機能実装時は `docs/requirements/` に要件定義書があるか確認してから実装を始める。ない場合は作成するかユーザーに確認する。
+- コミットメッセージは日本語で書く。コミットやプッシュをする前に、必ずユーザーに許可を取る
+- PR 作成時は「概要・変更内容・テスト方法」を記載し、assignee に SuzukaHori を指定する
+
 ## Commands
 
 ```bash
@@ -57,13 +64,6 @@ npm run lint   # prettier --check + eslint
 - メモの`memo`フィールドはURLの後にスペースを自動挿入(rinku gem との互換性のため)
 - 到着は必ず隣駅のみ可能(時計回り/反時計回りで方向が変わる)
 
-## Development Workflow
-
-- 作業開始時は必ず専用ブランチを作成する。main ブランチでの作業は禁止
-- コミットメッセージは日本語で書き、コミットする前に必ずユーザーに許可を取る
-- PR 作成時は「概要・変更内容・テスト方法」を記載し、assignee に SuzukaHori を指定する
-- 新機能実装時は `docs/requirements/` に要件定義書があるか確認してから実装を始める。ない場合は作成するかユーザーに確認する
-
 ## i18n / 翻訳ファイル
 
 翻訳ファイルの構成は [Railsガイド「ロケールファイルの編成」](https://railsguides.jp/i18n.html#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%B7%A8%E6%88%90) に従う。
@@ -81,16 +81,7 @@ config/locales/
     ├── dialogs/
     ├── layouts/
     ├── pages/
-    ├── shared/      # shared.buttons: 複数箇所で使うボタンラベル
+    ├── shared/      # 複数箇所で使うボタンラベルなど
     ├── walk/
     └── walks/
 ```
-
-## Environment Variables
-
-| 変数名 | 説明 |
-|---|---|
-| `GOOGLE_CLIENT_ID` | Google OAuth クライアントID |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth クライアントシークレット |
-| `FONTAWESOME_URL` | Font Awesome CDN URL |
-| `MAPTAILER_KEY` | MapTiler アクセストークン |

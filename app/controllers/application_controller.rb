@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    I18n.locale == I18n.default_locale ? {} : { locale: I18n.locale }
   end
 end

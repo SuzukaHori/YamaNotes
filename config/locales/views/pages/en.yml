@@ -1,0 +1,24 @@
+---
+en:
+  pages:
+    top:
+      title: Top page
+      catchcopy_line1: Challenge yourself to walk
+      catchcopy_line2: the entire Yamanote Line!!
+      description_line1: YamaNotes is a record-keeping app
+      description_line2: for walking the entire Yamanote Line.
+      feature1_title: Record your challenge
+      feature1_body: Easily record arrival times, stations, and notes about how you're feeling. Recorded information can be posted to X with a single button.
+      feature2_title: Track progress on a map
+      feature2_body: A line is drawn on the map so you can see your progress at a glance. No need to calculate the remaining stations or distance.
+      feature3_title: View and edit your list
+      feature3_body: You can view your recorded information in a list, and edit or delete entries. The sharing feature lets you share with others.
+      cta: Let's go!
+  shared:
+    login_button:
+      to_dashboard: Go to dashboard
+      login_with_google: Log in with Google
+      terms: Terms of Service
+      privacy: Privacy Policy
+      consent_prefix: "By logging in, you agree to our "
+      consent_suffix: "."

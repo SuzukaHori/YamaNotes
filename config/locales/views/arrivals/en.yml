@@ -1,0 +1,34 @@
+---
+en:
+  arrivals:
+    show:
+      add_memo: Add memo
+      back_to_map: Back to map
+    index:
+      title: Arrival list
+      history: Arrival history
+      back_to_map: Back to map
+    edit:
+      memo_placeholder: Getting tired! Jealous of cyclists ><
+    arrived:
+      heading: "Arrived at %{station_name} station \U0001F389"
+      station_alt: "Illustration of %{station_name} station"
+      walked_info: "Walked %{number_of_walked} stations (%{number_of_remaining} remaining), "
+      distance_info: "total distance approximately %{arrived_distance}km!"
+    finished:
+      certificate_title: Certificate of Achievement
+      certificate_body1: "You have walked all %{count} stations of the Yamanote Line."
+      certificate_body2: Under the harsh conditions of the city, you persevered through physical fatigue and sore feet, walking energetically all the way, deeply moving all who witnessed it.
+      certificate_body3: We hereby honor your indomitable spirit and tireless effort.
+      departure_time: Departure time
+      goal_time: Goal time
+      elapsed_time: Elapsed time
+    arrival:
+      departure_badge: Start
+      goal_badge: Goal
+      delete_confirm: Are you sure you want to delete?
+    report:
+      show:
+        arrived_message: "Arrived at %{station_name} station \U0001F389"
+        station_alt: "Illustration of %{station_name} station"
+        cheer: Cheer them on!

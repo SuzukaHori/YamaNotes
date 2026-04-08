@@ -1,0 +1,38 @@
+---
+en:
+  dialogs:
+    caution:
+      title: Notes on Yamanote Line Walk
+      duration_warning: Walking around the entire Yamanote Line takes about 12 hours.
+      health_warning: Please take care of your health and do not push yourself too hard. Avoid walking on hot days or in bad weather.
+      stop_while_using: Please stop walking before operating the app.
+      preparation_list_link: Preparation list for Yamanote Line walk
+      walking_caution_link: Walking precautions
+      check_links_suffix: " for details."
+      no_liability: The developer assumes no responsibility for any injuries or accidents that may occur.
+      confirm: Understood
+    memo:
+      title: Add memo
+      placeholder: Getting tired! Jealous of cyclists ><
+    help:
+      title: How to use
+      arrival_step_prefix: When you reach a station, press the
+      arrival_button: Arrive
+      arrival_step_suffix: button.
+      memo_button: Memo
+      memo_step_suffix: button to add a memo for each station.
+      edit_step_prefix: If you made a mistake,
+      arrivals_list_link: arrival list page
+      edit_step_suffix: to edit or delete.
+      retire_hint: If you want to change the start time or direction (inner/outer loop), delete the data once using "Retire" from the menu.
+      reference_step_prefix: For your walk, please refer to the
+      preparation_list_link: Preparation list for Yamanote Line walk
+      walking_caution_link: Walking precautions
+      reference_step_suffix: "."
+    menu:
+      dashboard: Dashboard
+      arrivals: Arrival list
+      retire: Retire
+      retire_confirm: If you retire, you will no longer be able to edit this walk record. Are you sure? (This action cannot be undone.)
+      walks_list: Walk record list
+      top: Top page

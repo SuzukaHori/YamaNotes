@@ -1,0 +1,54 @@
+---
+en:
+  walks:
+    show:
+      title: Dashboard
+      congratulations: "Congratulations \U0001F389"
+      all_walked: "You walked all %{count} stations!"
+      view_record: View record
+      walk_again: Start over
+      walk_again_confirm: Starting a new walk will make this walk record no longer editable. Are you sure? (This action cannot be undone.)
+      here_record: Progress so far
+      elapsed_since: Since departure
+      walked_stations: Stations walked
+      walked_distance: Distance walked
+      view_history: View history
+    index:
+      title: Walk record list
+      no_records: No walk records found.
+      course: Course
+      departure_time: Departure time
+      goal_time: Goal time
+      elapsed_time: Elapsed time
+      detail: Details
+      delete: Delete walk record
+      delete_confirm: This will delete all walk records and arrival history. Are you sure? (This action cannot be undone.)
+    edit:
+      title: Walk record settings
+      heading: Walk record settings
+      public_hint: Turning on Public allows you to share the arrival history URL with others.
+    new:
+      title: Walk settings
+      welcome: Welcome to YamaNotes!
+      page1:
+        heading: First, choose your starting station!
+        station_label: Starting station
+        station_alt: Yamanote Line map
+        hint: We recommend a station close to your home or accommodation (so the return trip is easier).
+      page2:
+        heading: Next, choose your direction
+        guide_alt: Explanation of inner loop
+        hint: The distance difference between inner and outer loops is minimal, so choose your preference.
+      page3:
+        heading: Are you happy with these settings?
+        departure_station: Starting station
+        direction: Direction
+        guide_alt: Explanation of inner loop
+        hint: The walking distance changes depending on whether you walk on the inside or outside of the tracks. Choose your route based on your fitness level.
+        reconfigure: Change settings
+        start: Start
+    walk:
+      previous_station: "Previous station:"
+      next_station: "Next station:"
+      memo: Memo
+      arrive: Arrive

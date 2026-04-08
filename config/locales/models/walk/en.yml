@@ -1,0 +1,20 @@
+---
+en:
+  activerecord:
+    models:
+      walk: Walk log
+    attributes:
+      walk:
+        arrivals: Arrivals
+        clockwise: Outer loop
+        counterclockwise: Inner loop
+        publish: Public
+        unpublish: Private
+        stations: Stations
+        user_id: User
+    errors:
+      messages:
+        restrict_multiple_creation: "Only one %{model} can be created"
+    success:
+      messages:
+        create: '%{model} was created'

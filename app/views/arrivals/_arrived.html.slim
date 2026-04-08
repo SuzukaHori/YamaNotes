@@ -1,11 +1,11 @@
-h2.text-xl.font-bold.mb-4 #{station.name}駅に到着🎉
+h2.text-xl.font-bold.mb-4 = t('.heading', station_name: station.name)
 
 = image_tag station_image_path(station:),
             class: 'md:max-w-40 md:max-h-40 max-h-32 max-w-32 mx-auto',
-            width: "200", height: "200",
-            alt: "#{station.name}駅のイラスト"
+            width: '200', height: '200',
+            alt: t('.station_alt', station_name: station.name)
 
 p.mt-2
-  | 歩いた駅は#{number_of_walked}駅（残り#{number_of_remaining}駅）、
+  = t('.walked_info', number_of_walked: number_of_walked, number_of_remaining: number_of_remaining)
   br
-  | 歩いた距離は約#{arrived_distance}kmです！
+  = t('.distance_info', arrived_distance: arrived_distance)

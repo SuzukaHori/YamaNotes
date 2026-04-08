@@ -1,47 +1,12 @@
 ---
 ja:
   activerecord:
-    models:
-      arrival: 到着
-      station: 駅
-      user: ユーザー
-      walk: 歩行記録ノート
-    attributes:
-      arrival:
-        arrived_at: 到着時刻
-        memo: メモ
-        station_id: 到着駅
-        walk_id: 歩行記録ノート
-        station: 駅
-      station:
-        arrivals: 到着
-        clockwise_distance_to_next: 次の駅までの距離（外回り）
-        counterclockwise_distance_to_next: 次の駅までの距離（内回り）
-        latitude: 緯度
-        longitude: 経度
-        name: 名前
-        walks: 歩行記録ノート
-      user:
-        arrivals: 到着
-        provider: プロバイダー
-        uid: ユーザID
-        walk_id: 歩行記録ノート
-      walk:
-        arrivals: 到着
-        clockwise: 外回り
-        publish: 公開
-        stations: 駅
-        user_id: ユーザ
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-        restrict_multiple_creation: "%{model}は1つしか作成できません"
-    success:
-      messages:
-        create: '%{model}を作成しました'
 
   date:
     abbr_day_names:
@@ -53,7 +18,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -79,7 +44,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

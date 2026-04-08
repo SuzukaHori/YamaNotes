@@ -1,18 +1,18 @@
-- title '歩行記録設定'
+- title t('.title')
 - set_meta_tags description: '歩行記録の設定ページです。'
 
 .py-4
-  h2.text-2xl.font-bold.mb-6 歩行記録の設定
+  h2.text-2xl.font-bold.mb-6 = t('.heading')
 
   .flex.items-center
-    span.pr-2 #{@walk.publish ? '公開' : '非公開'}
+    span.pr-2 #{@walk.publish ? Walk.human_attribute_name(:publish) : Walk.human_attribute_name(:unpublish)}
     = form_with model: @walk, class: 'inline-block', method: :patch do |f|
       = f.label :publish
         = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
         .toggle-switch.cursor-pointer
   - if !@walk.publish
     p.text-xs.text-gray-500.mt-4
-      | 公開をONにすると、到着履歴のURLを他の人とシェアできます。
+      = t('.public_hint')
 
   - if @walk.publish
     .flex.items-center.mt-4
@@ -20,4 +20,3 @@
       = text_field_tag 'url', public_walk_arrivals_url(@walk), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
       = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: public_walk_arrivals_url(@walk) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
         i class='fa-regular fa-copy fa-xl'
-

@@ -1,30 +1,30 @@
 dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal-target='dialog'
-  h2.text-2xl.font-bold.text-center.my-2.mx-auto 使い方
+  h2.text-2xl.font-bold.text-center.my-2.mx-auto = t('.title')
   button.focus:outline-none.absolute.top-0.right-0.p-2.m-2.hover:bg-gray-100 data-action="click->modal#close" autofocus=true
     i.fa-solid.fa-xmark.fa-2xl
   ol.list-disc.pl-6.leading-8
     li.mb-2
-      | 駅に着いたら
+      = t('.arrival_step_prefix')
       button.btn-primary.inline-block.mx-1
-        | 到着
-      | ボタンを押しましょう。
+        = t('.arrival_button')
+      = t('.arrival_step_suffix')
     li.mb-2
       a.link-important.mx-1
-        | メモ
-      | ボタンから、各駅のメモを追加できます。
+        = t('.memo_button')
+      = t('.memo_step_suffix')
     li.mb-2
-      | 記録を間違った時は、
-      = link_to '到着一覧ページ', arrivals_path, class: 'text-blue-600 underline hover:text-gray-400'
-      | から編集・削除できます。
+      = t('.edit_step_prefix')
+      = link_to t('.arrivals_list_link'), arrivals_path, class: 'text-blue-600 underline hover:text-gray-400'
+      = t('.edit_step_suffix')
     li.mb-2
-      | スタート時刻や内回り・外回りなどの設定を変えたいときは、メニューの「リタイアする」から一度データを削除してください。
+      = t('.retire_hint')
     li.mb-2
-      p.inline 歩行の際は、
+      p.inline = t('.reference_step_prefix')
       = link_to 'https://scrapbox.io/yamanotes/%E5%B1%B1%E6%89%8B%E7%B7%9A%E5%BE%92%E6%AD%A9%E4%B8%80%E5%91%A8%E3%81%AE%E6%BA%96%E5%82%99%E3%83%AA%E3%82%B9%E3%83%88',
         class: 'text-blue-600 underline hover:text-gray-400', target: '_blank', rel: 'noopener'
-        | 山手線一周の準備リスト
+        = t('.preparation_list_link')
       p.inline ・
       = link_to 'https://scrapbox.io/yamanotes/%E5%B1%B1%E6%89%8B%E7%B7%9A%E4%B8%80%E5%91%A8%E3%81%AE%E6%B3%A8%E6%84%8F',
         class: 'text-blue-600 underline hover:text-gray-400', target: '_blank', rel: 'noopener'
-        | 歩行上の注意
-      | を参考にしてください。
+        = t('.walking_caution_link')
+      = t('.reference_step_suffix')

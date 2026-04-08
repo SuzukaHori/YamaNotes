@@ -64,6 +64,28 @@ npm run lint   # prettier --check + eslint
 - PR 作成時は「概要・変更内容・テスト方法」を記載し、assignee に SuzukaHori を指定する
 - 新機能実装時は要件定義書を作成してから実装を始める
 
+## i18n / 翻訳ファイル
+
+翻訳ファイルの構成は [Railsガイド「ロケールファイルの編成」](https://railsguides.jp/i18n.html#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%B7%A8%E6%88%90) に従う。
+
+```
+config/locales/
+├── defaults/        # Railsデフォルト翻訳（date, datetime, errors, helpers, number, support, time）
+├── models/          # モデルごとのサブディレクトリに分割
+│   ├── arrival/
+│   ├── station/
+│   ├── user/
+│   └── walk/
+└── views/           # ViewのUI文字列（コントローラー単位で分割）
+    ├── arrivals/
+    ├── dialogs/
+    ├── layouts/
+    ├── pages/
+    ├── shared/      # shared.buttons: 複数箇所で使うボタンラベル
+    ├── walk/
+    └── walks/
+```
+
 ## Environment Variables
 
 | 変数名 | 説明 |

@@ -1,0 +1,38 @@
+---
+ja:
+  dialogs:
+    caution:
+      title: 山手線一周の注意
+      duration_warning: 山手線を徒歩で一周するには、約12時間かかります。
+      health_warning: 体調管理には十分注意し、無理をしないようにしてください。また、気温が高い日や悪天候の日の歩行は控えてください。
+      stop_while_using: アプリ使用時は、立ち止まって操作してください。
+      preparation_list_link: 山手線一周の準備リスト
+      walking_caution_link: 歩行上の注意
+      check_links_suffix: を確認してください。
+      no_liability: 怪我や事故などが発生した場合、開発者は一切の責任を負いかねます。
+      confirm: 確認しました
+    memo:
+      title: メモを追加
+      placeholder: 辛くなってきた！自転車が羨ましい><
+    help:
+      title: 使い方
+      arrival_step_prefix: 駅に着いたら
+      arrival_button: 到着
+      arrival_step_suffix: ボタンを押しましょう。
+      memo_button: メモ
+      memo_step_suffix: ボタンから、各駅のメモを追加できます。
+      edit_step_prefix: 記録を間違った時は、
+      arrivals_list_link: 到着一覧ページ
+      edit_step_suffix: から編集・削除できます。
+      retire_hint: スタート時刻や内回り・外回りなどの設定を変えたいときは、メニューの「リタイアする」から一度データを削除してください。
+      reference_step_prefix: 歩行の際は、
+      preparation_list_link: 山手線一周の準備リスト
+      walking_caution_link: 歩行上の注意
+      reference_step_suffix: を参考にしてください。
+    menu:
+      dashboard: ダッシュボード
+      arrivals: 到着一覧
+      retire: リタイアする
+      retire_confirm: リタイアすると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）
+      walks_list: 歩行記録の一覧
+      top: トップページ

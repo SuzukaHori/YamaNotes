@@ -1,0 +1,12 @@
+---
+ja:
+  activerecord:
+    models:
+      arrival: 到着
+    attributes:
+      arrival:
+        arrived_at: 到着時刻
+        memo: メモ
+        station_id: 到着駅
+        walk_id: 歩行記録ノート
+        station: 駅

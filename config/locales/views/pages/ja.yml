@@ -1,0 +1,24 @@
+---
+ja:
+  pages:
+    top:
+      title: トップページ
+      catchcopy_line1: 徒歩で山手線一周に
+      catchcopy_line2: 挑戦しよう！！
+      description_line1: ヤマノートは山手線一周に徒歩で
+      description_line2: 挑戦する時の記録アプリです。
+      feature1_title: 挑戦を記録
+      feature1_body: 到着時間や駅・疲れ具合などのメモを簡単に記録できます。記録した情報は、ボタン１つでXに投稿できます。
+      feature2_title: 進捗を地図で確認
+      feature2_body: 地図に線が引かれるので、進捗が一目でわかります。残りの駅数や距離などを、計算する必要がありません。
+      feature3_title: 一覧で確認や編集
+      feature3_body: 記録した情報を一覧で見ることができ、編集や削除ができます。公開機能で、他の人と共有もできます。
+      cta: さあ、出発！
+  shared:
+    login_button:
+      to_dashboard: ダッシュボードへ
+      login_with_google: Googleでログイン
+      terms: 利用規約
+      privacy: プライバシーポリシー
+      consent_prefix: に
+      consent_suffix: 同意した上でログインしてください。

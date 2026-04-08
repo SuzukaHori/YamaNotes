@@ -4,4 +4,4 @@ dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal
     i.fa-solid.fa-xmark.fa-2xl
   = form_with model: arrival do |form|
     = form.text_area :memo, rows: '6', class: 'w-full  text-base rounded-lg', placeholder: t('.placeholder'), autofocus: true, maxlength: '250'
-    = form.submit t('.save'), class: 'block btn-primary mx-auto mt-2', data: { action: 'click->modal#close' }
+    = form.submit t('shared.buttons.save'), class: 'block btn-primary mx-auto mt-2', data: { action: 'click->modal#close' }

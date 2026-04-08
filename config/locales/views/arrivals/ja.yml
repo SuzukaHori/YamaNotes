@@ -10,7 +10,6 @@ ja:
       back_to_map: 地図に戻る
     edit:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
-      save: 保存
     arrived:
       heading: "%{station_name}駅に到着\U0001F389"
       station_alt: "%{station_name}駅のイラスト"
@@ -27,8 +26,6 @@ ja:
     arrival:
       departure_badge: 出発
       goal_badge: ゴール
-      edit: 編集
-      delete: 到着を削除する
       delete_confirm: 本当に削除しますか？
     report:
       show:

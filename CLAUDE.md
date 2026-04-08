@@ -81,10 +81,13 @@ config/locales/
     ├── dialogs/
     ├── layouts/
     ├── pages/
-    ├── shared/
+    ├── shared/      # shared.buttons: 複数箇所で使うボタンラベル（edit/delete/save/back/next/post_to_x）
     ├── walk/
     └── walks/
 ```
+
+- `Walk.human_attribute_name(:publish)` / `Walk.human_attribute_name(:unpublish)` で公開状態ラベルを参照する
+- 共通ボタンラベルは `t('shared.buttons.xxx')` で参照する
 
 ## Environment Variables
 

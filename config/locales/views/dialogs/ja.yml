@@ -14,7 +14,6 @@ ja:
     memo:
       title: メモを追加
       placeholder: 辛くなってきた！自転車が羨ましい><
-      save: 保存
     help:
       title: 使い方
       arrival_step_prefix: 駅に着いたら

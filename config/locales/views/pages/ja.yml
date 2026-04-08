@@ -14,3 +14,11 @@ ja:
       feature3_title: 一覧で確認や編集
       feature3_body: 記録した情報を一覧で見ることができ、編集や削除ができます。公開機能で、他の人と共有もできます。
       cta: さあ、出発！
+  shared:
+    login_button:
+      to_dashboard: ダッシュボードへ
+      login_with_google: Googleでログイン
+      terms: 利用規約
+      privacy: プライバシーポリシー
+      consent_prefix: に
+      consent_suffix: 同意した上でログインしてください。

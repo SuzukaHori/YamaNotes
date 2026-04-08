@@ -1,12 +1,10 @@
 ---
 ja:
   shared:
-    login_button:
-      to_dashboard: ダッシュボードへ
-      login_with_google: Googleでログイン
-      terms: 利用規約
-      privacy: プライバシーポリシー
-      consent_prefix: に
-      consent_suffix: 同意した上でログインしてください。
-    post_button:
+    buttons:
+      edit: 編集
+      delete: 削除
+      save: 保存
+      back: 戻る
+      next: 進む
       post_to_x: にポストする

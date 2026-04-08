@@ -22,7 +22,7 @@
               tbody
                 tr
                   td.text-gray-500.pr-6 = t('.course')
-                  td = walk.clockwise ? t('.clockwise') : t('.counterclockwise')
+                  td = walk.clockwise ? Walk.human_attribute_name(:clockwise) : Walk.human_attribute_name(:counterclockwise)
                 tr
                   td.text-gray-500.pr-6 = t('.departure_time')
                   td = l walk.arrival_of_departure.arrived_at

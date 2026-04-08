@@ -7,6 +7,7 @@ ja:
       walk:
         arrivals: 到着
         clockwise: 外回り
+        counterclockwise: 内回り
         publish: 公開
         unpublish: 非公開
         stations: 駅

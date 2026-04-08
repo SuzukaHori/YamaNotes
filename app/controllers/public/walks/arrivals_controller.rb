@@ -10,7 +10,7 @@ class Public::Walks::ArrivalsController < ApplicationController
       @user = current_user
       render 'walk/arrivals/index'
     else
-      redirect_to root_path, notice: 'この到着記録は非公開です'
+      redirect_to root_path, notice: t('.private')
     end
   end
 

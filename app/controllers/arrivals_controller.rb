@@ -22,7 +22,7 @@ class ArrivalsController < ApplicationController
     if @arrival.save
       redirect_to @arrival
     else
-      redirect_to walk_path(current_walk), alert: '到着記録を保存できませんでした。'
+      redirect_to walk_path(current_walk), alert: t('arrivals.create.save_failed')
     end
   end
 
@@ -31,7 +31,7 @@ class ArrivalsController < ApplicationController
     return unless @arrival.changed?
 
     if @arrival.save
-      flash.now.notice = '到着記録を更新しました。'
+      flash.now.notice = t('arrivals.update.updated')
     else
       render 'edit', status: :unprocessable_content
     end
@@ -56,7 +56,7 @@ class ArrivalsController < ApplicationController
 
     return if @walk
 
-    redirect_to root_path, alert: '歩行記録が存在しません。'
+    redirect_to root_path, alert: t('arrivals.create.no_walk')
   end
 
   def arrival_params

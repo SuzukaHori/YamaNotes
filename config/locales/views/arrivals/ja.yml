@@ -10,6 +10,11 @@ ja:
       back_to_map: 地図に戻る
     edit:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
+    create:
+      no_walk: 歩行記録が存在しません。
+      save_failed: 到着記録を保存できませんでした。
+    update:
+      updated: 到着記録を更新しました。
     arrived:
       heading: "%{station_name}駅に到着\U0001F389"
       station_alt: "%{station_name}駅のイラスト"

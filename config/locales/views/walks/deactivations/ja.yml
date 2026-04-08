@@ -1,0 +1,7 @@
+---
+ja:
+  walks:
+    deactivations:
+      create:
+        completed: 歩行を完了しました。
+        retired: リタイアしました。

@@ -52,3 +52,11 @@ ja:
       next_station: "次の駅:"
       memo: メモ
       arrive: 到着
+    create:
+      created: 歩行記録ノートを作成しました。
+    destroy:
+      deleted: 歩行記録を削除しました。
+      cannot_delete_active: 実施中の歩行記録は削除できません。
+    update:
+      published: 到着履歴を公開しました。URLで到着履歴を共有しましょう。
+      unpublished: 到着履歴を非公開にしました。

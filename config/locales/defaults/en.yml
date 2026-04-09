@@ -74,8 +74,6 @@ en:
       x_seconds: "%{count} seconds"
       x_minutes: "%{count} minutes"
       x_hours: "%{count} hr"
-      hour_unit: " hr"
-      minute_unit: " min"
       x_days: "%{count} days"
       x_months: "%{count} months"
       x_years: "%{count} years"

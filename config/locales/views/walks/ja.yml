@@ -14,6 +14,8 @@ ja:
       walk_again_confirm: 新しい歩行を開始すると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）
       here_record: ここまでの記録
       elapsed_since: 出発から
+      hour_unit: 時間
+      minute_unit: 分
       walked_stations: 歩いた駅
       walked_distance: 歩いた距離
       view_history: 履歴を見る

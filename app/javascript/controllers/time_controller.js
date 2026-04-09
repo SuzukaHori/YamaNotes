@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["hours", "minutes"];
   static values = { departureDate: String };
 
-  hoursTargetConnected() {
+  connect() {
     setInterval(() => this._displayTime(), 1000);
   }
 

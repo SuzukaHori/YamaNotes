@@ -20,12 +20,10 @@ div data-controller='caution'
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.elapsed_since')
       td.border.border-gray-400.text-left.px-4.py-1
-        span data-time-target="hours"
-          = elapsed_hours(@walk)
-        = t('datetime.distance_in_words.hour_unit')
-        span data-time-target="minutes"
-          = elapsed_minutes(@walk)
-        = t('datetime.distance_in_words.minute_unit')
+        span data-time-target="hours" = elapsed_hours(@walk)
+        = t('.hour_unit')
+        span data-time-target="minutes" = elapsed_minutes(@walk)
+        = t('.minute_unit')
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.walked_stations')
       td.border.border-gray-400.text-left.px-4.py-1 = t('.stations_count', walked: @number_of_walked, remaining: number_of_remaining(number_of_walked: @number_of_walked))

@@ -14,6 +14,8 @@ en:
       walk_again_confirm: Starting a new walk will make this walk record no longer editable. Are you sure? (This action cannot be undone.)
       here_record: Progress so far
       elapsed_since: Since departure
+      hour_unit: " hr"
+      minute_unit: " min"
       walked_stations: Stations walked
       walked_distance: Distance walked
       view_history: View history

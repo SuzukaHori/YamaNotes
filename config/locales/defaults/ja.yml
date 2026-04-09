@@ -74,8 +74,6 @@ ja:
       x_seconds: "%{count}秒"
       x_minutes: "%{count}分"
       x_hours: "%{count}時間"
-      hour_unit: 時間
-      minute_unit: 分
       x_days: "%{count}日"
       x_months: "%{count}ヶ月"
       x_years: "%{count}年"

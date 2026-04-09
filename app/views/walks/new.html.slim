@@ -2,9 +2,15 @@
 - set_meta_tags description: '一周の設定をするページです'
 
 h2.text-lg.mt-10.mb-2.text-center = t('.welcome')
-.mb-10.mx-auto.py-8.px-6.border-4.text-lg.text-center.md:w-2/3 data-controller="pagination introduction" data-pagination-total-pages-value="3" data-pagination-current-page-value="1"
+= tag.div class: 'mb-10 mx-auto py-8 px-6 border-4 text-lg text-center md:w-2/3',
+          data: { controller: 'introduction',
+                  introduction_initial_station_value: Station.cache_all.first.name,
+                  introduction_initial_clockwise_mode_value: Walk.human_attribute_name(:clockwise),
+                  introduction_clockwise_label_value: Walk.human_attribute_name(:clockwise),
+                  introduction_counterclockwise_label_value: Walk.human_attribute_name(:counterclockwise) } do
   .text-center.my-0.mx-auto data-controller='clockwise' data-clockwise-true-path-value="#{asset_path('clockwise.png')}" data-clockwise-false-path-value="#{asset_path('counter_clockwise.png')}"
     = form_with model: [@walk, @arrival], url: walks_path, method: :post do |f|
-      = render partial: 'walks/new/page1', locals: { f: }
-      = render partial: 'walks/new/page2', locals: { f: }
-      = render partial: 'walks/new/page3', locals: { f: }
+      div data-controller='pagination' data-pagination-total-pages-value='3' data-pagination-current-page-value='1'
+        = render partial: 'walks/new/page1', locals: { f: }
+        = render partial: 'walks/new/page2', locals: { f: }
+        = render partial: 'walks/new/page3', locals: { f: }

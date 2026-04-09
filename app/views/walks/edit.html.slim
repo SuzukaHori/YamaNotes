@@ -18,5 +18,9 @@
     .flex.items-center.mt-4
       label.text-xs.pr-1 for='url' URL
       = text_field_tag 'url', public_walk_arrivals_url(@walk), { readonly: true, class: 'border border-gray-300 text-gray-900 rounded-lg text-sm grow' }
-      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy', clipboard_url_value: public_walk_arrivals_url(@walk) }, class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
+      = button_tag data: { controller: 'clipboard', action: 'clipboard#copy',
+                           clipboard_url_value: public_walk_arrivals_url(@walk),
+                           clipboard_success_message_value: t('js.clipboard.success'),
+                           clipboard_error_message_value: t('js.clipboard.error') },
+                   class: 'inline-block hover:bg-gray-100 p-2', id: 'copy_button'
         i class='fa-regular fa-copy fa-xl'

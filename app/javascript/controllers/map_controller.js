@@ -8,6 +8,7 @@ export default class extends Controller {
     stations: Array,
     arrivedIds: Array,
     currentId: String,
+    stationSuffix: String,
   };
 
   /* eslint-disable no-undef */
@@ -62,7 +63,7 @@ export default class extends Controller {
         icon: L.divIcon({ className: "map-icon" }),
       })
         .addTo(map)
-        .bindPopup(`${station.name}駅`);
+        .bindPopup(`${station.name}${this.stationSuffixValue}`);
 
       if (station === this.currentStation) {
         pin.openPopup();

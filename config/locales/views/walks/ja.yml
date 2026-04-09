@@ -1,6 +1,10 @@
 ---
 ja:
   walks:
+    status:
+      finished: 一周完了
+      active: 歩行中
+      retired: リタイア
     show:
       title: ダッシュボード
       congratulations: "おめでとうございます\U0001F389"
@@ -10,9 +14,14 @@ ja:
       walk_again_confirm: 新しい歩行を開始すると、今回の歩行記録の編集はできなくなります。よろしいですか？（この操作は取り消しできません。）
       here_record: ここまでの記録
       elapsed_since: 出発から
+      hour_unit: 時間
+      minute_unit: 分
       walked_stations: 歩いた駅
       walked_distance: 歩いた距離
       view_history: 履歴を見る
+      description: 現在の一周の状態が表示される画面です。
+      stations_count: "%{walked}駅(残り%{remaining}駅)"
+      distance_text: "約%{arrived}km(残り約%{remaining}km)"
     index:
       title: 歩行記録の一覧
       no_records: 歩行記録はありません。

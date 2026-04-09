@@ -4,6 +4,12 @@ en:
     show:
       add_memo: Add memo
       back_to_map: Back to map
+      goal_title: "Goal at %{station_name} station"
+      goal_description: This is the achievement page for completing the full lap.
+      goal_post: "[Yamanote Line Walking Challenge]%%0aWalked all %{count} stations!\U0001F389\U0001F389 Time taken: %{time}!"
+      arrived_title: "Arrived at %{station_name} station"
+      arrived_description: "Detail page for the arrival at %{station_name} station."
+      arrived_post: "[Yamanote Line Walking Challenge]%%0aArrived at %{station_name} station!\U0001F389 Stations walked: %{walked} (%{remaining} remaining), distance: ~%{distance}km!"
     index:
       title: Arrival list
       history: Arrival history

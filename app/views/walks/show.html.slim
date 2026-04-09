@@ -1,5 +1,5 @@
 - title t('.title')
-- set_meta_tags description: '現在の一周の状態が表示される画面です。'
+- set_meta_tags description: t('.description')
 
 div data-controller='caution'
   = render partial: 'dialogs/caution'
@@ -19,12 +19,15 @@ div data-controller='caution'
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.elapsed_since')
-      td.border.border-gray-400.text-left.px-4.py-1 data-time-target="elapsed"
-        | #{elapsed_time(@walk)}
+      td.border.border-gray-400.text-left.px-4.py-1
+        span data-time-target="hours" = elapsed_hours(@walk)
+        = t('.hour_unit')
+        span data-time-target="minutes" = elapsed_minutes(@walk)
+        = t('.minute_unit')
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.walked_stations')
-      td.border.border-gray-400.text-left.px-4.py-1 #{@number_of_walked}駅(残り#{number_of_remaining(number_of_walked: @number_of_walked)}駅)
+      td.border.border-gray-400.text-left.px-4.py-1 = t('.stations_count', walked: @number_of_walked, remaining: number_of_remaining(number_of_walked: @number_of_walked))
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.walked_distance')
-      td.border.border-gray-400.text-left.px-4.py-1 約#{@arrived_distance}km(残り約#{remaining_distance(arrived_distance: @arrived_distance)}km)
+      td.border.border-gray-400.text-left.px-4.py-1 = t('.distance_text', arrived: @arrived_distance, remaining: remaining_distance(arrived_distance: @arrived_distance))
   = link_to t('.view_history'), arrivals_path, class: 'link-important ml-auto'

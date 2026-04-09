@@ -73,6 +73,7 @@ ja:
       over_x_years: "%{count}年以上"
       x_seconds: "%{count}秒"
       x_minutes: "%{count}分"
+      x_hours: "%{count}時間"
       x_days: "%{count}日"
       x_months: "%{count}ヶ月"
       x_years: "%{count}年"

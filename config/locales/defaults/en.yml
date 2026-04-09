@@ -73,6 +73,7 @@ en:
       over_x_years: over %{count} years
       x_seconds: "%{count} seconds"
       x_minutes: "%{count} minutes"
+      x_hours: "%{count} hr"
       x_days: "%{count} days"
       x_months: "%{count} months"
       x_years: "%{count} years"

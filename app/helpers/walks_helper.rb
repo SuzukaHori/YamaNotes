@@ -40,6 +40,6 @@ module WalksHelper
   def convert_to_local_time(m_seconds)
     hours = (m_seconds / 3600).to_i
     minutes = ((m_seconds - (hours * 3600)) / 60).to_i
-    t('datetime.distance_in_words.about_x_hours', count: hours) + t('datetime.distance_in_words.x_minutes', count: minutes)
+    t('datetime.distance_in_words.x_hours', count: hours) + t('datetime.distance_in_words.x_minutes', count: minutes)
   end
 end

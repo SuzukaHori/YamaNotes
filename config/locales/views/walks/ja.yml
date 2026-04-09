@@ -1,6 +1,10 @@
 ---
 ja:
   walks:
+    status:
+      finished: 一周完了
+      active: 歩行中
+      retired: リタイア
     show:
       title: ダッシュボード
       congratulations: "おめでとうございます\U0001F389"

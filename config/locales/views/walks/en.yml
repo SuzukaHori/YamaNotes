@@ -1,6 +1,10 @@
 ---
 en:
   walks:
+    status:
+      finished: Completed
+      active: In progress
+      retired: Retired
     show:
       title: Dashboard
       congratulations: "Congratulations \U0001F389"

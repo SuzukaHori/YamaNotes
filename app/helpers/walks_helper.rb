@@ -5,11 +5,11 @@ module WalksHelper
     base_classes = 'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset'
 
     if walk.finished?
-      content_tag :span, '一周完了', class: "#{base_classes} bg-green-50 text-green-700 ring-green-600/20"
+      content_tag :span, t('walks.status.finished'), class: "#{base_classes} bg-green-50 text-green-700 ring-green-600/20"
     elsif walk.active?
-      content_tag :span, '歩行中', class: "#{base_classes} bg-blue-50 text-blue-700 ring-blue-700/10"
+      content_tag :span, t('walks.status.active'), class: "#{base_classes} bg-blue-50 text-blue-700 ring-blue-700/10"
     else
-      content_tag :span, 'リタイア', class: "#{base_classes} bg-gray-50 text-gray-600 ring-gray-500/10"
+      content_tag :span, t('walks.status.retired'), class: "#{base_classes} bg-gray-50 text-gray-600 ring-gray-500/10"
     end
   end
 

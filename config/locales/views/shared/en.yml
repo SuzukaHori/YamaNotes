@@ -8,3 +8,9 @@ en:
       back: Back
       next: Next
       post_to_x: Post to
+  js:
+    clipboard:
+      success: Copied the URL to clipboard
+      error: Failed to copy
+    map:
+      station_suffix: ""

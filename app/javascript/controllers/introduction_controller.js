@@ -2,10 +2,17 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["selectedStation", "selectedClockwiseMode"];
+  static values = {
+    initialStation: String,
+    initialClockwiseMode: String,
+    clockwiseLabel: String,
+    counterclockwiseLabel: String,
+  };
 
   connect() {
-    this.selectedStationTarget.textContent = "品川";
-    this.selectedClockwiseModeTarget.textContent = "外回り";
+    this.selectedStationTarget.textContent = this.initialStationValue;
+    this.selectedClockwiseModeTarget.textContent =
+      this.initialClockwiseModeValue;
   }
 
   changeStation(event) {
@@ -16,6 +23,8 @@ export default class extends Controller {
 
   changeClockwiseMode(event) {
     this.selectedClockwiseModeTarget.textContent =
-      event.target.value === "true" ? "外回り" : "内回り";
+      event.target.value === "true"
+        ? this.clockwiseLabelValue
+        : this.counterclockwiseLabelValue;
   }
 }

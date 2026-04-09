@@ -8,3 +8,9 @@ ja:
       back: 戻る
       next: 進む
       post_to_x: にポストする
+  js:
+    clipboard:
+      success: 共有用URLをクリップボードにコピーしました
+      error: コピーに失敗しました
+    map:
+      station_suffix: 駅

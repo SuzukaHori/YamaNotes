@@ -13,6 +13,9 @@ ja:
       walked_stations: 歩いた駅
       walked_distance: 歩いた距離
       view_history: 履歴を見る
+      description: 現在の一周の状態が表示される画面です。
+      stations_count: "%{walked}駅(残り%{remaining}駅)"
+      distance_text: "約%{arrived}km(残り約%{remaining}km)"
     index:
       title: 歩行記録の一覧
       no_records: 歩行記録はありません。

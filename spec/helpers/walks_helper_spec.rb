@@ -49,7 +49,7 @@ RSpec.describe WalksHelper, type: :helper do
   end
 
   it '#elapsed_time' do
-    expect(helper.elapsed_time(walk)).to eq('24時間1分')
+    expect(helper.elapsed_time(walk)).to eq('約24時間1分')
   end
 
   describe '#time_to_reach_goal' do
@@ -60,7 +60,7 @@ RSpec.describe WalksHelper, type: :helper do
 
     it '歩行が終了済みの場合、出発からゴールまでの時間が返る' do
       create_arrivals(walk, 30)
-      expect(helper.time_to_reach_goal(walk)).to eq '24時間1分'
+      expect(helper.time_to_reach_goal(walk)).to eq '約24時間1分'
     end
   end
 end

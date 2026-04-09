@@ -18,6 +18,17 @@ module WalksHelper
     convert_to_local_time(elapsed_seconds)
   end
 
+  def elapsed_hours(walk)
+    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
+    (elapsed_seconds / 3600).to_i
+  end
+
+  def elapsed_minutes(walk)
+    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
+    hours = (elapsed_seconds / 3600).to_i
+    ((elapsed_seconds - (hours * 3600)) / 60).to_i
+  end
+
   def time_to_reach_goal(walk)
     return unless walk.finished?
 
@@ -29,6 +40,6 @@ module WalksHelper
   def convert_to_local_time(m_seconds)
     hours = (m_seconds / 3600).to_i
     minutes = ((m_seconds - (hours * 3600)) / 60).to_i
-    "#{hours}時間#{minutes.to_i}分"
+    t('datetime.distance_in_words.about_x_hours', count: hours) + t('datetime.distance_in_words.x_minutes', count: minutes)
   end
 end

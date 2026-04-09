@@ -13,6 +13,9 @@ en:
       walked_stations: Stations walked
       walked_distance: Distance walked
       view_history: View history
+      description: This screen shows the current status of your lap.
+      stations_count: "%{walked} stations (%{remaining} remaining)"
+      distance_text: "~%{arrived}km (~%{remaining}km remaining)"
     index:
       title: Walk record list
       no_records: No walk records found.

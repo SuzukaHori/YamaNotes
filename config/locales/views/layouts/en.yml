@@ -1,9 +1,6 @@
 ---
 en:
   layouts:
-    meta:
-      description: A logging app for people walking the full loop of the Yamanote Line.
-      keywords: Yamanote Line loop,Yamanote Line,walking
     footer:
       terms: Terms of Service
       privacy: Privacy Policy

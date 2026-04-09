@@ -6,8 +6,8 @@ module MetaTagsHelper
       site: 'YamaNotes',
       reverse: true,
       charset: 'utf-8',
-      description: t('layouts.meta.description'),
-      keywords: t('layouts.meta.keywords'),
+      description: '山手線一周に徒歩で挑戦する人のための記録アプリ',
+      keywords: '山手線一周,山手線,徒歩',
       separator: '|',
       og:,
       twitter:

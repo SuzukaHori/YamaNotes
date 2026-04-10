@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_10_022147) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_10_022148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,15 +30,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_022147) do
     t.float "clockwise_distance_to_next", null: false
     t.integer "clockwise_next_station_id", null: false
     t.datetime "created_at", null: false
-    t.string "key"
+    t.string "key", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
-    t.string "name", null: false
     t.datetime "updated_at", null: false
     t.index ["clockwise_next_station_id"], name: "index_stations_on_clockwise_next_station_id", unique: true
     t.index ["key"], name: "index_stations_on_key", unique: true
     t.index ["longitude", "latitude"], name: "index_stations_on_longitude_and_latitude", unique: true
-    t.index ["name"], name: "index_stations_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -12,5 +12,3 @@ ja:
     clipboard:
       success: 共有用URLをクリップボードにコピーしました
       error: コピーに失敗しました
-    map:
-      station_suffix: 駅

@@ -12,5 +12,3 @@ en:
     clipboard:
       success: Copied the URL to clipboard
       error: Failed to copy
-    map:
-      station_suffix: ""

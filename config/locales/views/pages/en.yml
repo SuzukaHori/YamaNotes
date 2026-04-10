@@ -1,6 +1,131 @@
 ---
 en:
   pages:
+    terms:
+      title: Terms of Service
+      meta_description: This is the Terms of Service page.
+      heading: Terms of Service
+      intro_service_conditions: These Terms of Service (hereinafter referred to as "Terms") set forth the conditions of use for the service provided on this website (hereinafter referred to as "Service").
+      intro_user_agreement: Registered users (hereinafter referred to as "Users") shall use the Service in accordance with these Terms.
+      application:
+        heading: Article 1 (Application)
+        applies_to_all_relations: These Terms shall apply to all relationships between Users and the Service related to the use of the Service.
+        individual_provisions_included: In addition to these Terms, the Service may establish various rules (hereinafter referred to as "Individual Provisions") regarding the use of the Service. These Individual Provisions, regardless of their name, shall constitute part of these Terms.
+        individual_provisions_precedence: In the event of conflict between these Terms and the Individual Provisions of the preceding article, the Individual Provisions shall take precedence unless otherwise specified therein.
+      user_registration:
+        heading: Article 2 (User Registration)
+        registration_process: In this Service, user registration is completed when an applicant applies for registration after agreeing to these Terms, and the Service approves such application.
+        rejection_intro: The Service may not approve an application for user registration if it determines that any of the following applies to the applicant, and shall bear no obligation to disclose the reason.
+        rejection_false_info: If false information is provided in the application for user registration
+        rejection_prior_violation: If the application is from a person who has previously violated these Terms
+        rejection_other: In other cases where the Service determines that registration is inappropriate
+      account_management:
+        heading: Article 3 (Management of User ID and Password)
+        follows_google_tos: Regarding the handling of Google accounts and passwords, this Service complies with Google's Terms of Service.
+      usage_fees:
+        heading: Article 4 (Usage Fees and Payment Methods)
+        free_of_charge: Users may use this Service free of charge. Therefore, no arrangements regarding fee payments shall be made.
+      prohibited_actions:
+        heading: Article 5 (Prohibited Actions)
+        intro: Users shall not engage in any of the following actions when using the Service.
+        violates_law_or_morals: Actions that violate laws or public order and morals
+        criminal_activity: Actions related to criminal activities
+        infringes_ip_rights: Actions that infringe on copyrights, trademarks, or other intellectual property rights contained in the Service
+        disrupts_network: Actions that destroy or interfere with the functions of the servers or networks of the Service, other Users, or other third parties
+        commercial_use_of_info: Actions that commercially exploit information obtained through the Service
+        interferes_with_operation: Actions that may interfere with the operation of the Service
+        unauthorized_access: Unauthorized access or attempts thereof
+        collects_personal_info: Collecting or accumulating personal information of other Users
+        improper_purpose: Using the Service for improper purposes
+        harms_others: Actions that cause disadvantage, damage, or discomfort to other Users or third parties
+        impersonation: Impersonating other Users
+        unauthorized_advertising: Advertising, promotional, solicitation, or sales activities on the Service without authorization
+        benefits_antisocial_forces: Directly or indirectly providing benefits to antisocial forces
+        other_inappropriate: Other actions deemed inappropriate
+      service_suspension:
+        heading: Article 6 (Suspension of Service)
+        suspension_intro: The Service may suspend or interrupt all or part of the Service without prior notice to Users if any of the following applies.
+        maintenance: When performing maintenance, inspection, or updates of the computer systems related to the Service
+        force_majeure: When provision of the Service becomes difficult due to force majeure such as earthquake, lightning, fire, power outage, or natural disaster
+        system_failure: When computers or communication lines are stopped due to an accident
+        other_difficulty: In other cases where the Service determines that provision is difficult
+        no_liability_for_suspension: The Service shall bear no responsibility for any disadvantage or damage suffered by Users or third parties due to the suspension or interruption of the Service.
+      usage_restriction:
+        heading: Article 7 (Restriction of Use and Cancellation of Registration)
+        restriction_intro: The Service may, without prior notice, restrict all or part of the use of the Service or cancel a User's registration if any of the following applies.
+        violation_of_terms: If any provision of these Terms is violated
+        false_registration_info: If it is found that registration information contains false facts
+        no_response: If there is no response to contact for a certain period
+        long_inactive: If the Service has not been used for a certain period since the last use
+        other_inappropriate_use: In other cases where the Service determines that use is inappropriate
+        no_liability_for_restriction: The Service shall bear no responsibility for any damage caused to Users based on this article.
+      withdrawal:
+        heading: Article 8 (Withdrawal)
+        withdrawal_procedure: Users may withdraw from the Service by following the withdrawal procedures specified by the Service.
+      disclaimer:
+        heading: Article 9 (Disclaimer of Warranty and Limitation of Liability)
+        no_warranty: The Service makes no express or implied warranty that the Service is free from factual or legal defects (including defects related to safety, reliability, accuracy, completeness, effectiveness, fitness for a particular purpose, security, errors, bugs, or rights infringement).
+        limited_liability: The Service shall bear no responsibility for any damage caused to Users arising from the Service, except in cases of intentional or gross negligence. However, this disclaimer shall not apply if the contract between the Service and the User regarding the Service (including these Terms) constitutes a consumer contract as defined by the Consumer Contract Act.
+        no_liability_for_user_disputes: The Service shall bear no responsibility for any transactions, communications, or disputes between Users and other Users or third parties in connection with the Service.
+      service_changes:
+        heading: Article 10 (Changes to Service Content)
+        changes_with_notice: The Service may change, add to, or discontinue the content of the Service with prior notice to Users, and Users shall agree to this.
+      terms_changes:
+        heading: Article 11 (Changes to Terms of Service)
+        change_without_consent_intro: The Service may change these Terms without the individual consent of Users in the following cases.
+        change_for_user_benefit: When the change to these Terms is in the general interest of Users.
+        change_reasonable: When the change to these Terms is not contrary to the purpose of the Service agreement and is reasonable in light of the necessity of the change, the appropriateness of the content after the change, and other circumstances related to the change.
+        advance_notice_of_change: The Service shall notify Users in advance of changes to these Terms pursuant to the preceding paragraph, including the fact of the change, the content of the revised Terms, and the effective date.
+      personal_info_handling:
+        heading: Article 12 (Handling of Personal Information)
+        follows_privacy_policy: Personal information obtained through the use of the Service shall be handled appropriately in accordance with the "Privacy Policy."
+      notifications:
+        heading: Article 13 (Notifications and Communications)
+        service_defined_method: Notifications or communications between the Service and Users shall be made by methods specified by the Service.
+      no_rights_transfer:
+        heading: Article 14 (Prohibition of Transfer of Rights and Obligations)
+        no_transfer_without_consent: Users may not transfer or use as collateral their position under the service agreement or rights or obligations under these Terms to any third party without prior written consent.
+      governing_law:
+        heading: Article 15 (Governing Law and Jurisdiction)
+        governed_by_japanese_law: These Terms shall be governed by and construed in accordance with the laws of Japan.
+        exclusive_jurisdiction: In the event of any dispute related to the Service, the court having jurisdiction over the location of the Service's principal office shall have exclusive agreed jurisdiction.
+    privacy:
+      title: Privacy Policy
+      meta_description: This is the Privacy Policy page.
+      heading: Privacy Policy
+      intro: "\"YamaNotes\" establishes the following Privacy Policy (hereinafter referred to as \"Policy\") regarding the handling of users' personal information in the service provided (hereinafter referred to as \"Service\")."
+      personal_info:
+        heading: Article 1 (Personal Information)
+        collected_info_intro: The Service collects the following information upon registration and use, and handles it as personal information.
+        google_account_info: Information related to Google
+        access_logs: Other logs generated when accessing the Service
+      purposes_of_use:
+        heading: Article 2 (Purpose of Collecting and Using Personal Information)
+        purposes_intro: The purposes for which the Service collects and uses personal information are as follows.
+        service_provision: For the provision and operation of the Service
+        respond_to_inquiries: To respond to inquiries from Users (including identity verification)
+        important_notices: For necessary communications such as maintenance and important notices
+        identify_violators: To identify Users who violate the Terms of Service or who attempt to use the Service for fraudulent or improper purposes, and to refuse their use
+        user_self_management: To allow Users to view, modify, delete their own registration information, and view their usage status
+        incidental_purposes: For purposes incidental to the above purposes
+      changes_to_purpose:
+        heading: Article 3 (Changes to Purpose of Use)
+        change_only_when_relevant: The purpose of use of personal information shall be changed only when reasonably deemed to have relevance to the purpose before the change.
+        notify_on_change: When the purpose of use is changed, the User shall be notified of the changed purpose by specified methods or announced on this website.
+      third_party_provision:
+        heading: Article 4 (Provision of Personal Information to Third Parties)
+        no_third_party_without_consent_intro: The Service shall not provide personal information to third parties without the prior consent of the User, except in the following cases. However, this excludes cases permitted by the Personal Information Protection Act and other laws.
+        protection_of_life: When necessary for the protection of a person's life, body, or property, and it is difficult to obtain the consent of the individual
+        public_health: When particularly necessary for improving public health or promoting the sound development of children, and it is difficult to obtain the consent of the individual
+        government_cooperation: When it is necessary to cooperate with national or local government agencies, or persons entrusted by them, in carrying out affairs stipulated by law, and obtaining the individual's consent may impede such affairs
+        exceptions_intro: Notwithstanding the preceding paragraph, the recipient of such information shall not be deemed a third party in the following cases.
+        outsourcing: When the Service entrusts all or part of the handling of personal information to the extent necessary to achieve the purpose of use
+        business_succession: When personal information is provided in connection with business succession due to merger or other reasons
+        joint_use: When personal information is jointly used with a specific party, and the individual has been notified in advance or placed in a readily accessible state regarding the fact of joint use, the items of personal information jointly used, the scope of joint users, the purpose of use by such users, and the name or title of the person responsible for managing the personal information
+      policy_changes:
+        heading: Article 5 (Changes to Privacy Policy)
+        change_without_notice: The content of this Policy may be changed without notice to Users, except as otherwise provided by law or this Policy.
+        effective_upon_posting: Unless otherwise specified by the Service, the revised Privacy Policy shall take effect when posted on this website.
     top:
       title: Top page
       catchcopy_line1: Challenge yourself to walk

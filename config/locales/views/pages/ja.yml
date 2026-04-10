@@ -1,6 +1,131 @@
 ---
 ja:
   pages:
+    terms:
+      title: 利用規約
+      meta_description: 利用規約のページです。
+      heading: 利用規約
+      intro_service_conditions: この利用規約（以下，「本規約」といいます。）は，このウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。
+      intro_user_agreement: 登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
+      application:
+        heading: 第1条（適用）
+        applies_to_all_relations: 本規約は，ユーザーと本サービスの利用に関わる一切の関係に適用されるものとします。
+        individual_provisions_included: 本サービスに関し，本規約のほか，ご利用にあたってのルール等，各種の定め（以下，「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず，本規約の一部を構成するものとします。
+        individual_provisions_precedence: 本規約の規定が前条の個別規定の規定と矛盾する場合には，個別規定において特段の定めなき限り，個別規定の規定が優先されるものとします。
+      user_registration:
+        heading: 第2条（利用登録）
+        registration_process: 本サービスにおいては，登録希望者が本規約に同意の上，利用登録を申請し，本サービスがこれを承認することによって，利用登録が完了するものとします。
+        rejection_intro: 利用登録の申請者に以下の事由があると判断した場合，利用登録の申請を承認しないことがあり，その理由については一切の開示義務を負わないものとします。
+        rejection_false_info: 利用登録の申請に際して虚偽の事項を届け出た場合
+        rejection_prior_violation: 本規約に違反したことがある者からの申請である場合
+        rejection_other: その他，利用登録を相当でないと判断した場合
+      account_management:
+        heading: 第3条（ユーザーIDおよびパスワードの管理）
+        follows_google_tos: 本サービスは、Googleアカウントおよびパスワードの取り扱い関して、Google社の利用規約に準ずるものとします。
+      usage_fees:
+        heading: 第4条（利用料金および支払方法）
+        free_of_charge: ユーザーは本サービスを無料で利用することができます。そのため、料金の支払いに関する取り決めは一切しません。
+      prohibited_actions:
+        heading: 第5条（禁止事項）
+        intro: ユーザーは，本サービスの利用にあたり，以下の行為をしてはなりません。
+        violates_law_or_morals: 法令または公序良俗に違反する行為
+        criminal_activity: 犯罪行為に関連する行為
+        infringes_ip_rights: 本サービスの内容等，本サービスに含まれる著作権，商標権ほか知的財産権を侵害する行為
+        disrupts_network: 本サービス，ほかのユーザー，またはその他第三者のサーバーまたはネットワークの機能を破壊したり，妨害したりする行為
+        commercial_use_of_info: 本サービスによって得られた情報を商業的に利用する行為
+        interferes_with_operation: 本サービスの運営を妨害するおそれのある行為
+        unauthorized_access: 不正アクセスをし，またはこれを試みる行為
+        collects_personal_info: 他のユーザーに関する個人情報等を収集または蓄積する行為
+        improper_purpose: 不正な目的を持って本サービスを利用する行為
+        harms_others: 本サービスの他のユーザーまたはその他の第三者に不利益，損害，不快感を与える行為
+        impersonation: 他のユーザーに成りすます行為
+        unauthorized_advertising: 許諾しない本サービス上での宣伝，広告，勧誘，または営業行為
+        benefits_antisocial_forces: 反社会的勢力に対して直接または間接に利益を供与する行為
+        other_inappropriate: その他，不適切と判断する行為
+      service_suspension:
+        heading: 第6条（本サービスの提供の停止等）
+        suspension_intro: 以下のいずれかの事由があると判断した場合，ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。
+        maintenance: 本サービスにかかるコンピュータシステムの保守点検または更新を行う場合
+        force_majeure: 地震，落雷，火災，停電または天災などの不可抗力により，本サービスの提供が困難となった場合
+        system_failure: コンピュータまたは通信回線等が事故により停止した場合
+        other_difficulty: その他，本サービスの提供が困難と判断した場合
+        no_liability_for_suspension: 本サービスの提供の停止または中断により，ユーザーまたは第三者が被ったいかなる不利益または損害についても，一切の責任を負わないものとします。
+      usage_restriction:
+        heading: 第7条（利用制限および登録抹消）
+        restriction_intro: ユーザーが以下のいずれかに該当する場合には，事前の通知なく，ユーザーに対して，本サービスの全部もしくは一部の利用を制限し，またはユーザーとしての登録を抹消することができるものとします。
+        violation_of_terms: 本規約のいずれかの条項に違反した場合
+        false_registration_info: 登録事項に虚偽の事実があることが判明した場合
+        no_response: 連絡に対し，一定期間返答がない場合
+        long_inactive: 本サービスについて，最終の利用から一定期間利用がない場合
+        other_inappropriate_use: その他，本サービスの利用を適当でないと判断した場合
+        no_liability_for_restriction: 本条に基づきユーザーに生じた損害について，一切の責任を負いません。
+      withdrawal:
+        heading: 第8条（退会）
+        withdrawal_procedure: ユーザーは，本サービスの定める退会手続により，退会できるものとします。
+      disclaimer:
+        heading: 第9条（保証の否認および免責事項）
+        no_warranty: 本サービスに事実上または法律上の瑕疵（安全性，信頼性，正確性，完全性，有効性，特定の目的への適合性，セキュリティなどに関する欠陥，エラーやバグ，権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。
+        limited_liability: 本サービスに起因してユーザーに生じたあらゆる損害について、本サービスの故意又は重過失による場合を除き、一切の責任を負いません。ただし，本サービスに関する本サービスとユーザーとの間の契約（本規約を含みます。）が消費者契約法に定める消費者契約となる場合，この免責規定は適用されません。
+        no_liability_for_user_disputes: 本サービスに関して，ユーザーと他のユーザーまたは第三者との間において生じた取引，連絡または紛争等について一切責任を負いません。
+      service_changes:
+        heading: 第10条（サービス内容の変更等）
+        changes_with_notice: ユーザーへの事前の告知をもって、本サービスの内容を変更、追加または廃止することがあり、ユーザーはこれを承諾するものとします。
+      terms_changes:
+        heading: 第11条（利用規約の変更）
+        change_without_consent_intro: 下の場合には、ユーザーの個別の同意を要せず、本規約を変更することができるものとします。
+        change_for_user_benefit: 本規約の変更がユーザーの一般の利益に適合するとき。
+        change_reasonable: 本規約の変更が本サービス利用契約の目的に反せず、かつ、変更の必要性、変更後の内容の相当性その他の変更に係る事情に照らして合理的なものであるとき。
+        advance_notice_of_change: ユーザーに対し、前項による本規約の変更にあたり、事前に、本規約を変更する旨及び変更後の本規約の内容並びにその効力発生時期を通知します。
+      personal_info_handling:
+        heading: 第12条（個人情報の取扱い）
+        follows_privacy_policy: 本サービスの利用によって取得する個人情報については，「プライバシーポリシー」に従い適切に取り扱うものとします。
+      notifications:
+        heading: 第13条（通知または連絡）
+        service_defined_method: ユーザーとの間の通知または連絡は，本サービスの定める方法によって行うものとします。
+      no_rights_transfer:
+        heading: 第14条（権利義務の譲渡の禁止）
+        no_transfer_without_consent: ユーザーは，書面による事前の承諾なく，利用契約上の地位または本規約に基づく権利もしくは義務を第三者に譲渡し，または担保に供することはできません。
+      governing_law:
+        heading: 第15条（準拠法・裁判管轄）
+        governed_by_japanese_law: 本規約の解釈にあたっては，日本法を準拠法とします。
+        exclusive_jurisdiction: 本サービスに関して紛争が生じた場合には，本サービスの本店所在地を管轄する裁判所を専属的合意管轄とします。
+    privacy:
+      title: プライバシーポリシー
+      meta_description: プライバシーポリシーのページです。
+      heading: プライバシーポリシー
+      intro: 「YamaNotes」で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+      personal_info:
+        heading: 第1条（個人情報）
+        collected_info_intro: 本サービスでは登録およびご利用に際して以下の情報を取得し、それらを個人情報として取り扱います。
+        google_account_info: Googleに関する情報
+        access_logs: その他本サービスへのアクセス時に生成されるログ
+      purposes_of_use:
+        heading: 第2条（個人情報を収集・利用する目的）
+        purposes_intro: 本サービスが個人情報を収集・利用する目的は，以下のとおりです。
+        service_provision: 本サービスの提供・運営のため
+        respond_to_inquiries: ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）
+        important_notices: メンテナンス，重要なお知らせなど必要に応じたご連絡のため
+        identify_violators: 利用規約に違反したユーザーや，不正・不当な目的でサービスを利用しようとするユーザーの特定をし，ご利用をお断りするため
+        user_self_management: ユーザーにご自身の登録情報の閲覧や変更，削除，ご利用状況の閲覧を行っていただくため
+        incidental_purposes: 上記の利用目的に付随する目的
+      changes_to_purpose:
+        heading: 第3条（利用目的の変更）
+        change_only_when_relevant: 利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。
+        notify_on_change: 利用目的の変更を行った場合には，変更後の目的について，所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。
+      third_party_provision:
+        heading: 第4条（個人情報の第三者提供）
+        no_third_party_without_consent_intro: 本サービスは，次に掲げる場合を除いて，あらかじめユーザーの同意を得ることなく，第三者に個人情報を提供することはありません。ただし，個人情報保護法その他の法令で認められる場合を除きます。
+        protection_of_life: 人の生命，身体または財産の保護のために必要がある場合であって，本人の同意を得ることが困難であるとき
+        public_health: 公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって，本人の同意を得ることが困難であるとき
+        government_cooperation: 国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって，本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき
+        exceptions_intro: 前項の定めにかかわらず，次に掲げる場合には，当該情報の提供先は第三者に該当しないものとします。
+        outsourcing: 本サービスが利用目的の達成に必要な範囲内において個人情報の取扱いの全部または一部を委託する場合
+        business_succession: 合併その他の事由による事業の承継に伴って個人情報が提供される場合
+        joint_use: 個人情報を特定の者との間で共同して利用する場合であって，その旨並びに共同して利用される個人情報の項目，共同して利用する者の範囲，利用する者の利用目的および当該個人情報の管理について責任を有する者の氏名または名称について，あらかじめ本人に通知し，または本人が容易に知り得る状態に置いた場合
+      policy_changes:
+        heading: 第5条（プライバシーポリシーの変更）
+        change_without_notice: 本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。
+        effective_upon_posting: 本サービスが別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。
     top:
       title: トップページ
       catchcopy_line1: 徒歩で山手線一周に

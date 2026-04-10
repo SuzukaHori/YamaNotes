@@ -1,9 +1,9 @@
-h2.text-xl.font-bold.mb-4 = t('.heading', station_name: station.name)
+h2.text-xl.font-bold.mb-4 = t('.heading', station_name: station.name_i18n)
 
 = image_tag station_image_path(station:),
             class: 'md:max-w-40 md:max-h-40 max-h-32 max-w-32 mx-auto',
             width: '200', height: '200',
-            alt: t('.station_alt', station_name: station.name)
+            alt: t('.station_alt', station_name: station.name_i18n)
 
 p.mt-2
   = t('.walked_info', number_of_walked: number_of_walked, number_of_remaining: number_of_remaining)

@@ -12,3 +12,34 @@ en:
         longitude: Longitude
         name: Name
         walks: Walk logs
+  station_names:
+    shinagawa: Shinagawa
+    osaki: Osaki
+    gotanda: Gotanda
+    meguro: Meguro
+    ebisu: Ebisu
+    shibuya: Shibuya
+    harajuku: Harajuku
+    yoyogi: Yoyogi
+    shinjuku: Shinjuku
+    shin_okubo: Shin-Okubo
+    takadanobaba: Takadanobaba
+    mejiro: Mejiro
+    ikebukuro: Ikebukuro
+    otsuka: Otsuka
+    sugamo: Sugamo
+    komagome: Komagome
+    tabata: Tabata
+    nishi_nippori: Nishi-Nippori
+    nippori: Nippori
+    uguisudani: Uguisudani
+    ueno: Ueno
+    okachimachi: Okachimachi
+    akihabara: Akihabara
+    kanda: Kanda
+    tokyo: Tokyo
+    yurakucho: Yurakucho
+    shimbashi: Shimbashi
+    hamamatsucho: Hamamatsucho
+    tamachi: Tamachi
+    takanawa_gateway: Takanawa Gateway

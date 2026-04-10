@@ -1,15 +1,15 @@
 ruby:
   if @walk.finished?
-    title t('.goal_title', station_name: @station.name)
+    title t('.goal_title', station_name: @station.name_i18n)
     set_meta_tags description: t('.goal_description')
     finish = true
     time_to_reach_goal = time_to_reach_goal(@walk)
     text_for_post = t('.goal_post', count: Station.cache_count, time: time_to_reach_goal)
   else
-    title t('.arrived_title', station_name: @station.name)
-    set_meta_tags description: t('.arrived_description', station_name: @station.name)
+    title t('.arrived_title', station_name: @station.name_i18n)
+    set_meta_tags description: t('.arrived_description', station_name: @station.name_i18n)
     number_of_remaining = number_of_remaining(number_of_walked: @number_of_walked)
-    text_for_post = t('.arrived_post', station_name: @station.name, walked: @number_of_walked, remaining: number_of_remaining, distance: @arrived_distance)
+    text_for_post = t('.arrived_post', station_name: @station.name_i18n, walked: @number_of_walked, remaining: number_of_remaining, distance: @arrived_distance)
   end
 
 .my-8.md:my-12.mx-auto.px-4.text-lg.text-center.md:w-2/3

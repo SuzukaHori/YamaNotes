@@ -6,9 +6,14 @@ class Station < ApplicationRecord
   has_one :station, class_name: 'Station', inverse_of: :clockwise_next_station, dependent: :destroy
   belongs_to :clockwise_next_station, class_name: 'Station', inverse_of: :station
   validates :name, presence: true
+  validates :key, uniqueness: true, allow_nil: true
   validates :longitude, presence: true, numericality: true, uniqueness: { scope: :latitude }
   validates :latitude, presence: true, numericality: true
   validates :clockwise_distance_to_next, presence: true, numericality: true
+
+  def name_i18n
+    I18n.t("station_names.#{key}")
+  end
 
   def next(clockwise:)
     if clockwise

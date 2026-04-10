@@ -1,45 +1,45 @@
-- title '利用規約'
-- set_meta_tags description: '利用規約のページです。'
+- title t('.title')
+- set_meta_tags description: t('.meta_description')
 
 .leading-relaxed.text-sm.my-4
-  h2.text-xl.font-bold.text-center.my-2 = title 'プライバシーポリシー'
-  p 「YamaNotes」で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+  h2.text-xl.font-bold.text-center.my-2 = t('.heading')
+  p = t('.intro')
 
-  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 第1条（個人情報）
-  p 本サービスでは登録およびご利用に際して以下の情報を取得し、それらを個人情報として取り扱います。
+  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 = t('.personal_info.heading')
+  p = t('.personal_info.collected_info_intro')
   ol.list-decimal.pl-6
-    li Googleに関する情報
-    li その他本サービスへのアクセス時に生成されるログ
+    li = t('.personal_info.google_account_info')
+    li = t('.personal_info.access_logs')
 
-  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 第2条（個人情報を収集・利用する目的）
-  p 本サービスが個人情報を収集・利用する目的は，以下のとおりです。
+  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 = t('.purposes_of_use.heading')
+  p = t('.purposes_of_use.purposes_intro')
   ol.list-decimal.pl-6
-    li 本サービスの提供・運営のため
-    li ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）
-    li メンテナンス，重要なお知らせなど必要に応じたご連絡のため
-    li 利用規約に違反したユーザーや，不正・不当な目的でサービスを利用しようとするユーザーの特定をし，ご利用をお断りするため
-    li ユーザーにご自身の登録情報の閲覧や変更，削除，ご利用状況の閲覧を行っていただくため
-    li 上記の利用目的に付随する目的
+    li = t('.purposes_of_use.service_provision')
+    li = t('.purposes_of_use.respond_to_inquiries')
+    li = t('.purposes_of_use.important_notices')
+    li = t('.purposes_of_use.identify_violators')
+    li = t('.purposes_of_use.user_self_management')
+    li = t('.purposes_of_use.incidental_purposes')
 
-  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 第3条（利用目的の変更）
+  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 = t('.changes_to_purpose.heading')
   ol.list-decimal.pl-6
-    li 利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。
-    li 利用目的の変更を行った場合には，変更後の目的について，所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。
+    li = t('.changes_to_purpose.change_only_when_relevant')
+    li = t('.changes_to_purpose.notify_on_change')
 
-  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 第4条（個人情報の第三者提供）
+  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 = t('.third_party_provision.heading')
   ol.list-decimal.pl-6
-    li 本サービスは，次に掲げる場合を除いて，あらかじめユーザーの同意を得ることなく，第三者に個人情報を提供することはありません。ただし，個人情報保護法その他の法令で認められる場合を除きます。
+    li = t('.third_party_provision.no_third_party_without_consent_intro')
     ol.list-decimal.pl-6
-      li 人の生命，身体または財産の保護のために必要がある場合であって，本人の同意を得ることが困難であるとき
-      li 公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって，本人の同意を得ることが困難であるとき
-      li 国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって，本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき
-      li 前項の定めにかかわらず，次に掲げる場合には，当該情報の提供先は第三者に該当しないものとします。
+      li = t('.third_party_provision.protection_of_life')
+      li = t('.third_party_provision.public_health')
+      li = t('.third_party_provision.government_cooperation')
+      li = t('.third_party_provision.exceptions_intro')
       ol.list-decimal.pl-6
-        li 本サービスが利用目的の達成に必要な範囲内において個人情報の取扱いの全部または一部を委託する場合
-        li 合併その他の事由による事業の承継に伴って個人情報が提供される場合
-        li 個人情報を特定の者との間で共同して利用する場合であって，その旨並びに共同して利用される個人情報の項目，共同して利用する者の範囲，利用する者の利用目的および当該個人情報の管理について責任を有する者の氏名または名称について，あらかじめ本人に通知し，または本人が容易に知り得る状態に置いた場合
+        li = t('.third_party_provision.outsourcing')
+        li = t('.third_party_provision.business_succession')
+        li = t('.third_party_provision.joint_use')
 
-  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 第5条（プライバシーポリシーの変更）
+  h3.text-base.my-4.p-1.border-b-2.text-base.border-b-2 = t('.policy_changes.heading')
   ol.list-decimal.pl-6
-    li 本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。
-    li 本サービスが別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。
+    li = t('.policy_changes.change_without_notice')
+    li = t('.policy_changes.effective_upon_posting')

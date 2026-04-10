@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-namespace :stations do
+namespace :stations do # rubocop:disable Metrics/BlockLength
   desc '駅の key カラムにローマ字キーを挿入する'
-  task set_keys: :environment do
+  task set_keys: :environment do # rubocop:disable Metrics/BlockLength
     keys = {
-      1  => 'shinagawa',
-      2  => 'osaki',
-      3  => 'gotanda',
-      4  => 'meguro',
-      5  => 'ebisu',
-      6  => 'shibuya',
-      7  => 'harajuku',
-      8  => 'yoyogi',
-      9  => 'shinjuku',
+      1 => 'shinagawa',
+      2 => 'osaki',
+      3 => 'gotanda',
+      4 => 'meguro',
+      5 => 'ebisu',
+      6 => 'shibuya',
+      7 => 'harajuku',
+      8 => 'yoyogi',
+      9 => 'shinjuku',
       10 => 'shin_okubo',
       11 => 'takadanobaba',
       12 => 'mejiro',

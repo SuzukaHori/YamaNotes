@@ -6,8 +6,8 @@ module MetaTagsHelper
       site: 'YamaNotes',
       reverse: true,
       charset: 'utf-8',
-      description: '山手線一周に徒歩で挑戦する人のための記録アプリ',
-      keywords: '山手線一周,山手線,徒歩',
+      description: '山手線一周に徒歩で挑戦する人のための記録アプリ | Yamanote Line walking challenge app',
+      keywords: '山手線一周,山手線,徒歩,Yamanote line walking challenge,Yamanote line',
       separator: '|',
       og:,
       twitter:
@@ -24,7 +24,7 @@ module MetaTagsHelper
       type: 'website',
       url: request.url,
       image: image_url('ogp.png'),
-      local: 'ja-JP'
+      locale: 'ja_JP'
     }
   end
 

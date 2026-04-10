@@ -1,12 +1,12 @@
 ruby:
   finish = @arrival == @walk.arrival_of_goal
   if finish
-    title "#{@arrival.station.name_i18n}駅にゴール"
+    title "#{@arrival.station.name_i18n}にゴール"
     set_meta_tags description: '一周の表彰ページです'
     image = image_url('finished.png')
   else
-    title "#{@arrival.station.name_i18n}駅に到着"
-    set_meta_tags description: "#{@arrival.station.name_i18n}駅の到着のページです。"
+    title "#{@arrival.station.name_i18n}に到着"
+    set_meta_tags description: "#{@arrival.station.name_i18n}の到着のページです。"
     image = image_url('arrived.png')
   end
   set_meta_tags({ og: { image: }, twitter: { card: 'summary', image:, url: request.url } })

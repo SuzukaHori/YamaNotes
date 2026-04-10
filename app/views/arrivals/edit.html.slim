@@ -5,7 +5,7 @@
     .flex.items-center
       = f.time_select :arrived_at, {}, { class: 'rounded border border-gray-300' }
       p.ml-2.text-xl
-        | #{@arrival.station.name_i18n}駅
+        | #{@arrival.station.name_i18n}
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     .text-center.my-2

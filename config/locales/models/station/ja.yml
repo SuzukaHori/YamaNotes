@@ -12,3 +12,34 @@ ja:
         longitude: 経度
         name: 名前
         walks: 歩行記録ノート
+  station_names:
+    shinagawa: 品川
+    osaki: 大崎
+    gotanda: 五反田
+    meguro: 目黒
+    ebisu: 恵比寿
+    shibuya: 渋谷
+    harajuku: 原宿
+    yoyogi: 代々木
+    shinjuku: 新宿
+    shin_okubo: 新大久保
+    takadanobaba: 高田馬場
+    mejiro: 目白
+    ikebukuro: 池袋
+    otsuka: 大塚
+    sugamo: 巣鴨
+    komagome: 駒込
+    tabata: 田端
+    nishi_nippori: 西日暮里
+    nippori: 日暮里
+    uguisudani: 鶯谷
+    ueno: 上野
+    okachimachi: 御徒町
+    akihabara: 秋葉原
+    kanda: 神田
+    tokyo: 東京
+    yurakucho: 有楽町
+    shimbashi: 新橋
+    hamamatsucho: 浜松町
+    tamachi: 田町
+    takanawa_gateway: 高輪ゲートウェイ

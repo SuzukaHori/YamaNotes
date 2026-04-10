@@ -66,7 +66,9 @@ npm run lint   # prettier --check + eslint
 
 ## i18n / 翻訳ファイル
 
-翻訳ファイルの構成は [Railsガイド「ロケールファイルの編成」](https://railsguides.jp/i18n.html#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%B7%A8%E6%88%90) に従う。
+- 翻訳ファイルの構成は [Railsガイド「ロケールファイルの編成」](https://railsguides.jp/i18n.html#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%B7%A8%E6%88%90) に従う。
+- `item1` / `article1` のような連番・抽象的なキー名は使わない
+- キーを見ただけで内容がわかる名前にする
 
 ```
 config/locales/

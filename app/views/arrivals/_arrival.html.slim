@@ -11,7 +11,7 @@
         - elsif arrival == arrivals.last && arrival.walk.finished?
           p.bg-yamanote-green-150.text-white.px-2.py-1.mr-1.rounded-lg.text-sm = t('.goal_badge')
         p.text-xl
-          | #{arrival.station.name}駅
+          | #{arrival.station.name_i18n}
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
           / XSSが起きないことを確認の上、slimlintから除外

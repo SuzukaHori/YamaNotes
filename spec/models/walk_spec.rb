@@ -8,7 +8,7 @@ RSpec.describe Walk, type: :model do
 
     it '現在の駅を取得できること' do
       create_arrivals(walk, Station.cache_count)
-      expect(walk.current_station.name).to eq '高輪ゲートウェイ'
+      expect(walk.current_station.key).to eq 'takanawa_gateway'
     end
   end
 

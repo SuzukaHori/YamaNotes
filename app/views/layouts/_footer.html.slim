@@ -2,6 +2,10 @@ footer.bg-white.border-t.border-gray-200.text-xs.text-center.pt-4.pb-3
   ul.flex.justify-center.items-center.pb-2
     li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to t('.terms'), page_path('terms')
     li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to t('.privacy'), page_path('privacy')
+    - if I18n.locale == :ja
+      li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to t('.switch_to_english'), url_for(locale: :en)
+    - else
+      li.inline-block.px-4.hover:underline.hover:text-gray-400 = link_to t('.switch_to_japanese'), url_for(locale: :ja)
     li.text-xl.px-4.hover:text-gray-400
       = link_to 'https://github.com/SuzukaHori/YamaNotes', target: '_blank', rel: 'noopener'
         i.fa-brands.fa-github

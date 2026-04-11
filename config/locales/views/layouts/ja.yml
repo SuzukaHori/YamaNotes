@@ -4,6 +4,7 @@ ja:
     footer:
       terms: 利用規約
       privacy: プライバシーポリシー
+      switch_to_english: English
     header:
       logout: ログアウト
       logout_confirm: ログアウトします。よろしいですか？

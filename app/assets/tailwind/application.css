@@ -53,7 +53,7 @@
 
 @layer components {
   dialog {
-    @apply text-base-black;
+    @apply text-base-black mx-auto my-auto;
   }
 
   dialog.slideover[open] ul {

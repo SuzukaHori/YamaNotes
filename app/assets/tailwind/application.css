@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@config '../../../config/tailwind.config.js';
+
+/*
+  v3 から v4 で border のデフォルト色が `currentcolor` に変わったため、
+  既存スタイルを維持するための互換レイヤー。
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Mochiy Pop One';
+    src: url('../fonts/Mochiy_Pop_One.woff');
+  }
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow-sm transition-all duration-200 ease-out hover:bg-bright-orange-50 focus:outline-hidden focus:ring-3 focus:ring-red-400/75 h-11 cursor-pointer;
+}
+
+@utility link-important {
+  @apply inline-flex items-center justify-center px-6 border border-gray-400 transition-all duration-200 ease-out hover:bg-gray-100 rounded-lg h-11 cursor-pointer;
+}
+
+@utility map-icon {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+@utility toggle-switch {
+  @apply w-11 h-6 bg-gray-400 rounded-full relative peer-focus:outline-hidden peer-focus:ring-blue-300 peer-checked:bg-blue-600;
+
+  &::after {
+    @apply content-[''] absolute top-[2px] left-[2px] bg-white border rounded-full h-5 w-5 transition-all;
+  }
+
+  .peer:checked + &::after {
+    @apply translate-x-full border-white;
+  }
+}
+
+@layer components {
+  dialog {
+    @apply text-base-black;
+  }
+
+  dialog.slideover[open] ul {
+    animation: slide-in-from-left 0.3s forwards ease;
+  }
+
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  #arrival_memo a {
+    @apply text-blue-400;
+  }
+}

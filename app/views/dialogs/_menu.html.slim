@@ -1,7 +1,7 @@
 dialog data-slideover-target='dialog' class='h-full max-h-full w-[640px] max-w-full my-0 mx-auto bg-transparent slideover'
   ul.p-8.bg-lime-50.h-full.w-56.md:w-72
     - if current_walk
-      li = link_to t('.dashboard'), walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-none', autofocus: true
+      li = link_to t('.dashboard'), walk_path(current_walk), class: 'inline-block w-full hover:bg-lime-100 py-2 px-4 focus:outline-hidden', autofocus: true
       li = link_to t('.arrivals'), arrivals_path, class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'
       li = link_to t('.retire'), walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: t('.retire_confirm') },
                                                                        class: 'inline-block w-full hover:bg-lime-100 py-2 px-4'

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/forms';
 @config '../../../config/tailwind.config.js';
 
 /*

@@ -1,6 +1,28 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
-@config '../../../config/tailwind.config.js';
+
+@theme {
+  --font-pop: 'Mochiy Pop One', sans-serif;
+  --font-meiryo:
+    メイリオ, Meiryo, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
+    'ＭＳ Ｐゴシック', 'MS PGothic', 'MS UI Gothic', Helvetica, Arial;
+
+  --color-yamanote-green-50: #e3edd5;
+  --color-yamanote-green-80: #d6e6c1;
+  --color-yamanote-green-100: #a8cf75;
+  --color-yamanote-green-150: #6f9142;
+  --color-yamanote-green-200: #374821;
+
+  --color-bright-orange-50: #f2bf91;
+  --color-bright-orange-100: #e57a68;
+  --color-bright-orange-200: #cc6206;
+
+  --color-dark-blue-50: #e6f8ff;
+  --color-dark-blue-100: #cae7f2;
+  --color-dark-blue-200: #007fb1;
+
+  --color-base-black: #4f4f64;
+}
 
 /*
   v3 から v4 で border のデフォルト色が `currentcolor` に変わったため、

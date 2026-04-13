@@ -4,6 +4,7 @@ class Walk < ApplicationRecord
   belongs_to :user
   has_many :arrivals, dependent: :destroy
   has_many :stations, through: :arrivals
+  has_many :gps_points, dependent: :destroy
   validates :clockwise, inclusion: { in: [true, false] }
   validate :active_walk_uniqueness, on: :create
 

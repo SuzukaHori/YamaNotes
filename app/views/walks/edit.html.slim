@@ -14,6 +14,14 @@
     p.text-xs.text-gray-500.mt-4
       = t('.public_hint')
 
+  .flex.items-center.mt-6
+    span.pr-2 #{@walk.tracking? ? t('.tracking_label') : t('.tracking_label')}
+    = form_with model: @walk, class: 'inline-block', method: :patch do |f|
+      = f.label :tracking
+        = f.check_box :tracking, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
+        div class='toggle-switch cursor-pointer [&::after]:border-gray-200'
+  p.text-xs.text-gray-500.mt-1 = t('.tracking_hint')
+
   - if @walk.publish
     .flex.items-center.mt-4
       label.text-xs.pr-1 for='url' URL

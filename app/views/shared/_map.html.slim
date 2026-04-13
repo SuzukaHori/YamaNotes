@@ -1,4 +1,10 @@
-div[data-controller='map' data-map-stations-value="#{Station.cache_all.to_json(methods: :name_i18n)}"
-                          data-map-arrived-ids-value="#{station_ids.to_json}"
-                          data-map-current-id-value="#{current_station.id}"]
+- tracking = defined?(walk) && walk&.tracking? && !walk&.finished?
+div[data-controller="map"
+    data-map-stations-value="#{Station.cache_all.to_json(methods: :name_i18n)}"
+    data-map-arrived-ids-value="#{station_ids.to_json}"
+    data-map-current-id-value="#{current_station.id}"
+    data-map-tracking-value="#{tracking}"]
   #map.w-full class='h-[440px] md:h-[500px]'
+  - if tracking
+    button.mt-2.px-3.py-1.text-sm.bg-blue-600.rounded[data-action="map#locate"]
+      = t('shared.map.locate_me')

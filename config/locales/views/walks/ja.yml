@@ -36,6 +36,8 @@ ja:
       title: 歩行記録設定
       heading: 歩行記録の設定
       public_hint: 公開をONにすると、到着履歴のURLを他の人とシェアできます。
+      tracking_label: GPS トラッキング
+      tracking_hint: ONにすると、歩いた経路が地図に表示されます（ブラウザの位置情報許可が必要）。
     new:
       title: 一周の設定
       welcome: YamaNotesへようこそ！
@@ -56,6 +58,8 @@ ja:
         hint: 線路の内側・外側のどちらを歩くかで、歩行距離が変わります。体力に応じてルートを決めてください。
         reconfigure: 設定し直す
         start: はじめる
+        tracking_label: GPS トラッキング
+        tracking_hint: ONにすると、歩いた経路が地図に表示されます（ブラウザの位置情報許可が必要）。
     walk:
       previous_station: "前の駅:"
       next_station: "次の駅:"

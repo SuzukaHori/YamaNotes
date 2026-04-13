@@ -1,6 +1,8 @@
 ---
 en:
   shared:
+    map:
+      locate_me: Show my location
     buttons:
       edit: Edit
       delete: Delete

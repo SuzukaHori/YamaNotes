@@ -1,6 +1,8 @@
 ---
 ja:
   shared:
+    map:
+      locate_me: 現在地を表示
     buttons:
       edit: 編集
       delete: 削除

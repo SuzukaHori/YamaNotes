@@ -36,6 +36,8 @@ en:
       title: Walk record settings
       heading: Walk record settings
       public_hint: Turning on Public allows you to share the arrival history URL with others.
+      tracking_label: GPS Tracking
+      tracking_hint: "When ON, your walking route will be shown on the map (browser location permission required)."
     new:
       title: Walk settings
       welcome: Welcome to YamaNotes!
@@ -56,6 +58,8 @@ en:
         hint: The walking distance changes depending on whether you walk on the inside or outside of the tracks. Choose your route based on your fitness level.
         reconfigure: Change settings
         start: Start
+        tracking_label: GPS Tracking
+        tracking_hint: "When ON, your walking route will be shown on the map (browser location permission required)."
     walk:
       previous_station: "Previous station:"
       next_station: "Next station:"

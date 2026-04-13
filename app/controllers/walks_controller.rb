@@ -15,6 +15,10 @@ class WalksController < ApplicationController
     @station = @walk.current_station
     @arrived_distance = @walk.arrived_distance
     @number_of_walked = @walk.number_of_walked
+    if @walk.tracking?
+      @gps_points = @walk.gps_points.order(:recorded_at).pluck(:latitude, :longitude)
+      gon.gps_points = @gps_points
+    end
   end
 
   def edit; end
@@ -63,7 +67,7 @@ class WalksController < ApplicationController
   end
 
   def walk_params
-    params.require(:walk).permit(:clockwise, :publish)
+    params.require(:walk).permit(:clockwise, :publish, :tracking)
   end
 
   def arrival_params

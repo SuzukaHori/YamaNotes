@@ -13,7 +13,7 @@ div data-controller='caution'
       = link_to t('.walk_again'), walk_deactivation_path(current_walk), data: { turbo_method: :post, turbo_confirm: t('.walk_again_confirm') }, class: 'mx-4 link-important'
 - else
   = render partial: 'walk', locals: { walk: @walk, arrival: @arrival, current_station: @station }
-= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals }
+= render partial: 'shared/map', locals: { current_station: @station, station_ids: @arrivals, walk: @walk, gps_points: (@gps_points || []) }
 .my-4.text-center
   h2.font-bold.mb-2 = t('.here_record')
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"

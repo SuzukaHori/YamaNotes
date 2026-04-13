@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_10_022148) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_13_104603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_022148) do
     t.index ["created_at"], name: "index_arrivals_on_created_at"
     t.index ["station_id"], name: "index_arrivals_on_station_id"
     t.index ["walk_id"], name: "index_arrivals_on_walk_id"
+  end
+
+  create_table "gps_points", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "recorded_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "walk_id", null: false
+    t.index ["walk_id", "recorded_at"], name: "index_gps_points_on_walk_id_and_recorded_at"
+    t.index ["walk_id"], name: "index_gps_points_on_walk_id"
   end
 
   create_table "stations", force: :cascade do |t|
@@ -54,6 +65,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_022148) do
     t.boolean "clockwise", default: true, null: false
     t.datetime "created_at", null: false
     t.boolean "publish", default: false, null: false
+    t.boolean "tracking", default: false, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_walks_on_user_id", unique: true, where: "(active = true)"
@@ -61,5 +73,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_022148) do
 
   add_foreign_key "arrivals", "stations"
   add_foreign_key "arrivals", "walks"
+  add_foreign_key "gps_points", "walks"
   add_foreign_key "walks", "users"
 end

@@ -10,6 +10,11 @@
         td.font-semibold data-introduction-target='selectedClockwiseMode'
   = image_tag 'clockwise.png', alt: t('.guide_alt'), data: { clockwise_target: 'guide' }
   p.text-sm.list-disc.text-left = t('.hint')
+  .mt-4.flex.items-center.gap-2
+    = hidden_field_tag 'walk[tracking]', 'false'
+    = check_box_tag 'walk[tracking]', 'true', false, class: 'rounded border-gray-300', id: 'walk_tracking_new'
+    = label_tag 'walk_tracking_new', t('.tracking_label'), class: 'text-sm font-medium'
+  p.text-xs.text-gray-500 = t('.tracking_hint')
   .mt-4.flex.justify-between
     = link_to '#', data: { action: 'pagination#backStartPage' }, class: 'link-important'
       = t('.reconfigure')

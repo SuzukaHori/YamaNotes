@@ -8,6 +8,7 @@ export default class extends Controller {
     stations: Array,
     arrivedIds: Array,
     currentId: String,
+    tracking: { type: Boolean, default: false },
   };
 
   /* eslint-disable no-undef */
@@ -21,6 +22,34 @@ export default class extends Controller {
       this._addLine({ stations: this.allStations, color: "green" });
       this._addPins(this.allStations);
       this._addLine({ stations: this.arrivedStations, color: "red" });
+    }
+  }
+
+  locate() {
+    if (!navigator.geolocation) return;
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log("[map] locate:", { latitude, longitude });
+        this._updateCurrentLocationMarker(latitude, longitude);
+      },
+      () => {},
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
+  }
+
+  _updateCurrentLocationMarker(latitude, longitude) {
+    if (this._currentLocationMarker) {
+      this._currentLocationMarker.setLatLng([latitude, longitude]);
+    } else {
+      this._currentLocationMarker = L.circleMarker([latitude, longitude], {
+        radius: 8,
+        color: "#1d4ed8",
+        fillColor: "#3b82f6",
+        fillOpacity: 1,
+        weight: 2,
+      }).addTo(map);
     }
   }
 

@@ -23,19 +23,6 @@
   --color-base-black: #4f4f64;
 }
 
-/*
-  v3 から v4 で border のデフォルト色が `currentcolor` に変わったため、
-  既存スタイルを維持するための互換レイヤー。
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
-}
 
 @layer base {
   @font-face {

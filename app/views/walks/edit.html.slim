@@ -9,7 +9,7 @@
     = form_with model: @walk, class: 'inline-block', method: :patch do |f|
       = f.label :publish
         = f.check_box :publish, { class: 'sr-only peer', onchange: 'this.form.requestSubmit()' }, 'true', 'false'
-        .toggle-switch.cursor-pointer
+        div class='toggle-switch cursor-pointer [&::after]:border-gray-200'
   - if !@walk.publish
     p.text-xs.text-gray-500.mt-4
       = t('.public_hint')

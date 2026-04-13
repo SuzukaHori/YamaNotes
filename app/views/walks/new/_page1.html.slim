@@ -1,7 +1,7 @@
 #page-1 data-pagination-target="page"
   h3.mb-6 = t('.heading')
   = f.label :station_id, t('.station_label'), name: 'arrival[station_id]', class: 'pr-2'
-  = f.collection_select :station_id, Station.cache_all, :id, :name_i18n, {}, { class: 'rounded-lg', data: { action: 'input->introduction#changeStation' } }
+  = f.collection_select :station_id, Station.cache_all, :id, :name_i18n, {}, { class: 'rounded-lg border-gray-300', data: { action: 'input->introduction#changeStation' } }
   = image_tag 'yamanote-line.png', alt: t('.station_alt')
   p.text-sm.list-disc.text-left = t('.hint')
   .mt-4.flex.justify-end

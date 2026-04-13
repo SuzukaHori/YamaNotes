@@ -15,7 +15,6 @@
     "fix": "prettier --write 'app/javascript/**/*.js'"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.11",
     "caniuse-lite": "^1.0.30001632",
     "leaflet": "^1.9.4",
     "tailwindcss-stimulus-components": "^5.1.1"

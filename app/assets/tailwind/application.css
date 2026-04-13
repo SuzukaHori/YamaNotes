@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/forms';
 
 @theme {
   --font-pop: 'Mochiy Pop One', sans-serif;
@@ -44,6 +43,170 @@
     src: url('../fonts/Mochiy_Pop_One.woff');
   }
 }
+
+/*
+  @tailwindcss/forms が提供していたフォームリセットを明示化したもの。
+  ブラウザのデフォルトスタイルを均一化し、Tailwind ユーティリティで上書きしやすくする。
+*/
+
+/* テキスト系 input / select / textarea: appearance リセット・border・padding の統一 */
+@layer base {
+  input:where([type='text']),
+  input:where(:not([type])),
+  input:where([type='email']),
+  input:where([type='url']),
+  input:where([type='password']),
+  input:where([type='number']),
+  input:where([type='date']),
+  input:where([type='datetime-local']),
+  input:where([type='month']),
+  input:where([type='search']),
+  input:where([type='tel']),
+  input:where([type='time']),
+  input:where([type='week']),
+  select,
+  textarea {
+    appearance: none;
+    background-color: #fff;
+    border-color: rgb(107 114 128); /* gray-500: トップの * { border-color: gray-200 } を上書き */
+    border-width: 1px;
+    border-radius: 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  /* フォーカス時: outline を透明にして box-shadow でリングを表現 */
+  input:where([type='text']):focus,
+  input:where(:not([type])):focus,
+  input:where([type='email']):focus,
+  input:where([type='url']):focus,
+  input:where([type='password']):focus,
+  input:where([type='number']):focus,
+  input:where([type='date']):focus,
+  input:where([type='datetime-local']):focus,
+  input:where([type='month']):focus,
+  input:where([type='search']):focus,
+  input:where([type='tel']):focus,
+  input:where([type='time']):focus,
+  input:where([type='week']):focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0px #fff, 0 0 0 1px rgb(37 99 235 / 0.5), 0 0 #0000;
+    border-color: rgb(37 99 235); /* blue-600 */
+  }
+
+  /* placeholder の色を gray-500 に統一（ブラウザ差異の吸収） */
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(107 114 128); /* gray-500 */
+    opacity: 1;
+  }
+}
+
+/* select: ブラウザネイティブの矢印を非表示にして SVG の chevron アイコンを表示 */
+@layer base {
+  select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    print-color-adjust: exact;
+  }
+
+  /* multiple / size 付き select はリスト表示なので chevron を外す */
+  select:where([multiple]),
+  select:where([size]:not([size='1'])) {
+    background-image: initial;
+    background-position: initial;
+    background-repeat: unset;
+    background-size: initial;
+    padding-right: 0.75rem;
+    print-color-adjust: unset;
+  }
+}
+
+/* time_select: WebKit の日時フィールド pseudo-element の余分な padding を除去 */
+@layer base {
+  ::-webkit-datetime-edit-fields-wrapper { padding: 0; }
+  ::-webkit-date-and-time-value { min-height: 1.5em; text-align: inherit; }
+  ::-webkit-datetime-edit { display: inline-flex; }
+  ::-webkit-datetime-edit,
+  ::-webkit-datetime-edit-year-field,
+  ::-webkit-datetime-edit-month-field,
+  ::-webkit-datetime-edit-day-field,
+  ::-webkit-datetime-edit-hour-field,
+  ::-webkit-datetime-edit-minute-field,
+  ::-webkit-datetime-edit-second-field,
+  ::-webkit-datetime-edit-millisecond-field,
+  ::-webkit-datetime-edit-meridiem-field {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/*
+  checkbox / radio: appearance リセットとチェック時の塗りつぶし。
+  `color` に text-{color} クラスの値が入り、checked 時に background-color: currentColor で
+  その色が塗られる（例: text-dark-blue-200 → チェック時に dark-blue-200 色になる）。
+*/
+@layer base {
+  input:where([type='checkbox']),
+  input:where([type='radio']) {
+    appearance: none;
+    padding: 0;
+    print-color-adjust: exact;
+    display: inline-block;
+    vertical-align: middle;
+    background-origin: border-box;
+    user-select: none;
+    flex-shrink: 0;
+    height: 1rem;
+    width: 1rem;
+    color: rgb(37 99 235); /* blue-600 デフォルト。text-{color} クラスで上書き可 */
+    background-color: #fff;
+    border-color: rgb(107 114 128); /* gray-500 */
+    border-width: 1px;
+  }
+
+  input:where([type='checkbox']) { border-radius: 0; }
+  input:where([type='radio'])    { border-radius: 100%; }
+
+  input:where([type='checkbox']):focus,
+  input:where([type='radio']):focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgb(37 99 235), 0 0 #0000;
+  }
+
+  /* チェック時: currentColor（= text-{color} の値）で塗りつぶし、SVG アイコンを重ねる */
+  input:where([type='checkbox']):checked,
+  input:where([type='radio']):checked,
+  input:where([type='checkbox']):checked:hover,
+  input:where([type='checkbox']):checked:focus,
+  input:where([type='radio']):checked:hover,
+  input:where([type='radio']):checked:focus {
+    border-color: transparent;
+    background-color: currentColor;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  input:where([type='checkbox']):checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  }
+
+  input:where([type='radio']):checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+  }
+}
+
+
+/* ========== カスタム設定 ========== */
 
 @utility btn-primary {
   @apply inline-flex items-center justify-center px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow-sm transition-all duration-200 ease-out hover:bg-bright-orange-50 focus:outline-hidden focus:ring-3 focus:ring-red-400/75 h-11 cursor-pointer;

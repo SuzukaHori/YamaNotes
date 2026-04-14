@@ -25,9 +25,23 @@ export default class extends Controller {
     }
   }
 
+  disconnect() {
+    if (this._intervalId) {
+      clearInterval(this._intervalId);
+    }
+  }
+
   locate() {
     if (!navigator.geolocation) return;
 
+    if (!this._intervalId) {
+      this._intervalId = setInterval(() => this._fetchPosition(), 10000);
+    }
+
+    this._fetchPosition();
+  }
+
+  _fetchPosition() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;

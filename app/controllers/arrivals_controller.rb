@@ -6,7 +6,7 @@ class ArrivalsController < ApplicationController
   before_action :set_user, only: %i[index]
 
   def index
-    @arrivals = current_walk.arrivals.order(:created_at).includes(:station)
+    @arrivals = current_walk.arrivals.order(:created_at).includes(:station, image_attachment: :blob)
   end
 
   def show

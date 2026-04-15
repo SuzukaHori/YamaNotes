@@ -14,6 +14,9 @@ ja:
     memo:
       title: メモを追加
       placeholder: 辛くなってきた！自転車が羨ましい><
+    image:
+      title: 画像
+      image_label: 画像を選択
     help:
       title: 使い方
       arrival_step_prefix: 駅に着いたら

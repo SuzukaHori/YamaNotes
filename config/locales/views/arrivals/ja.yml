@@ -3,6 +3,7 @@ ja:
   arrivals:
     show:
       add_memo: メモを追加
+      add_image: 画像を追加
       back_to_map: 地図に戻る
       goal_title: "%{station_name}にゴール"
       goal_description: 一周の表彰ページです
@@ -38,6 +39,9 @@ ja:
       departure_badge: 出発
       goal_badge: ゴール
       delete_confirm: 本当に削除しますか？
+      add_image: "+ 画像を追加"
+      delete_image: 画像を削除
+      delete_image_confirm: 画像を削除しますか？
     report:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"

@@ -3,6 +3,7 @@
 class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
+  has_one_attached :image
   before_save :convert_nil_to_blank
   before_update :add_space_after_url
   validates :arrived_at, presence: true

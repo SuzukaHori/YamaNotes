@@ -16,10 +16,22 @@
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
           / XSSが起きないことを確認の上、slimlintから除外
           = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
-    = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
-      .text-sm.h-8.link-important = t('shared.buttons.edit')
-    - if deletable?(arrival:, arrivals:)
-      = link_to t('shared.buttons.delete'), arrival,
-               class: 'text-sm text-gray-400 underline pl-4 hover:text-black',
-               data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }
+      - if arrival.image.attached?
+        = image_tag arrival.image, class: 'mt-2 max-w-xs rounded-lg'
+    .flex.items-center.gap-4
+      = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
+        .text-sm.h-8.link-important = t('shared.buttons.edit')
+      - if arrival.image.attached?
+        = link_to t('.delete_image'), arrival_image_path(arrival),
+                 class: 'text-sm h-11 content-center text-gray-400 underline hover:text-black',
+                 data: { turbo_method: 'delete', turbo_confirm: t('.delete_image_confirm') }
+      - else
+        = form_with url: arrival_image_path(arrival), method: :post, html: { multipart: true } do |f|
+          = f.file_field :image, accept: 'image/*', class: 'hidden', id: "arrival_image_#{arrival.id}", onchange: 'this.form.submit()'
+          label.link-important.text-sm.h-11.content-center.inline-flex.items-center for="arrival_image_#{arrival.id}"
+            = t('.add_image')
+      - if deletable?(arrival:, arrivals:)
+        = link_to t('shared.buttons.delete'), arrival,
+                 class: 'text-sm h-11 content-center text-gray-400 underline hover:text-black',
+                 data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }
 - # rubocop:enable Rails/OutputSafety

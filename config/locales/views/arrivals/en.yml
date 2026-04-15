@@ -3,6 +3,7 @@ en:
   arrivals:
     show:
       add_memo: Add memo
+      add_image: Add image
       back_to_map: Back to map
       goal_title: "Goal at %{station_name} station"
       goal_description: This is the achievement page for completing the full lap.
@@ -38,6 +39,9 @@ en:
       departure_badge: Start
       goal_badge: Goal
       delete_confirm: Are you sure you want to delete?
+      add_image: "+ Add image"
+      delete_image: Delete image
+      delete_image_confirm: Delete this image?
     report:
       show:
         arrived_message: "Arrived at %{station_name} station \U0001F389"

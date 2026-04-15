@@ -1,0 +1,10 @@
+dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal-target='dialog'
+  h2.text-2xl.font-bold.text-center.my-2.mx-auto = t('.title')
+  button.focus:outline-hidden.absolute.top-0.right-0.p-2.m-2.hover:bg-gray-100 data-action="click->modal#close" autofocus=true
+    i.fa-solid.fa-xmark.fa-2xl
+  - if arrival.image.attached?
+    = image_tag arrival.image, class: 'mx-auto max-w-full rounded-lg mb-4'
+  = form_with model: arrival, html: { multipart: true } do |form|
+    = form.label :image, t('.image_label'), class: 'inline-block mt-2 mb-1'
+    = form.file_field :image, accept: 'image/*', class: 'block w-full text-sm'
+    = form.submit t('shared.buttons.save'), class: 'block btn-primary mx-auto mt-4', data: { action: 'click->modal#close' }

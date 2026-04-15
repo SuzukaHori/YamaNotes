@@ -12,9 +12,7 @@ namespace :users do
     User.find_each do |user|
       uid_as_string = user.uid.to_i.to_s
 
-      unless uid_as_string.match?(/\A\d+\z/)
-        errors << "ID #{user.id}: uid=#{user.uid.inspect} は数字のみの文字列に変換できません"
-      end
+      errors << "ID #{user.id}: uid=#{user.uid.inspect} は数字のみの文字列に変換できません" unless uid_as_string.match?(/\A\d+\z/)
     end
 
     if errors.empty?

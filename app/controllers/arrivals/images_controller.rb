@@ -4,8 +4,13 @@ class Arrivals::ImagesController < ApplicationController
   before_action :set_arrival
 
   def create
+    resized_image = ImageProcessing::Vips
+      .source(params[:image])
+      .resize_to_fit(800, 800)
+      .call
+
     blob = ActiveStorage::Blob.create_and_upload!(
-      io: params[:image],
+      io: resized_image,
       filename: params[:image].original_filename,
       content_type: params[:image].content_type
     )

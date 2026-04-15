@@ -20,7 +20,7 @@ class Arrivals::ImagesController < ApplicationController
       record: @arrival,
       blob:
     )
-    redirect_to arrivals_path
+    redirect_to arrivals_path, notice: t('arrivals.images.create.uploaded')
   end
 
   def destroy

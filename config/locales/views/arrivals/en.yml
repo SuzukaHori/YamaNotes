@@ -17,6 +17,9 @@ en:
       back_to_map: Back to map
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
+    images:
+      create:
+        uploaded: Image has been added.
     create:
       no_walk: No walk record found.
       save_failed: Could not save the arrival record.

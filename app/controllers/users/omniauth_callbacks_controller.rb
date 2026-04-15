@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     auth = request.env['omniauth.auth']
-    @user = User.find_or_create_by(provider: auth.provider, uid: auth.uid)
+    @user = User.find_or_create_by(provider: auth.provider, uid: auth.uid.to_s)
     if @user.persisted?
       request.env['devise.mapping'] = Devise.mappings[:user]
       request.env['omniauth.auth'] = auth

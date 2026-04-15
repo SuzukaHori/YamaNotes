@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    sequence(:uid) { |n| 10_000_000_000 + n }
+    sequence(:uid) { |n| (10_000_000_000 + n).to_s }
     provider { 'google_oauth2' }
 
     trait :with_walk do

@@ -2,8 +2,7 @@
 
 class UsersController < ApplicationController
   def destroy
-    user = User.find(params[:id])
-    user.destroy!
+    current_user.destroy!
     redirect_to root_url, notice: t('.withdrawn')
   end
 end

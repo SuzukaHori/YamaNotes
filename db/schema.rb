@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_15_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_092537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_000000) do
     t.index ["created_at"], name: "index_arrivals_on_created_at"
     t.index ["station_id"], name: "index_arrivals_on_station_id"
     t.index ["walk_id"], name: "index_arrivals_on_walk_id"
+  end
+
+  create_table "feature_flags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "enabled", default: false, null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
 
   create_table "stations", force: :cascade do |t|

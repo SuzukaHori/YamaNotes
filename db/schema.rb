@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_15_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_000000) do
     t.index ["created_at"], name: "index_arrivals_on_created_at"
     t.index ["station_id"], name: "index_arrivals_on_station_id"
     t.index ["walk_id"], name: "index_arrivals_on_walk_id"
+    t.index ["walk_id", "created_at"], name: "index_arrivals_on_walk_id_and_created_at"
   end
 
   create_table "stations", force: :cascade do |t|
@@ -56,7 +57,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_000000) do
     t.boolean "publish", default: false, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_walks_on_user_id", unique: true, where: "(active = true)"
+    t.index ["user_id"], name: "index_walks_on_user_id"
+    t.index ["user_id"], name: "index_walks_on_user_id_active", unique: true, where: "(active = true)"
   end
 
   add_foreign_key "arrivals", "stations"

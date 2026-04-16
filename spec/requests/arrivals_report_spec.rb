@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Reports', type: :request do
-  let(:walk) { FactoryBot.create(:walk, clockwise: true) }
+  let(:walk) { FactoryBot.create(:walk, clockwise: true, publish: true) }
 
   describe '#show' do
     subject(:show_report) { get arrival_report_path(walk.arrivals.last) }

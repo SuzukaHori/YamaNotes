@@ -15,6 +15,13 @@ ja:
       models:
         arrival:
           attributes:
+            arrived_at:
+              cannot_be_future: に未来の時刻は設定できません
+              out_of_range: は、一つ前の到着時刻より後、一つ後ろの到着時間より前の時刻を設定してください
+            station_id:
+              must_be_adjacent_station: 隣駅以外に到着することはできません
             image:
               invalid_content_type: はPNGまたはJPEG形式のファイルを選択してください
               too_large: は5MB以下のファイルを選択してください
+          only_last_arrival_can_be_deleted: 最後の到着以外は削除できません
+          arrivals_limit_exceeded: 駅の数以上の到着記録は作成できません

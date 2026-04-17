@@ -13,8 +13,11 @@ en:
         stations: Stations
         user_id: User
     errors:
-      messages:
-        restrict_multiple_creation: "Only one %{model} can be created"
+      models:
+        walk:
+          attributes:
+            user_id:
+              only_one_active_walk: "can only have one active walk at a time"
     success:
       messages:
         create: '%{model} was created'

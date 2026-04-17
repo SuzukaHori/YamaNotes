@@ -114,7 +114,7 @@ RSpec.describe Walk, type: :model do
 
       it 'invalid になること' do
         expect(walk).to be_invalid
-        expect(walk.errors).to be_added(:user_id, '一人につき、実施中の歩行記録は一つしか作成できません')
+        expect(walk.errors).to be_added(:user_id, :only_one_active_walk)
       end
     end
 

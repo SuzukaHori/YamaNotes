@@ -13,8 +13,11 @@ ja:
         stations: 駅
         user_id: ユーザ
     errors:
-      messages:
-        restrict_multiple_creation: "%{model}は1つしか作成できません"
+      models:
+        walk:
+          attributes:
+            user_id:
+              only_one_active_walk: "一人につき、実施中の歩行記録は一つしか作成できません"
     success:
       messages:
         create: '%{model}を作成しました'

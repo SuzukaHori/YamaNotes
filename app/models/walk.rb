@@ -48,6 +48,6 @@ class Walk < ApplicationRecord
   def active_walk_uniqueness
     return unless user.walks.exists?(active: true)
 
-    errors.add(:user_id, '一人につき、実施中の歩行記録は一つしか作成できません')
+    errors.add(:user_id, :only_one_active_walk)
   end
 end

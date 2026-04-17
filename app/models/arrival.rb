@@ -22,8 +22,8 @@ class Arrival < ApplicationRecord
   private
 
   def check_arrived_time
-    errors.add :arrived_at, 'に未来の時刻は設定できません' if arrival_time_is_later_than_current?
-    errors.add :arrived_at, 'は、一つ前の到着時刻より後、一つ後ろの到着時間より前の時刻を設定してください' if arrival_time_is_outside_of_range?
+    errors.add :arrived_at, :cannot_be_future if arrival_time_is_later_than_current?
+    errors.add :arrived_at, :out_of_range if arrival_time_is_outside_of_range?
   end
 
   def arrival_time_is_later_than_current?
@@ -51,7 +51,7 @@ class Arrival < ApplicationRecord
       end
     return if is_correct_next_station
 
-    errors.add :station_id, '隣駅以外に到着することはできません'
+    errors.add :station_id, :must_be_adjacent_station
   end
 
   def convert_nil_to_blank
@@ -70,7 +70,7 @@ class Arrival < ApplicationRecord
   def check_arrival_location
     return if self == walk.arrivals.order(:created_at).last
 
-    errors.add :base, '最後の到着以外は削除できません'
+    errors.add :base, :only_last_arrival_can_be_deleted
     throw(:abort)
   end
 
@@ -79,7 +79,7 @@ class Arrival < ApplicationRecord
   end
 
   def arrivals_count_must_be_within_limit
-    errors.add(:base, '駅の数以上の到着記録は作成できません') if walk.arrivals.count > Station.cache_count
+    errors.add(:base, :arrivals_limit_exceeded) if walk.arrivals.count > Station.cache_count
   end
 
   def image_content_type_must_be_valid

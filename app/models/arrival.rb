@@ -4,6 +4,7 @@ class Arrival < ApplicationRecord
   belongs_to :walk
   belongs_to :station
   has_one_attached :image
+  validate :image_content_type
   before_save :convert_nil_to_blank
   before_update :add_space_after_url
   validates :arrived_at, presence: true
@@ -15,6 +16,15 @@ class Arrival < ApplicationRecord
   before_destroy :check_arrival_location, unless: -> { destroyed_by_association }
 
   private
+
+  ALLOWED_IMAGE_CONTENT_TYPES = %w[image/png image/jpeg].freeze
+
+  def image_content_type
+    return unless image.attached?
+    return if ALLOWED_IMAGE_CONTENT_TYPES.include?(image.content_type)
+
+    errors.add(:image, :invalid_content_type)
+  end
 
   def check_arrived_time
     errors.add :arrived_at, 'に未来の時刻は設定できません' if arrival_time_is_later_than_current?

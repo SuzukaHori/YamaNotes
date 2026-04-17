@@ -10,3 +10,10 @@ ja:
         station_id: 到着駅
         walk_id: 歩行記録ノート
         station: 駅
+        image: 画像
+    errors:
+      models:
+        arrival:
+          attributes:
+            image:
+              invalid_content_type: はPNGまたはJPEG形式のみアップロードできます

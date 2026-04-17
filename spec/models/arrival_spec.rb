@@ -85,6 +85,24 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
+  describe 'image content_type validation' do
+    it 'PNGをアップロードできること' do
+      arrival.image.attach(io: StringIO.new('dummy'), filename: 'photo.png', content_type: 'image/png')
+      expect(arrival).to be_valid
+    end
+
+    it 'JPEGをアップロードできること' do
+      arrival.image.attach(io: StringIO.new('dummy'), filename: 'photo.jpg', content_type: 'image/jpeg')
+      expect(arrival).to be_valid
+    end
+
+    it 'PNG/JPEG以外はアップロードできないこと' do
+      arrival.image.attach(io: StringIO.new('dummy'), filename: 'photo.gif', content_type: 'image/gif')
+      expect(arrival).not_to be_valid
+      expect(arrival.errors.full_messages.join).to include 'はPNGまたはJPEG形式のみアップロードできます'
+    end
+  end
+
   describe '#arrivals_count_must_be_within_limit' do
     it '駅数+1以上の到着を追加できないこと' do
       create_arrivals(walk, 30)

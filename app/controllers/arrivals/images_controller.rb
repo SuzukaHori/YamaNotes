@@ -4,6 +4,13 @@ class Arrivals::ImagesController < ApplicationController
   before_action :set_arrival
 
   def create
+    @arrival.image.attach(params[:image])
+    unless @arrival.valid?
+      @arrival.image.detach
+      return redirect_to arrivals_path, alert: @arrival.errors.full_messages_for(:image).first
+    end
+    @arrival.image.purge
+
     resized_image = ImageProcessing::Vips
       .source(params[:image])
       .resize_to_fit(800, 800)

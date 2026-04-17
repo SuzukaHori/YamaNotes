@@ -89,7 +89,7 @@ class Arrival < ApplicationRecord
   end
 
   def image_size_must_be_within_limit
-    return if image.byte_size < 5.megabytes
+    return if image.byte_size <= 5.megabytes
 
     errors.add(:image, :too_large)
   end

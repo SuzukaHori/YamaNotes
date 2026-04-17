@@ -13,12 +13,13 @@
         p.text-xl
           | #{arrival.station.name_i18n}
 
-      - if arrival.image.attached?
-        = image_tag arrival.image, class: 'mt-2 max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
-      - else
-        = form_with url: arrival_image_path(arrival), method: :post, multipart: true do |f|
-          = f.label :image, t('.attach_image'), class: 'text-sm link-important cursor-pointer'
-          = f.file_field :image, accept: 'image/png,image/jpeg', class: 'hidden', onchange: 'this.form.submit()'
+      - if FeatureFlag.enabled?(:image_upload)
+        - if arrival.image.attached?
+          = image_tag arrival.image, class: 'mt-2 max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
+        - else
+          = form_with url: arrival_image_path(arrival), method: :post, multipart: true do |f|
+            = f.label :image, t('.attach_image'), class: 'text-sm link-important cursor-pointer'
+            = f.file_field :image, accept: 'image/png,image/jpeg', class: 'hidden', onchange: 'this.form.submit()'
 
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1

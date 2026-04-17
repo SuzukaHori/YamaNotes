@@ -83,7 +83,11 @@ config/locales/
     ├── dialogs/
     ├── layouts/
     ├── pages/
+    ├── public/
+    │   └── walks/
+    │       └── arrivals/
     ├── shared/      # 複数箇所で使うボタンラベルなど
+    ├── users/
     ├── walk/
     └── walks/
 ```

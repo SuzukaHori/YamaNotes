@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :arrivals, except: [:new] do
     resource :report, only: %i(show), controller: "arrivals/report"
+    resource :image, only: %i(create), controller: "arrivals/images"
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

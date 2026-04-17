@@ -38,6 +38,11 @@ ja:
       departure_badge: 出発
       goal_badge: ゴール
       delete_confirm: 本当に削除しますか？
+      image_alt: "%{station_name}の画像"
+      attach_image: 画像を追加
+    images:
+      create:
+        attached: 画像を追加しました。
     report:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"

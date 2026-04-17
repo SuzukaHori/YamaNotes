@@ -93,4 +93,55 @@ RSpec.describe Arrival, type: :model do
       expect(over_arrival.errors.full_messages.join).to eq '駅の数以上の到着記録は作成できません'
     end
   end
+
+  describe '#image_content_type_must_be_valid' do
+    it 'PNG 画像を添付できること' do
+      arrival.image.attach(
+        io: File.open(Rails.root.join('spec/fixtures/files/sample.png')),
+        filename: 'sample.png',
+        content_type: 'image/png'
+      )
+      expect(arrival).to be_valid
+    end
+
+    it 'JPEG 画像を添付できること' do
+      arrival.image.attach(
+        io: File.open(Rails.root.join('spec/fixtures/files/sample.jpg')),
+        filename: 'sample.jpg',
+        content_type: 'image/jpeg'
+      )
+      expect(arrival).to be_valid
+    end
+
+    it 'PNG/JPEG 以外のファイルを添付できないこと' do
+      arrival.image.attach(
+        io: File.open(Rails.root.join('spec/fixtures/files/sample.gif')),
+        filename: 'sample.gif',
+        content_type: 'image/gif'
+      )
+      expect(arrival).not_to be_valid
+      expect(arrival.errors[:image].join).to include 'はPNGまたはJPEG形式のファイルを選択してください'
+    end
+  end
+
+  describe '#image_size_must_be_within_limit' do
+    it '5MB 以下のファイルを添付できること' do
+      arrival.image.attach(
+        io: File.open(Rails.root.join('spec/fixtures/files/sample.png')),
+        filename: 'sample.png',
+        content_type: 'image/png'
+      )
+      expect(arrival).to be_valid
+    end
+
+    it '5MB を超えるファイルを添付できないこと' do
+      arrival.image.attach(
+        io: StringIO.new('a' * 6.megabytes),
+        filename: 'large.png',
+        content_type: 'image/png'
+      )
+      expect(arrival).not_to be_valid
+      expect(arrival.errors[:image].join).to include 'は5MB以下のファイルを選択してください'
+    end
+  end
 end

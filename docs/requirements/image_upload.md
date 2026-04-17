@@ -82,3 +82,4 @@ cloudflare:
 ## PR 作成時の注意
 
 - PoC のリンクを概要に含める
+- ラベルに `image-upload` を付ける

@@ -113,6 +113,11 @@ RSpec.describe Arrival, type: :model do
   end
 
   describe '#image_size_must_be_within_limit' do
+    it '5MB より小さいファイルを添付できること' do
+      arrival.image.attach(fixture_file_upload('sample.png', 'image/png'))
+      expect(arrival).to be_valid
+    end
+
     it 'ちょうど 5MB のファイルを添付できること' do
       arrival.image.attach(
         io: StringIO.new('a' * 5.megabytes),

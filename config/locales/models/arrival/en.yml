@@ -10,6 +10,7 @@ en:
         station_id: Station
         walk_id: Walk log
         station: Station
+        image: Image
     errors:
       models:
         arrival:
@@ -19,5 +20,8 @@ en:
               out_of_range: must be after the previous arrival and before the next arrival
             station_id:
               must_be_adjacent_station: must be an adjacent station
+            image:
+              invalid_content_type: must be a PNG or JPEG file
+              too_large: must be 5MB or smaller
           only_last_arrival_can_be_deleted: only the last arrival can be deleted
           arrivals_limit_exceeded: cannot exceed the total number of stations

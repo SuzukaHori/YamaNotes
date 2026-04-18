@@ -38,7 +38,12 @@ en:
       departure_badge: Start
       goal_badge: Goal
       delete_confirm: Are you sure you want to delete?
-    report:
+      image_alt: "Image at %{station_name} station"
+      attach_image: Add image
+    images:
+      create:
+        attached: Image attached successfully.
+    reports:
       show:
         arrived_message: "Arrived at %{station_name} station \U0001F389"
         station_alt: "Illustration of %{station_name} station"

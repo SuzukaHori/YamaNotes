@@ -38,7 +38,12 @@ ja:
       departure_badge: 出発
       goal_badge: ゴール
       delete_confirm: 本当に削除しますか？
-    report:
+      image_alt: "%{station_name}の画像"
+      attach_image: 画像を追加
+    images:
+      create:
+        attached: 画像を追加しました。
+    reports:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"
         station_alt: "%{station_name}のイラスト"

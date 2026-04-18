@@ -9,9 +9,7 @@ module Arrival::Image
   WEBP_CONTENT_TYPE = 'image/webp'
 
   included do
-    has_one_attached :image do |attachable|
-      attachable.variant :display, resize_to_limit: [MAX_WIDTH, MAX_HEIGHT]
-    end
+    has_one_attached :image
 
     validate :image_content_type_must_be_valid, if: -> { image.attached? }
     validate :image_size_must_be_within_limit,  if: -> { image.attached? }

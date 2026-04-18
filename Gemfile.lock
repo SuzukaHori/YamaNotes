@@ -168,6 +168,9 @@ GEM
     i18n_generators (2.2.2)
       activerecord (>= 3.0.0)
       railties (>= 3.0.0)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.2.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -201,6 +204,8 @@ GEM
     matrix (0.4.3)
     meta-tags (2.23.0)
       actionpack (>= 6.0.0)
+    mini_magick (5.3.1)
+      logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.3)
@@ -415,6 +420,9 @@ GEM
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
+    ruby-vips (2.3.0)
+      ffi (~> 1.12)
+      logger
     rubyzip (3.2.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -546,6 +554,7 @@ DEPENDENCIES
   gon
   high_voltage
   i18n_generators
+  image_processing
   importmap-rails
   launchy
   meta-tags

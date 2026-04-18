@@ -4,7 +4,7 @@ class Arrivals::ImagesController < ApplicationController
   before_action :set_arrival
 
   def create
-    if @arrival.image.attach(params[:image])
+    if @arrival.attach_image(params[:image])
       redirect_to arrivals_path, notice: t('.attached')
     else
       @arrival.image.purge

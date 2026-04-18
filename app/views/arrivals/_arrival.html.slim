@@ -16,7 +16,7 @@
       - if FeatureFlag.enabled?(:image_upload)
         - if arrival.image.attached?
           .relative.mt-2.inline-block
-            = image_tag arrival.image, class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
+            = image_tag arrival.image.variant(:display), class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
             = button_to arrival_image_path(arrival), method: :delete,
                 data: { turbo_confirm: t('.delete_image_confirm') },
                 form: { style: 'position:absolute; top:4px; right:4px;', data: { turbo_frame: '_top' } } do

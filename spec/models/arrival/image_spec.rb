@@ -52,25 +52,28 @@ RSpec.describe Arrival::Image, type: :model do
 
   describe '#attach_image' do
     context '400x400 を超える JPEG の場合' do
-      it 'リサイズされて保存されること' do
+      it 'WebP に変換・リサイズされて保存されること' do
         original_size = File.size(Rails.root.join('spec/fixtures/files/large.jpg'))
         arrival.attach_image(fixture_file_upload('large.jpg', 'image/jpeg'))
         expect(arrival.image).to be_attached
+        expect(arrival.image.blob.content_type).to eq 'image/webp'
         expect(arrival.image.blob.byte_size).to be < original_size
       end
     end
 
     context '400x400 以下の画像の場合' do
-      it 'そのまま保存されること' do
+      it 'WebP に変換されて保存されること' do
         arrival.attach_image(fixture_file_upload('sample.jpg', 'image/jpeg'))
         expect(arrival.image).to be_attached
+        expect(arrival.image.blob.content_type).to eq 'image/webp'
       end
     end
 
     context 'PNG 画像の場合' do
-      it 'リサイズされて保存されること' do
+      it 'WebP に変換されて保存されること' do
         arrival.attach_image(fixture_file_upload('sample.png', 'image/png'))
         expect(arrival.image).to be_attached
+        expect(arrival.image.blob.content_type).to eq 'image/webp'
       end
     end
 

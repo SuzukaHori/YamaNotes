@@ -6,7 +6,7 @@ module Arrival::Image
   MAX_WIDTH        = 400
   MAX_HEIGHT       = 400
   ACCEPTED_FORMATS = %w[image/png image/jpeg].freeze
-  WEBP_CONTENT_TYPE = "image/webp"
+  WEBP_CONTENT_TYPE = 'image/webp'
 
   included do
     has_one_attached :image do |attachable|
@@ -27,11 +27,11 @@ module Arrival::Image
     return uploaded_file unless ACCEPTED_FORMATS.include?(uploaded_file.content_type)
 
     output = ImageProcessing::Vips
-               .source(uploaded_file.path)
-               .convert("webp")
-               .resize_to_limit(MAX_WIDTH, MAX_HEIGHT)
-               .call
-    filename = "#{File.basename(uploaded_file.original_filename, ".*")}.webp"
+             .source(uploaded_file.path)
+             .convert('webp')
+             .resize_to_limit(MAX_WIDTH, MAX_HEIGHT)
+             .call
+    filename = "#{File.basename(uploaded_file.original_filename, '.*')}.webp"
     { io: output, filename:, content_type: WEBP_CONTENT_TYPE }
   end
 

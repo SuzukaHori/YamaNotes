@@ -4,12 +4,11 @@ class Arrivals::ImagesController < ApplicationController
   before_action :set_arrival
 
   def create
-    @arrival.image.attach(params[:image])
-    if @arrival.valid? && @arrival.image.persisted?
+    if @arrival.image.attach(params[:image])
       redirect_to arrivals_path, notice: t('.attached')
     else
-      @arrival.image.purge if @arrival.image.attached?
-      redirect_to arrivals_path, alert: @arrival.errors.full_messages_for(:image).to_sentence
+      @arrival.image.purge
+      redirect_to arrivals_path, alert: @arrival.errors.full_messages.to_sentence
     end
   end
 

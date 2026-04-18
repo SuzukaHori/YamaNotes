@@ -19,6 +19,7 @@ module Arrival::Image
 
   def attach_image(uploaded_file)
     image.attach(resize_image(uploaded_file))
+    valid?
   end
 
   private

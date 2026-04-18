@@ -43,7 +43,7 @@ ja:
     images:
       create:
         attached: 画像を追加しました。
-    report:
+    reports:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"
         station_alt: "%{station_name}のイラスト"

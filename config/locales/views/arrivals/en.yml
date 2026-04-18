@@ -43,7 +43,7 @@ en:
     images:
       create:
         attached: Image attached successfully.
-    report:
+    reports:
       show:
         arrived_message: "Arrived at %{station_name} station \U0001F389"
         station_alt: "Illustration of %{station_name} station"

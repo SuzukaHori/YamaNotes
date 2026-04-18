@@ -79,5 +79,4 @@ class Arrival < ApplicationRecord
   def arrivals_count_must_be_within_limit
     errors.add(:base, :arrivals_limit_exceeded) if walk.arrivals.count > Station.cache_count
   end
-
 end

@@ -12,6 +12,11 @@ class Arrivals::ImagesController < ApplicationController
     end
   end
 
+  def destroy
+    @arrival.image.purge
+    redirect_to arrivals_path, notice: t('.purged')
+  end
+
   private
 
   def set_arrival

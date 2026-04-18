@@ -15,7 +15,12 @@
 
       - if FeatureFlag.enabled?(:image_upload)
         - if arrival.image.attached?
-          = image_tag arrival.image, class: 'mt-2 max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
+          .relative.mt-2.inline-block
+            = image_tag arrival.image, class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
+            = button_to arrival_image_path(arrival), method: :delete,
+                data: { turbo_confirm: t('.delete_image_confirm') },
+                form: { style: 'position:absolute; top:4px; right:4px;', data: { turbo_frame: '_top' } } do
+              i.fa-solid.fa-xmark.fa-2xl.text-gray-400
         - else
           = form_with url: arrival_image_path(arrival), method: :post, multipart: true do |f|
             = f.label :image, t('.attach_image'), class: 'text-sm link-important cursor-pointer'

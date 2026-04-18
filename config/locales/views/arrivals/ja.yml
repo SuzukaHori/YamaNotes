@@ -40,9 +40,12 @@ ja:
       delete_confirm: 本当に削除しますか？
       image_alt: "%{station_name}の画像"
       attach_image: 画像を追加
+      delete_image_confirm: 画像を削除しますか？
     images:
       create:
         attached: 画像を追加しました。
+      destroy:
+        purged: 画像を削除しました。
     reports:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"

@@ -8,10 +8,10 @@ local:
 
 cloudflare:
   service: S3
-  access_key_id: <%= ENV.fetch("CLOUDFLARE_R2_ACCESS_KEY_ID") %>
-  secret_access_key: <%= ENV.fetch("CLOUDFLARE_R2_SECRET_ACCESS_KEY") %>
-  endpoint: <%= ENV.fetch("CLOUDFLARE_R2_ENDPOINT") %>
-  bucket: <%= ENV.fetch("CLOUDFLARE_R2_BUCKET") %>
+  access_key_id: <%= ENV["CLOUDFLARE_R2_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["CLOUDFLARE_R2_SECRET_ACCESS_KEY"] %>
+  endpoint: <%= ENV["CLOUDFLARE_R2_ENDPOINT"] %>
+  bucket: <%= ENV["CLOUDFLARE_R2_BUCKET"] %>
   region: <%= ENV.fetch("CLOUDFLARE_R2_REGION", "auto") %>
   force_path_style: true
   request_checksum_calculation: when_required

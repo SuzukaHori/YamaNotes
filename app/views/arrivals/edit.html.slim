@@ -1,6 +1,6 @@
 = turbo_frame_tag @arrival
   = render 'shared/errors', model: @arrival
-  = form_with model: @arrival, method: :put do |f|
+  = form_with model: @arrival, method: :put, multipart: true do |f|
     = f.label :arrived_at, class: 'inline-block mt-4 mb-1'
     .flex.items-center
       = f.time_select :arrived_at, {}, { class: 'rounded border border-gray-300' }
@@ -8,5 +8,9 @@
         | #{@arrival.station.name_i18n}
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
+    - if FeatureFlag.enabled?(:image_upload) && !@arrival.image.attached?
+      .max-w-lg.mx-auto
+        = f.label :image, t('activerecord.attributes.arrival.image'), class: 'inline-block mt-4 mb-1'
+        = f.file_field :image, accept: 'image/png,image/jpeg', class: 'block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

@@ -13,23 +13,18 @@
         p.text-xl
           | #{arrival.station.name_i18n}
 
-      - if FeatureFlag.enabled?(:image_upload)
-        - if arrival.image.attached?
-          .relative.mt-2.inline-block
-            = image_tag arrival.image, class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
-            = button_to arrival_image_path(arrival), method: :delete,
-                data: { turbo_confirm: t('.delete_image_confirm') },
-                form: { style: 'position:absolute; top:4px; right:4px;', data: { turbo_frame: '_top' } } do
-              i.fa-solid.fa-xmark.fa-2xl.text-gray-400
-        - else
-          = form_with url: arrival_image_path(arrival), method: :post, multipart: true do |f|
-            = f.label :image, t('.attach_image'), class: 'text-sm link-important cursor-pointer'
-            = f.file_field :image, accept: 'image/png,image/jpeg', class: 'hidden', onchange: 'this.form.submit()'
-
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
           / XSSが起きないことを確認の上、slimlintから除外
           = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
+
+      - if FeatureFlag.enabled?(:image_upload) && arrival.image.attached?
+        .relative.mt-2.inline-block
+          = image_tag arrival.image, class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
+          = button_to arrival_image_path(arrival), method: :delete,
+              data: { turbo_confirm: t('.delete_image_confirm') },
+              form: { style: 'position:absolute; top:4px; right:4px;', data: { turbo_frame: '_top' } } do
+            i.fa-solid.fa-xmark.fa-2xl.text-gray-400
     = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
       .text-sm.h-8.link-important = t('shared.buttons.edit')
     - if deletable?(arrival:, arrivals:)

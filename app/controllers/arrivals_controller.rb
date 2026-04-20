@@ -27,12 +27,14 @@ class ArrivalsController < ApplicationController
   end
 
   def update
-    @arrival.assign_attributes(arrival_params)
-    return unless @arrival.changed?
+    @arrival.assign_attributes(arrival_params.except(:image))
+    @arrival.attach_image(arrival_params[:image]) if arrival_params[:image].present?
+    return unless @arrival.changed? || arrival_params[:image].present?
 
     if @arrival.save
       flash.now.notice = t('arrivals.update.updated')
     else
+      @arrival.image.purge if arrival_params[:image].present?
       render 'edit', status: :unprocessable_content
     end
   end
@@ -60,6 +62,6 @@ class ArrivalsController < ApplicationController
   end
 
   def arrival_params
-    params.require(:arrival).permit(:station_id, :arrived_at, :memo)
+    params.require(:arrival).permit(:station_id, :arrived_at, :memo, :image)
   end
 end

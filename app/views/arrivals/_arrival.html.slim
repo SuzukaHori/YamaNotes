@@ -29,8 +29,4 @@
               i.fa-solid.fa-xmark.text-gray-400
     = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
       .text-sm.h-8.link-important = t('shared.buttons.edit')
-    - if deletable?(arrival:, arrivals:)
-      = link_to t('shared.buttons.delete'), arrival,
-               class: 'text-sm text-gray-400 underline pl-4 hover:text-black',
-               data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }
 - # rubocop:enable Rails/OutputSafety

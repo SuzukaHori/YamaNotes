@@ -11,5 +11,5 @@
     - if FeatureFlag.enabled?(:image_upload) && !@arrival.image.attached?
       = f.label :image, t('activerecord.attributes.arrival.image'), class: 'inline-block mt-4 mb-1'
       = f.file_field :image, accept: 'image/png,image/jpeg', class: 'file-input'
-    .text-center.my-2
+    .text-center.my-8
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

@@ -21,10 +21,12 @@
       - if FeatureFlag.enabled?(:image_upload) && arrival.image.attached?
         .relative.mt-2.inline-block
           = image_tag arrival.image, class: 'max-h-48 rounded', alt: t('.image_alt', station_name: arrival.station.name_i18n)
-          = button_to arrival_image_path(arrival), method: :delete,
-              data: { turbo_confirm: t('.delete_image_confirm') },
-              form: { style: 'position:absolute; top:4px; right:4px;', data: { turbo_frame: '_top' } } do
-            i.fa-solid.fa-xmark.fa-2xl.text-gray-400
+          div style='position:absolute; top:4px; right:4px;'
+            = button_to arrival_image_path(arrival), method: :delete,
+                data: { turbo_confirm: t('.delete_image_confirm') },
+                form: { data: { turbo_frame: '_top' } },
+                class: 'flex items-center justify-center p-1 bg-white rounded-full' do
+              i.fa-solid.fa-xmark.text-gray-400
     = link_to edit_arrival_path(arrival), class: 'inline-block h-11 content-center' do
       .text-sm.h-8.link-important = t('shared.buttons.edit')
     - if deletable?(arrival:, arrivals:)

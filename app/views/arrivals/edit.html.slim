@@ -9,8 +9,7 @@
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload) && !@arrival.image.attached?
-      .max-w-lg.mx-auto
-        = f.label :image, t('activerecord.attributes.arrival.image'), class: 'inline-block mt-4 mb-1'
-        = f.file_field :image, accept: 'image/png,image/jpeg', class: 'block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'
+      = f.label :image, t('activerecord.attributes.arrival.image'), class: 'inline-block mt-4 mb-1'
+      = f.file_field :image, accept: 'image/png,image/jpeg', class: 'file-input'
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

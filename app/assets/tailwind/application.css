@@ -223,6 +223,27 @@
   }
 }
 
+@utility file-input {
+  @apply block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none;
+
+  &::file-selector-button {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-right: 1px solid rgb(209 213 219);
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: rgb(229 231 235);
+    color: rgb(55 65 81);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  &::file-selector-button:hover {
+    background-color: rgb(209 213 219);
+  }
+}
+
 @layer components {
   dialog {
     @apply text-base-black mx-auto my-auto;

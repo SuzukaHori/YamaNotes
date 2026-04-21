@@ -10,17 +10,22 @@
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload)
       div data-controller='image-preview'
-        = f.label :image, class: 'cursor-pointer' do
-          - if @arrival.image.attachment&.persisted?
-            = image_tag @arrival.image,
-                    class: 'max-h-48 rounded mt-2',
-                    alt: t('.image_alt', station_name: @arrival.station.name_i18n),
-                    data: { image_preview_target: 'preview' }
-          - else
-            img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
-          = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
-        - unless @arrival.image.attachment&.persisted?
+        - if @arrival.image.attachment&.persisted?
+          .relative.inline-block.mt-2
+            label.cursor-pointer for='arrival_image'
+              = image_tag @arrival.image,
+                      class: 'max-h-48 rounded',
+                      alt: t('.image_alt', station_name: @arrival.station.name_i18n),
+                      data: { image_preview_target: 'preview' }
+            = link_to arrival_image_path(@arrival),
+                class: 'absolute top-1 right-1',
+                data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm'), turbo_frame: '_top' } do
+              i.fa-solid.fa-xmark.fa-2xl.text-gray-400
+          img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
+        - else
+          img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
           label.cursor-pointer.link-important.mt-2 for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
+        = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

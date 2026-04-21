@@ -17,11 +17,10 @@ RSpec.describe 'Arrivals::Images', type: :request do
     context '自分の到着記録の画像を削除する場合' do
       let(:login_user) { walk_user }
 
-      it '画像が削除され、到着一覧にリダイレクトすること' do
+      it '画像が削除され、編集フォームにリダイレクトすること' do
         destroy_image
         expect(arrival.reload.image).not_to be_attached
-        expect(response).to redirect_to(arrivals_path)
-        expect(flash[:notice]).to eq('画像を削除しました。')
+        expect(response).to redirect_to(edit_arrival_path(arrival))
       end
     end
 

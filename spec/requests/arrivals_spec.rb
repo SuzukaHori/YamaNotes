@@ -149,6 +149,31 @@ RSpec.describe 'Arrivals', type: :request do
           expect(response).to have_http_status(:unprocessable_content)
         end
       end
+
+      context '正しい画像の場合' do
+        let!(:arrival_params) do
+          { arrived_at: Time.current, memo: '更新済み', image: fixture_file_upload('spec/fixtures/files/sample.jpg', 'image/jpeg') }
+        end
+
+        it '画像が添付され、メモも更新されること' do
+          patch arrival_path(arrival), params: { arrival: arrival_params }
+          expect(arrival.reload.image).to be_attached
+          expect(arrival.reload.memo).to eq('更新済み')
+        end
+      end
+
+      context '不正な画像の場合' do
+        let!(:arrival_params) do
+          { arrived_at: Time.current, memo: '更新済み', image: fixture_file_upload('spec/fixtures/files/sample.gif', 'image/gif') }
+        end
+
+        it '画像が添付されず、編集画面が再描画されエラーメッセージが表示されること' do
+          patch arrival_path(arrival), params: { arrival: arrival_params }
+          expect(arrival.reload.image).not_to be_attached
+          expect(response).to have_http_status(:unprocessable_content)
+          expect(response.body).to include('画像はPNGまたはJPEG形式のファイルを選択してください')
+        end
+      end
     end
 
     context 'ログイン中のユーザーが歩行中のユーザーでない場合' do

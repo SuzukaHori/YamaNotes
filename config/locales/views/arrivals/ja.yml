@@ -16,6 +16,7 @@ ja:
       back_to_map: 地図に戻る
     edit:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
+      image_alt: "%{station_name}の画像プレビュー"
     create:
       no_walk: 歩行記録が存在しません。
       save_failed: 到着記録を保存できませんでした。

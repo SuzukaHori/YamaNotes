@@ -11,12 +11,8 @@ export default class extends Controller {
     reader.onload = (e) => {
       this.previewTarget.src = e.target.result
       this.previewTarget.classList.remove("hidden")
-      if (this.hasAddButtonTarget) {
-        this.addButtonTarget.classList.add("hidden")
-      }
-      if (this.hasCancelButtonTarget) {
-        this.cancelButtonTarget.classList.remove("hidden")
-      }
+      this.addButtonTarget.classList.add("hidden")
+      this.cancelButtonTarget.classList.remove("hidden")
     }
     reader.readAsDataURL(file)
   }
@@ -26,9 +22,7 @@ export default class extends Controller {
     this.inputTarget.value = ""
     this.previewTarget.src = ""
     this.previewTarget.classList.add("hidden")
-    if (this.hasAddButtonTarget) {
-      this.addButtonTarget.classList.remove("hidden")
-    }
+    this.addButtonTarget.classList.remove("hidden")
     this.cancelButtonTarget.classList.add("hidden")
   }
 }

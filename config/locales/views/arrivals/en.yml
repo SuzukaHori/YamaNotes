@@ -18,6 +18,8 @@ en:
       memo_placeholder: Getting tired! Jealous of cyclists ><
       image_alt: "Image preview at %{station_name} station"
       add_image: Add image
+      delete_image: Delete image
+      cancel_image: Deselect image
       delete_image_confirm: Delete this image?
     create:
       no_walk: No walk record found.

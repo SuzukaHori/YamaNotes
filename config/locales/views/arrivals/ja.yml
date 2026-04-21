@@ -18,6 +18,8 @@ ja:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
       image_alt: "%{station_name}の画像プレビュー"
       add_image: 画像を追加
+      delete_image: 画像を削除
+      cancel_image: 画像の選択を解除
       delete_image_confirm: 画像を削除しますか？
     create:
       no_walk: 歩行記録が存在しません。

@@ -28,7 +28,7 @@ class ArrivalsController < ApplicationController
 
   def update
     @arrival.assign_attributes(arrival_params)
-    return unless @arrival.changed?
+    @arrival.attach_image(arrival_params[:image]) if arrival_params[:image]
 
     if @arrival.save
       flash.now.notice = t('arrivals.update.updated')
@@ -60,6 +60,6 @@ class ArrivalsController < ApplicationController
   end
 
   def arrival_params
-    params.require(:arrival).permit(:station_id, :arrived_at, :memo)
+    params.require(:arrival).permit(:station_id, :arrived_at, :memo, :image)
   end
 end

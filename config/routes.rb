@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :arrivals, except: [:new] do
     scope module: 'arrivals' do
       resource :report, only: %i(show)
-      resource :image, only: %i(create destroy)
+      resource :image, only: %i(destroy)
     end
   end
 

@@ -5,7 +5,7 @@ class Arrivals::ImagesController < ApplicationController
 
   def destroy
     @arrival.image.purge
-    redirect_to arrivals_path, notice: t('.purged')
+    redirect_to edit_arrival_path(@arrival)
   end
 
   private

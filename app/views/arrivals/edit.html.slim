@@ -19,7 +19,7 @@
                       data: { image_preview_target: 'preview' }
             = link_to arrival_image_path(@arrival),
                 class: 'absolute top-1 right-1',
-                data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm'), turbo_frame: '_top' } do
+                data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') } do
               i.fa-solid.fa-xmark.fa-2xl.text-gray-400
           img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
         - else

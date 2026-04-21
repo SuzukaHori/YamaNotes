@@ -34,5 +34,4 @@ RSpec.describe 'Arrivals::Images', type: :request do
       end
     end
   end
-
 end

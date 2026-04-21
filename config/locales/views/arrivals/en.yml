@@ -17,6 +17,7 @@ en:
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
       image_alt: "Image preview at %{station_name} station"
+      add_image: Add image
     create:
       no_walk: No walk record found.
       save_failed: Could not save the arrival record.

@@ -16,6 +16,7 @@ en:
       back_to_map: Back to map
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
+      image_alt: "Image preview at %{station_name} station"
     create:
       no_walk: No walk record found.
       save_failed: Could not save the arrival record.

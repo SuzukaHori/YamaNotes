@@ -17,8 +17,7 @@ export default class extends Controller {
     reader.readAsDataURL(file)
   }
 
-  cancel(event) {
-    event.preventDefault()
+  cancel() {
     this.inputTarget.value = ""
     this.previewTarget.src = ""
     this.previewTarget.classList.add("hidden")

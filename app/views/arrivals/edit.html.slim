@@ -9,6 +9,6 @@
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload)
-      = f.file_field :image, accept: 'image/png,image/jpeg'
+      = f.file_field :image
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

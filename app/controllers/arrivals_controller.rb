@@ -28,12 +28,7 @@ class ArrivalsController < ApplicationController
 
   def update
     @arrival.assign_attributes(arrival_params)
-
-    if arrival_params[:image] && !@arrival.attach_image(arrival_params[:image])
-      @arrival.image.purge
-      render 'edit', status: :unprocessable_content
-      return
-    end
+    @arrival.attach_image(arrival_params[:image]) if arrival_params[:image]
 
     if @arrival.save
       flash.now.notice = t('arrivals.update.updated')

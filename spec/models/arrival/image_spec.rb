@@ -55,7 +55,6 @@ RSpec.describe Arrival::Image, type: :model do
       it 'WebP に変換・リサイズされて保存されること' do
         original_size = File.size(Rails.root.join('spec/fixtures/files/large.jpg'))
         arrival.attach_image(fixture_file_upload('large.jpg', 'image/jpeg'))
-        expect(arrival.image).to be_attached
         expect(arrival.image.blob.content_type).to eq 'image/webp'
         expect(arrival.image.blob.byte_size).to be < original_size
       end
@@ -64,7 +63,6 @@ RSpec.describe Arrival::Image, type: :model do
     context '400x400 以下の画像の場合' do
       it 'WebP に変換されて保存されること' do
         arrival.attach_image(fixture_file_upload('sample.jpg', 'image/jpeg'))
-        expect(arrival.image).to be_attached
         expect(arrival.image.blob.content_type).to eq 'image/webp'
       end
     end
@@ -72,13 +70,12 @@ RSpec.describe Arrival::Image, type: :model do
     context 'PNG 画像の場合' do
       it 'WebP に変換されて保存されること' do
         arrival.attach_image(fixture_file_upload('sample.png', 'image/png'))
-        expect(arrival.image).to be_attached
         expect(arrival.image.blob.content_type).to eq 'image/webp'
       end
     end
 
     context 'GIF 画像の場合' do
-      it 'リサイズせずそのまま添付し、バリデーションエラーになること' do
+      it 'バリデーションエラーになること' do
         arrival.attach_image(fixture_file_upload('sample.gif', 'image/gif'))
         expect(arrival).not_to be_valid
         expect(arrival.errors[:image].join).to include 'はPNGまたはJPEG形式のファイルを選択してください'

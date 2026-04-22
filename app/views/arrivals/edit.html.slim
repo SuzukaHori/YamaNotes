@@ -12,7 +12,7 @@
       - if @arrival.image.attachment&.persisted?
         .flex.justify-center.mt-2
           .relative.inline-block
-            = image_tag @arrival.image.variant(resize_to_limit: [240, nil]),
+            = image_tag @arrival.image.variant(resize_to_limit: [240, 400]),
                     class: 'rounded',
                     alt: t('.image_alt', station_name: @arrival.station.name_i18n)
             div style='position:absolute; top:4px; right:4px;'
@@ -25,7 +25,7 @@
         div data-controller='image-preview'
           .flex.justify-center.mt-2
             .relative.inline-block
-              img.rounded.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='240' data-image-preview-target='preview'
+              img.rounded.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='240' height='400' data-image-preview-target='preview'
               div style='position:absolute; top:4px; right:4px;'
                 = button_tag type: 'button',
                     class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',

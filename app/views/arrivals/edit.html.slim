@@ -9,14 +9,20 @@
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload)
-      div data-controller='image-preview'
-        - if @arrival.image.attachment&.persisted?
-          = image_tag @arrival.image,
-                  class: 'max-h-48 rounded mt-2',
-                  alt: t('.image_alt', station_name: @arrival.station.name_i18n),
-                  data: { image_preview_target: 'preview' }
-        - else
-          img.max-h-48.max-w-full.rounded.mt-2.hidden data-image-preview-target='preview' src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n)
-        = f.file_field :image, class: 'mt-2', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
+      - if @arrival.image.attachment&.persisted?
+        = image_tag @arrival.image,
+                class: 'max-h-48 rounded mt-2',
+                alt: t('.image_alt', station_name: @arrival.station.name_i18n)
+        = link_to arrival_image_path(@arrival),
+            class: 'block text-sm text-gray-400 underline mt-1 hover:text-black',
+            data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
+          = t('.delete_image')
+      - else
+        div data-controller='image-preview'
+          img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
+          label.cursor-pointer.link-important.mt-2 for='arrival_image' data-image-preview-target='addButton'
+            = t('.add_image')
+          = button_tag t('.cancel_image'), type: 'button', class: 'block text-sm text-gray-400 underline mt-1 hover:text-black hidden', data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
+          = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

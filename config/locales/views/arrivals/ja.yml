@@ -17,6 +17,10 @@ ja:
     edit:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
       image_alt: "%{station_name}の画像プレビュー"
+      add_image: 画像を追加
+      delete_image: 画像を削除
+      cancel_image: 画像の選択を解除
+      delete_image_confirm: 画像を削除しますか？
     create:
       no_walk: 歩行記録が存在しません。
       save_failed: 到着記録を保存できませんでした。
@@ -40,10 +44,7 @@ ja:
       goal_badge: ゴール
       delete_confirm: 本当に削除しますか？
       image_alt: "%{station_name}の画像"
-      delete_image_confirm: 画像を削除しますか？
-    images:
-      destroy:
-        purged: 画像を削除しました。
+
     reports:
       show:
         arrived_message: "%{station_name}に到着しました\U0001F389"

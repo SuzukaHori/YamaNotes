@@ -17,6 +17,10 @@ en:
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
       image_alt: "Image preview at %{station_name} station"
+      add_image: Add image
+      delete_image: Delete image
+      cancel_image: Deselect image
+      delete_image_confirm: Delete this image?
     create:
       no_walk: No walk record found.
       save_failed: Could not save the arrival record.
@@ -40,10 +44,7 @@ en:
       goal_badge: Goal
       delete_confirm: Are you sure you want to delete?
       image_alt: "Image at %{station_name} station"
-      delete_image_confirm: Delete this image?
-    images:
-      destroy:
-        purged: Image deleted successfully.
+
     reports:
       show:
         arrived_message: "Arrived at %{station_name} station \U0001F389"

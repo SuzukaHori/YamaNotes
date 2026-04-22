@@ -6,7 +6,7 @@ class Public::Walks::ArrivalsController < ApplicationController
 
   def index
     if @walk.publish
-      @arrivals = @walk.arrivals.order(:created_at).includes(:station)
+      @arrivals = @walk.arrivals.order(:created_at).includes(:station, image_attachment: :blob)
       @user = current_user
       render 'walk/arrivals/index'
     else

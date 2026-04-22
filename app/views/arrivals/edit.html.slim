@@ -10,19 +10,30 @@
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload)
       - if @arrival.image.attachment&.persisted?
-        = image_tag @arrival.image,
-                class: 'max-h-48 rounded mt-2',
-                alt: t('.image_alt', station_name: @arrival.station.name_i18n)
-        = link_to arrival_image_path(@arrival),
-            class: 'block text-sm text-gray-400 underline mt-1 hover:text-black',
-            data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
-          = t('.delete_image')
+        .flex.justify-center
+          .relative.inline-block.my-4
+            = image_tag @arrival.image.variant(resize_to_limit: [280, 400]),
+                    class: 'rounded',
+                    alt: t('.image_alt', station_name: @arrival.station.name_i18n)
+            div style='position:absolute; top:4px; right:4px;'
+              = link_to arrival_image_path(@arrival),
+                  class: 'flex items-center justify-center p-1 bg-gray-50 rounded',
+                  aria: { label: t('.delete_image') },
+                  data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
+                i.fa-solid.fa-xmark.text-base-black
       - else
         div data-controller='image-preview'
-          img.max-h-48.max-w-full.rounded.mt-2.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
-          label.cursor-pointer.link-important.mt-2 for='arrival_image' data-image-preview-target='addButton'
+          .flex.justify-center
+            .relative.inline-block
+              img.rounded.my-4.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='280' data-image-preview-target='preview'
+              div style='position:absolute; top:4px; right:4px;'
+                = button_tag type: 'button',
+                    class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
+                    aria: { label: t('.cancel_image') },
+                    data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
+                  i.fa-solid.fa-xmark.text-base-black
+          label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
-          = button_tag t('.cancel_image'), type: 'button', class: 'block text-sm text-gray-400 underline mt-1 hover:text-black hidden', data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
-          = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
+          = f.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

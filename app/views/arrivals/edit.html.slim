@@ -10,8 +10,8 @@
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
     - if FeatureFlag.enabled?(:image_upload)
       - if @arrival.image.attachment&.persisted?
-        .flex.justify-center.mt-2
-          .relative.inline-block
+        .flex.justify-center
+          .relative.inline-block.my-4
             = image_tag @arrival.image.variant(resize_to_limit: [240, 400]),
                     class: 'rounded',
                     alt: t('.image_alt', station_name: @arrival.station.name_i18n)
@@ -25,7 +25,7 @@
         div data-controller='image-preview'
           .flex.justify-center
             .relative.inline-block
-              img.rounded.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='240' height='400' data-image-preview-target='preview'
+              img.rounded.my-4.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='240' height='400' data-image-preview-target='preview'
               div style='position:absolute; top:4px; right:4px;'
                 = button_tag type: 'button',
                     class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
@@ -34,6 +34,6 @@
                   i.fa-solid.fa-xmark.text-base-black
           label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
-          = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
+          = f.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2
       = f.submit t('shared.buttons.save'), class: 'btn-primary'

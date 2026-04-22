@@ -14,6 +14,10 @@ ja:
       title: 到着一覧
       history: 到着履歴
       back_to_map: 地図に戻る
+      image_upload_beta_warning:
+        beta_status: 画像添付機能は現在テスト運用中です
+        deletion_risk: テスト中のため、予告なく機能をOFFにしたり画像を削除する場合があります。
+        backup_request: 画像のバックアップはご自身でお願いします。
     edit:
       memo_placeholder: 辛くなってきた！自転車が羨ましい><
       image_alt: "%{station_name}の画像プレビュー"

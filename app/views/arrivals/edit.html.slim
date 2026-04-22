@@ -25,8 +25,8 @@
         div data-controller='image-preview'
           .flex.justify-center
             .relative.inline-block
-              img.rounded.my-4.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='280' data-image-preview-target='preview'
-              div style='position:absolute; top:4px; right:4px;'
+              img.rounded.my-4.hidden alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='280' data-image-preview-target='preview'
+              div style='position:absolute; top:20px; right:4px;'
                 = button_tag type: 'button',
                     class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
                     aria: { label: t('.cancel_image') },

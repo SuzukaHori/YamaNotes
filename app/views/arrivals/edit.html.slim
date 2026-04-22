@@ -23,7 +23,7 @@
                 i.fa-solid.fa-xmark.text-base-black
       - else
         div data-controller='image-preview'
-          .flex.justify-center.mt-2
+          .flex.justify-center
             .relative.inline-block
               img.rounded.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='240' height='400' data-image-preview-target='preview'
               div style='position:absolute; top:4px; right:4px;'
@@ -32,7 +32,7 @@
                     aria: { label: t('.cancel_image') },
                     data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
                   i.fa-solid.fa-xmark.text-base-black
-          label.cursor-pointer.link-important.mt-2 for='arrival_image' data-image-preview-target='addButton'
+          label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
           = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2

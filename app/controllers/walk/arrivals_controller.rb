@@ -10,7 +10,7 @@ class Walk::ArrivalsController < ApplicationController
   before_action :redirect_unless_walk_user, only: %i[index]
 
   def index
-    @arrivals = @walk.arrivals.order(:created_at).includes(:station)
+    @arrivals = @walk.arrivals.order(:created_at).includes(:station, image_attachment: :blob)
   end
 
   private

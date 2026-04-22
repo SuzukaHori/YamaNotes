@@ -12,8 +12,8 @@
       - if @arrival.image.attachment&.persisted?
         .flex.justify-center
           .relative.inline-block.my-4
-            = image_tag @arrival.image.variant(resize_to_limit: [280, 400]),
-                    class: 'rounded',
+            = image_tag @arrival.image,
+                    class: 'rounded w-[280px]',
                     alt: t('.image_alt', station_name: @arrival.station.name_i18n)
             div style='position:absolute; top:4px; right:4px;'
               = link_to arrival_image_path(@arrival),

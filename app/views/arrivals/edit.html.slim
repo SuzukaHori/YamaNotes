@@ -16,20 +16,20 @@
                   alt: t('.image_alt', station_name: @arrival.station.name_i18n)
           div style='position:absolute; top:4px; right:4px;'
             = link_to arrival_image_path(@arrival),
-                class: 'flex items-center justify-center p-1 bg-white bg-opacity-25 rounded',
+                class: 'flex items-center justify-center p-1 bg-gray-50 rounded',
                 aria: { label: t('.delete_image') },
                 data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
-              i.fa-solid.fa-xmark.text-gray-400
+              i.fa-solid.fa-xmark.text-base-black
       - else
         div data-controller='image-preview'
           .relative.inline-block.mt-2
             img.max-h-48.max-w-full.rounded.hidden src='' alt=t('.image_alt', station_name: @arrival.station.name_i18n) data-image-preview-target='preview'
             div style='position:absolute; top:4px; right:4px;'
               = button_tag type: 'button',
-                  class: 'flex items-center justify-center p-1 bg-white bg-opacity-25 rounded hidden',
+                  class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
                   aria: { label: t('.cancel_image') },
                   data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
-                i.fa-solid.fa-xmark.text-gray-400
+                i.fa-solid.fa-xmark.text-base-black
           label.cursor-pointer.link-important.mt-2 for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
           = f.file_field :image, class: 'hidden', data: { image_preview_target: 'input', action: 'change->image-preview#show' }

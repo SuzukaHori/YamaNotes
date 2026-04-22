@@ -27,7 +27,7 @@ class ArrivalsController < ApplicationController
   end
 
   def update
-    @arrival.assign_attributes(arrival_params.except(:image))
+    @arrival.assign_attributes(arrival_params)
     @arrival.attach_image(arrival_params[:image]) if arrival_params[:image]
 
     if @arrival.save

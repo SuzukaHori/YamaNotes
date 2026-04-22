@@ -14,6 +14,10 @@ en:
       title: Arrival list
       history: Arrival history
       back_to_map: Back to map
+      image_upload_beta_warning:
+        beta_status: Image attachment is currently in beta
+        deletion_risk: As this feature is in testing, it may be turned off or images may be deleted without notice.
+        backup_request: Please make sure to back up any important images yourself.
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
       image_alt: "Image preview at %{station_name} station"

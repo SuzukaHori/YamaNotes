@@ -7,6 +7,13 @@
       span.text-sm.text-gray-600 #{@walk.publish ? Walk.human_attribute_name(:publish) : Walk.human_attribute_name(:unpublish)}
       = link_to edit_walk_path(@walk), class: 'text-gray-400 hover:text-black'
         i class='fa-solid fa-gear fa-lg'
+- if FeatureFlag.enabled?(:image_upload)
+  .p-4.mb-4.text-sm.text-yellow-800.rounded-lg.bg-yellow-50 role='alert'
+    p.font-bold.mb-2
+      i.fa-solid.fa-triangle-exclamation.mr-1
+      = t('.image_upload_beta_warning.beta_status')
+    p = t('.image_upload_beta_warning.deletion_risk')
+    p = t('.image_upload_beta_warning.backup_request')
 = turbo_frame_tag 'arrivals-list' do
   = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals }
 

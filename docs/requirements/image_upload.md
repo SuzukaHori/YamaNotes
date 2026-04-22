@@ -7,9 +7,11 @@
 ## スコープ
 
 - 到着 1 件につき画像 1 枚を添付・削除できる
-- アップロード可能なファイル形式は PNG / JPEG のみ
-- アップロード時に画像サイズを制限する
+- アップロード可能なファイル形式は PNG / JPEG のみ（保存時に WebP へ自動変換）
+- アップロード時に画像サイズを 5MB 以下に制限する
+- 保存時に 400×400 以内にリサイズする
 - ストレージは Cloudflare R2 を使用する
+- `FeatureFlag.enabled?(:image_upload)` で機能の ON/OFF を制御する（段階リリース対応）
 
 ---
 
@@ -42,8 +44,9 @@
 
 ### コントローラー
 
-- `Arrivals::ImagesController` を新規作成（create / destroy のみ担当）
-- 既存の `ArrivalsController` には画像処理を混ぜない
+- 画像のアップロードは `ArrivalsController#update` で処理（`attach_image` メソッド経由）
+- 画像の削除は `Arrivals::ImagesController#destroy` で処理
+- 画像処理ロジックは `app/models/arrival/image.rb` の `Arrival::Image` モジュールに集約
 
 ### ストレージ設定
 
@@ -70,6 +73,12 @@ cloudflare:
 - `CLOUDFLARE_R2_BUCKET`
 
 使用 gem: `aws-sdk-s3`、`image_processing`、`ruby-vips`
+
+### フロントエンド
+
+- `app/javascript/controllers/image_preview_controller.js`（Stimulus）でファイル選択時のプレビューとキャンセルを実装
+- 画像添付フォームは `arrivals/edit` ビューに配置
+- 画像は `arrivals/index` ビューの各到着行に表示（最大 280×400 でリサイズ）
 
 ---
 

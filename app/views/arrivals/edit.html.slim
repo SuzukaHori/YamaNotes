@@ -36,4 +36,6 @@
             = t('.add_image')
           = f.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     .text-center.my-2
-      = f.submit t('shared.buttons.save'), class: 'btn-primary'
+      = button_tag type: 'submit', class: 'btn-primary' do
+          span.when-enabled = t('shared.buttons.save')
+          span.when-disabled = t('shared.buttons.saving')

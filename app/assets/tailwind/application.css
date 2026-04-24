@@ -197,6 +197,14 @@
 
 @utility btn-primary {
   @apply inline-flex items-center justify-center px-6 py-2 bg-bright-orange-100 text-white rounded-lg shadow-sm transition-all duration-200 ease-out hover:bg-bright-orange-50 focus:outline-hidden focus:ring-3 focus:ring-red-400/75 h-11 cursor-pointer;
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+    .when-enabled { display: none; }
+    .when-disabled { display: initial; }
+  }
+
+  .when-disabled { display: none; }
 }
 
 @utility link-important {

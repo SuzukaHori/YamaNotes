@@ -18,7 +18,7 @@ description: プルリクエストを作成するSKILL。ユーザーから「PR
 - **assignee**: `SuzukaHori`
 - **本文**:
 
-```
+```markdown
 ## 概要
 <!-- この PR で何をしたか 1〜3 行で -->
 

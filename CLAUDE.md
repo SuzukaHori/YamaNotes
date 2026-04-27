@@ -11,7 +11,6 @@ YamaNotes は山手線一周徒歩チャレンジの記録アプリ。Ruby on Ra
 - **main ブランチへの直接 push は絶対禁止**。必ず feature ブランチを作成し、PR 経由でマージする
 - 新機能実装時は `docs/requirements/` に要件定義書があるか確認してから実装を始める。ない場合は作成するかユーザーに確認する。
 - コミットメッセージは日本語で書く。コミットやプッシュをする前に、必ずユーザーに許可を取る
-- PR 作成時は `/pr` コマンドを使う（`.claude/skills/create-pr/SKILL.md` に手順を定義）
 
 ## Commands
 

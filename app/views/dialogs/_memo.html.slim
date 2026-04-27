@@ -28,7 +28,7 @@ dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal
                     aria: { label: t('.cancel_image') },
                     data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
                   i.fa-solid.fa-xmark.text-base-black
-          label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
+          label.block.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black.text-left for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
           = form.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
     = form.submit t('shared.buttons.save'), class: 'block btn-primary mx-auto mt-2', data: { action: 'click->modal#close' }

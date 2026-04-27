@@ -14,11 +14,6 @@ en:
     memo:
       title: Add memo
       placeholder: Getting tired! Jealous of cyclists ><
-      image_alt: "Image preview at %{station_name} station"
-      add_image: Add image
-      cancel_image: Deselect image
-      delete_image: Delete image
-      delete_image_confirm: Delete this image?
     help:
       title: How to use
       arrival_step_prefix: When you reach a station, press the

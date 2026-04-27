@@ -8,33 +8,7 @@
         | #{@arrival.station.name_i18n}
     = f.label :memo, class: 'inline-block mt-4 mb-1'
     = f.text_area :memo, class: 'inline w-full rounded border border-gray-300', placeholder: t('.memo_placeholder'), maxlength: 250, autofocus: true
-    - if FeatureFlag.enabled?(:image_upload)
-      - if @arrival.image.attachment&.persisted?
-        .flex.justify-center
-          .relative.inline-block.my-4
-            = image_tag @arrival.image,
-                    class: 'rounded w-[280px]',
-                    alt: t('.image_alt', station_name: @arrival.station.name_i18n)
-            div style='position:absolute; top:4px; right:4px;'
-              = link_to arrival_image_path(@arrival),
-                  class: 'flex items-center justify-center p-1 bg-gray-50 rounded',
-                  aria: { label: t('.delete_image') },
-                  data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
-                i.fa-solid.fa-xmark.text-base-black
-      - else
-        div data-controller='image-preview'
-          .flex.justify-center
-            .relative.inline-block
-              img.rounded.my-4.hidden alt=t('.image_alt', station_name: @arrival.station.name_i18n) width='280' data-image-preview-target='preview'
-              div style='position:absolute; top:20px; right:4px;'
-                = button_tag type: 'button',
-                    class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
-                    aria: { label: t('.cancel_image') },
-                    data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
-                  i.fa-solid.fa-xmark.text-base-black
-          label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
-            = t('.add_image')
-          = f.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }
+    = render 'shared/image_upload', form: f, arrival: @arrival, label_class: ''
     .text-center.my-2
       = button_tag type: 'submit', class: 'btn-primary' do
           span.when-enabled = t('shared.buttons.save')

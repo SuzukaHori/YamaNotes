@@ -20,11 +20,6 @@ en:
         backup_request: Please make sure to back up any important images yourself.
     edit:
       memo_placeholder: Getting tired! Jealous of cyclists ><
-      image_alt: "Image preview at %{station_name} station"
-      add_image: Add image
-      delete_image: Delete image
-      cancel_image: Deselect image
-      delete_image_confirm: Delete this image?
     create:
       no_walk: No walk record found.
       save_failed: Could not save the arrival record.

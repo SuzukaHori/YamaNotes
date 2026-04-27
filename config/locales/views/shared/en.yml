@@ -1,6 +1,12 @@
 ---
 en:
   shared:
+    image_upload:
+      image_alt: "Image preview at %{station_name} station"
+      add_image: Add image
+      delete_image: Delete image
+      cancel_image: Deselect image
+      delete_image_confirm: Delete this image?
     buttons:
       edit: Edit
       delete: Delete

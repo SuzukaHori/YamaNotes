@@ -14,11 +14,6 @@ ja:
     memo:
       title: メモを追加
       placeholder: 辛くなってきた！自転車が羨ましい><
-      image_alt: "%{station_name}の画像プレビュー"
-      add_image: 画像を追加
-      cancel_image: 画像の選択を解除
-      delete_image: 画像を削除
-      delete_image_confirm: 画像を削除しますか？
     help:
       title: 使い方
       arrival_step_prefix: 駅に着いたら

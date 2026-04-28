@@ -17,13 +17,14 @@ div data-controller='caution'
 .my-4.text-center
   h2.font-bold.mb-2 = t('.here_record')
   table.mb-4.mx-auto data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
-    tr
-      th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.elapsed_since')
-      td.border.border-gray-400.text-left.px-4.py-1
-        span data-time-target="hours" = elapsed_hours(@walk)
-        = t('.hour_unit')
-        span data-time-target="minutes" = elapsed_minutes(@walk)
-        = t('.minute_unit')
+    - unless @walk.finished?
+      tr
+        th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.elapsed_since')
+        td.border.border-gray-400.text-left.px-4.py-1
+          span data-time-target="hours" = elapsed_hours(@walk)
+          = t('.hour_unit')
+          span data-time-target="minutes" = elapsed_minutes(@walk)
+          = t('.minute_unit')
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.walked_stations')
       td.border.border-gray-400.text-left.px-4.py-1 = t('.stations_count', walked: @number_of_walked, remaining: number_of_remaining(number_of_walked: @number_of_walked))

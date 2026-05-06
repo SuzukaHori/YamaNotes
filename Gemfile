@@ -9,7 +9,6 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails'
-gem 'font-awesome-sass'
 gem 'gon'
 gem 'high_voltage'
 gem 'image_processing'

@@ -39,7 +39,6 @@ https://www.yamanotes.com
 | :---: | :---:|
 | GOOGLE_CLIENT_ID | GoogleのクライアントID  |
 | GOOGLE_CLIENT_SECRET  | Googleのクライアントシークレット |
-| FONTAWESOME_URL | Font AwesomeのCDNコード |
 | MAPTAILER_KEY | MapTailerのアクセストークン |
 
 ## インストールと起動

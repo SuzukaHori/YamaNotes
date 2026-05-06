@@ -20,7 +20,7 @@
                   class: 'flex items-center justify-center p-1 bg-gray-50 rounded',
                   aria: { label: t('.delete_image') },
                   data: { turbo_method: :delete, turbo_confirm: t('.delete_image_confirm') }
-                i.fa-solid.fa-xmark.text-base-black
+                = icon_svg 'x_mark', class: 'w-5 h-5'
       - else
         div data-controller='image-preview'
           .flex.justify-center
@@ -31,7 +31,7 @@
                     class: 'flex items-center justify-center p-1 bg-gray-50 rounded hidden',
                     aria: { label: t('.cancel_image') },
                     data: { image_preview_target: 'cancelButton', action: 'click->image-preview#cancel' }
-                  i.fa-solid.fa-xmark.text-base-black
+                  = icon_svg 'x_mark', class: 'w-5 h-5'
           label.cursor-pointer.text-sm.text-gray-400.underline.hover:text-black for='arrival_image' data-image-preview-target='addButton'
             = t('.add_image')
           = f.file_field :image, class: 'hidden', accept: 'image/png,image/jpeg', data: { image_preview_target: 'input', action: 'change->image-preview#show' }

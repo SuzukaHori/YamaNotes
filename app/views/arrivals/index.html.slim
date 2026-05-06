@@ -6,11 +6,11 @@
     .ml-auto.flex.items-center.gap-1
       span.text-sm.text-gray-600 #{@walk.publish ? Walk.human_attribute_name(:publish) : Walk.human_attribute_name(:unpublish)}
       = link_to edit_walk_path(@walk), class: 'text-gray-400 hover:text-black'
-        i class='fa-solid fa-gear fa-lg'
+        = icon_svg 'cog', class: 'w-5 h-5'
 - if FeatureFlag.enabled?(:image_upload)
   .p-4.mb-4.text-sm.text-yellow-800.rounded-lg.bg-yellow-50 role='alert'
     p.font-bold.mb-2
-      i.fa-solid.fa-triangle-exclamation.mr-1
+      = icon_svg 'exclamation_triangle', class: 'w-5 h-5 mr-1 inline'
       = t('.image_upload_beta_warning.beta_status')
     p = t('.image_upload_beta_warning.deletion_risk')
     p = t('.image_upload_beta_warning.backup_request')

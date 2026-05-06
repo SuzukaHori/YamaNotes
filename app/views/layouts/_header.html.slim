@@ -5,12 +5,12 @@ header.bg-yamanote-green-100.flex.items-center.py-2.px-3.h-12.md:h-14.text-white
   - if user_signed_in?
     .ml-auto data-controller='modal' data-action='click->modal#backdropClose'
       button.p-2.transition-all.duration-500.ease-out.rounded-lg.hover:bg-yamanote-green-200 data-action='modal#open' id='help_button'
-        i.fa-solid.fa-circle-question.fa-xl
+        = icon_svg 'question_mark_circle', class: 'w-6 h-6'
       = render partial: 'dialogs/help'
     div
       div data-controller='dropdown' data-action='click@window->dropdown#hide touchstart@window->dropdown#hide keydown.esc->dropdown#hide'
         button.p-2.transition-all.duration-500.ease-out.rounded-lg.hover:bg-yamanote-green-200 data-action='dropdown#toggle:stop'
-          i.fa-regular.fa-user.fa-xl
+          = icon_svg 'user', class: 'w-6 h-6'
         .hidden data-dropdown-target='menu' class='absolute bg-white rounded-lg shadow-lg border border-gray-200 text-sm text-base-black' style="margin-left: -18px"
           = link_to t('.logout'), destroy_user_session_path, data: { turbo_method: :post, turbo_confirm: t('.logout_confirm') },
                     class: 'hover:bg-gray-100 block p-4 rounded-lg'
@@ -19,5 +19,5 @@ header.bg-yamanote-green-100.flex.items-center.py-2.px-3.h-12.md:h-14.text-white
     div
       div data-controller='slideover' data-action="click->slideover#backdropClose"
         button#menu_button.transition-all.duration-500.ease-out.hover:bg-yamanote-green-200.rounded-lg.p-2 data-action='slideover#open'
-          i.fa-solid.fa-bars.fa-xl
+          = icon_svg 'bars', class: 'w-6 h-6'
         = render partial: 'dialogs/menu'

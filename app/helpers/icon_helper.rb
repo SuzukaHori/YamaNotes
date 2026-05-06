@@ -5,9 +5,7 @@ module IconHelper
     file = Rails.root.join("app/assets/images/icons/#{name}.svg")
     svg = Rails.cache.fetch("icon_svg/#{name}") { File.read(file) }
 
-    if options[:class]
-      svg = svg.sub("<svg", "<svg class=\"#{options[:class]}\"")
-    end
+    svg = svg.sub('<svg', "<svg class=\"#{options[:class]}\"") if options[:class]
 
     svg.html_safe
   end

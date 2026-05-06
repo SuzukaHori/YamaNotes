@@ -7,7 +7,7 @@
         = t('.memo')
       = render partial: 'dialogs/memo', locals: { arrival: walk.arrivals.order(:created_at).last }
   .text-center.my-1
-    i.fa-solid.fa-arrow-down.pr-2
+    = icon_svg 'arrow_down', class: 'w-5 h-5 mr-2 inline'
     span #{current_station.distance_to_next(clockwise: walk.clockwise)}km
   #next_station.flex.items-center
     span.mr-2 = t('.next_station')

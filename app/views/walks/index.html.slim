@@ -16,7 +16,7 @@
             .flex.items-center.gap-1.ml-auto
               span.text-xs.text-gray-500 = walk.publish ? Walk.human_attribute_name(:publish) : Walk.human_attribute_name(:unpublish)
               = link_to edit_walk_path(walk), class: 'text-gray-400 hover:text-black'
-                i.fa-solid.fa-gear
+                = icon_svg 'cog', class: 'w-5 h-5'
           .flex.w-full
             table.text-sm
               tbody

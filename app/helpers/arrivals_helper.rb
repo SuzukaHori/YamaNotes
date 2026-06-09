@@ -12,4 +12,8 @@ module ArrivalsHelper
   def deletable?(arrival:, arrivals:)
     arrival == arrivals.last && arrival != arrivals.first
   end
+
+  def memo_with_links(memo)
+    raw Rinku.auto_link(simple_format(h(memo)), :all, 'target="_blank"') # rubocop:disable Rails/OutputSafety
+  end
 end

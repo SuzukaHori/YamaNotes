@@ -1,4 +1,3 @@
-- # rubocop:disable Rails/OutputSafety
 = turbo_frame_tag arrival do
   .ml-16.border-l-8.pl-4.pb-6.border-lime-500.relative
     .h-4.w-4.bg-white.border.border-lime-500.absolute.-left-3.top-3.rounded-full
@@ -15,8 +14,7 @@
 
       - if arrival.memo.present?
         #arrival_memo.text-sm.text-zinc-500.break-all.ml-1
-          / XSSが起きないことを確認の上、slimlintから除外
-          = raw Rinku.auto_link(simple_format(h(arrival.memo)), :all, 'target="_blank"')
+          = memo_with_links(arrival.memo)
 
       - if FeatureFlag.enabled?(:image_upload) && arrival.image.attached?
         = image_tag arrival.image, class: 'rounded mt-2 w-[280px]', alt: t('.image_alt', station_name: arrival.station.name_i18n)
@@ -26,4 +24,3 @@
       = link_to t('shared.buttons.delete'), arrival,
                class: 'text-sm text-gray-400 underline pl-4 hover:text-black',
                data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }
-- # rubocop:enable Rails/OutputSafety

@@ -39,7 +39,7 @@ namespace :stations do # rubocop:disable Metrics/BlockLength
     keys.each do |id, key|
       station = Station.find_by(id:)
       if station
-        station.update_column(:key, key)
+        station.update_column(:key, key) # rubocop:disable Rails/SkipsModelValidations
         puts "#{station.name}: key = #{key}"
       else
         puts "ID #{id} の駅が見つかりません"

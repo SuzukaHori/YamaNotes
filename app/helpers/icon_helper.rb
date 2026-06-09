@@ -7,6 +7,6 @@ module IconHelper
 
     svg = svg.sub('<svg', "<svg class=\"#{options[:class]}\"") if options[:class]
 
-    svg.html_safe
+    svg.html_safe # rubocop:disable Rails/OutputSafety
   end
 end

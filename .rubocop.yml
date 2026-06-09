@@ -3,6 +3,7 @@ inherit_gem:
     - "config/rubocop.yml"
     - "config/rails.yml"
 plugins:
+  - rubocop-rails
   - rubocop-rspec
   - rubocop-capybara
   - rubocop-rspec_rails
@@ -29,6 +30,6 @@ RSpec/NestedGroups:
 RSpec/LetSetup:
   Enabled: false
 
-RSpec/Output:
+Rails/Output:
   Exclude:
     - 'db/seeds.rb'

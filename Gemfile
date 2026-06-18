@@ -30,7 +30,7 @@ gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stackprof'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 4.4.0'
+gem 'tailwindcss-rails', '~> 4.6.0'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 

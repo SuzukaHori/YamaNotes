@@ -19,8 +19,8 @@ RSpec.describe 'Arrivals', type: :request do
         get arrivals_path
 
         node = Capybara.string(response.body)
-        expect(node).to have_content('到着履歴')
-        expect(node).to have_content('品川駅')
+        expect(node).to have_text('到着履歴')
+        expect(node).to have_text('品川駅')
       end
     end
 
@@ -47,8 +47,8 @@ RSpec.describe 'Arrivals', type: :request do
         get arrival_path(arrival)
 
         node = Capybara.string(response.body)
-        expect(node).to have_content('品川駅に到着')
-        expect(node).to have_selector('img[alt="品川駅のイラスト"]')
+        expect(node).to have_text('品川駅に到着')
+        expect(node).to have_css('img[alt="品川駅のイラスト"]')
       end
     end
 

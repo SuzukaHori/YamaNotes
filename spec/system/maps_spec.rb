@@ -19,7 +19,7 @@ RSpec.describe 'Maps', type: :system do
   end
 
   it '到着時に赤い線が引かれる' do
-    expect(page).not_to have_css 'path[stroke="red"]'
+    expect(page).to have_no_css 'path[stroke="red"]'
     click_on '到着'
     click_on '地図に戻る'
     expect(page).to have_css 'path[stroke="red"]'
@@ -30,6 +30,6 @@ RSpec.describe 'Maps', type: :system do
     click_on '到着'
     click_on '地図に戻る'
     expect(page).to have_css '.leaflet-popup-content', text: '大崎駅'
-    expect(page).not_to have_css '.leaflet-popup-content', text: '品川駅'
+    expect(page).to have_no_css '.leaflet-popup-content', text: '品川駅'
   end
 end

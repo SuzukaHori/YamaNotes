@@ -14,17 +14,17 @@ RSpec.describe 'Memos', :js, type: :system do
 
   it 'メモを追加する' do
     add_memo
-    expect(page).to have_content('到着記録を更新しました')
+    expect(page).to have_text('到着記録を更新しました')
     visit arrivals_path
-    expect(page).to have_content('新しいメモ')
+    expect(page).to have_text('新しいメモ')
   end
 
   it 'メモを編集できる' do
     add_memo
     visit arrivals_path
     edit_memo
-    expect(page).to have_content('編集済みのメモ')
-    expect(page).not_to have_content('新しいメモ')
+    expect(page).to have_text('編集済みのメモ')
+    expect(page).to have_no_text('新しいメモ')
   end
 
   it 'メモにリンクを貼る' do

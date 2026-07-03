@@ -1,0 +1,44 @@
+doctype html
+html class='text-base-black'
+  head
+    title = t('pages.maintenance.title')
+    meta name='viewport' content='width=device-width,initial-scale=1'
+    meta name='robots' content='noindex'
+    css:
+      html {
+        color: #4f4f64;
+      }
+      body {
+        background-color: #F1FAEE;
+        max-width: 640px;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+      main {
+        padding-bottom: 0.5rem;
+        flex: 1;
+        background-color: #FFFFFF;
+      }
+      .container {
+        margin: 2rem auto;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.125rem;
+        max-width: 66.6667%;
+      }
+      .container h1 {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      .container h2 {
+        margin-bottom: 2rem;
+      }
+      .container p {
+        font-size: 1rem;
+      }
+  body
+    main
+      .container
+        h1 = t('pages.maintenance.heading')
+        h2 = t('pages.maintenance.status_code')
+        p = t('pages.maintenance.body')

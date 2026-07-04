@@ -1,0 +1,18 @@
+---
+en:
+  activerecord:
+    models:
+      suspension: Suspension
+    attributes:
+      suspension:
+        started_at: Suspended at
+        ended_at: Resumed at
+        walk_id: Walk log
+    errors:
+      models:
+        suspension:
+          attributes:
+            ended_at:
+              must_be_after_started_at: must be later than the suspension start time
+          already_suspended: the walk is already suspended
+          walk_not_in_progress: only a walk in progress can be suspended

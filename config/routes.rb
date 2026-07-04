@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :walks do
     resource :deactivation, only: [:create], controller: 'walks/deactivations'
+    resource :suspension, only: %i(create update), controller: 'walks/suspensions'
     scope module: 'walk' do
       resources :arrivals, only: [:index]
     end

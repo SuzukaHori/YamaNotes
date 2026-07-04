@@ -1,0 +1,18 @@
+---
+ja:
+  activerecord:
+    models:
+      suspension: 中断
+    attributes:
+      suspension:
+        started_at: 中断開始時刻
+        ended_at: 中断終了時刻
+        walk_id: 歩行記録ノート
+    errors:
+      models:
+        suspension:
+          attributes:
+            ended_at:
+              must_be_after_started_at: は中断開始時刻より後の時刻を設定してください
+          already_suspended: すでに中断中です
+          walk_not_in_progress: 実施中の歩行記録以外は中断できません

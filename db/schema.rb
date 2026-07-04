@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_17_035227) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_04_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -75,6 +75,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_17_035227) do
     t.index ["longitude", "latitude"], name: "index_stations_on_longitude_and_latitude", unique: true
   end
 
+  create_table "suspensions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "ended_at"
+    t.datetime "started_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "walk_id", null: false
+    t.index ["walk_id"], name: "index_suspensions_on_walk_id"
+    t.index ["walk_id"], name: "index_suspensions_on_walk_id_ongoing", unique: true, where: "(ended_at IS NULL)"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "provider", null: false
@@ -99,5 +109,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_17_035227) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "arrivals", "stations"
   add_foreign_key "arrivals", "walks"
+  add_foreign_key "suspensions", "walks"
   add_foreign_key "walks", "users"
 end

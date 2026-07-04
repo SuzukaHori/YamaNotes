@@ -1,6 +1,11 @@
 ---
 en:
   pages:
+    maintenance:
+      title: Under Maintenance
+      heading: We are currently under maintenance
+      body: The system is currently undergoing maintenance. We apologize for the inconvenience. Please wait a while and try accessing again.
+      status_code: 503 Service Unavailable
     terms:
       title: Terms of Service
       meta_description: This is the Terms of Service page.

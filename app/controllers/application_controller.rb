@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
   around_action :switch_locale
+  before_action :render_maintenance, if: :maintenance?
+  before_action :authenticate_user!
   helper_method :current_walk
 
   # 現在実施中の歩行を返す
@@ -14,6 +15,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def maintenance?
+    ENV['MAINTENANCE'] == '1'
+  end
+
+  def render_maintenance
+    render 'pages/maintenance', layout: false, status: :service_unavailable
+  end
 
   def switch_locale(&action)
     locale = params[:locale]

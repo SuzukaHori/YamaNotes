@@ -1,6 +1,11 @@
 ---
 ja:
   pages:
+    maintenance:
+      title: メンテナンス中
+      heading: ただいまメンテナンス中です
+      body: 現在、システムのメンテナンスを実施しています。ご不便をおかけしますが、しばらくお待ちいただいてからもう一度アクセスしてください。
+      status_code: 503 Service Unavailable
     terms:
       title: 利用規約
       meta_description: 利用規約のページです。

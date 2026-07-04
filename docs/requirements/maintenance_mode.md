@@ -26,6 +26,7 @@
 
 - `authenticate_user!` より前に宣言することで、認証前に遮断し、未ログインでもメンテナンスページを表示する
 - 静的ページ（HighVoltage）や各コントローラは全て `ApplicationController` を継承するため、まとめて遮断できる
+- `around_action :switch_locale` は `render_maintenance` より**前**に登録する。`render_maintenance` が render するとコールバックチェーンが打ち切られるため、後に登録すると `I18n.with_locale` が適用されず、メンテナンスページに `params[:locale]` が反映されない
 
 ## 挙動
 
@@ -34,6 +35,8 @@
 | `MAINTENANCE` 未設定 / `0` | すべて | 通常どおり処理する |
 | `MAINTENANCE=1` | `ApplicationController` 継承下の全アクション | 503 + メンテナンスページ |
 | `MAINTENANCE=1` | `/up`（ヘルスチェック） | 200（対象外） |
+
+メンテナンスページは通常ページと同様に `params[:locale]` に応じた言語（ja / en）で表示される。
 
 ## 構成ファイル
 

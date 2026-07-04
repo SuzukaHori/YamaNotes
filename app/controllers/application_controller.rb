@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  around_action :switch_locale
   before_action :render_maintenance, if: :maintenance?
   before_action :authenticate_user!
-  around_action :switch_locale
   helper_method :current_walk
 
   # 現在実施中の歩行を返す

@@ -116,6 +116,18 @@
   }
 }
 
+/*
+  Tailwind CSS v4 の Preflight は button のカーソルを default にするため、
+  v3 までと同様に pointer へ戻す。
+  https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor
+*/
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 /* time_select: WebKit の日時フィールド pseudo-element の余分な padding を除去 */
 @layer base {
   ::-webkit-datetime-edit-fields-wrapper { padding: 0; }

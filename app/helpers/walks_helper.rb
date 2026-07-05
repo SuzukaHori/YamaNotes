@@ -24,6 +24,15 @@ module WalksHelper
     convert_to_local_time(seconds)
   end
 
+  def suspension_duration(suspension)
+    convert_to_local_time(suspension.duration_seconds)
+  end
+
+  # 到着と中断を時系列に並べた履歴表示用のリストを返す
+  def walk_timeline(arrivals, suspensions)
+    (arrivals.to_a + suspensions.to_a).sort_by { |item| item.is_a?(Suspension) ? item.started_at : item.arrived_at }
+  end
+
   private
 
   def convert_to_local_time(m_seconds)

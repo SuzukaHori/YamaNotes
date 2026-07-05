@@ -12,7 +12,12 @@ en:
       models:
         suspension:
           attributes:
+            started_at:
+              cannot_be_future: cannot be in the future
+              before_departure: must be after the departure time
             ended_at:
               must_be_after_started_at: must be later than the suspension start time
+              cannot_be_future: cannot be in the future
           already_suspended: the walk is already suspended
           walk_not_in_progress: only a walk in progress can be suspended
+          overlaps_with_another_suspension: the period overlaps with another suspension

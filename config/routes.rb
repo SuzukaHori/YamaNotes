@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :suspensions, only: %i(edit update destroy)
+
   resources :arrivals, except: [:new] do
     scope module: 'arrivals' do
       resource :report, only: %i(show)

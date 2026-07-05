@@ -14,11 +14,15 @@
 - 全ての時間表示（ダッシュボードの経過時間・完走時の所要時間・公開レポート・歩行記録一覧）から中断時間の合計を差し引く
 - 1つの歩行記録につき、進行中の中断は同時に1つまで（モデルバリデーション + DB 部分ユニークインデックスの二重防御）
 - 中断したままリタイア・完走操作をした場合は、その時点で中断を自動終了する
+- 到着履歴のタイムラインに中断を時系列で表示する（本人用・公開ページの両方）
+- 到着履歴から中断の開始・終了時刻の編集と、中断の削除ができる（進行中の Walk のみ。押し忘れ・誤操作の修正用）
+  - 未来の時刻、出発時刻より前の開始時刻、他の中断と重複する期間は設定できない
+  - 再開していない中断は終了時刻を編集できない（開始時刻のみ）
 
 ## スコープ外
 
-- 中断時刻（開始・終了）の後からの編集・削除（将来必要になれば追加する）
-- 中断履歴の一覧表示
+- 過去の中断の手動追加（中断ボタンの押し忘れを後から丸ごと記録する機能。将来必要になれば追加する）
+- 完走・リタイア済みの歩行記録の中断の編集
 - 到着時刻の編集と中断期間の整合性チェック（中断は到着記録とは独立したレコードとして扱う）
 - 駅間隔からの中断の自動判定（明示的なボタン操作のみ）
 
@@ -38,6 +42,10 @@
 - `Walks::SuspensionsController` を新設（`Walks::DeactivationsController` と同じサブリソースパターン）
   - `POST /walks/:walk_id/suspension` — 中断開始（`started_at: 現在時刻` で作成）
   - `PATCH /walks/:walk_id/suspension` — 再開（進行中の中断に `ended_at: 現在時刻` をセット）
+- `SuspensionsController`（トップレベル）を新設（`ArrivalsController` と同じレコード編集パターン）
+  - `GET /suspensions/:id/edit` / `PATCH /suspensions/:id` / `DELETE /suspensions/:id`
+  - 対象は `current_user` の active な Walk の中断のみ（それ以外は 404）
+  - 到着履歴と同じ Turbo Frame によるインライン編集
 - `Walks::DeactivationsController#create` で、進行中の中断があれば `ended_at` を確定させてから `active: false` にする
 
 ### フロントエンド
@@ -61,7 +69,10 @@
 - `app/models/arrival.rb` — 中断中の到着記録作成を拒否するバリデーション
 - `app/helpers/walks_helper.rb` — 秒数の文字列整形（計算は Walk に委譲）
 - `app/controllers/walks/suspensions_controller.rb` — 中断開始・再開
+- `app/controllers/suspensions_controller.rb` — 中断の編集・削除
 - `app/controllers/walks/deactivations_controller.rb` — リタイア時の中断自動終了
 - `app/views/walks/show.html.slim` / `_walk.html.slim` — ボタン・ラベルの出し分け
+- `app/views/suspensions/` — 到着履歴のタイムライン表示（`_suspension`）と編集画面
+- `app/views/arrivals/index.html.slim` / `app/views/walk/arrivals/index.html.slim` — 到着と中断を時系列で表示
 - `app/javascript/controllers/time_controller.js` — 経過時間のリアルタイム表示
-- `config/locales/models/suspension/{ja,en}.yml` / `config/locales/views/walks/suspensions/{ja,en}.yml` — 翻訳
+- `config/locales/models/suspension/{ja,en}.yml` / `config/locales/views/walks/suspensions/{ja,en}.yml` / `config/locales/views/suspensions/{ja,en}.yml` — 翻訳

@@ -7,6 +7,7 @@ class Suspension < ApplicationRecord
   validate :walk_must_be_in_progress, on: :create
   validate :prohibit_multiple_ongoing_suspensions, on: :create
   validate :ended_at_must_be_after_started_at, if: -> { ended_at.present? }
+  validate :check_suspension_times, on: :update
 
   scope :ongoing, -> { where(ended_at: nil) }
 
@@ -32,5 +33,22 @@ class Suspension < ApplicationRecord
 
   def ended_at_must_be_after_started_at
     errors.add(:ended_at, :must_be_after_started_at) if ended_at <= started_at
+  end
+
+  def check_suspension_times
+    return if started_at.blank?
+
+    errors.add :base, :walk_not_in_progress if walk.finished?
+    errors.add :started_at, :cannot_be_future if Time.current < started_at
+    errors.add :ended_at, :cannot_be_future if ended_at.present? && Time.current < ended_at
+    errors.add :started_at, :before_departure if started_at < walk.arrival_of_departure.arrived_at
+    errors.add :base, :overlaps_with_another_suspension if overlaps_with_another_suspension?
+  end
+
+  def overlaps_with_another_suspension?
+    walk.suspensions.where.not(id: id)
+        .where('started_at < ?', ended_at || Time.current)
+        .where('ended_at IS NULL OR ended_at > ?', started_at)
+        .exists?
   end
 end

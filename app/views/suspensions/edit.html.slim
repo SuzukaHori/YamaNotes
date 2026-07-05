@@ -1,0 +1,16 @@
+= turbo_frame_tag @suspension
+  = render 'shared/errors', model: @suspension
+  = form_with model: @suspension, method: :put do |f|
+    = f.label :started_at, class: 'inline-block mt-4 mb-1'
+    .flex.items-center
+      = f.time_select :started_at, {}, { class: 'rounded border border-gray-300' }
+    - if @suspension.ended_at.present?
+      = f.label :ended_at, class: 'inline-block mt-4 mb-1'
+      .flex.items-center
+        = f.time_select :ended_at, {}, { class: 'rounded border border-gray-300' }
+    - else
+      p.mt-4.text-sm.text-gray-500 = t('.ongoing_note')
+    .text-center.my-2
+      = button_tag type: 'submit', class: 'btn-primary' do
+          span.when-enabled = t('shared.buttons.save')
+          span.when-disabled = t('shared.buttons.saving')

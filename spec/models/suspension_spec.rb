@@ -68,6 +68,53 @@ RSpec.describe Suspension, type: :model do
     end
   end
 
+  describe '#check_suspension_times' do
+    # 中断作成時に walk.arrivals がロードされるため、到着は中断より先に作成する
+    let!(:walk) do
+      FactoryBot.create(:walk).tap do |walk|
+        FactoryBot.create(:arrival, walk:, arrived_at: 1.day.ago, station_id: 1)
+      end
+    end
+    let!(:suspension) { FactoryBot.create(:suspension, :ended, walk:, started_at: 2.hours.ago) }
+
+    it '開始・終了時刻を更新できること' do
+      expect(suspension.update(started_at: 3.hours.ago, ended_at: 1.hour.ago)).to be true
+    end
+
+    it '未来の開始時刻は設定できないこと' do
+      suspension.started_at = 1.hour.from_now
+      expect(suspension.valid?).to be false
+      expect(suspension.errors.full_messages.join).to include '中断開始時刻に未来の時刻は設定できません'
+    end
+
+    it '未来の終了時刻は設定できないこと' do
+      suspension.ended_at = 1.hour.from_now
+      expect(suspension.valid?).to be false
+      expect(suspension.errors.full_messages.join).to eq '中断終了時刻に未来の時刻は設定できません'
+    end
+
+    it '出発時刻より前の開始時刻は設定できないこと' do
+      suspension.started_at = 2.days.ago
+      expect(suspension.valid?).to be false
+      expect(suspension.errors.full_messages.join).to eq '中断開始時刻は出発時刻より後の時刻を設定してください'
+    end
+
+    it '他の中断と重複する期間は設定できないこと' do
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 5.hours.ago)
+      suspension.started_at = 4.6.hours.ago
+      expect(suspension.valid?).to be false
+      expect(suspension.errors.full_messages.join).to eq '他の中断と期間が重複しています'
+    end
+
+    it '一周完了した歩行記録の中断は編集できないこと' do
+      create_arrivals(walk, Station.cache_count)
+      walk.reload
+      suspension.started_at = 3.hours.ago
+      expect(suspension.valid?).to be false
+      expect(suspension.errors.full_messages.join).to eq '実施中の歩行記録以外は中断できません'
+    end
+  end
+
   describe '#ongoing?' do
     it '終了時刻がない場合は true になること' do
       suspension = FactoryBot.create(:suspension, walk:)

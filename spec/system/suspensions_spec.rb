@@ -26,4 +26,35 @@ RSpec.describe 'Suspensions', :js, type: :system do
     expect(page).to have_button('到着')
     expect(page).to have_no_text('中断中')
   end
+
+  it '到着履歴から中断の開始時刻を編集できる' do
+    walk.arrival_of_departure.update!(arrived_at: 3.hours.ago)
+    click_on '中断する'
+    click_on '再開する'
+    visit arrivals_path
+    edit_suspension_start_time(walk.suspensions.take, 1.hour.ago)
+    expect(page).to have_text('中断を更新しました')
+  end
+
+  it '到着履歴から中断を削除できる' do
+    click_on '中断する'
+    click_on '再開する'
+    visit arrivals_path
+
+    within "turbo-frame#suspension_#{walk.suspensions.take.id}" do
+      accept_confirm { click_on '削除' }
+    end
+    expect(page).to have_no_text('中断')
+  end
+
+  private
+
+  def edit_suspension_start_time(suspension, target)
+    within "turbo-frame#suspension_#{suspension.id}" do
+      click_on '編集'
+      select format('%02d', target.hour), from: 'suspension_started_at_4i'
+      select format('%02d', target.min), from: 'suspension_started_at_5i'
+      click_on '保存'
+    end
+  end
 end

@@ -12,7 +12,12 @@ ja:
       models:
         suspension:
           attributes:
+            started_at:
+              cannot_be_future: に未来の時刻は設定できません
+              before_departure: は出発時刻より後の時刻を設定してください
             ended_at:
               must_be_after_started_at: は中断開始時刻より後の時刻を設定してください
+              cannot_be_future: に未来の時刻は設定できません
           already_suspended: すでに中断中です
           walk_not_in_progress: 実施中の歩行記録以外は中断できません
+          overlaps_with_another_suspension: 他の中断と期間が重複しています

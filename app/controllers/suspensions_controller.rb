@@ -25,6 +25,6 @@ class SuspensionsController < ApplicationController
   end
 
   def suspension_params
-    params.require(:suspension).permit(:started_at, :ended_at)
+    params.require(:suspension).permit(:started_at, :ended_at, :reason)
   end
 end

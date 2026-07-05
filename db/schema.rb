@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_04_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_05_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,6 +78,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_04_000000) do
   create_table "suspensions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "ended_at"
+    t.string "reason", limit: 255, default: "", null: false
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "walk_id", null: false

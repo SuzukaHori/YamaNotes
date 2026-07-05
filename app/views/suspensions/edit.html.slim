@@ -10,6 +10,8 @@
         = f.time_select :ended_at, {}, { class: 'rounded border border-gray-300' }
     - else
       p.mt-4.text-sm.text-gray-500 = t('.ongoing_note')
+    = f.label :reason, class: 'inline-block mt-4 mb-1'
+    = f.text_area :reason, class: 'inline w-full rounded border border-gray-300', placeholder: t('dialogs.suspension.placeholder'), maxlength: 250
     .text-center.my-2
       = button_tag type: 'submit', class: 'btn-primary' do
           span.when-enabled = t('shared.buttons.save')

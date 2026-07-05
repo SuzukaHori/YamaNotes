@@ -21,6 +21,13 @@ RSpec.describe 'Walks::Suspensions', type: :request do
       expect(flash[:notice]).to eq('歩行を中断しました。')
     end
 
+    context '理由を入力した場合' do
+      it '理由付きで中断が開始される' do
+        post walk_suspension_path(walk), params: { suspension: { reason: '昼食休憩' } }
+        expect(walk.suspensions.ongoing.take.reason).to eq '昼食休憩'
+      end
+    end
+
     context 'すでに中断中の場合' do
       before { FactoryBot.create(:suspension, walk:) }
 

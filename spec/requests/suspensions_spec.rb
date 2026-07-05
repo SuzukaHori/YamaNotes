@@ -29,6 +29,12 @@ RSpec.describe 'Suspensions', type: :request do
           patch suspension_path(suspension), params: { suspension: { started_at: 3.hours.ago, ended_at: 1.hour.ago } }
         end.to(change { suspension.reload.started_at })
       end
+
+      it '理由が更新される' do
+        expect do
+          patch suspension_path(suspension), params: { suspension: { reason: '夕食休憩' } }
+        end.to change { suspension.reload.reason }.to('夕食休憩')
+      end
     end
 
     context '不正なパラメーターの場合' do

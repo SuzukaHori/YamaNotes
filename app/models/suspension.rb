@@ -4,10 +4,13 @@ class Suspension < ApplicationRecord
   belongs_to :walk
 
   validates :started_at, presence: true
+  validates :reason, length: { maximum: 250 }, allow_blank: true
   validate :walk_must_be_in_progress, on: :create
   validate :prohibit_multiple_ongoing_suspensions, on: :create
   validate :ended_at_must_be_after_started_at, if: -> { ended_at.present? }
   validate :check_suspension_times, on: :update
+
+  before_save :convert_nil_reason_to_blank
 
   scope :ongoing, -> { where(ended_at: nil) }
 
@@ -20,6 +23,10 @@ class Suspension < ApplicationRecord
   end
 
   private
+
+  def convert_nil_reason_to_blank
+    self.reason = '' if reason.nil?
+  end
 
   def walk_must_be_in_progress
     return if walk&.active? && !walk.finished?

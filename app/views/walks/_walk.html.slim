@@ -22,4 +22,7 @@
     - if walk.suspended?
       = link_to t('.resume'), walk_suspension_path(walk), data: { turbo_method: :patch }, class: 'px-6 btn-primary'
     - else
-      = link_to t('.suspend'), walk_suspension_path(walk), data: { turbo_method: :post }, class: 'link-important'
+      .inline-block data-controller="modal"
+        button#suspension_modal_button.link-important data-action="modal#open"
+          = t('.suspend')
+        = render partial: 'dialogs/suspension', locals: { walk: }

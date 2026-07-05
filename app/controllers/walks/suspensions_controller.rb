@@ -4,7 +4,7 @@ class Walks::SuspensionsController < ApplicationController
   before_action :set_walk
 
   def create
-    suspension = @walk.suspensions.new(started_at: Time.current)
+    suspension = @walk.suspensions.new(suspension_params.merge(started_at: Time.current))
     if suspension.save
       redirect_to walk_path(@walk), notice: t('.suspended')
     else
@@ -27,5 +27,9 @@ class Walks::SuspensionsController < ApplicationController
 
   def set_walk
     @walk = current_user.walks.find(params[:walk_id])
+  end
+
+  def suspension_params
+    params.fetch(:suspension, ActionController::Parameters.new).permit(:reason)
   end
 end

@@ -7,6 +7,7 @@ ja:
       suspension:
         started_at: 中断開始時刻
         ended_at: 中断終了時刻
+        reason: 中断理由
         walk_id: 歩行記録ノート
     errors:
       models:

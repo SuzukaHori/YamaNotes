@@ -115,6 +115,19 @@ RSpec.describe Suspension, type: :model do
     end
   end
 
+  describe 'reason のバリデーション' do
+    it '250文字まで入力できること' do
+      suspension = FactoryBot.build(:suspension, walk:, reason: 'あ' * 250)
+      expect(suspension).to be_valid
+    end
+
+    it '251文字以上は入力できないこと' do
+      suspension = FactoryBot.build(:suspension, walk:, reason: 'あ' * 251)
+      expect(suspension).to be_invalid
+      expect(suspension.errors.full_messages.join).to eq '中断理由は250文字以内で入力してください'
+    end
+  end
+
   describe '#ongoing?' do
     it '終了時刻がない場合は true になること' do
       suspension = FactoryBot.create(:suspension, walk:)

@@ -12,6 +12,17 @@
   #next_station.flex.items-center
     span.mr-2 = t('.next_station')
     span.font-bold.text-lg.max-w-28.md:max-w-full #{current_station.next(clockwise: walk.clockwise).name_i18n}
-    = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
-      = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
-      = f.submit t('.arrive'), class: 'px-6 btn-primary'
+    - if walk.suspended?
+      span.ml-auto.px-6.font-bold.text-gray-500 = t('.suspended_label')
+    - else
+      = form_with model: arrival, url: arrivals_path, class: 'ml-auto' do |f|
+        = f.hidden_field :station_id, value: current_station.next(clockwise: walk.clockwise).id
+        = f.submit t('.arrive'), class: 'px-6 btn-primary'
+  .text-center.mt-4
+    - if walk.suspended?
+      = link_to t('.resume'), walk_suspension_path(walk), data: { turbo_method: :patch }, class: 'px-6 btn-primary'
+    - else
+      .inline-block data-controller="modal"
+        button#suspension_modal_button.link-important data-action="modal#open"
+          = t('.suspend')
+        = render partial: 'dialogs/suspension', locals: { walk: }

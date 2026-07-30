@@ -20,7 +20,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'ostruct' # 本来このGemは記述不要なので、後ほど削除する
 gem 'pg'
 gem 'puma'
-gem 'rails', '8.1.3'
+gem 'rails', '8.1.3.1'
 gem 'rails-i18n'
 gem 'rinku'
 gem 'ruby-vips'

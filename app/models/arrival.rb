@@ -10,6 +10,7 @@ class Arrival < ApplicationRecord
   validates :memo, length: { maximum: 250 }, allow_blank: true # DBの制限は255字だが、リンクでスペースを生成する場合があるため250に設定
   validate :prohibit_arrival_without_next_station, on: :create
   validate :arrivals_count_must_be_within_limit, on: :create
+  validate :prohibit_arrival_while_suspended, on: :create
   validate :check_arrived_time, on: :update
 
   before_save :convert_nil_to_blank
@@ -78,5 +79,9 @@ class Arrival < ApplicationRecord
 
   def arrivals_count_must_be_within_limit
     errors.add(:base, :arrivals_limit_exceeded) if walk.arrivals.count > Station.cache_count
+  end
+
+  def prohibit_arrival_while_suspended
+    errors.add(:base, :walk_is_suspended) if walk&.suspended?
   end
 end

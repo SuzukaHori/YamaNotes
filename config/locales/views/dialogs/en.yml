@@ -13,7 +13,11 @@ en:
       confirm: Understood
     memo:
       title: Add memo
-      placeholder: Getting tired! Jealous of cyclists ><
+      placeholder: Getting tired! Jealous of cyclists >
+    suspension:
+      title: Suspend walk
+      placeholder: Staying overnight at a hotel (optional)
+      submit: Suspend<
     help:
       title: How to use
       arrival_step_prefix: When you reach a station, press the

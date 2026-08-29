@@ -61,6 +61,9 @@ en:
       next_station: "Next station:"
       memo: Memo
       arrive: Arrive
+      suspend: Suspend
+      resume: Resume
+      suspended_label: Suspended
     create:
       created: Walk record notebook has been created.
     destroy:

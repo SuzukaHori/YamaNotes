@@ -1,0 +1,19 @@
+= turbo_frame_tag suspension do
+  .ml-16.border-l-8.pl-4.pb-6.border-gray-300.relative
+    .h-4.w-4.bg-white.border.border-gray-400.absolute.-left-3.top-3.rounded-full
+    .mb-2
+      .flex.items-center.py-2
+        p.bg-gray-400.text-white.px-2.py-1.mr-2.rounded-lg.text-sm = t('.suspension_badge')
+        p.text-xl.text-zinc-500
+          - if suspension.ongoing?
+            | #{l suspension.started_at, format: :without_date}〜（#{t('.ongoing')}）
+          - else
+            | #{l suspension.started_at, format: :without_date}〜#{l suspension.ended_at, format: :without_date}（#{suspension_duration(suspension)}）
+      - if suspension.reason.present?
+        .text-sm.text-zinc-500.break-all.ml-1 = suspension.reason
+    - if editable
+      = link_to edit_suspension_path(suspension), class: 'inline-block h-11 content-center' do
+        .text-sm.h-8.link-important = t('shared.buttons.edit')
+      = link_to t('shared.buttons.delete'), suspension,
+               class: 'text-sm text-gray-400 underline pl-4 hover:text-black',
+               data: { turbo_frame: 'arrivals-list', turbo_method: 'delete', turbo_confirm: t('.delete_confirm') }

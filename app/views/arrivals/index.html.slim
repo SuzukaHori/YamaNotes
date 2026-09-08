@@ -15,7 +15,11 @@
     p = t('.image_upload_beta_warning.deletion_risk')
     p = t('.image_upload_beta_warning.backup_request')
 = turbo_frame_tag 'arrivals-list' do
-  = render partial: 'arrivals/arrival', collection: @arrivals, as: :arrival, locals: { user: @user, arrivals: @arrivals }
+  - walk_timeline(@arrivals, @suspensions).each do |item|
+    - if item.is_a?(Suspension)
+      = render 'suspensions/suspension', suspension: item, editable: !@walk.finished?
+    - else
+      = render 'arrivals/arrival', arrival: item, user: @user, arrivals: @arrivals
 
 .text-center.my-4
   = link_to t('.back_to_map'), walk_path(current_walk), class: 'link-important'

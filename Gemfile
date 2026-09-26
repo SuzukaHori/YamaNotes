@@ -13,6 +13,7 @@ gem 'gon'
 gem 'high_voltage'
 gem 'image_processing'
 gem 'importmap-rails'
+gem 'json', '< 3' # json 3 系に multi_json(gon 等)が未対応のため固定
 gem 'meta-tags'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

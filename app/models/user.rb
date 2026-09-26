@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :omniauthable, :rememberable, omniauth_providers: %i[google_oauth2]
   has_many :walks, dependent: :destroy
   has_many :arrivals, through: :walks
+  has_many :suspensions, through: :walks
   validates :uid, uniqueness: { scope: :provider }, format: { with: /\A\d+\z/ }, presence: true
   validates :provider, inclusion: { in: ['google_oauth2'] }, presence: true
 end

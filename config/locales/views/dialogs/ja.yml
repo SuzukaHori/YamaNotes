@@ -14,6 +14,10 @@ ja:
     memo:
       title: メモを追加
       placeholder: 辛くなってきた！自転車が羨ましい><
+    suspension:
+      title: 歩行を中断
+      placeholder: ホテルに宿泊するため中断（省略可）
+      submit: 中断する
     help:
       title: 使い方
       arrival_step_prefix: 駅に着いたら

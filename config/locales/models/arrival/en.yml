@@ -25,3 +25,4 @@ en:
               too_large: must be 5MB or smaller
           only_last_arrival_can_be_deleted: only the last arrival can be deleted
           arrivals_limit_exceeded: cannot exceed the total number of stations
+          walk_is_suspended: cannot create an arrival while the walk is suspended

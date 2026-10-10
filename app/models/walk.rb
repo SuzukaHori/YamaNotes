@@ -4,6 +4,7 @@ class Walk < ApplicationRecord
   belongs_to :user
   has_many :arrivals, dependent: :destroy
   has_many :stations, through: :arrivals
+  has_many :suspensions, dependent: :destroy
   validates :clockwise, inclusion: { in: [true, false] }
   validate :active_walk_uniqueness, on: :create
 
@@ -41,6 +42,29 @@ class Walk < ApplicationRecord
 
   def finished?
     arrivals.size > Station.cache_count
+  end
+
+  def suspended?
+    suspensions.ongoing.exists?
+  end
+
+  def ongoing_suspension
+    suspensions.ongoing.first
+  end
+
+  def total_suspended_seconds
+    suspensions.sum(&:duration_seconds)
+  end
+
+  # 中断中は total_suspended_seconds が現在時刻まで伸び続けるため、経過時間は中断開始時点で止まる
+  def elapsed_seconds
+    Time.current - arrival_of_departure.arrived_at - total_suspended_seconds
+  end
+
+  def time_to_reach_goal_seconds
+    return unless finished?
+
+    arrival_of_goal.arrived_at - arrival_of_departure.arrived_at - total_suspended_seconds
   end
 
   private

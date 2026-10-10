@@ -14,25 +14,23 @@ module WalksHelper
   end
 
   def elapsed_time(walk)
-    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
-    convert_to_local_time(elapsed_seconds)
-  end
-
-  def elapsed_hours(walk)
-    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
-    (elapsed_seconds / 3600).to_i
-  end
-
-  def elapsed_minutes(walk)
-    elapsed_seconds = Time.current - walk.arrival_of_departure.arrived_at
-    hours = (elapsed_seconds / 3600).to_i
-    ((elapsed_seconds - (hours * 3600)) / 60).to_i
+    convert_to_local_time(walk.elapsed_seconds)
   end
 
   def time_to_reach_goal(walk)
-    return unless walk.finished?
+    seconds = walk.time_to_reach_goal_seconds
+    return unless seconds
 
-    convert_to_local_time(walk.arrival_of_goal.arrived_at - walk.arrival_of_departure.arrived_at)
+    convert_to_local_time(seconds)
+  end
+
+  def suspension_duration(suspension)
+    convert_to_local_time(suspension.duration_seconds)
+  end
+
+  # 到着と中断を時系列に並べた履歴表示用のリストを返す
+  def walk_timeline(arrivals, suspensions)
+    (arrivals.to_a + suspensions.to_a).sort_by { |item| item.is_a?(Suspension) ? item.started_at : item.arrived_at }
   end
 
   private

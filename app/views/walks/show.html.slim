@@ -18,12 +18,13 @@ div data-controller='caution'
   h2.font-bold.mb-2 = t('.here_record')
   table.mb-4.mx-auto
     - unless @walk.finished?
-      tr data-controller="time" data-time-departure-date-value="#{@walk.arrival_of_departure.arrived_at.iso8601}"
+      - elapsed_seconds = @walk.elapsed_seconds.to_i
+      tr data-controller="time" data-time-elapsed-seconds-value="#{elapsed_seconds}" data-time-running-value="#{!@walk.suspended?}"
         th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.elapsed_since')
         td.border.border-gray-400.text-left.px-4.py-1
-          span data-time-target="hours" = elapsed_hours(@walk)
+          span data-time-target="hours" = elapsed_seconds / 3600
           = t('.hour_unit')
-          span data-time-target="minutes" = elapsed_minutes(@walk)
+          span data-time-target="minutes" = (elapsed_seconds % 3600) / 60
           = t('.minute_unit')
     tr
       th.border.border-gray-400.font-normal.bg-yamanote-green-80.text-right.px-4.py-1 = t('.walked_stations')

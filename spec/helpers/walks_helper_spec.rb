@@ -48,8 +48,20 @@ RSpec.describe WalksHelper, type: :helper do
     end
   end
 
-  it '#elapsed_time' do
-    expect(helper.elapsed_time(walk)).to eq('24時間1分')
+  describe '#elapsed_time' do
+    it '出発からの経過時間が返る' do
+      expect(helper.elapsed_time(walk)).to eq('24時間1分')
+    end
+
+    it '終了済みの中断時間が差し引かれる' do
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 2.hours.ago)
+      expect(helper.elapsed_time(walk)).to eq('23時間31分')
+    end
+
+    it '中断中は中断開始時点の経過時間で止まる' do
+      FactoryBot.create(:suspension, walk:, started_at: 1.hour.ago)
+      expect(helper.elapsed_time(walk)).to eq('23時間1分')
+    end
   end
 
   describe '#time_to_reach_goal' do
@@ -61,6 +73,12 @@ RSpec.describe WalksHelper, type: :helper do
     it '歩行が終了済みの場合、出発からゴールまでの時間が返る' do
       create_arrivals(walk, 30)
       expect(helper.time_to_reach_goal(walk)).to eq '24時間1分'
+    end
+
+    it '中断時間が差し引かれる' do
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 2.hours.ago)
+      create_arrivals(walk, 30)
+      expect(helper.time_to_reach_goal(walk)).to eq '23時間31分'
     end
   end
 end

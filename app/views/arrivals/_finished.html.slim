@@ -4,7 +4,7 @@
     p.my-1 = t('.certificate_body1', count: Station.cache_count)
     p.my-1 = t('.certificate_body2')
     p.my-1 = t('.certificate_body3')
-  table.mt-6.mx-auto.text-sm.border.border-gray-400 data-controller="time" data-time-departure-date-value="#{walk.created_at.iso8601}"
+  table.mt-6.mx-auto.text-sm.border.border-gray-400
     tr
       th.font-normal.bg-yamanote-green-50.px-3.md:px-4 = t('.departure_time')
       td.py-1.px-3.md:px-4

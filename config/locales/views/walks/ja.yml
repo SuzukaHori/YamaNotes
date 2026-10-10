@@ -61,6 +61,9 @@ ja:
       next_station: "次の駅:"
       memo: メモ
       arrive: 到着
+      suspend: 中断する
+      resume: 再開する
+      suspended_label: 中断中
     create:
       created: 歩行記録ノートを作成しました。
     destroy:

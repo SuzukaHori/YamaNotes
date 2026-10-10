@@ -7,6 +7,7 @@ class ArrivalsController < ApplicationController
 
   def index
     @arrivals = current_walk.arrivals.order(:created_at).includes(:station, image_attachment: :blob)
+    @suspensions = current_walk.suspensions.order(:started_at)
   end
 
   def show

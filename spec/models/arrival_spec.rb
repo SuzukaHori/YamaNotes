@@ -27,6 +27,20 @@ RSpec.describe Arrival, type: :model do
     end
   end
 
+  describe '#prohibit_arrival_while_suspended' do
+    it '中断中は到着記録を作成できないこと' do
+      FactoryBot.create(:suspension, walk:)
+      new_arrival = FactoryBot.build(:arrival, walk:, station_id: 2)
+      expect(new_arrival).to be_invalid
+      expect(new_arrival.errors.full_messages.join).to eq '中断中は到着記録を作成できません'
+    end
+
+    it '中断が終了していれば到着記録を作成できること' do
+      FactoryBot.create(:suspension, :ended, walk:)
+      expect { arrival_second }.to change(Arrival, :count).by(1)
+    end
+  end
+
   describe '#check_arrived_time' do
     it '到着時刻を更新できること' do
       arrived_at = arrival.arrived_at - 60

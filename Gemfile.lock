@@ -560,7 +560,7 @@ DEPENDENCIES
   i18n_generators
   image_processing
   importmap-rails
-  json (< 4)
+  json
   launchy
   meta-tags
   omniauth

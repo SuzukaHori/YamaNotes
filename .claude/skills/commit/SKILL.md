@@ -54,6 +54,8 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 
 `type` の例: `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `style`
 
+他のリポジトリの PR / Issue への参照（`owner/repo#123`、URL）や他のユーザーへのメンション（`@ユーザー名`）は書かない。
+
 ### 5. コミット実行
 
 ユーザーの承認後、ステージングしてコミットする。

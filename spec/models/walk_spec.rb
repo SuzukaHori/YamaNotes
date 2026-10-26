@@ -105,6 +105,80 @@ RSpec.describe Walk, type: :model do
     end
   end
 
+  describe '#suspended?' do
+    let!(:walk) { FactoryBot.create(:walk, :with_arrivals) }
+
+    it '進行中の中断がある場合は true になること' do
+      FactoryBot.create(:suspension, walk:)
+      expect(walk).to be_suspended
+    end
+
+    it '終了済みの中断しかない場合は false になること' do
+      FactoryBot.create(:suspension, :ended, walk:)
+      expect(walk).not_to be_suspended
+    end
+
+    it '中断がない場合は false になること' do
+      expect(walk).not_to be_suspended
+    end
+  end
+
+  describe '#total_suspended_seconds' do
+    let!(:walk) { FactoryBot.create(:walk, :with_arrivals) }
+
+    it '終了済みの中断の合計秒数が返ること' do
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 3.hours.ago)
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 1.hour.ago)
+      expect(walk.total_suspended_seconds).to eq 1.hour
+    end
+
+    it '進行中の中断は現在時刻までの秒数が加算されること' do
+      FactoryBot.create(:suspension, walk:, started_at: 10.minutes.ago)
+      expect(walk.total_suspended_seconds).to be_within(5).of(10.minutes)
+    end
+  end
+
+  describe '#elapsed_seconds' do
+    let!(:walk) { FactoryBot.create(:walk) }
+
+    before do
+      FactoryBot.create(:arrival, walk:, arrived_at: 24.hours.ago, station_id: 1)
+    end
+
+    # arrived_at は保存時に秒が切り捨てられるため、誤差は最大60秒
+    it '中断がない場合、出発からの経過秒数が返ること' do
+      expect(walk.elapsed_seconds).to be_within(60).of(24.hours)
+    end
+
+    it '終了済みの中断の秒数が差し引かれること' do
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 2.hours.ago)
+      expect(walk.elapsed_seconds).to be_within(60).of(23.5.hours)
+    end
+
+    it '中断中は中断開始時点で経過秒数が止まること' do
+      FactoryBot.create(:suspension, walk:, started_at: 2.hours.ago)
+      expect(walk.elapsed_seconds).to be_within(60).of(22.hours)
+    end
+  end
+
+  describe '#time_to_reach_goal_seconds' do
+    let!(:walk) { FactoryBot.create(:walk) }
+
+    it '一周終了していない場合は nil が返ること' do
+      create_arrivals(walk, Station.cache_count)
+      expect(walk.time_to_reach_goal_seconds).to be_nil
+    end
+
+    it '出発からゴールまでの秒数から中断の合計が差し引かれること' do
+      create_arrivals(walk, 1)
+      FactoryBot.create(:suspension, :ended, walk:, started_at: 5.hours.ago)
+      create_arrivals(walk, Station.cache_count)
+      walk.arrival_of_departure.update!(arrived_at: 10.hours.ago)
+
+      expect(walk.time_to_reach_goal_seconds).to be_within(60).of(9.5.hours)
+    end
+  end
+
   describe '#active_walk_uniqueness' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:walk) { FactoryBot.build(:walk, user: user) }

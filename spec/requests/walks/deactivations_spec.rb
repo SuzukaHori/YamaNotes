@@ -37,5 +37,18 @@ RSpec.describe 'Walks::Deactivations', type: :request do
         expect(flash[:notice]).to eq('リタイアしました。')
       end
     end
+
+    context '中断中にリタイアした場合' do
+      let!(:walk) do
+        FactoryBot.create(:walk, :with_arrivals, arrivals_count: 1, user:, clockwise: true)
+      end
+      let!(:suspension) { FactoryBot.create(:suspension, walk:) }
+
+      it '進行中の中断が終了する' do
+        expect { deactivate_walk }.to change { suspension.reload.ended_at }.from(nil)
+
+        expect(walk.reload.active).to be false
+      end
+    end
   end
 end

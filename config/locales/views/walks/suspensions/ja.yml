@@ -1,0 +1,9 @@
+---
+ja:
+  walks:
+    suspensions:
+      create:
+        suspended: 歩行を中断しました。
+      update:
+        resumed: 歩行を再開しました。
+        not_suspended: 中断中ではありません。

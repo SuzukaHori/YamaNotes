@@ -177,7 +177,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    hashie (5.1.0)
+    hashie (5.2.0)
       logger
     high_voltage (5.0.0)
     i18n (1.15.2)
@@ -268,11 +268,11 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.3)
       version_gem (~> 1.1, >= 1.1.9)
-    omniauth (2.1.4)
-      hashie (>= 3.4.6)
+    omniauth (2.3.1)
+      hashie (>= 3.5.2)
       logger
-      rack (>= 2.2.3)
-      rack-protection
+      rack (>= 2.2.8)
+      rack-protection (>= 2.2.0)
     omniauth-google-oauth2 (1.2.2)
       jwt (>= 2.9.2)
       oauth2 (~> 2.0)

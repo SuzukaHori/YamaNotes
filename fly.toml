@@ -39,7 +39,3 @@ console_command = '/rails/bin/rails console'
   memory_mb = 512
   cpu_kind = 'shared'
   cpus = 1
-
-[[statics]]
-  guest_path = '/rails/public'
-  url_prefix = '/'

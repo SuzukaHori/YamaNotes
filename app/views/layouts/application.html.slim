@@ -9,6 +9,7 @@ html lang=I18n.locale class='text-base-black'
     = stylesheet_link_tag 'https://unpkg.com/leaflet@1.6.0/dist/leaflet.css',
       integrity: 'sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==',
       crossorigin: ''
+    = yield :head
     = include_gon
     = javascript_importmap_tags
     = favicon_link_tag('favicon.ico')

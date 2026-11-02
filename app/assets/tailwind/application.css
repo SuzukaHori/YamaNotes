@@ -24,13 +24,6 @@
 }
 
 
-@layer base {
-  @font-face {
-    font-family: 'Mochiy Pop One';
-    src: url('../fonts/Mochiy_Pop_One.woff');
-  }
-}
-
 /*
   @tailwindcss/forms が提供していたフォームリセットを明示化したもの。
   ブラウザのデフォルトスタイルを均一化し、Tailwind ユーティリティで上書きしやすくする。

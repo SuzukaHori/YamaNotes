@@ -1,5 +1,9 @@
 - title t('.title')
 - set_meta_tags description: t('.meta_description')
+- content_for :head do
+  link rel='preconnect' href='https://fonts.googleapis.com'
+  link rel='preconnect' href='https://fonts.gstatic.com' crossorigin=''
+  = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap'
 .mx-4.my-8.md:mx-10
   .text-center
     p.text-yamanote-green-150.text-2xl.md:text-3xl.font-pop

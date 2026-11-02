@@ -4,6 +4,7 @@ class Walks::DeactivationsController < ApplicationController
   before_action :set_walk
 
   def create
+    @walk.ongoing_suspension&.update!(ended_at: Time.current)
     @walk.update!(active: false)
     redirect_to new_walk_path, notice: @walk.finished? ? t('.completed') : t('.retired')
   end

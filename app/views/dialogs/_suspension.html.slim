@@ -1,0 +1,7 @@
+dialog class='p-4 w-[640px] rounded-lg backdrop:bg-black/80 relative' data-modal-target='dialog'
+  h2.text-2xl.font-bold.text-center.my-2.mx-auto = t('.title')
+  button.focus:outline-hidden.absolute.top-0.right-0.p-2.m-2.hover:bg-gray-100 data-action="click->modal#close" autofocus=true
+    = icon_svg 'x_mark', class: 'w-8 h-8'
+  = form_with model: Suspension.new, url: walk_suspension_path(walk) do |form|
+    = form.text_area :reason, rows: '3', class: 'w-full text-base rounded-lg', placeholder: t('.placeholder'), maxlength: '250'
+    = form.submit t('.submit'), class: 'block btn-primary mx-auto mt-2', data: { action: 'click->modal#close' }

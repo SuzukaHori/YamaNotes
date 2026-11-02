@@ -1,0 +1,11 @@
+---
+ja:
+  suspensions:
+    suspension:
+      suspension_badge: 中断
+      ongoing: 中断中
+      delete_confirm: この中断を削除します。よろしいですか？（削除した中断の時間は経過時間に含まれるようになります。）
+    edit:
+      ongoing_note: この中断はまだ再開されていないため、終了時刻は編集できません。
+    update:
+      updated: 中断を更新しました

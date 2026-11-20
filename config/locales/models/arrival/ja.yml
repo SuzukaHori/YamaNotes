@@ -25,3 +25,4 @@ ja:
               too_large: は5MB以下のファイルを選択してください
           only_last_arrival_can_be_deleted: 最後の到着以外は削除できません
           arrivals_limit_exceeded: 駅の数以上の到着記録は作成できません
+          walk_is_suspended: 中断中は到着記録を作成できません

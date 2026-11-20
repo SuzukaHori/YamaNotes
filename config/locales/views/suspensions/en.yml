@@ -1,0 +1,11 @@
+---
+en:
+  suspensions:
+    suspension:
+      suspension_badge: Suspended
+      ongoing: In progress
+      delete_confirm: This will delete this suspension. Are you sure? (The deleted suspension time will be counted in the elapsed time.)
+    edit:
+      ongoing_note: This suspension has not been resumed yet, so the end time cannot be edited.
+    update:
+      updated: Suspension has been updated

@@ -1,0 +1,80 @@
+# 中断機能要件定義書
+
+## 概要
+
+日を跨いで歩いたり長めの休憩をとった場合に、休憩・就寝などの時間が「歩いた時間」に含まれてしまう問題を解決する。ユーザーが明示的に歩行を中断・再開でき、中断期間は経過時間にカウントされないようにする。
+
+## スコープ
+
+- ダッシュボードに「中断する」ボタンを追加し、押すと中断が開始される
+- 中断中はダッシュボードに「中断中」ラベルと「再開する」ボタンを表示し、到着ボタンは非表示にする
+- 中断中は到着記録の作成をサーバー側でも拒否する（Turbo のキャッシュ画面や直接 POST への防御）
+- 中断中は経過時間の表示が中断開始時点で止まる（リアルタイム更新も停止する）
+- 中断期間（開始〜終了）は `suspensions` テーブルにレコードとして保存する
+- 全ての時間表示（ダッシュボードの経過時間・完走時の所要時間・公開レポート・歩行記録一覧）から中断時間の合計を差し引く
+- 1つの歩行記録につき、進行中の中断は同時に1つまで（モデルバリデーション + DB 部分ユニークインデックスの二重防御）
+- 中断したままリタイア・完走操作をした場合は、その時点で中断を自動終了する
+- 到着履歴のタイムラインに中断を時系列で表示する（本人用・公開ページの両方）
+  - タイムライン左の時刻列は到着のみに表示し、中断は「中断」ラベルの右に `12:30〜14:05（1時間35分）` 形式で期間を表示する
+- 中断理由（任意・250文字以内）を入力できる。入力箇所は「中断する」押下時のモーダルと編集画面の2箇所。理由は到着履歴に表示する
+- 到着履歴から中断の開始・終了時刻・理由の編集と、中断の削除ができる（進行中の Walk のみ。押し忘れ・誤操作の修正用）
+  - 未来の時刻、出発時刻より前の開始時刻、他の中断と重複する期間は設定できない
+  - 再開していない中断は終了時刻を編集できない（開始時刻のみ）
+
+## スコープ外
+
+- 過去の中断の手動追加（中断ボタンの押し忘れを後から丸ごと記録する機能。将来必要になれば追加する）
+- 完走・リタイア済みの歩行記録の中断の編集
+- 到着時刻の編集と中断期間の整合性チェック（中断は到着記録とは独立したレコードとして扱う）
+- 駅間隔からの中断の自動判定（明示的なボタン操作のみ）
+
+---
+
+## 実装方式
+
+### モデル
+
+- `Suspension` モデルを新設する。カラムは `walk_id` / `started_at`（必須） / `ended_at`（NULL 許可） / `reason`（デフォルト空文字。`arrivals.memo` と同じ形式）
+- `ended_at IS NULL` のレコードの存在が「中断中」を表す（Walk にフラグは持たせず、二重管理を避ける）
+- `suspensions.walk_id` に `where: ended_at IS NULL` の部分ユニークインデックスを張り、「進行中の中断は Walk ごとに1つ」を DB レベルでも保証する（`walks.user_id` の active 部分インデックスと同じ手法）
+- 経過時間の計算ロジックは `Walk` モデルに集約する（`elapsed_seconds` / `time_to_reach_goal_seconds` / `total_suspended_seconds`）。`WalksHelper` は秒数を文字列に整形するだけの表示専任層にする
+
+### コントローラー
+
+- `Walks::SuspensionsController` を新設（`Walks::DeactivationsController` と同じサブリソースパターン）
+  - `POST /walks/:walk_id/suspension` — 中断開始（`started_at: 現在時刻` で作成）
+  - `PATCH /walks/:walk_id/suspension` — 再開（進行中の中断に `ended_at: 現在時刻` をセット）
+- `SuspensionsController`（トップレベル）を新設（`ArrivalsController` と同じレコード編集パターン）
+  - `GET /suspensions/:id/edit` / `PATCH /suspensions/:id` / `DELETE /suspensions/:id`
+  - 対象は `current_user` の active な Walk の中断のみ（それ以外は 404）
+  - 到着履歴と同じ Turbo Frame によるインライン編集
+- `Walks::DeactivationsController#create` で、進行中の中断があれば `ended_at` を確定させてから `active: false` にする
+
+### フロントエンド
+
+- `time_controller.js` はサーバーが計算済みの経過秒数（中断控除済み）と稼働中フラグを受け取る方式に変更する。中断中はタイマーを起動せず、サーバーが描画した値が静止表示される
+- 中断状態はサーバー（DB）を唯一の情報源とするため、リロードしても表示は正しく復元される
+
+## 挙動
+
+| 状態 | 経過時間表示 | 到着ボタン | 中断/再開ボタン |
+|---|---|---|---|
+| 歩行中 | リアルタイム更新（中断合計を控除） | 表示 | 「中断する」 |
+| 中断中 | 中断開始時点で停止 | 非表示（「中断中」ラベル） | 「再開する」 |
+| 完走 | 所要時間 =（ゴール − 出発 − 中断合計） | −（完走画面） | − |
+| リタイア | − | − | −（進行中の中断は自動終了） |
+
+## 構成ファイル
+
+- `app/models/suspension.rb` — 中断レコード。バリデーションとスコープ
+- `app/models/walk.rb` — `suspended?` / `total_suspended_seconds` / `elapsed_seconds` / `time_to_reach_goal_seconds`
+- `app/models/arrival.rb` — 中断中の到着記録作成を拒否するバリデーション
+- `app/helpers/walks_helper.rb` — 秒数の文字列整形（計算は Walk に委譲）
+- `app/controllers/walks/suspensions_controller.rb` — 中断開始・再開
+- `app/controllers/suspensions_controller.rb` — 中断の編集・削除
+- `app/controllers/walks/deactivations_controller.rb` — リタイア時の中断自動終了
+- `app/views/walks/show.html.slim` / `_walk.html.slim` — ボタン・ラベルの出し分け
+- `app/views/suspensions/` — 到着履歴のタイムライン表示（`_suspension`）と編集画面
+- `app/views/arrivals/index.html.slim` / `app/views/walk/arrivals/index.html.slim` — 到着と中断を時系列で表示
+- `app/javascript/controllers/time_controller.js` — 経過時間のリアルタイム表示
+- `config/locales/models/suspension/{ja,en}.yml` / `config/locales/views/walks/suspensions/{ja,en}.yml` / `config/locales/views/suspensions/{ja,en}.yml` — 翻訳

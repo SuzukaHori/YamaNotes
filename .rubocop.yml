@@ -10,7 +10,7 @@ plugins:
   - rubocop-factory_bot
 
 AllCops:
-  TargetRubyVersion: 4.0.2
+  TargetRubyVersion: 4.0.10
 
 RSpec/MultipleExpectations:
   Max: 3

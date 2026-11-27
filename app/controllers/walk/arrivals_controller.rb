@@ -11,6 +11,7 @@ class Walk::ArrivalsController < ApplicationController
 
   def index
     @arrivals = @walk.arrivals.order(:created_at).includes(:station, image_attachment: :blob)
+    @suspensions = @walk.suspensions.order(:started_at)
   end
 
   private

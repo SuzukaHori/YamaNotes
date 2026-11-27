@@ -1,0 +1,9 @@
+---
+en:
+  walks:
+    suspensions:
+      create:
+        suspended: Walk suspended.
+      update:
+        resumed: Walk resumed.
+        not_suspended: The walk is not suspended.
